@@ -188,6 +188,23 @@ nav.dark-mode .nav-cta:hover { color:#fff; }
 .svc:hover .svc-ico { opacity:0; }
 @media(max-width:768px) { .svc-end { width:88px; height:64px; } }
 
+/* SERVICE CARDS */
+.svc-hdr { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:end; margin-bottom:52px; }
+.svc-hdr .lead { margin-top:16px; }
+.svc-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+.svc-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-card); padding:32px 24px 28px; display:flex; flex-direction:column; transition:border-color .22s ease, transform .22s ease; }
+.svc-card:hover { border-color:var(--navy); transform:translateY(-3px); }
+.svc-icon { width:44px; height:44px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; border:1px solid var(--border); border-radius:50%; transition:border-color .22s ease; }
+.svc-icon svg { width:22px; height:22px; stroke:var(--green-dk); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.svc-card:hover .svc-icon { border-color:var(--green-dk); }
+.svc-card h3 { font-size:1.0625rem; font-weight:600; margin-bottom:10px; line-height:1.3; }
+.svc-card p { color:var(--text-2); font-size:14px; line-height:1.65; flex:1; }
+.svc-link { display:inline-flex; align-items:center; gap:5px; font-size:13px; font-weight:600; color:var(--green-dk); margin-top:22px; }
+.svc-link span { display:inline-block; transition:transform .18s ease; }
+.svc-card:hover .svc-link span { transform:translateX(5px); }
+@media(max-width:768px) { .svc-hdr { grid-template-columns:1fr; gap:24px; margin-bottom:36px; } .svc-cards { grid-template-columns:1fr 1fr; } }
+@media(max-width:480px) { .svc-cards { grid-template-columns:1fr; } }
+
 /* DARK SECTION */
 .dark { background:var(--navy); color:var(--on-dark); }
 .dark h2 { color:#fff; }
@@ -404,78 +421,63 @@ footer a:hover { color:#fff; }
 
 <hr class="hr">
 
-<section class="sec" id="about">
+<section class="sec" id="hizmetler">
   <div class="wrap">
-    <div class="split" data-reveal>
-      <div class="img">
-        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1200&fit=crop" alt="AL ENERJİ tesis" loading="lazy">
+    <div class="svc-hdr" data-reveal>
+      <div>
+        <span class="label">Hizmetlerimiz</span>
+        <h2>Enerji değer zincirinin<br>her halkasında.</h2>
       </div>
       <div>
-        <span class="label">Hakkımızda</span>
-        <h2>20 yılı aşkın saha<br>tecrübesi, tek disiplin.</h2>
-        <p class="lead">Üretimden depolamaya, enerji ticaretinden danışmanlığa kadar tüm değer zincirini tek elden yönetiyoruz. Avrupa standartlarında raporlama ve uzun vadeli ortaklık anlayışıyla.</p>
-        <div class="tags">
-          <div class="tag">Yenilenebilir Enerji</div>
-          <div class="tag">Enerji Depolama</div>
-          <div class="tag">Brokerage</div>
-          <div class="tag">Danışmanlık</div>
-        </div>
-        <button class="btn btn-secondary" style="margin-top:24px;"><span class="arr">Şirketi Tanıyın <span>→</span></span></button>
+        <p class="lead">Stratejiden uygulamaya, operasyonlardan sürekli iyileştirmeye kadar tüm süreçlerde yanınızdayız.</p>
+        <button class="btn btn-secondary" style="margin-top:24px;"><span class="arr">Tüm Hizmetler <span>→</span></span></button>
       </div>
     </div>
-  </div>
-</section>
-
-<hr class="hr">
-
-<section class="sec">
-  <div class="wrap">
-    <span class="label" data-reveal>Hizmetler</span>
-    <h2 data-reveal>Enerji değer zincirinin<br>her halkasında.</h2>
-    <div style="margin-top:40px;">
-      <div class="svc" data-reveal>
-        <div class="idx">01</div>
-        <div>
-          <h3>Üretim & Saha Geliştirme</h3>
-          <p>Güneş ve rüzgar sahalarının fizibiliteden devreye almaya kadar mühendislik yönetimi. Teknik tasarım, entegrasyon ve performans izleme.</p>
+    <div class="svc-cards">
+      <div class="svc-card" data-reveal>
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3.5"/>
+            <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M19.07 4.93l-1.77 1.77M6.7 17.3l-1.77 1.77"/>
+          </svg>
         </div>
-        <div class="svc-end">
-          <img class="svc-thumb" src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=400&fit=crop" alt="" loading="lazy">
-          <svg class="svc-ico" width="28" height="28" viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l2.5 2.5M16.5 16.5L19 19M19 5l-2.5 2.5M7.5 16.5L5 19"/><circle cx="12" cy="12" r="3.5"/></svg>
-        </div>
+        <h3>Üretim & Saha Geliştirme</h3>
+        <p>Güneş ve rüzgar santrallerinin fizibiliteden devreye almaya kadar mühendislik yönetimi. Teknik tasarım, entegrasyon, performans izleme.</p>
+        <a class="svc-link">Detayları İncele <span>→</span></a>
       </div>
-      <div class="svc" data-reveal>
-        <div class="idx">02</div>
-        <div>
-          <h3>Enerji Depolama (BESS)</h3>
-          <p>Şebeke ölçekli batarya sistemlerinin tasarımı, entegrasyonu ve performans izleme. Uzun ömürlü, verimli enerji depolama çözümleri.</p>
+      <div class="svc-card" data-reveal>
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="7" width="16" height="11" rx="1.5"/>
+            <path d="M19 10.5h2v4h-2M9 7V5.5h6V7"/>
+            <path d="M10.5 14.5l1.5-3 1.5 2 1-1.5"/>
+          </svg>
         </div>
-        <div class="svc-end">
-          <img class="svc-thumb" src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?q=80&w=400&fit=crop" alt="" loading="lazy">
-          <svg class="svc-ico" width="28" height="28" viewBox="0 0 24 24"><rect x="4" y="7" width="15" height="11" rx="1.5"/><path d="M19 10h2v5h-2M8 7V5h4v2"/></svg>
-        </div>
+        <h3>Enerji Depolama (BESS)</h3>
+        <p>Şebeke ölçekli batarya sistemlerinin tasarımı, entegrasyonu ve performans izleme. Uzun ömürlü, yüksek verimli çözümler.</p>
+        <a class="svc-link">Detayları İncele <span>→</span></a>
       </div>
-      <div class="svc" data-reveal>
-        <div class="idx">03</div>
-        <div>
-          <h3>Enerji Ticareti & Brokerage</h3>
-          <p>Toptan piyasalarda alım-satım, dengeleme ve uzun vadeli tedarik sözleşmeleri. Portföy optimizasyonu ve risk yönetimi.</p>
+      <div class="svc-card" data-reveal>
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24">
+            <polyline points="3 17 8 11 12 15 18 7"/>
+            <path d="M18 7h4M18 7v4"/>
+          </svg>
         </div>
-        <div class="svc-end">
-          <img class="svc-thumb" src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=400&fit=crop" alt="" loading="lazy">
-          <svg class="svc-ico" width="28" height="28" viewBox="0 0 24 24"><path d="M3 17l5-5 4 3 6-7M21 8h-4M21 8v4"/></svg>
-        </div>
+        <h3>Enerji Ticareti & Brokerage</h3>
+        <p>Toptan piyasalarda portföy yönetimi, dengeleme ve uzun vadeli tedarik sözleşmeleri. Risk yönetimi ve optimizasyon.</p>
+        <a class="svc-link">Detayları İncele <span>→</span></a>
       </div>
-      <div class="svc" data-reveal>
-        <div class="idx">04</div>
-        <div>
-          <h3>Sürdürülebilirlik Danışmanlığı</h3>
-          <p>Karbon ayak izi azaltımı ve yenilenebilir geçiş stratejilerinde teknik danışmanlık. ESG hedefleri ve enerji geçişi yönetimi.</p>
+      <div class="svc-card" data-reveal>
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3c-4 5.5-8 7-8 11.5a8 8 0 0016 0C20 10 16 8.5 12 3z"/>
+            <path d="M12 12.5c0-2 1.5-3 3.5-4"/>
+          </svg>
         </div>
-        <div class="svc-end">
-          <img class="svc-thumb" src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=400&fit=crop" alt="" loading="lazy">
-          <svg class="svc-ico" width="28" height="28" viewBox="0 0 24 24"><path d="M12 20c5-2 7-6 7-11V5l-7-2-7 2v4c0 5 2 9 7 11z"/><path d="M12 12c0-2 1.5-3.5 4-4"/></svg>
-        </div>
+        <h3>Sürdürülebilirlik Danışmanlığı</h3>
+        <p>Karbon azaltımı, ESG hedefleri ve enerji geçiş stratejilerinde teknik danışmanlık. Avrupa standartlarında raporlama.</p>
+        <a class="svc-link">Detayları İncele <span>→</span></a>
       </div>
     </div>
   </div>
@@ -550,6 +552,32 @@ footer a:hover { color:#fff; }
     </div>
   </div>
 </section>
+
+<hr class="hr">
+
+<section class="sec" id="hakkimizda">
+  <div class="wrap">
+    <div class="split" data-reveal>
+      <div class="img">
+        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1200&fit=crop" alt="AL ENERJİ tesis" loading="lazy">
+      </div>
+      <div>
+        <span class="label">Hakkımızda</span>
+        <h2>20 yılı aşkın saha<br>tecrübesi, tek disiplin.</h2>
+        <p class="lead">Üretimden depolamaya, enerji ticaretinden danışmanlığa kadar tüm değer zincirini tek elden yönetiyoruz. Avrupa standartlarında raporlama ve uzun vadeli ortaklık anlayışıyla.</p>
+        <div class="tags">
+          <div class="tag">Yenilenebilir Enerji</div>
+          <div class="tag">Enerji Depolama</div>
+          <div class="tag">Brokerage</div>
+          <div class="tag">Danışmanlık</div>
+        </div>
+        <button class="btn btn-secondary" style="margin-top:24px;"><span class="arr">Şirketi Tanıyın <span>→</span></span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
 
 <section class="sec">
   <div class="wrap">
