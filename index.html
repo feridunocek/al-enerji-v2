@@ -189,8 +189,10 @@ nav.dark-mode .nav-cta:hover { color:#fff; }
 @media(max-width:768px) { .svc-end { width:88px; height:64px; } }
 
 /* TECH / ANALYTICS SECTION */
-.tech-sec { position:relative; overflow:hidden; background:#06101E; }
-.tech-par { position:absolute; inset:-30% 0; z-index:0; will-change:transform;
+/* overflow:hidden kaldırıldı — sticky çalışması için şart */
+.tech-sec { position:relative; background:#06101E; }
+.tech-bg-clip { position:absolute; inset:0; overflow:hidden; z-index:0; pointer-events:none; }
+.tech-par { position:absolute; inset:-25% 0; will-change:transform;
   background:
     radial-gradient(ellipse 55% 60% at 15% 70%, rgba(31,61,51,.5) 0%, transparent 60%),
     radial-gradient(ellipse 50% 55% at 85% 25%, rgba(11,20,48,.75) 0%, transparent 55%),
@@ -201,27 +203,27 @@ nav.dark-mode .nav-cta:hover { color:#fff; }
 .tech-intro .lead { color:var(--on-dark-muted); margin-top:16px; max-width:52ch; }
 /* Sticky scroll layout */
 .tech-scroll { display:grid; grid-template-columns:1fr 1fr; position:relative; z-index:1; }
-.tech-step { min-height:75vh; display:flex; align-items:center; padding:64px calc(var(--gut) * 1.5) 64px var(--gut); }
-.tech-step-inner { opacity:.28; transform:translateX(-10px); transition:opacity .55s ease, transform .55s ease; }
+.tech-step { min-height:80vh; display:flex; align-items:center; padding:72px var(--gut) 72px calc(50vw - var(--max)/2 + var(--gut)); }
+.tech-step-inner { max-width:42ch; opacity:.25; transform:translateX(-12px); transition:opacity .5s ease, transform .5s ease; }
 .tech-step.active .tech-step-inner { opacity:1; transform:none; }
-.tech-step-num { font-family:var(--fm); font-size:11px; letter-spacing:.18em; color:rgba(93,179,138,.35); display:block; margin-bottom:20px; transition:color .4s ease; }
+.tech-step-num { font-family:var(--fm); font-size:11px; letter-spacing:.18em; color:rgba(93,179,138,.32); display:block; margin-bottom:18px; transition:color .4s; }
 .tech-step.active .tech-step-num { color:var(--green-lt); }
-.tech-step-ico { width:44px; height:44px; border:1px solid rgba(93,179,138,.18); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; transition:border-color .4s, background .4s; }
+.tech-step-ico { width:44px; height:44px; border:1px solid rgba(93,179,138,.16); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; transition:border-color .4s, background .4s; }
 .tech-step.active .tech-step-ico { border-color:rgba(93,179,138,.55); background:rgba(93,179,138,.1); }
 .tech-step-ico svg { width:20px; height:20px; stroke:var(--green-lt); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
 .tech-step h3 { font-size:1.25rem; font-weight:600; color:var(--on-dark); margin-bottom:12px; }
-.tech-step p { font-size:14.5px; color:var(--on-dark-muted); line-height:1.7; max-width:38ch; }
+.tech-step p { font-size:14.5px; color:var(--on-dark-muted); line-height:1.7; }
 /* Sticky image panel */
 .tech-scroll-right { position:sticky; top:64px; height:calc(100svh - 64px); overflow:hidden; }
-.feat-img { position:absolute; inset:0; opacity:0; transition:opacity .75s ease; }
+.feat-img { position:absolute; inset:0; opacity:0; transition:opacity .7s ease; }
 .feat-img.active { opacity:1; }
-.feat-img img { width:100%; height:100%; object-fit:cover; filter:brightness(.72) saturate(.85); }
+.feat-img img { width:100%; height:100%; object-fit:cover; filter:brightness(.7) saturate(.8); }
 .feat-img::after { content:''; position:absolute; inset:0;
   background:
-    linear-gradient(to right, #06101E 0%, rgba(6,16,30,.55) 32%, transparent 62%),
-    linear-gradient(to bottom, rgba(6,16,30,.35) 0%, transparent 22%, transparent 72%, rgba(6,16,30,.65) 100%);
+    linear-gradient(to right, #06101E 0%, rgba(6,16,30,.45) 28%, transparent 58%),
+    linear-gradient(to bottom, rgba(6,16,30,.3) 0%, transparent 20%, transparent 70%, rgba(6,16,30,.6) 100%);
 }
-.feat-img-tag { position:absolute; bottom:32px; right:32px; z-index:2; background:rgba(5,13,26,.82); border:1px solid rgba(93,179,138,.22); border-radius:8px; padding:14px 20px; backdrop-filter:blur(12px); }
+.feat-img-tag { position:absolute; bottom:32px; right:32px; z-index:2; background:rgba(5,13,26,.85); border:1px solid rgba(93,179,138,.22); border-radius:8px; padding:14px 20px; backdrop-filter:blur(12px); }
 .feat-img-tag .fv { font-family:var(--fm); font-size:1.6rem; font-weight:500; color:#5DB38A; line-height:1; }
 .feat-img-tag .fl { font-family:var(--fm); font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.3); margin-top:5px; }
 .tech-cta { position:relative; z-index:1; max-width:var(--max); margin:0 auto; padding:56px var(--gut) var(--spy); border-top:1px solid rgba(255,255,255,.07); }
@@ -229,7 +231,7 @@ nav.dark-mode .nav-cta:hover { color:#fff; }
   .tech-scroll { grid-template-columns:1fr; }
   .tech-scroll-right { display:none; }
   .tech-step { min-height:auto; padding:44px var(--gut); }
-  .tech-step-inner { opacity:1; transform:none; }
+  .tech-step-inner { opacity:1 !important; transform:none !important; }
 }
 
 /* SERVICE CARDS */
@@ -532,7 +534,8 @@ footer a:hover { color:#fff; }
 </section>
 
 <section class="tech-sec" id="teknoloji">
-  <div class="tech-par" id="tech-par"></div>
+  <!-- bg clip wrapper: overflow:hidden burada, tech-sec'te değil — sticky bozulmasın -->
+  <div class="tech-bg-clip"><div class="tech-par" id="tech-par"></div></div>
 
   <!-- Intro header -->
   <div class="tech-intro" data-reveal>
@@ -951,22 +954,30 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// TECH STICKY SCROLL
-const techSteps = document.querySelectorAll('.tech-step');
-const featImgs = document.querySelectorAll('.feat-img');
-if (techSteps.length && featImgs.length) {
-  const stepObs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const idx = parseInt(entry.target.dataset.step);
-        techSteps.forEach(s => s.classList.remove('active'));
-        featImgs.forEach(i => i.classList.remove('active'));
-        entry.target.classList.add('active');
-        if (featImgs[idx]) featImgs[idx].classList.add('active');
-      }
+// TECH STICKY SCROLL — scroll event yerine IntersectionObserver kullanmak
+// yön sorununa neden oluyor; merkeze-en-yakın-adım yöntemi her iki yönde de çalışır
+const techStepEls = document.querySelectorAll('.tech-step');
+const featImgEls = document.querySelectorAll('.feat-img');
+if (techStepEls.length && featImgEls.length) {
+  function updateTechActive() {
+    const mid = window.innerHeight * 0.48;
+    let bestIdx = 0, bestDist = Infinity;
+    techStepEls.forEach((el, i) => {
+      const r = el.getBoundingClientRect();
+      const center = r.top + r.height * 0.5;
+      const dist = Math.abs(center - mid);
+      if (dist < bestDist) { bestDist = dist; bestIdx = i; }
     });
-  }, { threshold: 0.55, rootMargin: '-12% 0px -12% 0px' });
-  techSteps.forEach(s => stepObs.observe(s));
+    techStepEls.forEach((el, i) => el.classList.toggle('active', i === bestIdx));
+    featImgEls.forEach((el, i) => el.classList.toggle('active', i === bestIdx));
+  }
+  window.addEventListener('scroll', () => {
+    const sec = document.getElementById('teknoloji');
+    if (!sec) return;
+    const r = sec.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) updateTechActive();
+  }, { passive: true });
+  updateTechActive();
 }
 
 // TECH SECTION PARALLAX
