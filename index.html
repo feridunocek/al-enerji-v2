@@ -259,6 +259,18 @@ nav.dark-mode .nav-cta:hover { color:#fff; }
 .dark h2 { color:#fff; }
 .dark .lead { color:var(--on-dark-muted); }
 
+/* PARALLAX CTA */
+.cta-par-sec { position:relative; overflow:hidden; min-height:560px; display:flex; align-items:center; justify-content:center; }
+.cta-par-bg { position:absolute; inset:-22% 0; will-change:transform;
+  background:
+    linear-gradient(rgba(11,20,48,.80), rgba(11,20,48,.80)),
+    url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2000&fit=crop') center/cover no-repeat;
+}
+.cta-par-inner { position:relative; z-index:1; text-align:center; max-width:680px; padding:var(--spy) var(--gut); margin:0 auto; }
+.cta-par-inner h2 { color:#fff; font-size:clamp(1.85rem,3.2vw,2.6rem); line-height:1.2; }
+.cta-par-inner .lead { color:rgba(244,246,244,.62); margin-top:18px; max-width:52ch; margin-left:auto; margin-right:auto; }
+.cta-par-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:36px; }
+
 /* CARDS */
 .grid3 { display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; }
 @media(max-width:768px) { .grid3 { grid-template-columns:1fr; } }
@@ -669,20 +681,6 @@ footer a:hover { color:#fff; }
   </div>
 </section>
 
-<section class="sec dark">
-  <div class="wrap">
-    <span class="label" data-reveal>Sürdürülebilir gelecek</span>
-    <h2 data-reveal>Enerji projeniz için<br>güvenilir bir ortak.</h2>
-    <p class="lead" data-reveal>Üretim, depolama ve enerji ticaretinde — ölçülebilir performans, şeffaf raporlama, Avrupa standartlarında iş ortaklığı.</p>
-    <div style="display:flex; gap:16px; margin-top:28px; flex-wrap:wrap;" data-reveal>
-      <button class="btn btn-accent"><span class="arr">Görüşme Planlayın <span>→</span></span></button>
-      <button class="btn btn-ghost-w"><span class="arr">Referanslar</span></button>
-    </div>
-  </div>
-</section>
-
-<hr class="hr">
-
 <section class="sec" id="hakkimizda">
   <div class="wrap">
     <div class="split" data-reveal>
@@ -705,7 +703,19 @@ footer a:hover { color:#fff; }
   </div>
 </section>
 
-<hr class="hr">
+<!-- PARALLAX CTA -->
+<section class="cta-par-sec" id="cta-par">
+  <div class="cta-par-bg" id="cta-par-bg"></div>
+  <div class="cta-par-inner" data-reveal>
+    <span class="label" style="color:rgba(255,255,255,.45); margin-bottom:20px; display:block;">Birlikte çalışalım</span>
+    <h2>Enerji projeniz için<br>güvenilir bir ortak.</h2>
+    <p class="lead">Üretim, depolama ve enerji ticaretinde — ölçülebilir performans, şeffaf raporlama, Avrupa standartlarında iş ortaklığı.</p>
+    <div class="cta-par-btns">
+      <button class="btn-white">Görüşme Planlayın →</button>
+      <button class="btn-ghost-w">Referanslarımız</button>
+    </div>
+  </div>
+</section>
 
 <section class="sec">
   <div class="wrap">
@@ -977,6 +987,19 @@ if (techStepEls.length && featImgEls.length) {
     if (r.top < window.innerHeight && r.bottom > 0) updateTechActive();
   }, { passive: true });
   updateTechActive();
+}
+
+// CTA PARALLAX
+const ctaParBg = document.getElementById('cta-par-bg');
+const ctaParSec = document.getElementById('cta-par');
+if (ctaParBg && ctaParSec) {
+  window.addEventListener('scroll', () => {
+    const r = ctaParSec.getBoundingClientRect();
+    if (r.bottom > 0 && r.top < window.innerHeight) {
+      const p = -r.top / window.innerHeight;
+      ctaParBg.style.transform = `translateY(${p * 38}px)`;
+    }
+  }, { passive: true });
 }
 
 // TECH SECTION PARALLAX
