@@ -189,60 +189,67 @@ nav.dark-mode .nav-cta:hover { color:#fff; }
 @media(max-width:768px) { .svc-end { width:88px; height:64px; } }
 
 /* TECH / ANALYTICS SECTION */
-.tech-sec { position:relative; overflow:hidden; background:#06101E; padding:var(--spy) 0; }
+.tech-sec { position:relative; overflow:hidden; background:#06101E; }
 .tech-par { position:absolute; inset:-30% 0; z-index:0; will-change:transform;
   background:
-    radial-gradient(ellipse 55% 60% at 18% 65%, rgba(31,61,51,.55) 0%, transparent 65%),
-    radial-gradient(ellipse 45% 55% at 82% 28%, rgba(11,20,48,.7) 0%, transparent 60%),
-    radial-gradient(ellipse 90% 90% at 50% 50%, #06101E 30%, transparent 100%);
+    radial-gradient(ellipse 55% 60% at 15% 70%, rgba(31,61,51,.5) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 55% at 85% 25%, rgba(11,20,48,.75) 0%, transparent 55%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #06101E 25%, transparent 100%);
 }
-.tech-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:72px; align-items:center; position:relative; z-index:1; }
-.tech-content h2 { color:var(--on-dark); }
-.tech-content .lead { color:var(--on-dark-muted); margin-top:18px; max-width:44ch; }
-.tech-feat-list { display:flex; flex-direction:column; gap:28px; margin-top:36px; }
-.tech-feat { display:flex; gap:18px; align-items:flex-start; }
-.tech-feat-ico { width:38px; height:38px; flex-shrink:0; border:1px solid rgba(93,179,138,.25); border-radius:8px; display:flex; align-items:center; justify-content:center; transition:border-color .2s; }
-.tech-feat:hover .tech-feat-ico { border-color:rgba(93,179,138,.6); }
-.tech-feat-ico svg { width:18px; height:18px; stroke:var(--green-lt); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
-.tech-feat strong { font-size:.9375rem; font-weight:600; color:var(--on-dark); display:block; margin-bottom:4px; }
-.tech-feat p { font-size:13.5px; color:var(--on-dark-muted); line-height:1.6; margin:0; }
-/* Dashboard */
-.dash-wrap { position:relative; }
-.dash-glow { position:absolute; inset:-60px; background:radial-gradient(ellipse at 50% 50%, rgba(31,61,51,.22) 0%, transparent 70%); pointer-events:none; z-index:0; }
-.dash { background:#050D1A; border:1px solid rgba(93,179,138,.18); border-radius:10px; overflow:hidden; position:relative; z-index:1; }
-.dash-topbar { display:flex; align-items:center; justify-content:space-between; padding:10px 16px; border-bottom:1px solid rgba(255,255,255,.05); }
-.dash-title-row { font-family:var(--fm); font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:rgba(93,179,138,.6); display:flex; align-items:center; gap:7px; }
-.dash-live { width:6px; height:6px; border-radius:50%; background:#5DB38A; animation:pulse 2s infinite; flex-shrink:0; }
-.dash-win { display:flex; gap:4px; }
-.dash-win span { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.07); }
-.dash-body { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:rgba(255,255,255,.04); }
-.dash-cell { background:#050D1A; padding:14px 16px; }
-.dash-cell-label { font-family:var(--fm); font-size:8px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.25); margin-bottom:8px; }
-.dash-val { font-family:var(--fm); font-size:1.45rem; font-weight:500; color:#fff; line-height:1; }
-.dash-val.g { color:#5DB38A; }
-.dash-unit { font-size:.72rem; color:rgba(255,255,255,.35); font-weight:400; }
-.dash-sub { font-family:var(--fm); font-size:9.5px; color:rgba(255,255,255,.22); margin-top:5px; }
-.dash-bars { display:flex; align-items:flex-end; gap:2px; height:28px; margin-top:9px; }
-.dash-b { flex:1; border-radius:1px 1px 0 0; background:rgba(93,179,138,.18); }
-.dash-b.hi { background:rgba(93,179,138,.62); }
-.dash-b.md { background:rgba(93,179,138,.38); }
-.dash-foot { padding:9px 16px; border-top:1px solid rgba(255,255,255,.04); display:flex; justify-content:space-between; align-items:center; }
-.dash-foot span { font-family:var(--fm); font-size:8px; letter-spacing:.08em; color:rgba(255,255,255,.18); }
-.dash-foot .live-tag { color:rgba(93,179,138,.45); }
-@media(max-width:768px) { .tech-grid { grid-template-columns:1fr; } .dash-wrap { display:none; } }
+.tech-intro { position:relative; z-index:1; max-width:var(--max); margin:0 auto; padding:var(--spy) var(--gut) 64px; }
+.tech-intro h2 { color:var(--on-dark); max-width:22ch; }
+.tech-intro .lead { color:var(--on-dark-muted); margin-top:16px; max-width:52ch; }
+/* Sticky scroll layout */
+.tech-scroll { display:grid; grid-template-columns:1fr 1fr; position:relative; z-index:1; }
+.tech-step { min-height:75vh; display:flex; align-items:center; padding:64px calc(var(--gut) * 1.5) 64px var(--gut); }
+.tech-step-inner { opacity:.28; transform:translateX(-10px); transition:opacity .55s ease, transform .55s ease; }
+.tech-step.active .tech-step-inner { opacity:1; transform:none; }
+.tech-step-num { font-family:var(--fm); font-size:11px; letter-spacing:.18em; color:rgba(93,179,138,.35); display:block; margin-bottom:20px; transition:color .4s ease; }
+.tech-step.active .tech-step-num { color:var(--green-lt); }
+.tech-step-ico { width:44px; height:44px; border:1px solid rgba(93,179,138,.18); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; transition:border-color .4s, background .4s; }
+.tech-step.active .tech-step-ico { border-color:rgba(93,179,138,.55); background:rgba(93,179,138,.1); }
+.tech-step-ico svg { width:20px; height:20px; stroke:var(--green-lt); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.tech-step h3 { font-size:1.25rem; font-weight:600; color:var(--on-dark); margin-bottom:12px; }
+.tech-step p { font-size:14.5px; color:var(--on-dark-muted); line-height:1.7; max-width:38ch; }
+/* Sticky image panel */
+.tech-scroll-right { position:sticky; top:64px; height:calc(100svh - 64px); overflow:hidden; }
+.feat-img { position:absolute; inset:0; opacity:0; transition:opacity .75s ease; }
+.feat-img.active { opacity:1; }
+.feat-img img { width:100%; height:100%; object-fit:cover; filter:brightness(.72) saturate(.85); }
+.feat-img::after { content:''; position:absolute; inset:0;
+  background:
+    linear-gradient(to right, #06101E 0%, rgba(6,16,30,.55) 32%, transparent 62%),
+    linear-gradient(to bottom, rgba(6,16,30,.35) 0%, transparent 22%, transparent 72%, rgba(6,16,30,.65) 100%);
+}
+.feat-img-tag { position:absolute; bottom:32px; right:32px; z-index:2; background:rgba(5,13,26,.82); border:1px solid rgba(93,179,138,.22); border-radius:8px; padding:14px 20px; backdrop-filter:blur(12px); }
+.feat-img-tag .fv { font-family:var(--fm); font-size:1.6rem; font-weight:500; color:#5DB38A; line-height:1; }
+.feat-img-tag .fl { font-family:var(--fm); font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.3); margin-top:5px; }
+.tech-cta { position:relative; z-index:1; max-width:var(--max); margin:0 auto; padding:56px var(--gut) var(--spy); border-top:1px solid rgba(255,255,255,.07); }
+@media(max-width:768px) {
+  .tech-scroll { grid-template-columns:1fr; }
+  .tech-scroll-right { display:none; }
+  .tech-step { min-height:auto; padding:44px var(--gut); }
+  .tech-step-inner { opacity:1; transform:none; }
+}
 
 /* SERVICE CARDS */
 .svc-hdr { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:end; margin-bottom:52px; }
 .svc-hdr .lead { margin-top:16px; }
 .svc-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
-.svc-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-card); padding:32px 24px 28px; display:flex; flex-direction:column; transition:border-color .22s ease, transform .22s ease; }
-.svc-card:hover { border-color:var(--navy); transform:translateY(-3px); }
-.svc-icon { width:44px; height:44px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; border:1px solid var(--border); border-radius:50%; transition:border-color .22s ease; }
+.svc-card { position:relative; overflow:hidden; background:var(--surface); border:1px solid var(--border); border-radius:var(--r-card); padding:32px 24px 28px; display:flex; flex-direction:column; transition:border-color .22s ease, transform .22s ease; }
+.svc-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--green-dk); transform:scaleX(0); transform-origin:left; transition:transform .32s ease; border-radius:var(--r-card) var(--r-card) 0 0; }
+.svc-card::after { content:''; position:absolute; inset:0; background:rgba(93,179,138,0); transition:background .25s ease; pointer-events:none; }
+.svc-card:hover { border-color:var(--border-strong); transform:translateY(-3px); }
+.svc-card:hover::before { transform:scaleX(1); }
+.svc-card:hover::after { background:rgba(93,179,138,.032); }
+.svc-icon { width:44px; height:44px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; border:1px solid var(--border); border-radius:50%; transition:border-color .22s ease, background .22s ease; }
 .svc-icon svg { width:22px; height:22px; stroke:var(--green-dk); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
-.svc-card:hover .svc-icon { border-color:var(--green-dk); }
+.svc-card:hover .svc-icon { border-color:var(--green-dk); background:rgba(93,179,138,.08); }
 .svc-card h3 { font-size:1.0625rem; font-weight:600; margin-bottom:10px; line-height:1.3; }
 .svc-card p { color:var(--text-2); font-size:14px; line-height:1.65; flex:1; }
-.svc-link { display:inline-flex; align-items:center; gap:5px; font-size:13px; font-weight:600; color:var(--green-dk); margin-top:22px; }
+.svc-link { display:inline-flex; align-items:center; gap:5px; font-size:13px; font-weight:600; color:var(--green-dk); margin-top:22px; position:relative; }
+.svc-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px; background:var(--green-dk); transition:width .25s ease; }
+.svc-card:hover .svc-link::after { width:calc(100% - 14px); }
 .svc-link span { display:inline-block; transition:transform .18s ease; }
 .svc-card:hover .svc-link span { transform:translateX(5px); }
 @media(max-width:768px) { .svc-hdr { grid-template-columns:1fr; gap:24px; margin-bottom:36px; } .svc-cards { grid-template-columns:1fr 1fr; } }
@@ -498,7 +505,7 @@ footer a:hover { color:#fff; }
   </div>
 </section>
 
-<section class="marquee-section" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+<section class="marquee-section" style="border-bottom:1px solid var(--border);">
   <div class="marquee-header">
     <span class="text">Birlikte Çalıştığımız Firmalar</span>
   </div>
@@ -526,100 +533,79 @@ footer a:hover { color:#fff; }
 
 <section class="tech-sec" id="teknoloji">
   <div class="tech-par" id="tech-par"></div>
-  <div class="wrap">
-    <div class="tech-grid">
-      <div class="tech-content" data-reveal>
-        <span class="label" style="color:var(--green-lt);">Veri & Analitik</span>
-        <h2>Sahadan merkeze,<br>anlık görünürlük.</h2>
-        <p class="lead">Tüm portföyünüzü tek ekranda izleyin. Gerçek zamanlı performans verisi, piyasa fiyatı takibi ve öngörüsel analitik — kritik kararları hızlandırın.</p>
-        <div class="tech-feat-list">
-          <div class="tech-feat">
-            <div class="tech-feat-ico">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22"/><circle cx="12" cy="12" r="8" stroke-dasharray="3.5 2" opacity=".45"/></svg>
-            </div>
-            <div>
-              <strong>Gerçek Zamanlı İzleme</strong>
-              <p>Saha sensörlerinden merkeze saniye bazlı veri akışı. 7/24 anlık uyarı ve alarm sistemi.</p>
-            </div>
+
+  <!-- Intro header -->
+  <div class="tech-intro" data-reveal>
+    <span class="label" style="color:var(--green-lt);">Veri & Analitik</span>
+    <h2>Sahadan merkeze,<br>anlık görünürlük.</h2>
+    <p class="lead">Tüm portföyünüzü tek ekranda izleyin. Gerçek zamanlı performans verisi, piyasa fiyatı takibi ve öngörüsel analitik — kritik kararları hızlandırın.</p>
+  </div>
+
+  <!-- Sticky scroll -->
+  <div class="tech-scroll">
+    <!-- Left: steps -->
+    <div class="tech-scroll-left">
+      <div class="tech-step active" data-step="0">
+        <div class="tech-step-inner">
+          <div class="tech-step-ico">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22"/><circle cx="12" cy="12" r="8" stroke-dasharray="3 1.8" opacity=".5"/></svg>
           </div>
-          <div class="tech-feat">
-            <div class="tech-feat-ico">
-              <svg viewBox="0 0 24 24"><polyline points="3 17 8 11 12 15 18 7"/><path d="M18 7h4M18 7v4"/></svg>
-            </div>
-            <div>
-              <strong>Piyasa & Portföy Analitik</strong>
-              <p>EPİAŞ entegrasyonu, spot fiyat optimizasyonu ve portföy dengeleme önerileri.</p>
-            </div>
-          </div>
-          <div class="tech-feat">
-            <div class="tech-feat-ico">
-              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M8 8h5M8 16h3"/></svg>
-            </div>
-            <div>
-              <strong>Otomatik Raporlama</strong>
-              <p>Avrupa standartlarında aylık ve yıllık performans raporları. Yatırımcı sunumuna hazır format.</p>
-            </div>
-          </div>
+          <span class="tech-step-num">01</span>
+          <h3>Gerçek Zamanlı İzleme</h3>
+          <p>Saha sensörlerinden merkeze saniye bazlı veri akışı. Tüm üniteleri tek ekrandan izleyin, anlık uyarılarla sahaya her zaman bir adım önde olun.</p>
         </div>
-        <button class="btn btn-accent" style="margin-top:36px;"><span class="arr">Teknolojiyi Keşfedin <span>→</span></span></button>
       </div>
-      <div class="dash-wrap" data-reveal>
-        <div class="dash-glow"></div>
-        <div class="dash">
-          <div class="dash-topbar">
-            <div class="dash-title-row"><div class="dash-live"></div>AL ENERJİ · OPERATIONS CENTER</div>
-            <div class="dash-win"><span></span><span></span><span></span></div>
+      <div class="tech-step" data-step="1">
+        <div class="tech-step-inner">
+          <div class="tech-step-ico">
+            <svg viewBox="0 0 24 24"><polyline points="3 17 8 11 12 15 18 7"/><path d="M18 7h4M18 7v4"/></svg>
           </div>
-          <div class="dash-body">
-            <div class="dash-cell">
-              <div class="dash-cell-label">Sistem Verimliliği</div>
-              <div class="dash-val g">98.6<span class="dash-unit">%</span></div>
-              <div class="dash-sub">↑ 0.4% geçen hafta</div>
-            </div>
-            <div class="dash-cell">
-              <div class="dash-cell-label">Aktif Kapasite</div>
-              <div class="dash-val">487 <span class="dash-unit">MW</span></div>
-              <div class="dash-sub">8 saha · aktif</div>
-            </div>
-            <div class="dash-cell">
-              <div class="dash-cell-label">BESS Doluluk</div>
-              <div class="dash-val g">74.3<span class="dash-unit">%</span></div>
-              <div class="dash-sub">Şarj modunda</div>
-            </div>
-            <div class="dash-cell">
-              <div class="dash-cell-label">Günlük Üretim</div>
-              <div class="dash-val">2.41 <span class="dash-unit">GWh</span></div>
-              <div class="dash-bars">
-                <div class="dash-b" style="height:38%"></div><div class="dash-b" style="height:52%"></div>
-                <div class="dash-b md" style="height:68%"></div><div class="dash-b md" style="height:82%"></div>
-                <div class="dash-b hi" style="height:100%"></div><div class="dash-b hi" style="height:91%"></div>
-                <div class="dash-b md" style="height:75%"></div><div class="dash-b" style="height:58%"></div>
-                <div class="dash-b md" style="height:80%"></div><div class="dash-b hi" style="height:94%"></div>
-                <div class="dash-b hi" style="height:87%"></div><div class="dash-b md" style="height:70%"></div>
-              </div>
-            </div>
-            <div class="dash-cell">
-              <div class="dash-cell-label">Spot Fiyat</div>
-              <div class="dash-val">₺2,840</div>
-              <div class="dash-sub">/MWh · ↓ 3.2%</div>
-            </div>
-            <div class="dash-cell">
-              <div class="dash-cell-label">Portföy Skoru</div>
-              <div class="dash-val g">A+</div>
-              <div class="dash-bars">
-                <div class="dash-b hi" style="height:100%"></div><div class="dash-b hi" style="height:82%"></div>
-                <div class="dash-b md" style="height:62%"></div><div class="dash-b" style="height:42%"></div>
-                <div class="dash-b" style="height:28%"></div>
-              </div>
-            </div>
+          <span class="tech-step-num">02</span>
+          <h3>Piyasa & Portföy Analitik</h3>
+          <p>EPİAŞ entegrasyonu ile spot fiyat takibi, portföy dengeleme ve gelir optimizasyonu. Piyasa verisi ile saha verisi tek tabloda.</p>
+        </div>
+      </div>
+      <div class="tech-step" data-step="2">
+        <div class="tech-step-inner">
+          <div class="tech-step-ico">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M8 8h5M8 16h3"/></svg>
           </div>
-          <div class="dash-foot">
-            <span>SON GÜNCELLEME: 14:32:07 · OTOMATİK YENİLEME AKTİF</span>
-            <span class="live-tag">● CANLI</span>
-          </div>
+          <span class="tech-step-num">03</span>
+          <h3>Otomatik Raporlama</h3>
+          <p>Avrupa standartlarında aylık ve yıllık performans raporları otomatik üretilir. Yatırımcı sunumuna hazır format, sıfır manuel iş.</p>
         </div>
       </div>
     </div>
+
+    <!-- Right: sticky images -->
+    <div class="tech-scroll-right">
+      <div class="feat-img active" data-img="0">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1400&fit=crop" alt="Gerçek Zamanlı İzleme" loading="lazy">
+        <div class="feat-img-tag">
+          <div class="fv">98.6%</div>
+          <div class="fl">Sistem Verimliliği</div>
+        </div>
+      </div>
+      <div class="feat-img" data-img="1">
+        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1400&fit=crop" alt="Piyasa Analitik" loading="lazy">
+        <div class="feat-img-tag">
+          <div class="fv">₺2,840</div>
+          <div class="fl">Spot Fiyat / MWh</div>
+        </div>
+      </div>
+      <div class="feat-img" data-img="2">
+        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1400&fit=crop" alt="Otomatik Raporlama" loading="lazy">
+        <div class="feat-img-tag">
+          <div class="fv">A+</div>
+          <div class="fl">Portföy Skoru</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="tech-cta" data-reveal>
+    <button class="btn btn-accent"><span class="arr">Teknolojiyi Keşfedin <span>→</span></span></button>
   </div>
 </section>
 
@@ -965,6 +951,24 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// TECH STICKY SCROLL
+const techSteps = document.querySelectorAll('.tech-step');
+const featImgs = document.querySelectorAll('.feat-img');
+if (techSteps.length && featImgs.length) {
+  const stepObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = parseInt(entry.target.dataset.step);
+        techSteps.forEach(s => s.classList.remove('active'));
+        featImgs.forEach(i => i.classList.remove('active'));
+        entry.target.classList.add('active');
+        if (featImgs[idx]) featImgs[idx].classList.add('active');
+      }
+    });
+  }, { threshold: 0.55, rootMargin: '-12% 0px -12% 0px' });
+  techSteps.forEach(s => stepObs.observe(s));
+}
+
 // TECH SECTION PARALLAX
 const techPar = document.getElementById('tech-par');
 const techSec = document.getElementById('teknoloji');
@@ -973,7 +977,7 @@ if (techPar && techSec) {
     const rect = techSec.getBoundingClientRect();
     if (rect.bottom > 0 && rect.top < window.innerHeight) {
       const progress = -rect.top / window.innerHeight;
-      techPar.style.transform = `translateY(${progress * 40}px)`;
+      techPar.style.transform = `translateY(${progress * 45}px)`;
     }
   }, { passive: true });
 }
