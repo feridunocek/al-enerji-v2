@@ -188,6 +188,49 @@ nav.dark-mode .nav-cta:hover { color:#fff; }
 .svc:hover .svc-ico { opacity:0; }
 @media(max-width:768px) { .svc-end { width:88px; height:64px; } }
 
+/* TECH / ANALYTICS SECTION */
+.tech-sec { position:relative; overflow:hidden; background:#06101E; padding:var(--spy) 0; }
+.tech-par { position:absolute; inset:-30% 0; z-index:0; will-change:transform;
+  background:
+    radial-gradient(ellipse 55% 60% at 18% 65%, rgba(31,61,51,.55) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 55% at 82% 28%, rgba(11,20,48,.7) 0%, transparent 60%),
+    radial-gradient(ellipse 90% 90% at 50% 50%, #06101E 30%, transparent 100%);
+}
+.tech-grid { display:grid; grid-template-columns:1fr 1.2fr; gap:72px; align-items:center; position:relative; z-index:1; }
+.tech-content h2 { color:var(--on-dark); }
+.tech-content .lead { color:var(--on-dark-muted); margin-top:18px; max-width:44ch; }
+.tech-feat-list { display:flex; flex-direction:column; gap:28px; margin-top:36px; }
+.tech-feat { display:flex; gap:18px; align-items:flex-start; }
+.tech-feat-ico { width:38px; height:38px; flex-shrink:0; border:1px solid rgba(93,179,138,.25); border-radius:8px; display:flex; align-items:center; justify-content:center; transition:border-color .2s; }
+.tech-feat:hover .tech-feat-ico { border-color:rgba(93,179,138,.6); }
+.tech-feat-ico svg { width:18px; height:18px; stroke:var(--green-lt); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.tech-feat strong { font-size:.9375rem; font-weight:600; color:var(--on-dark); display:block; margin-bottom:4px; }
+.tech-feat p { font-size:13.5px; color:var(--on-dark-muted); line-height:1.6; margin:0; }
+/* Dashboard */
+.dash-wrap { position:relative; }
+.dash-glow { position:absolute; inset:-60px; background:radial-gradient(ellipse at 50% 50%, rgba(31,61,51,.22) 0%, transparent 70%); pointer-events:none; z-index:0; }
+.dash { background:#050D1A; border:1px solid rgba(93,179,138,.18); border-radius:10px; overflow:hidden; position:relative; z-index:1; }
+.dash-topbar { display:flex; align-items:center; justify-content:space-between; padding:10px 16px; border-bottom:1px solid rgba(255,255,255,.05); }
+.dash-title-row { font-family:var(--fm); font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:rgba(93,179,138,.6); display:flex; align-items:center; gap:7px; }
+.dash-live { width:6px; height:6px; border-radius:50%; background:#5DB38A; animation:pulse 2s infinite; flex-shrink:0; }
+.dash-win { display:flex; gap:4px; }
+.dash-win span { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.07); }
+.dash-body { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:rgba(255,255,255,.04); }
+.dash-cell { background:#050D1A; padding:14px 16px; }
+.dash-cell-label { font-family:var(--fm); font-size:8px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.25); margin-bottom:8px; }
+.dash-val { font-family:var(--fm); font-size:1.45rem; font-weight:500; color:#fff; line-height:1; }
+.dash-val.g { color:#5DB38A; }
+.dash-unit { font-size:.72rem; color:rgba(255,255,255,.35); font-weight:400; }
+.dash-sub { font-family:var(--fm); font-size:9.5px; color:rgba(255,255,255,.22); margin-top:5px; }
+.dash-bars { display:flex; align-items:flex-end; gap:2px; height:28px; margin-top:9px; }
+.dash-b { flex:1; border-radius:1px 1px 0 0; background:rgba(93,179,138,.18); }
+.dash-b.hi { background:rgba(93,179,138,.62); }
+.dash-b.md { background:rgba(93,179,138,.38); }
+.dash-foot { padding:9px 16px; border-top:1px solid rgba(255,255,255,.04); display:flex; justify-content:space-between; align-items:center; }
+.dash-foot span { font-family:var(--fm); font-size:8px; letter-spacing:.08em; color:rgba(255,255,255,.18); }
+.dash-foot .live-tag { color:rgba(93,179,138,.45); }
+@media(max-width:768px) { .tech-grid { grid-template-columns:1fr; } .dash-wrap { display:none; } }
+
 /* SERVICE CARDS */
 .svc-hdr { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:end; margin-bottom:52px; }
 .svc-hdr .lead { margin-top:16px; }
@@ -393,34 +436,6 @@ footer a:hover { color:#fff; }
   </div>
 </header>
 
-<section class="marquee-section">
-  <div class="marquee-header">
-    <span class="text">Birlikte Çalıştığımız Firmalar</span>
-  </div>
-  <div class="marquee-wrap">
-    <div class="marquee">
-      <div class="marquee-item">ENERJİSA</div>
-      <div class="marquee-item">BORUSAN ENERJİ</div>
-      <div class="marquee-item">AKSA ENERJİ</div>
-      <div class="marquee-item">ERDEMİR</div>
-      <div class="marquee-item">SABANCI HOLDİNG</div>
-      <div class="marquee-item">İÇDAŞ ENERJİ</div>
-      <div class="marquee-item">ALARKO</div>
-      <div class="marquee-item">SANKO ENERJİ</div>
-      <div class="marquee-item">ENERJİSA</div>
-      <div class="marquee-item">BORUSAN ENERJİ</div>
-      <div class="marquee-item">AKSA ENERJİ</div>
-      <div class="marquee-item">ERDEMİR</div>
-      <div class="marquee-item">SABANCI HOLDİNG</div>
-      <div class="marquee-item">İÇDAŞ ENERJİ</div>
-      <div class="marquee-item">ALARKO</div>
-      <div class="marquee-item">SANKO ENERJİ</div>
-    </div>
-  </div>
-</section>
-
-<hr class="hr">
-
 <section class="sec" id="hizmetler">
   <div class="wrap">
     <div class="svc-hdr" data-reveal>
@@ -478,6 +493,131 @@ footer a:hover { color:#fff; }
         <h3>Sürdürülebilirlik Danışmanlığı</h3>
         <p>Karbon azaltımı, ESG hedefleri ve enerji geçiş stratejilerinde teknik danışmanlık. Avrupa standartlarında raporlama.</p>
         <a class="svc-link">Detayları İncele <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="marquee-section" style="border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="marquee-header">
+    <span class="text">Birlikte Çalıştığımız Firmalar</span>
+  </div>
+  <div class="marquee-wrap">
+    <div class="marquee">
+      <div class="marquee-item">ENERJİSA</div>
+      <div class="marquee-item">BORUSAN ENERJİ</div>
+      <div class="marquee-item">AKSA ENERJİ</div>
+      <div class="marquee-item">ERDEMİR</div>
+      <div class="marquee-item">SABANCI HOLDİNG</div>
+      <div class="marquee-item">İÇDAŞ ENERJİ</div>
+      <div class="marquee-item">ALARKO</div>
+      <div class="marquee-item">SANKO ENERJİ</div>
+      <div class="marquee-item">ENERJİSA</div>
+      <div class="marquee-item">BORUSAN ENERJİ</div>
+      <div class="marquee-item">AKSA ENERJİ</div>
+      <div class="marquee-item">ERDEMİR</div>
+      <div class="marquee-item">SABANCI HOLDİNG</div>
+      <div class="marquee-item">İÇDAŞ ENERJİ</div>
+      <div class="marquee-item">ALARKO</div>
+      <div class="marquee-item">SANKO ENERJİ</div>
+    </div>
+  </div>
+</section>
+
+<section class="tech-sec" id="teknoloji">
+  <div class="tech-par" id="tech-par"></div>
+  <div class="wrap">
+    <div class="tech-grid">
+      <div class="tech-content" data-reveal>
+        <span class="label" style="color:var(--green-lt);">Veri & Analitik</span>
+        <h2>Sahadan merkeze,<br>anlık görünürlük.</h2>
+        <p class="lead">Tüm portföyünüzü tek ekranda izleyin. Gerçek zamanlı performans verisi, piyasa fiyatı takibi ve öngörüsel analitik — kritik kararları hızlandırın.</p>
+        <div class="tech-feat-list">
+          <div class="tech-feat">
+            <div class="tech-feat-ico">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22"/><circle cx="12" cy="12" r="8" stroke-dasharray="3.5 2" opacity=".45"/></svg>
+            </div>
+            <div>
+              <strong>Gerçek Zamanlı İzleme</strong>
+              <p>Saha sensörlerinden merkeze saniye bazlı veri akışı. 7/24 anlık uyarı ve alarm sistemi.</p>
+            </div>
+          </div>
+          <div class="tech-feat">
+            <div class="tech-feat-ico">
+              <svg viewBox="0 0 24 24"><polyline points="3 17 8 11 12 15 18 7"/><path d="M18 7h4M18 7v4"/></svg>
+            </div>
+            <div>
+              <strong>Piyasa & Portföy Analitik</strong>
+              <p>EPİAŞ entegrasyonu, spot fiyat optimizasyonu ve portföy dengeleme önerileri.</p>
+            </div>
+          </div>
+          <div class="tech-feat">
+            <div class="tech-feat-ico">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M8 8h5M8 16h3"/></svg>
+            </div>
+            <div>
+              <strong>Otomatik Raporlama</strong>
+              <p>Avrupa standartlarında aylık ve yıllık performans raporları. Yatırımcı sunumuna hazır format.</p>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-accent" style="margin-top:36px;"><span class="arr">Teknolojiyi Keşfedin <span>→</span></span></button>
+      </div>
+      <div class="dash-wrap" data-reveal>
+        <div class="dash-glow"></div>
+        <div class="dash">
+          <div class="dash-topbar">
+            <div class="dash-title-row"><div class="dash-live"></div>AL ENERJİ · OPERATIONS CENTER</div>
+            <div class="dash-win"><span></span><span></span><span></span></div>
+          </div>
+          <div class="dash-body">
+            <div class="dash-cell">
+              <div class="dash-cell-label">Sistem Verimliliği</div>
+              <div class="dash-val g">98.6<span class="dash-unit">%</span></div>
+              <div class="dash-sub">↑ 0.4% geçen hafta</div>
+            </div>
+            <div class="dash-cell">
+              <div class="dash-cell-label">Aktif Kapasite</div>
+              <div class="dash-val">487 <span class="dash-unit">MW</span></div>
+              <div class="dash-sub">8 saha · aktif</div>
+            </div>
+            <div class="dash-cell">
+              <div class="dash-cell-label">BESS Doluluk</div>
+              <div class="dash-val g">74.3<span class="dash-unit">%</span></div>
+              <div class="dash-sub">Şarj modunda</div>
+            </div>
+            <div class="dash-cell">
+              <div class="dash-cell-label">Günlük Üretim</div>
+              <div class="dash-val">2.41 <span class="dash-unit">GWh</span></div>
+              <div class="dash-bars">
+                <div class="dash-b" style="height:38%"></div><div class="dash-b" style="height:52%"></div>
+                <div class="dash-b md" style="height:68%"></div><div class="dash-b md" style="height:82%"></div>
+                <div class="dash-b hi" style="height:100%"></div><div class="dash-b hi" style="height:91%"></div>
+                <div class="dash-b md" style="height:75%"></div><div class="dash-b" style="height:58%"></div>
+                <div class="dash-b md" style="height:80%"></div><div class="dash-b hi" style="height:94%"></div>
+                <div class="dash-b hi" style="height:87%"></div><div class="dash-b md" style="height:70%"></div>
+              </div>
+            </div>
+            <div class="dash-cell">
+              <div class="dash-cell-label">Spot Fiyat</div>
+              <div class="dash-val">₺2,840</div>
+              <div class="dash-sub">/MWh · ↓ 3.2%</div>
+            </div>
+            <div class="dash-cell">
+              <div class="dash-cell-label">Portföy Skoru</div>
+              <div class="dash-val g">A+</div>
+              <div class="dash-bars">
+                <div class="dash-b hi" style="height:100%"></div><div class="dash-b hi" style="height:82%"></div>
+                <div class="dash-b md" style="height:62%"></div><div class="dash-b" style="height:42%"></div>
+                <div class="dash-b" style="height:28%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="dash-foot">
+            <span>SON GÜNCELLEME: 14:32:07 · OTOMATİK YENİLEME AKTİF</span>
+            <span class="live-tag">● CANLI</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -824,6 +964,19 @@ window.addEventListener('scroll', () => {
     nav.classList.remove('scrolled');
   }
 });
+
+// TECH SECTION PARALLAX
+const techPar = document.getElementById('tech-par');
+const techSec = document.getElementById('teknoloji');
+if (techPar && techSec) {
+  window.addEventListener('scroll', () => {
+    const rect = techSec.getBoundingClientRect();
+    if (rect.bottom > 0 && rect.top < window.innerHeight) {
+      const progress = -rect.top / window.innerHeight;
+      techPar.style.transform = `translateY(${progress * 40}px)`;
+    }
+  }, { passive: true });
+}
 
 // HERO PARALLAX
 const heroBg = document.getElementById('hero-bg');
