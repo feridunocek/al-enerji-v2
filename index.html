@@ -259,6 +259,20 @@ nav.dark-mode .nav-cta:hover { color:#fff; }
 .dark h2 { color:#fff; }
 .dark .lead { color:var(--on-dark-muted); }
 
+/* CONTACT FORM */
+.contact-grid { display:grid; grid-template-columns:1fr 1.5fr; gap:80px; align-items:start; }
+.contact-meta { display:flex; flex-direction:column; gap:14px; margin-top:36px; }
+.contact-row { display:flex; align-items:center; gap:10px; font-size:14px; color:var(--text-2); }
+.contact-form { display:flex; flex-direction:column; gap:18px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.form-group { display:flex; flex-direction:column; gap:7px; }
+.form-group label { font-family:var(--fm); font-size:10px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+.form-input { width:100%; border:1px solid var(--border); border-radius:var(--r-ctrl); padding:11px 13px; font-family:var(--fh); font-size:15px; color:var(--text); background:var(--surface); outline:none; transition:border-color .18s ease, box-shadow .18s ease; appearance:none; -webkit-appearance:none; }
+.form-input:focus { border-color:var(--green-dk); box-shadow:0 0 0 3px rgba(31,61,51,.08); }
+.form-input::placeholder { color:var(--muted); }
+textarea.form-input { resize:vertical; min-height:118px; line-height:1.6; }
+@media(max-width:768px) { .contact-grid { grid-template-columns:1fr; gap:44px; } .form-row { grid-template-columns:1fr; } }
+
 /* PARALLAX CTA */
 .cta-par-sec { position:relative; overflow:hidden; min-height:390px; display:flex; align-items:center; justify-content:center; }
 .cta-par-bg { position:absolute; inset:-18% 0; will-change:transform;
@@ -897,6 +911,67 @@ footer a:hover { color:#fff; }
           <div class="testi-progress-bar" id="testi-bar"></div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="sec" id="iletisim" style="background:var(--surface-alt); border-top:1px solid var(--border);">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div data-reveal>
+        <span class="label">İletişim</span>
+        <h2>Projenizi<br>konuşalım.</h2>
+        <p class="lead" style="margin-top:16px; color:var(--text-2);">Enerji üretimi, depolama veya ticaret konularında uzman ekibimizle görüşmek için formu doldurun.</p>
+        <div class="contact-meta">
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" width="15" height="15" stroke="var(--green-dk)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.8 19.8 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+            +90 312 000 00 00
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" width="15" height="15" stroke="var(--green-dk)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            info@alenerji.com.tr
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" width="15" height="15" stroke="var(--green-dk)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Ankara, Türkiye
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" data-reveal>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-name">Ad Soyad</label>
+            <input class="form-input" type="text" id="f-name" placeholder="Adınız Soyadınız">
+          </div>
+          <div class="form-group">
+            <label for="f-email">E-posta</label>
+            <input class="form-input" type="email" id="f-email" placeholder="ornek@sirket.com">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-phone">Telefon</label>
+            <input class="form-input" type="tel" id="f-phone" placeholder="+90 5xx xxx xx xx">
+          </div>
+          <div class="form-group">
+            <label for="f-topic">Konu</label>
+            <select class="form-input" id="f-topic">
+              <option value="" disabled selected>Seçiniz</option>
+              <option>Enerji Üretimi</option>
+              <option>BESS / Depolama</option>
+              <option>Enerji Ticareti</option>
+              <option>Danışmanlık</option>
+              <option>Diğer</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="f-msg">Mesajınız</label>
+          <textarea class="form-input" id="f-msg" rows="4" placeholder="Projeniz veya sorunuz hakkında kısaca bilgi verin…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;"><span class="arr">Gönder <span>→</span></span></button>
+      </form>
     </div>
   </div>
 </section>
