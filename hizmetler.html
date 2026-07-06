@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hizmetler — AL ENERJİ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─────────────────────────────────────────── */
+:root {
+  --navy:#0B1430; --green-dk:#1F3D33; --green-lt:#5DB38A;
+  --bg:#FBFCFB; --surface:#FFFFFF; --surface-alt:#EFF1EF;
+  --border:#D6D9D5; --border-strong:#B9BFBA;
+  --text:#0B1430; --text-2:#3A4356; --muted:#6B7280;
+  --on-dark:#F4F6F4; --on-dark-muted:rgba(244,246,244,.6);
+  --fh:'Hanken Grotesk',sans-serif; --fm:'JetBrains Mono',monospace;
+  --max:1200px; --gut:64px; --spy:96px; --r-ctrl:4px; --r-card:8px;
+}
+@media(max-width:768px) { :root { --gut:20px; --spy:64px; } }
+
+/* ─── RESET & BASE ───────────────────────────────────── */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { font-family:var(--fh); background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
+a { color:inherit; text-decoration:none; }
+img { max-width:100%; display:block; }
+.wrap { max-width:var(--max); margin:0 auto; padding:0 var(--gut); }
+.sec { padding:var(--spy) 0; }
+
+/* ─── TYPE ───────────────────────────────────────────── */
+.label { display:inline-flex; align-items:center; gap:12px; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green-dk); margin-bottom:18px; }
+.label::after { content:''; order:-1; width:7px; height:7px; border-radius:9999px; background:currentColor; animation:pulse 2.4s ease-in-out infinite; }
+.label::before { content:''; width:0; height:1.5px; background:currentColor; transition:width .6s ease .15s; }
+.label.in::before { width:28px; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.6)} }
+h1 { font-size:clamp(2.2rem,5.5vw,3.5rem); font-weight:700; line-height:1.06; letter-spacing:-.02em; }
+h1 em { color:var(--green-lt); font-style:italic; }
+h2 { font-size:clamp(1.6rem,3.2vw,2.1rem); font-weight:700; line-height:1.12; letter-spacing:-.02em; }
+h3 { font-size:clamp(1.1rem,2vw,1.35rem); font-weight:600; line-height:1.25; }
+.lead { font-size:clamp(.9375rem,1.5vw,1.0625rem); color:var(--text-2); max-width:54ch; margin-top:16px; }
+
+/* ─── NAV ────────────────────────────────────────────── */
+nav {
+  position:sticky; top:0; z-index:100; height:64px;
+  display:flex; align-items:center;
+  background:rgba(251,252,251,.9); backdrop-filter:blur(12px);
+}
+nav.dark-mode { background:rgba(11,20,48,.75); }
+nav.scrolled { border-bottom:1px solid var(--border); }
+nav.dark-mode.scrolled { border-bottom-color:rgba(255,255,255,.08); }
+nav .wrap { display:flex; align-items:center; justify-content:space-between; width:100%; }
+
+.logo { display:flex; align-items:center; }
+.logo-light { display:block; }
+.logo-dark  { display:none; }
+nav.dark-mode .logo-light { display:none; }
+nav.dark-mode .logo-dark  { display:block; }
+
+/* Desktop links */
+.navlinks { display:flex; gap:28px; font-size:14px; font-weight:500; color:var(--text); }
+nav.dark-mode .navlinks { color:#fff; }
+.navlinks a { position:relative; cursor:pointer; white-space:nowrap; }
+.navlinks a::after { content:''; position:absolute; left:0; bottom:-4px; height:1.5px; width:0; background:var(--green-dk); transition:width .22s ease; }
+nav.dark-mode .navlinks a::after { background:var(--green-lt); }
+.navlinks a:hover::after, .navlinks a.active::after { width:100%; }
+.navlinks a.active { color:var(--green-dk); font-weight:600; }
+nav.dark-mode .navlinks a.active { color:var(--green-lt); }
+
+/* CTA button */
+.nav-cta {
+  position:relative; overflow:hidden; z-index:0;
+  display:inline-flex; align-items:center; gap:6px;
+  padding:10px 20px; border-radius:var(--r-ctrl);
+  font-family:var(--fh); font-size:14px; font-weight:600;
+  cursor:pointer; border:1.5px solid transparent;
+  background:var(--navy); color:#fff;
+  transition:transform .15s ease; white-space:nowrap;
+}
+nav.dark-mode .nav-cta { background:transparent; border-color:rgba(255,255,255,.28); }
+.nav-cta::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--green-dk); transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
+nav.dark-mode .nav-cta::before { background:rgba(255,255,255,.14); }
+.nav-cta:hover { transform:translateY(-1px); }
+.nav-cta:hover::before { transform:translateX(0); }
+
+/* ── Hamburger ── */
+.nav-burger {
+  display:none; flex-direction:column; justify-content:center;
+  gap:5px; cursor:pointer; padding:6px; border:none;
+  background:transparent; border-radius:4px;
+}
+.nav-burger span { display:block; width:22px; height:1.5px; background:var(--text); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
+nav.dark-mode .nav-burger span { background:#fff; }
+.nav-burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+
+/* ── Mobile drawer ── */
+.nav-mobile {
+  position:fixed; top:64px; left:0; right:0;
+  background:var(--surface); z-index:99;
+  padding:24px var(--gut) 32px;
+  border-top:1px solid var(--border);
+  box-shadow:0 8px 32px rgba(0,0,0,.1);
+  opacity:0; transform:translateY(-6px);
+  pointer-events:none; transition:opacity .22s ease, transform .22s ease;
+}
+.nav-mobile.open { opacity:1; transform:none; pointer-events:all; }
+.nav-mobile a {
+  display:block; font-size:1rem; font-weight:600;
+  padding:13px 0; border-bottom:1px solid var(--border);
+  color:var(--text);
+}
+.nav-mobile a:last-of-type { border-bottom:0; }
+.nav-mobile a.active { color:var(--green-dk); }
+.nav-mobile .mob-cta {
+  display:block; margin-top:20px; text-align:center;
+  background:var(--navy); color:#fff !important;
+  padding:14px; border-radius:var(--r-ctrl);
+  font-weight:600; border:none;
+}
+
+@media(max-width:768px) {
+  .navlinks, .nav-cta { display:none; }
+  .nav-burger { display:flex; }
+}
+
+/* ─── BUTTONS ────────────────────────────────────────── */
+.btn {
+  position:relative; overflow:hidden; z-index:0;
+  display:inline-flex; align-items:center; gap:6px;
+  padding:13px 26px; border-radius:var(--r-ctrl);
+  font-family:var(--fh); font-size:14px; font-weight:600;
+  cursor:pointer; border:1.5px solid transparent;
+  transition:transform .15s ease; white-space:nowrap;
+}
+.btn::before { content:''; position:absolute; inset:0; z-index:-1; transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
+.btn:hover { transform:translateY(-1px); }
+.btn:hover::before { transform:translateX(0); }
+.btn-primary { background:var(--navy); color:#fff; }
+.btn-primary::before { background:var(--green-dk); }
+.btn-secondary { background:transparent; color:var(--navy); border-color:var(--navy); }
+.btn-secondary::before { background:var(--navy); }
+.btn-secondary:hover { color:#fff; }
+.btn .arr span { display:inline-block; transition:transform .18s ease; }
+.btn:hover .arr span { transform:translateX(4px); }
+.btn-white { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:13px 26px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid #fff; background:#fff; color:var(--navy); transition:transform .15s ease; }
+.btn-white::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--green-lt); transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
+.btn-white:hover { transform:translateY(-1px); color:#fff; }
+.btn-white:hover::before { transform:translateX(0); }
+.btn-ghost-w { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:13px 26px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid rgba(255,255,255,.28); background:rgba(255,255,255,.06); color:#fff; transition:transform .15s ease; }
+.btn-ghost-w::before { content:''; position:absolute; inset:0; z-index:-1; background:rgba(255,255,255,.14); transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
+.btn-ghost-w:hover { transform:translateY(-1px); }
+.btn-ghost-w:hover::before { transform:translateX(0); }
+@media(max-width:480px) { .btn { width:100%; justify-content:center; } }
+
+/* ─── PAGE HERO ──────────────────────────────────────── */
+.page-hero {
+  position:relative; height:52vh; min-height:380px;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  overflow:hidden;
+}
+.page-hero-bg {
+  position:absolute; inset:-18% 0; will-change:transform;
+  background:
+    linear-gradient(rgba(11,20,48,.88), rgba(11,20,48,.88)),
+    url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=2000&fit=crop') center/cover no-repeat;
+}
+.page-hero-content {
+  position:relative; z-index:1;
+  max-width:var(--max); margin:0 auto; width:100%;
+  padding:0 var(--gut) 64px;
+  animation:heroIn .8s ease .1s both;
+}
+@keyframes heroIn { from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none} }
+.breadcrumb { display:flex; align-items:center; gap:8px; font-family:var(--fm); font-size:11px; letter-spacing:.08em; color:rgba(255,255,255,.35); margin-bottom:24px; flex-wrap:wrap; }
+.breadcrumb a { color:rgba(255,255,255,.35); transition:color .18s; }
+.breadcrumb a:hover { color:rgba(255,255,255,.7); }
+.breadcrumb .sep { color:rgba(255,255,255,.18); }
+.breadcrumb .current { color:rgba(255,255,255,.65); }
+.page-hero h1 { color:#fff; }
+.page-hero .lead { color:var(--on-dark-muted); }
+
+/* ─── SERVICE SUB-NAV ────────────────────────────────── */
+.svc-subnav {
+  position:sticky; top:64px; z-index:90;
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+}
+.svc-subnav-inner {
+  max-width:var(--max); margin:0 auto;
+  padding:0 var(--gut);
+  display:flex; gap:0;
+  overflow-x:auto; -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.svc-subnav-inner::-webkit-scrollbar { display:none; }
+.svc-tab {
+  flex:0 0 auto; display:flex; align-items:center; gap:10px;
+  padding:16px 24px; border:none; background:transparent;
+  font-family:var(--fh); font-size:14px; font-weight:600;
+  color:var(--muted); cursor:pointer;
+  border-bottom:2px solid transparent;
+  transition:color .2s ease, border-color .2s ease;
+  white-space:nowrap; position:relative;
+}
+.svc-tab .tab-num { font-family:var(--fm); font-size:11px; color:var(--border-strong); transition:color .2s; }
+.svc-tab:hover { color:var(--navy); }
+.svc-tab:hover .tab-num { color:var(--green-dk); }
+.svc-tab.active { color:var(--navy); border-bottom-color:var(--green-dk); }
+.svc-tab.active .tab-num { color:var(--green-dk); }
+@media(max-width:768px) {
+  .svc-subnav-inner { padding:0 var(--gut); gap:0; }
+  .svc-tab { padding:14px 16px; font-size:13px; }
+}
+@media(max-width:480px) { .svc-tab .tab-label { display:none; } .svc-tab { padding:14px 20px; } }
+
+/* ─── SERVICE SECTIONS ───────────────────────────────── */
+.svc-section {
+  padding:var(--spy) 0;
+  border-bottom:1px solid var(--border);
+  scroll-margin-top:calc(64px + 49px); /* nav + subnav height */
+}
+.svc-section:last-of-type { border-bottom:0; }
+.svc-section:nth-child(even) { background:var(--surface-alt); }
+
+/* Split layout */
+.svc-split {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:64px;
+  align-items:start;
+}
+.svc-split.reverse { direction:rtl; }
+.svc-split.reverse > * { direction:ltr; }
+@media(max-width:900px) {
+  .svc-split { grid-template-columns:1fr; gap:40px; }
+  .svc-split.reverse { direction:ltr; }
+}
+
+/* Image */
+.svc-img {
+  position:relative; border-radius:var(--r-card); overflow:hidden;
+  border:1px solid var(--border); aspect-ratio:4/3;
+}
+.svc-img img { width:100%; height:100%; object-fit:cover; transition:transform .7s ease; }
+.svc-split:hover .svc-img img { transform:scale(1.03); }
+.svc-img-badge {
+  position:absolute; bottom:16px; left:16px;
+  background:rgba(11,20,48,.88); border:1px solid rgba(255,255,255,.12);
+  border-radius:6px; padding:10px 14px; backdrop-filter:blur(8px);
+}
+.svc-img-badge .bv { font-family:var(--fm); font-size:1.2rem; font-weight:500; color:#5DB38A; line-height:1; }
+.svc-img-badge .bl { font-family:var(--fm); font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-top:4px; }
+
+/* Content */
+.svc-num { font-family:var(--fm); font-size:10px; letter-spacing:.18em; color:var(--border-strong); margin-bottom:16px; display:block; }
+.svc-body { color:var(--text-2); font-size:15px; line-height:1.75; margin-top:16px; }
+.svc-body + .svc-body { margin-top:12px; }
+
+/* Feature list */
+.svc-feats {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:32px;
+}
+@media(max-width:480px) { .svc-feats { grid-template-columns:1fr; } }
+.svc-feat {
+  display:flex; align-items:flex-start; gap:10px;
+  padding:14px; border:1px solid var(--border);
+  border-radius:var(--r-card); background:var(--surface);
+  transition:border-color .2s ease;
+}
+.svc-section:nth-child(even) .svc-feat { background:var(--surface-alt); }
+.svc-feat:hover { border-color:var(--green-dk); }
+.svc-feat-ico { flex-shrink:0; width:32px; height:32px; border-radius:6px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; transition:background .2s, border-color .2s; }
+.svc-feat:hover .svc-feat-ico { background:rgba(31,61,51,.07); border-color:var(--green-dk); }
+.svc-feat-ico svg { width:15px; height:15px; stroke:var(--green-dk); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.svc-feat-text strong { display:block; font-size:13px; font-weight:600; color:var(--text); margin-bottom:2px; }
+.svc-feat-text span { font-size:12.5px; color:var(--muted); line-height:1.5; }
+
+.svc-cta-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:36px; }
+
+/* ─── PARALLAX CTA ───────────────────────────────────── */
+.cta-par-sec { position:relative; overflow:hidden; min-height:390px; display:flex; align-items:center; justify-content:center; }
+.cta-par-bg { position:absolute; inset:-18% 0; will-change:transform;
+  background:
+    linear-gradient(rgba(11,20,48,.80), rgba(11,20,48,.80)),
+    url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2000&fit=crop') center/cover no-repeat;
+}
+.cta-par-inner { position:relative; z-index:1; text-align:center; max-width:780px; padding:56px var(--gut); margin:0 auto; }
+.cta-par-inner h2 { color:#fff; font-size:clamp(2.4rem,5vw,4rem); font-weight:700; line-height:1.06; letter-spacing:-.02em; }
+.cta-par-inner h2 em { font-style:italic; color:var(--green-lt); }
+.cta-par-inner .lead { color:rgba(244,246,244,.58); margin-top:18px; max-width:52ch; margin-left:auto; margin-right:auto; }
+.cta-par-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:36px; }
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+footer { background:#050B18; color:var(--on-dark); padding:72px 0 32px; border-top:1px solid rgba(255,255,255,.08); }
+footer .grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:32px; border-top:1px solid rgba(255,255,255,.10); padding-top:48px; }
+@media(max-width:900px) { footer .grid { grid-template-columns:1fr 1fr; gap:40px; } }
+@media(max-width:480px) { footer .grid { grid-template-columns:1fr; } }
+footer h4 { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--green-lt); margin-bottom:14px; }
+footer .desc { color:var(--on-dark-muted); font-size:14px; margin-top:16px; max-width:36ch; }
+footer .addr { font-family:var(--fm); font-size:13px; color:var(--on-dark-muted); line-height:1.85; margin-top:16px; }
+footer a { display:block; color:var(--on-dark-muted); font-size:14px; padding:5px 0; transition:color .2s ease; }
+footer a:hover { color:#fff; }
+.footer-bottom { display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,.08); margin-top:48px; padding-top:20px; gap:20px; flex-wrap:wrap; }
+.footer-bottom-left { font-family:var(--fm); font-size:12px; color:var(--on-dark-muted); }
+.footer-bottom-right { display:flex; gap:20px; font-size:13px; flex-wrap:wrap; }
+.footer-bottom-right a { padding:0; }
+
+/* ─── REVEAL ─────────────────────────────────────────── */
+[data-reveal] { opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+[data-reveal].in { opacity:1; transform:none; }
+@media(prefers-reduced-motion:reduce) { [data-reveal] { opacity:1; transform:none; transition:none; } .label::after { animation:none; } }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────────────────── -->
+<nav id="nav">
+  <div class="wrap">
+    <div class="logo">
+      <img class="logo-light" src="Logo_black@2x.png" alt="AL ENERJİ" height="42" style="width:auto;">
+      <img class="logo-dark"  src="Logo_white@2x.png" alt="AL ENERJİ" height="42" style="width:auto;">
+    </div>
+    <div class="navlinks">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="hizmetler.html" class="active">Hizmetler</a>
+      <a href="#">Projeler</a>
+      <a href="hakkimizda.html">Hakkımızda</a>
+      <a href="#">Haberler</a>
+      <a href="#">İletişim</a>
+    </div>
+    <button class="nav-cta" onclick="location.href='#iletisim'">Teklif Alın</button>
+    <button class="nav-burger" id="nav-burger" aria-label="Menüyü aç/kapat" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="nav-mobile" id="nav-mobile" role="navigation">
+  <a href="index.html">Ana Sayfa</a>
+  <a href="hizmetler.html" class="active">Hizmetler</a>
+  <a href="#">Projeler</a>
+  <a href="hakkimizda.html">Hakkımızda</a>
+  <a href="#">Haberler</a>
+  <a href="#">İletişim</a>
+  <a href="#iletisim" class="mob-cta">Teklif Alın</a>
+</div>
+
+<!-- ─── PAGE HERO ─────────────────────────────────────── -->
+<section class="page-hero" id="page-hero">
+  <div class="page-hero-bg" id="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <div class="breadcrumb">
+      <a href="index.html">Ana Sayfa</a>
+      <span class="sep">/</span>
+      <span class="current">Hizmetler</span>
+    </div>
+    <h1>Üretimden ticarete,<br><em>uçtan uca hizmet.</em></h1>
+    <p class="lead">Yenilenebilir enerji yatırımının her aşamasında — saha geliştirme, depolama, piyasa ticareti ve sürdürülebilirlik danışmanlığı.</p>
+  </div>
+</section>
+
+<!-- ─── SERVİS SEKMELERİ ──────────────────────────────── -->
+<div class="svc-subnav" id="svc-subnav">
+  <div class="svc-subnav-inner">
+    <button class="svc-tab active" data-target="uretim">
+      <span class="tab-num">01</span>
+      <span class="tab-label">Üretim & Saha</span>
+    </button>
+    <button class="svc-tab" data-target="depolama">
+      <span class="tab-num">02</span>
+      <span class="tab-label">Enerji Depolama</span>
+    </button>
+    <button class="svc-tab" data-target="ticaret">
+      <span class="tab-num">03</span>
+      <span class="tab-label">Enerji Ticareti</span>
+    </button>
+    <button class="svc-tab" data-target="danismanlik">
+      <span class="tab-num">04</span>
+      <span class="tab-label">Danışmanlık</span>
+    </button>
+  </div>
+</div>
+
+<!-- ─── 01 ÜRETİM & SAHA GELİŞTİRME ─────────────────── -->
+<section class="svc-section" id="uretim">
+  <div class="wrap">
+    <div class="svc-split">
+      <div class="svc-img" data-reveal>
+        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=900&fit=crop" alt="GES Sahası" loading="lazy">
+        <div class="svc-img-badge">
+          <div class="bv">500+</div>
+          <div class="bl">MW Kurulu Güç</div>
+        </div>
+      </div>
+      <div data-reveal>
+        <span class="svc-num">HİZMET 01</span>
+        <span class="label">Üretim & Saha Geliştirme</span>
+        <h2>GES ve RES projelerinde uçtan uca geliştirme.</h2>
+        <p class="svc-body">Arazi tespitinden lisansa, EPC yönetiminden işletmeye kadar tüm süreci tek elden yönetiyoruz. 20 yılı aşkın saha deneyimimizle proje geliştirme risklerini minimize ediyor, yatırımcı getirisini maksimize ediyoruz.</p>
+        <p class="svc-body">Güneş ve rüzgar kaynak analizinden şebeke bağlantı başvurularına, fizibilite raporlarından Yatırım Teşvik Belgesi süreçlerine kadar her adımı biz yönetiyoruz.</p>
+        <div class="svc-feats">
+          <div class="svc-feat">
+            <div class="svc-feat-ico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="svc-feat-text"><strong>Saha Analizi</strong><span>Kaynak ölçümü, arazi tarama, çevresel etki</span></div>
+          </div>
+          <div class="svc-feat">
+            <div class="svc-feat-ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+            <div class="svc-feat-text"><strong>Lisanslama</strong><span>EPDK, TEİAŞ, yerel izin süreçleri</span></div>
+          </div>
+          <div class="svc-feat">
+            <div class="svc-feat-ico"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div>
+            <div class="svc-feat-text"><strong>EPC Yönetimi</strong><span>Mühendislik, tedarik, inşaat koordinasyonu</span></div>
+          </div>
+          <div class="svc-feat">
+            <div class="svc-feat-ico"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+            <div class="svc-feat-text"><strong>İşletme & Bakım</strong><span>7/24 izleme, periyodik bakım, performans raporu</span></div>
+          </div>
+        </div>
+        <div class="svc-cta-row">
+          <button class="btn btn-primary"><span class="arr">Proje Görüşmesi <span>→</span></span></button>
+          <button class="btn btn-secondary"><span class="arr">Projelerimiz <span>→</span></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 02 ENERJİ DEPOLAMA ────────────────────────────── -->
+<section class="svc-section" id="depolama">
+  <div class="wrap">
+    <div class="svc-split reverse">
+      <div class="svc-img" data-reveal>
+        <img src="https://images.unsplash.com/photo-1620714223084-8fcacc2dbe4d?q=80&w=900&fit=crop" alt="BESS Sistemi" loading="lazy">
+        <div class="svc-img-badge">
+          <div class="bv">74%</div>
+          <div class="bl">Ort. Depolama Verimi</div>
+        </div>
+      </div>
+      <div data-reveal>
+        <span class="svc-num">HİZMET 02</span>
+        <span class="label">Enerji Depolama (BESS)</span>
+        <h2>Grid ölçeğinde batarya depolama sistemleri.</h2>
+        <p class="svc-body">Şebeke kararlılığını artıran, yenilenebilir üretimden maksimum değer elde etmeyi sağlayan BESS çözümleri tasarlıyor ve devreye alıyoruz. Sistem boyutlandırmasından entegrasyona, işletmeden optimizasyona kadar tüm yaşam döngüsünü yönetiyoruz.</p>
+        <p class="svc-body">Hem bağımsız hem de hibrit (GES/RES + BESS) konfigürasyonlarda proje geliştirme ve EPC hizmeti sunuyoruz.</p>
+        <div class="svc-feats">
+          <div class="svc-feat">
+            <div class="svc-feat-ico"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="16" height="11" rx="2"/><path d="M22 11v3M6 7V4M10 7V4"/></svg></div>
+            <div class="svc-feat-text"><strong>Sistem Tasarımı</strong><span>Boyutlandırma, teknoloji seçimi, CAPEX analizi</span></div>
+          </div>
+          <div class="svc-feat">
+            <div class="svc-feat-ico"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+            <div class="svc-feat-text"><strong>Şebeke Entegrasyonu</strong><span>TEİAŞ koordinasyonu, güç elektroniği</span></div>
+          </div>
+          <div class="svc-feat">
+            <div class="svc-feat-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22"/></svg></div>
+            <div class="svc-feat-text"><strong>Uzaktan İzleme</strong><span>BMS entegrasyonu, anlık performans takibi</span></div>
+          </div>
+          <div class="svc-feat">
+            <div class="svc-feat-ico"><svg viewBox="0 0 24 24"><polyline points="3 17 8 11 12 15 18 7"/><path d="M18 7h4M18 7v4"/></svg></div>
+            <div class="svc-feat-text"><strong>Gelir Optimizasyonu</strong><span>Arbitraj, frekans yanıtı, kapasite piyasası</span></div>
+          </div>
+        </div>
+        <div class="svc-cta-row">
+          <button class="btn btn-primary"><span class="arr">BESS Görüşmesi <span>→</span></span></button>
+          <button class="btn btn-secondary"><span class="arr">BESS Projelerimiz <span>→</span></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 03 ENERJİ TİCARETİ ────────────────────────────── -->
+<section class="svc-section" id="ticaret">
+  <div class="wrap">
+    <div class="svc-split">
+      <div class="svc-img" data-reveal>
+        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=900&fit=crop" alt="Enerji Ticareti" loading="lazy">
+        <div class="svc-img-badge">
+          <div class="bv">₺2.8B</div>
+          <div class="bl">Yıllık İşlem Hacmi</div>
+        </div>
+      </div>
+      <div data-reveal>
+        <span class="svc-num">HİZMET 03</span>
+        <span class="label">Enerji Ticareti & Brokerage</span>
+        <h2>EPİAŞ piyasasında profesyonel portföy yönetimi.</h2>
+        <p class="svc-body">Spot, vadeli ve yan hizmetler piyasasında portföyünüzü optimize ediyoruz. Anlık fiyat sinyallerine dayalı alım-satım kararları, şeffaf raporlama ve risk yönetimiyle gelirinizi artırıyoruz.</p>
+        <p class="svc-body">Kendi portföy yönetimi yazılımımız ve deneyimli ticaret ekibimizle günde 24 saat piyasayı takip ediyoruz.</p>
+        <div class="svc-feats">
+          <div class="svc-feat">
+            <div class="svc-feat-ico"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+            <div class="svc-feat-text"><strong>Spot Piyasa</strong><span>GÖP & GİP alım-satım optimizasyonu</span></div>
+          </div>
+          <div class="svc-feat">
+            <div class="svc-feat-ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+            <div class="svc-feat-text"><strong>Vadeli İşlemler</strong><span>Uzun dönem PPA, ikili anlaşmalar</span></div>
+          </div>
+          <div class="svc-feat">
+            <div class="svc-feat-ico"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+            <div class="svc-feat-text"><strong>Risk Yönetimi</strong><span>Fiyat riski, denge mekanizması optimizasyonu</span></div>
+          </div>
+          <div class="svc-feat">
+            <div class="svc-feat-ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+            <div class="svc-feat-text"><strong>Raporlama</strong><span>Günlük P&L, aylık performans analizi</span></div>
+          </div>
+        </div>
+        <div class="svc-cta-row">
+          <button class="btn btn-primary"><span class="arr">Ticaret Görüşmesi <span>→</span></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 04 DANIŞMANLIK ─────────────────────────────────── -->
+<section class="svc-section" id="danismanlik">
+  <div class="wrap">
+    <div class="svc-split reverse">
+      <div class="svc-img" data-reveal>
+        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=900&fit=crop" alt="Sürdürülebilirlik" loading="lazy">
+        <div class="svc-img-badge">
+          <div class="bv">A+</div>
+          <div class="bl">Ortalama ESG Skoru</div>
+        </div>
+      </div>
+      <div data-reveal>
+        <span class="svc-num">HİZMET 04</span>
+        <span class="label">Sürdürülebilirlik Danışmanlığı</span>
+        <h2>Avrupa standartlarında ESG ve iklim raporlaması.</h2>
+        <p class="svc-body">Yatırımcı baskısı ve düzenleyici gereklilikler karşısında şirketinizin ESG stratejisini oluşturuyor, karbon ayak izinizi ölçüyor ve uluslararası raporlama standartlarına uyum sağlıyoruz.</p>
+        <p class="svc-body">TCFD, GRI ve CSRD çerçevelerinde hazırlanan raporlarımız, Avrupa finans kuruluşlarının beklentilerini karşılayacak şekilde yapılandırılır.</p>
+        <div class="svc-feats">
+          <div class="svc-feat">
+            <div class="svc-feat-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="svc-feat-text"><strong>ESG Strateji</strong><span>Çerçeve belirleme, hedef koyma, yol haritası</span></div>
+          </div>
+          <div class="svc-feat">
+            <div class="svc-feat-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+            <div class="svc-feat-text"><strong>GHG Envanteri</strong><span>Kapsam 1-2-3 karbon ayak izi hesaplama</span></div>
+          </div>
+          <div class="svc-feat">
+            <div class="svc-feat-ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+            <div class="svc-feat-text"><strong>Sertifikasyon</strong><span>ISO 14064, I-REC, yeşil tarife belgeleri</span></div>
+          </div>
+          <div class="svc-feat">
+            <div class="svc-feat-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+            <div class="svc-feat-text"><strong>Yatırımcı Raporlaması</strong><span>TCFD, GRI, CSRD uyumlu raporlar</span></div>
+          </div>
+        </div>
+        <div class="svc-cta-row">
+          <button class="btn btn-primary"><span class="arr">Danışmanlık Görüşmesi <span>→</span></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PARALLAX CTA ───────────────────────────────────── -->
+<section class="cta-par-sec" id="iletisim">
+  <div class="cta-par-bg" id="cta-par-bg"></div>
+  <div class="cta-par-inner" data-reveal>
+    <span class="label" style="color:rgba(255,255,255,.45); margin-bottom:20px; display:block;">Birlikte çalışalım</span>
+    <h2>Projeniz için<br><em>doğru hizmeti</em> bulalım.</h2>
+    <p class="lead">Hangi aşamada olursa olsun — fizibilite, devreye alma veya optimizasyon — size özel bir görüşme ayarlayalım.</p>
+    <div class="cta-par-btns">
+      <button class="btn-white">Görüşme Planlayın →</button>
+      <button class="btn-ghost-w">Tüm Projelerimiz</button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <div class="logo"><img src="Logo_white@2x.png" alt="AL ENERJİ" height="44" style="display:block;width:auto;"></div>
+        <p class="desc">Mühendislik odaklı, uzun vadeli enerji iş ortağı. 2004'ten bu yana.</p>
+        <div class="addr">
+          Mustafa Kemal Mah. Dumlupınar Blv. No:274/7<br>
+          06530 Çankaya / Ankara<br><br>
+          +90 312 000 00 00<br>
+          info@alenerji.com.tr
+        </div>
+      </div>
+      <div>
+        <h4>Hizmetler</h4>
+        <a href="#uretim">Üretim & Saha Geliştirme</a>
+        <a href="#depolama">Enerji Depolama (BESS)</a>
+        <a href="#ticaret">Enerji Ticareti</a>
+        <a href="#danismanlik">Sürdürülebilirlik</a>
+      </div>
+      <div>
+        <h4>Kurumsal</h4>
+        <a href="hakkimizda.html">Hakkımızda</a>
+        <a href="#">Projeler</a>
+        <a href="#">Haberler</a>
+        <a href="#">Kariyer</a>
+      </div>
+      <div>
+        <h4>İletişim</h4>
+        <a href="#">info@alenerji.com.tr</a>
+        <a href="#">+90 312 000 00 00</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Bize Ulaşın</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">© 2026 AL ENERJİ. Tüm hakları saklıdır.</div>
+      <div class="footer-bottom-right">
+        <a href="#">KVKK Aydınlatma</a>
+        <a href="#">Gizlilik Politikası</a>
+        <a href="#">Kullanım Koşulları</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── NAV ──────────────────────────────────────────────────
+const nav    = document.getElementById('nav');
+const pHero  = document.getElementById('page-hero');
+const burger = document.getElementById('nav-burger');
+const drawer = document.getElementById('nav-mobile');
+
+nav.classList.add('dark-mode');
+
+window.addEventListener('scroll', () => {
+  const hb = pHero.getBoundingClientRect().bottom;
+  nav.classList.toggle('dark-mode', hb > 64);
+  nav.classList.toggle('scrolled', window.scrollY > 0);
+}, { passive:true });
+
+burger.addEventListener('click', () => {
+  const open = burger.classList.toggle('open');
+  drawer.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+
+// Close drawer on link click
+drawer.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    drawer.classList.remove('open');
+    burger.setAttribute('aria-expanded', false);
+    document.body.style.overflow = '';
+  });
+});
+
+// ── PAGE HERO PARALLAX ───────────────────────────────────
+const phBg = document.getElementById('page-hero-bg');
+window.addEventListener('scroll', () => {
+  if (pHero.getBoundingClientRect().bottom > 0)
+    phBg.style.transform = `translateY(${window.scrollY * 0.28}px)`;
+}, { passive:true });
+
+// ── SERVICE SUB-NAV ──────────────────────────────────────
+const tabs    = document.querySelectorAll('.svc-tab');
+const sections = document.querySelectorAll('.svc-section');
+const subnavH = () => (document.getElementById('svc-subnav').offsetHeight + 64);
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const id = tab.dataset.target;
+    const el = document.getElementById(id);
+    if (!el) return;
+    window.scrollTo({ top: el.offsetTop - subnavH() + 1, behavior:'smooth' });
+  });
+});
+
+// Highlight active tab on scroll
+const secObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      tabs.forEach(t => t.classList.toggle('active', t.dataset.target === id));
+    }
+  });
+}, { rootMargin: `-${64 + 49}px 0px -55% 0px`, threshold: 0 });
+sections.forEach(s => secObs.observe(s));
+
+// ── CTA PARALLAX ─────────────────────────────────────────
+const ctaBg  = document.getElementById('cta-par-bg');
+const ctaSec = ctaBg.parentElement;
+window.addEventListener('scroll', () => {
+  const r = ctaSec.getBoundingClientRect();
+  if (r.bottom > 0 && r.top < window.innerHeight)
+    ctaBg.style.transform = `translateY(${(-r.top / window.innerHeight) * 38}px)`;
+}, { passive:true });
+
+// ── SCROLL REVEAL ─────────────────────────────────────────
+const revObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const siblings = [...e.target.parentElement.querySelectorAll('[data-reveal]')];
+    const idx = siblings.indexOf(e.target);
+    setTimeout(() => e.target.classList.add('in'), idx * 80);
+    revObs.unobserve(e.target);
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('[data-reveal]').forEach(el => revObs.observe(el));
+
+// Label line reveal
+const lblObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); lblObs.unobserve(e.target); } });
+}, { threshold: 0.5 });
+document.querySelectorAll('.label').forEach(el => lblObs.observe(el));
+</script>
+</body>
+</html>

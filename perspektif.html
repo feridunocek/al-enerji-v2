@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perspektif — AL ENERJİ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─────────────────────────────────────────── */
+:root {
+  --navy:#0B1430; --green-dk:#1F3D33; --green-lt:#5DB38A;
+  --bg:#FBFCFB; --surface:#FFFFFF; --surface-alt:#EFF1EF;
+  --border:#D6D9D5; --border-strong:#B9BFBA;
+  --text:#0B1430; --text-2:#3A4356; --muted:#6B7280;
+  --on-dark:#F4F6F4; --on-dark-muted:rgba(244,246,244,.6);
+  --fh:'Hanken Grotesk',sans-serif; --fm:'JetBrains Mono',monospace;
+  --max:1200px; --gut:64px; --spy:96px; --r-ctrl:4px; --r-card:8px;
+  /* Kategori renkleri */
+  --cat-piyasa:#1F3D33;   --cat-piyasa-bg:rgba(31,61,51,.08);
+  --cat-sektor:#0B1430;   --cat-sektor-bg:rgba(11,20,48,.07);
+  --cat-mevzuat:#7C3A00;  --cat-mevzuat-bg:rgba(124,58,0,.08);
+  --cat-sirket:#5DB38A;   --cat-sirket-bg:rgba(93,179,138,.1);
+}
+@media(max-width:768px) { :root { --gut:20px; --spy:64px; } }
+
+/* ─── RESET ──────────────────────────────────────────── */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { font-family:var(--fh); background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
+a { color:inherit; text-decoration:none; }
+img { max-width:100%; display:block; }
+.wrap { max-width:var(--max); margin:0 auto; padding:0 var(--gut); }
+
+/* ─── NAV ────────────────────────────────────────────── */
+nav { position:sticky; top:0; z-index:100; height:64px; display:flex; align-items:center; background:rgba(251,252,251,.9); backdrop-filter:blur(12px); }
+nav.dark-mode { background:rgba(11,20,48,.75); }
+nav.scrolled { border-bottom:1px solid var(--border); }
+nav.dark-mode.scrolled { border-bottom-color:rgba(255,255,255,.08); }
+nav .wrap { display:flex; align-items:center; justify-content:space-between; width:100%; }
+.logo { display:flex; align-items:center; }
+.logo-light { display:block; } .logo-dark { display:none; }
+nav.dark-mode .logo-light { display:none; } nav.dark-mode .logo-dark { display:block; }
+.navlinks { display:flex; gap:28px; font-size:14px; font-weight:500; color:var(--text); }
+nav.dark-mode .navlinks { color:#fff; }
+.navlinks a { position:relative; }
+.navlinks a::after { content:''; position:absolute; left:0; bottom:-4px; height:1.5px; width:0; background:var(--green-dk); transition:width .22s ease; }
+nav.dark-mode .navlinks a::after { background:var(--green-lt); }
+.navlinks a:hover::after, .navlinks a.active::after { width:100%; }
+.navlinks a.active { color:var(--green-dk); font-weight:600; }
+nav.dark-mode .navlinks a.active { color:var(--green-lt); }
+.nav-cta { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:10px 20px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid transparent; background:var(--navy); color:#fff; transition:transform .15s ease; white-space:nowrap; }
+nav.dark-mode .nav-cta { background:transparent; border-color:rgba(255,255,255,.28); }
+.nav-cta::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--green-dk); transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
+nav.dark-mode .nav-cta::before { background:rgba(255,255,255,.14); }
+.nav-cta:hover { transform:translateY(-1px); } .nav-cta:hover::before { transform:translateX(0); }
+.nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; cursor:pointer; padding:6px; border:none; background:transparent; border-radius:4px; }
+.nav-burger span { display:block; width:22px; height:1.5px; background:var(--text); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
+nav.dark-mode .nav-burger span { background:#fff; }
+.nav-burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+.nav-mobile { position:fixed; top:64px; left:0; right:0; background:var(--surface); z-index:99; padding:24px var(--gut) 32px; border-top:1px solid var(--border); box-shadow:0 8px 32px rgba(0,0,0,.1); opacity:0; transform:translateY(-6px); pointer-events:none; transition:opacity .22s ease, transform .22s ease; }
+.nav-mobile.open { opacity:1; transform:none; pointer-events:all; }
+.nav-mobile a { display:block; font-size:1rem; font-weight:600; padding:13px 0; border-bottom:1px solid var(--border); color:var(--text); }
+.nav-mobile a:last-of-type { border-bottom:0; } .nav-mobile a.active { color:var(--green-dk); }
+.nav-mobile .mob-cta { display:block; margin-top:20px; text-align:center; background:var(--navy); color:#fff !important; padding:14px; border-radius:var(--r-ctrl); font-weight:600; border:none; }
+@media(max-width:768px) { .navlinks, .nav-cta { display:none; } .nav-burger { display:flex; } }
+
+/* ─── PAGE HERO ──────────────────────────────────────── */
+.page-hero { position:relative; height:48vh; min-height:340px; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; }
+.page-hero-bg { position:absolute; inset:-18% 0; will-change:transform; background: linear-gradient(rgba(11,20,48,.88) 0%, rgba(31,61,51,.75) 100%), url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2000&fit=crop') center/cover no-repeat; }
+.page-hero-content { position:relative; z-index:1; max-width:var(--max); margin:0 auto; width:100%; padding:0 var(--gut) 56px; animation:heroIn .8s ease .1s both; }
+@keyframes heroIn { from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none} }
+.breadcrumb { display:flex; align-items:center; gap:8px; font-family:var(--fm); font-size:11px; letter-spacing:.08em; color:rgba(255,255,255,.35); margin-bottom:20px; flex-wrap:wrap; }
+.breadcrumb a { color:rgba(255,255,255,.35); transition:color .18s; } .breadcrumb a:hover { color:rgba(255,255,255,.7); }
+.breadcrumb .sep { color:rgba(255,255,255,.18); } .breadcrumb .current { color:rgba(255,255,255,.65); }
+.hero-eyebrow { font-family:var(--fm); font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--green-lt); margin-bottom:14px; }
+.page-hero h1 { color:#fff; font-size:clamp(2.4rem,5vw,3.6rem); font-weight:700; line-height:1.05; letter-spacing:-.02em; }
+.page-hero .lead { color:rgba(244,246,244,.55); font-size:15px; margin-top:10px; }
+
+/* ─── KATEGORİ FİLTRE ────────────────────────────────── */
+/* PHP: ?kategori=GET param — aktif tab PHP tarafında .active sınıfı alacak */
+.cat-bar { position:sticky; top:64px; z-index:90; background:var(--surface); border-bottom:1px solid var(--border); }
+.cat-bar-inner { max-width:var(--max); margin:0 auto; padding:0 var(--gut); display:flex; align-items:center; justify-content:space-between; gap:0; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+.cat-bar-inner::-webkit-scrollbar { display:none; }
+.cat-tabs { display:flex; }
+.cat-tab { flex:0 0 auto; padding:15px 20px; border:none; background:transparent; font-family:var(--fh); font-size:14px; font-weight:600; color:var(--muted); cursor:pointer; border-bottom:2px solid transparent; white-space:nowrap; transition:color .2s, border-color .2s; }
+.cat-tab:hover { color:var(--navy); }
+.cat-tab.active { color:var(--navy); border-bottom-color:var(--green-dk); }
+.cat-bar-count { font-family:var(--fm); font-size:12px; color:var(--muted); white-space:nowrap; flex-shrink:0; padding-left:20px; }
+@media(max-width:768px) { .cat-bar-inner { justify-content:flex-start; } .cat-bar-count { display:none; } .cat-tab { padding:14px 14px; font-size:13px; } }
+
+/* ─── KATEGORİ BADGE ─────────────────────────────────── */
+.badge { display:inline-block; font-family:var(--fm); font-size:10px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; padding:4px 9px; border-radius:3px; }
+.badge-piyasa  { color:var(--cat-piyasa);  background:var(--cat-piyasa-bg); }
+.badge-sektor  { color:var(--cat-sektor);  background:var(--cat-sektor-bg); }
+.badge-mevzuat { color:var(--cat-mevzuat); background:var(--cat-mevzuat-bg); }
+.badge-sirket  { color:#0B6B48;            background:var(--cat-sirket-bg); }
+
+/* ─── ÖNE ÇIKAN HABER ───────────────────────────────── */
+/* PHP: SELECT * FROM articles WHERE is_featured=1 AND status='published' ORDER BY published_at DESC LIMIT 1 */
+.featured-sec { padding:64px 0 48px; }
+.featured-card { display:grid; grid-template-columns:1fr 1fr; border-radius:12px; overflow:hidden; border:1px solid var(--border); background:var(--surface); transition:box-shadow .25s; }
+.featured-card:hover { box-shadow:0 12px 48px rgba(0,0,0,.1); }
+@media(max-width:768px) { .featured-card { grid-template-columns:1fr; } }
+.featured-img { position:relative; aspect-ratio:4/3; overflow:hidden; }
+@media(max-width:768px) { .featured-img { aspect-ratio:16/9; } }
+.featured-img img { width:100%; height:100%; object-fit:cover; transition:transform .7s ease; }
+.featured-card:hover .featured-img img { transform:scale(1.04); }
+.featured-img-label { position:absolute; top:16px; left:16px; background:var(--navy); color:#fff; font-family:var(--fm); font-size:9px; letter-spacing:.14em; text-transform:uppercase; padding:5px 10px; border-radius:3px; }
+.featured-body { padding:40px; display:flex; flex-direction:column; }
+@media(max-width:768px) { .featured-body { padding:28px 24px; } }
+.featured-meta { display:flex; align-items:center; gap:14px; margin-bottom:16px; flex-wrap:wrap; }
+.meta-date { font-family:var(--fm); font-size:11px; color:var(--muted); }
+.meta-read { font-family:var(--fm); font-size:11px; color:var(--muted); display:flex; align-items:center; gap:4px; }
+.featured-body h2 { font-size:clamp(1.25rem,2.2vw,1.65rem); font-weight:700; line-height:1.2; letter-spacing:-.015em; margin-bottom:14px; }
+.featured-body h2 a { transition:color .18s; }
+.featured-body h2 a:hover { color:var(--green-dk); }
+.featured-excerpt { color:var(--text-2); font-size:15px; line-height:1.75; flex:1; }
+.featured-author { display:flex; align-items:center; gap:10px; margin-top:28px; padding-top:20px; border-top:1px solid var(--border); }
+.author-av { width:36px; height:36px; border-radius:9999px; background:var(--surface-alt); border:1.5px solid var(--border); overflow:hidden; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:var(--fm); font-size:10px; font-weight:600; color:var(--green-dk); letter-spacing:.04em; }
+.author-name { font-size:13px; font-weight:600; }
+.author-title { font-size:12px; color:var(--muted); }
+.featured-link { display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:700; color:var(--green-dk); margin-top:20px; transition:gap .18s; }
+.featured-link:hover { gap:10px; }
+
+/* ─── HABER GRID ─────────────────────────────────────── */
+/* PHP: foreach ($articles as $article) — her kart bir satır */
+.articles-sec { padding:0 0 var(--spy); }
+.section-head { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:32px; gap:16px; flex-wrap:wrap; }
+.section-head h3 { font-size:1rem; font-weight:700; color:var(--text); }
+.section-head-count { font-family:var(--fm); font-size:12px; color:var(--muted); }
+
+.articles-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+@media(max-width:900px) { .articles-grid { grid-template-columns:1fr 1fr; } }
+@media(max-width:560px) { .articles-grid { grid-template-columns:1fr; gap:16px; } }
+
+.article-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-card); overflow:hidden; display:flex; flex-direction:column; transition:box-shadow .22s, border-color .22s; }
+.article-card:hover { box-shadow:0 8px 32px rgba(0,0,0,.08); border-color:var(--border-strong); }
+.ac-img { position:relative; aspect-ratio:16/9; overflow:hidden; background:var(--surface-alt); }
+.ac-img img { width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
+.article-card:hover .ac-img img { transform:scale(1.05); }
+.ac-body { padding:20px; display:flex; flex-direction:column; flex:1; }
+.ac-meta { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
+.ac-date { font-family:var(--fm); font-size:11px; color:var(--muted); }
+.ac-read { font-family:var(--fm); font-size:11px; color:var(--muted); }
+.ac-body h3 { font-size:1rem; font-weight:700; line-height:1.3; letter-spacing:-.01em; margin-bottom:10px; }
+.ac-body h3 a { transition:color .18s; }
+.ac-body h3 a:hover { color:var(--green-dk); }
+.ac-excerpt { font-size:13.5px; color:var(--muted); line-height:1.65; flex:1; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+.ac-footer { display:flex; align-items:center; justify-content:space-between; margin-top:16px; padding-top:14px; border-top:1px solid var(--border); }
+.ac-author { display:flex; align-items:center; gap:8px; }
+.ac-av { width:26px; height:26px; border-radius:9999px; background:var(--surface-alt); border:1px solid var(--border); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:var(--fm); font-size:9px; font-weight:600; color:var(--green-dk); }
+.ac-author-name { font-size:12px; font-weight:600; color:var(--text-2); }
+.ac-arrow { display:inline-flex; align-items:center; font-size:13px; font-weight:600; color:var(--green-dk); gap:4px; transition:gap .18s; }
+.ac-arrow:hover { gap:8px; }
+
+/* ─── SAYFALAMA ──────────────────────────────────────── */
+/* PHP: $totalPages = ceil($count / $perPage); — ?sayfa=GET param */
+.pagination { display:flex; align-items:center; justify-content:center; gap:6px; padding-top:48px; flex-wrap:wrap; }
+.pg-btn { display:flex; align-items:center; justify-content:center; min-width:38px; height:38px; padding:0 10px; border:1px solid var(--border); border-radius:var(--r-ctrl); font-family:var(--fm); font-size:13px; color:var(--muted); background:var(--surface); cursor:pointer; transition:border-color .18s, color .18s, background .18s; }
+.pg-btn:hover { border-color:var(--green-dk); color:var(--navy); }
+.pg-btn.active { background:var(--navy); border-color:var(--navy); color:#fff; font-weight:600; cursor:default; }
+.pg-btn.disabled { opacity:.35; pointer-events:none; }
+
+/* ─── BÜLTEN ─────────────────────────────────────────── */
+/* PHP: POST handler — e-posta subscribers tablosuna kayıt */
+.newsletter-sec { background:var(--navy); padding:64px 0; }
+.newsletter-inner { display:flex; align-items:center; justify-content:space-between; gap:48px; flex-wrap:wrap; }
+.newsletter-text h3 { font-size:clamp(1.2rem,2.4vw,1.55rem); font-weight:700; color:#fff; margin-bottom:8px; }
+.newsletter-text p { font-size:15px; color:var(--on-dark-muted); max-width:44ch; }
+.newsletter-form { display:flex; gap:10px; flex-wrap:wrap; min-width:min(100%,360px); }
+.nl-input { flex:1; min-width:200px; padding:12px 16px; border:1px solid rgba(255,255,255,.15); border-radius:var(--r-ctrl); background:rgba(255,255,255,.07); color:#fff; font-family:var(--fh); font-size:14px; outline:none; transition:border-color .18s, background .18s; }
+.nl-input::placeholder { color:rgba(255,255,255,.35); }
+.nl-input:focus { border-color:var(--green-lt); background:rgba(255,255,255,.1); }
+.nl-btn { padding:12px 22px; border:none; border-radius:var(--r-ctrl); background:var(--green-lt); color:var(--navy); font-family:var(--fh); font-size:14px; font-weight:700; cursor:pointer; white-space:nowrap; transition:background .18s; }
+.nl-btn:hover { background:#4aa87a; }
+.nl-note { font-family:var(--fm); font-size:11px; color:rgba(255,255,255,.25); margin-top:10px; }
+@media(max-width:768px) { .newsletter-inner { flex-direction:column; gap:28px; align-items:flex-start; } .newsletter-form { width:100%; } }
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+footer { background:#050B18; color:var(--on-dark); padding:72px 0 32px; border-top:1px solid rgba(255,255,255,.08); }
+footer .grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:32px; border-top:1px solid rgba(255,255,255,.10); padding-top:48px; }
+@media(max-width:900px) { footer .grid { grid-template-columns:1fr 1fr; gap:40px; } }
+@media(max-width:480px) { footer .grid { grid-template-columns:1fr; } }
+footer h4 { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--green-lt); margin-bottom:14px; }
+footer .desc { color:var(--on-dark-muted); font-size:14px; margin-top:16px; max-width:36ch; }
+footer .addr { font-family:var(--fm); font-size:13px; color:var(--on-dark-muted); line-height:1.85; margin-top:16px; }
+footer a { display:block; color:var(--on-dark-muted); font-size:14px; padding:5px 0; transition:color .2s ease; }
+footer a:hover { color:#fff; }
+.footer-bottom { display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,.08); margin-top:48px; padding-top:20px; gap:20px; flex-wrap:wrap; }
+.footer-bottom-left { font-family:var(--fm); font-size:12px; color:var(--on-dark-muted); }
+.footer-bottom-right { display:flex; gap:20px; font-size:13px; flex-wrap:wrap; }
+.footer-bottom-right a { padding:0; }
+
+/* ─── REVEAL ─────────────────────────────────────────── */
+[data-reveal] { opacity:0; transform:translateY(16px); transition:opacity .55s ease, transform .55s ease; }
+[data-reveal].in { opacity:1; transform:none; }
+@media(prefers-reduced-motion:reduce) { [data-reveal] { opacity:1; transform:none; transition:none; } }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────────────────── -->
+<nav id="nav">
+  <div class="wrap">
+    <div class="logo">
+      <img class="logo-light" src="Logo_black@2x.png" alt="AL ENERJİ" height="42" style="width:auto;">
+      <img class="logo-dark"  src="Logo_white@2x.png" alt="AL ENERJİ" height="42" style="width:auto;">
+    </div>
+    <div class="navlinks">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="hizmetler.html">Hizmetler</a>
+      <a href="#">Projeler</a>
+      <a href="hakkimizda.html">Hakkımızda</a>
+      <a href="perspektif.html" class="active">Perspektif</a>
+      <a href="iletisim.html">İletişim</a>
+    </div>
+    <button class="nav-cta" onclick="location.href='iletisim.html'">Teklif Alın</button>
+    <button class="nav-burger" id="nav-burger" aria-label="Menüyü aç/kapat" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a href="index.html">Ana Sayfa</a>
+  <a href="hizmetler.html">Hizmetler</a>
+  <a href="#">Projeler</a>
+  <a href="hakkimizda.html">Hakkımızda</a>
+  <a href="perspektif.html" class="active">Perspektif</a>
+  <a href="iletisim.html">İletişim</a>
+  <a href="iletisim.html" class="mob-cta">Teklif Alın</a>
+</div>
+
+<!-- ─── PAGE HERO ─────────────────────────────────────── -->
+<section class="page-hero" id="page-hero">
+  <div class="page-hero-bg" id="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <div class="breadcrumb">
+      <a href="index.html">Ana Sayfa</a>
+      <span class="sep">/</span>
+      <span class="current">Perspektif</span>
+    </div>
+    <div class="hero-eyebrow">AL ENERJİ — Perspektif</div>
+    <h1>Sektör Analizi<br>& Güncel Haberler</h1>
+    <p class="lead">Enerji piyasalarını yakından takip ediyoruz.</p>
+  </div>
+</section>
+
+<!-- ─── KATEGORİ FİLTRE ───────────────────────────────── -->
+<!-- PHP: aktif kategori $activeKat = $_GET['kategori'] ?? 'tumü' -->
+<div class="cat-bar" id="cat-bar">
+  <div class="cat-bar-inner">
+    <div class="cat-tabs">
+      <button class="cat-tab active" data-slug="">Tümü</button>
+      <button class="cat-tab" data-slug="piyasa-analizi">Piyasa Analizi</button>
+      <button class="cat-tab" data-slug="sektor-haberleri">Sektör Haberleri</button>
+      <button class="cat-tab" data-slug="mevzuat-tesvik">Mevzuat & Teşvik</button>
+      <button class="cat-tab" data-slug="sirket-haberleri">Şirket Haberleri</button>
+    </div>
+    <!-- PHP: echo count($articles) . ' haber'; -->
+    <span class="cat-bar-count" id="article-count">7 haber</span>
+  </div>
+</div>
+
+<!-- ─── ÖNE ÇIKAN HABER ──────────────────────────────── -->
+<!-- PHP: $featured = Article::featured()->first(); -->
+<section class="featured-sec">
+  <div class="wrap">
+    <div class="featured-card" data-reveal>
+      <div class="featured-img">
+        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=900&fit=crop" alt="EPİAŞ Spot Piyasa Analizi" loading="eager">
+        <div class="featured-img-label">Öne Çıkan</div>
+      </div>
+      <div class="featured-body">
+        <div class="featured-meta">
+          <span class="badge badge-piyasa">Piyasa Analizi</span>
+          <span class="meta-date">14 Ocak 2026</span>
+          <span class="meta-read">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            6 dk okuma
+          </span>
+        </div>
+        <h2><a href="#">EPİAŞ Spot Fiyatları 2025'te Yüzde 38 Arttı — Piyasa Değerlendirmesi</a></h2>
+        <p class="featured-excerpt">Geçtiğimiz yıl boyunca Türkiye elektrik spot piyasasında gözlemlenen volatilite, yenilenebilir enerji santrallerinin portföy yönetimi stratejilerini köklü biçimde değiştirdi. GÖP verilerinin kapsamlı bir analizi ve 2026 beklentilerimizi bu yazıda paylaşıyoruz.</p>
+        <a href="#" class="featured-link">Devamını Oku →</a>
+        <div class="featured-author">
+          <div class="author-av">AE</div>
+          <div>
+            <div class="author-name">AL ENERJİ Basın</div>
+            <div class="author-title">Redaksiyon</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HABER GRID ─────────────────────────────────────── -->
+<!-- PHP: foreach ($articles as $a): — her .article-card bir döngü iterasyonu -->
+<section class="articles-sec">
+  <div class="wrap">
+    <div class="section-head">
+      <h3>Son Haberler</h3>
+      <span class="section-head-count" id="grid-count">6 haber</span>
+    </div>
+    <div class="articles-grid" id="articles-grid">
+
+      <!-- Kart 1 -->
+      <article class="article-card" data-category="sektor-haberleri" data-reveal>
+        <div class="ac-img">
+          <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=600&fit=crop" alt="BESS Türkiye" loading="lazy">
+        </div>
+        <div class="ac-body">
+          <div class="ac-meta">
+            <span class="badge badge-sektor">Sektör Haberleri</span>
+            <span class="ac-date">9 Ocak 2026</span>
+            <span class="ac-read">4 dk</span>
+          </div>
+          <h3><a href="#">BESS Projeleri Türkiye'de Hız Kazanıyor — 2026 Boru Hattı</a></h3>
+          <p class="ac-excerpt">TEİAŞ'ın güç sistemi esnekliğine yönelik açıklamaları, büyük ölçekli batarya depolama yatırımlarını tetikledi. Sektörde son 6 ayda başvuruları ikiye katlandı.</p>
+          <div class="ac-footer">
+            <div class="ac-author">
+              <div class="ac-av">AE</div>
+              <span class="ac-author-name">AL ENERJİ Basın</span>
+            </div>
+            <a href="#" class="ac-arrow">Oku →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Kart 2 -->
+      <article class="article-card" data-category="mevzuat-tesvik" data-reveal>
+        <div class="ac-img">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=600&fit=crop" alt="CBAM" loading="lazy">
+        </div>
+        <div class="ac-body">
+          <div class="ac-meta">
+            <span class="badge badge-mevzuat">Mevzuat & Teşvik</span>
+            <span class="ac-date">5 Ocak 2026</span>
+            <span class="ac-read">5 dk</span>
+          </div>
+          <h3><a href="#">Avrupa Karbon Sınırında Yeni Dönem: CBAM Tam Uygulamaya Geçiyor</a></h3>
+          <p class="ac-excerpt">AB'nin Sınırda Karbon Düzenleme Mekanizması 2026 itibarıyla gerçek maliyetlerle işlemeye başlıyor. Türk ihracatçıları için ne anlama geldiğini açıklıyoruz.</p>
+          <div class="ac-footer">
+            <div class="ac-author">
+              <div class="ac-av">AE</div>
+              <span class="ac-author-name">AL ENERJİ Basın</span>
+            </div>
+            <a href="#" class="ac-arrow">Oku →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Kart 3 -->
+      <article class="article-card" data-category="sirket-haberleri" data-reveal>
+        <div class="ac-img">
+          <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=600&fit=crop" alt="AL ENERJİ GES" loading="lazy">
+        </div>
+        <div class="ac-body">
+          <div class="ac-meta">
+            <span class="badge badge-sirket">Şirket Haberleri</span>
+            <span class="ac-date">28 Aralık 2025</span>
+            <span class="ac-read">2 dk</span>
+          </div>
+          <h3><a href="#">AL ENERJİ, Konya'da 50 MW'lık GES'i Devreye Aldı</a></h3>
+          <p class="ac-excerpt">Şirketimizin portföyüne kattığı en büyük güneş santrali, yılın son haftasında ticari işletmeye açıldı. Yıllık üretim kapasitesi 85 GWh olarak öngörülüyor.</p>
+          <div class="ac-footer">
+            <div class="ac-author">
+              <div class="ac-av">AE</div>
+              <span class="ac-author-name">AL ENERJİ Basın</span>
+            </div>
+            <a href="#" class="ac-arrow">Oku →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Kart 4 -->
+      <article class="article-card" data-category="piyasa-analizi" data-reveal>
+        <div class="ac-img">
+          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=600&fit=crop" alt="Piyasa" loading="lazy">
+        </div>
+        <div class="ac-body">
+          <div class="ac-meta">
+            <span class="badge badge-piyasa">Piyasa Analizi</span>
+            <span class="ac-date">22 Aralık 2025</span>
+            <span class="ac-read">7 dk</span>
+          </div>
+          <h3><a href="#">Kış Dönemi Spot Yüksekliği: GES Portföyleri İçin Arbitraj Fırsatları</a></h3>
+          <p class="ac-excerpt">Doğalgaz fiyatlarındaki oynaklık ve hidrolik kapasite düşüklüğü, kış aylarında spot fiyatları rekor seviyelere taşıdı. GES sahipleri için optimum strateji ne olmalı?</p>
+          <div class="ac-footer">
+            <div class="ac-author">
+              <div class="ac-av">AE</div>
+              <span class="ac-author-name">AL ENERJİ Basın</span>
+            </div>
+            <a href="#" class="ac-arrow">Oku →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Kart 5 -->
+      <article class="article-card" data-category="sektor-haberleri" data-reveal>
+        <div class="ac-img">
+          <img src="https://images.unsplash.com/photo-1620714223084-8fcacc2dbe4d?q=80&w=600&fit=crop" alt="Güneş Paneli" loading="lazy">
+        </div>
+        <div class="ac-body">
+          <div class="ac-meta">
+            <span class="badge badge-sektor">Sektör Haberleri</span>
+            <span class="ac-date">15 Aralık 2025</span>
+            <span class="ac-read">3 dk</span>
+          </div>
+          <h3><a href="#">Panel Fiyatları 5 Yılın Dibinde — GES Yatırımı İçin En Uygun Pencere mi?</a></h3>
+          <p class="ac-excerpt">Çin üretimindeki kapasite fazlası, monokristal panel fiyatlarını watt başına 0.11 dolara indirdi. Türkiye'de proje geliştirme maliyetlerine etkisi ne oldu?</p>
+          <div class="ac-footer">
+            <div class="ac-author">
+              <div class="ac-av">AE</div>
+              <span class="ac-author-name">AL ENERJİ Basın</span>
+            </div>
+            <a href="#" class="ac-arrow">Oku →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Kart 6 -->
+      <article class="article-card" data-category="mevzuat-tesvik" data-reveal>
+        <div class="ac-img">
+          <img src="https://images.unsplash.com/photo-1569025690938-a00729c9e1f9?q=80&w=600&fit=crop" alt="YEKA" loading="lazy">
+        </div>
+        <div class="ac-body">
+          <div class="ac-meta">
+            <span class="badge badge-mevzuat">Mevzuat & Teşvik</span>
+            <span class="ac-date">8 Aralık 2025</span>
+            <span class="ac-read">4 dk</span>
+          </div>
+          <h3><a href="#">YEKA-3 Başvuruları Ocak'ta Kapanıyor — Dikkat Edilmesi Gerekenler</a></h3>
+          <p class="ac-excerpt">YEKA üçüncü turu için son başvuru tarihi yaklaşıyor. Teknik şartname değişiklikleri, yerel katkı gereksinimleri ve banka finansman süreçleri hakkında özet bilgi.</p>
+          <div class="ac-footer">
+            <div class="ac-author">
+              <div class="ac-av">AE</div>
+              <span class="ac-author-name">AL ENERJİ Basın</span>
+            </div>
+            <a href="#" class="ac-arrow">Oku →</a>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /articles-grid -->
+
+    <!-- PHP: Pagination — ?sayfa=N linkleri -->
+    <div class="pagination" id="pagination">
+      <button class="pg-btn disabled">← Önceki</button>
+      <button class="pg-btn active">1</button>
+      <button class="pg-btn">2</button>
+      <button class="pg-btn">3</button>
+      <span style="color:var(--muted);font-size:13px;padding:0 4px;">…</span>
+      <button class="pg-btn">8</button>
+      <button class="pg-btn">Sonraki →</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── BÜLTEN ─────────────────────────────────────────── -->
+<!-- PHP: POST /perspektif/bulten — subscribers tablosuna ekle -->
+<section class="newsletter-sec">
+  <div class="wrap">
+    <div class="newsletter-inner">
+      <div class="newsletter-text">
+        <h3>Sektör güncellemelerini<br>ilk siz öğrenin.</h3>
+        <p>Her hafta EPİAŞ özetleri, mevzuat değişiklikleri ve piyasa analizleri posta kutunuza gelsin.</p>
+      </div>
+      <div style="flex:1; min-width:min(100%,360px);">
+        <form id="nl-form" novalidate>
+          <div class="newsletter-form">
+            <input class="nl-input" type="email" placeholder="e-posta adresiniz" required>
+            <button type="submit" class="nl-btn">Abone Ol</button>
+          </div>
+          <div class="nl-note">Haftada bir bülten. İstediğinizde çıkabilirsiniz.</div>
+        </form>
+        <div id="nl-success" style="display:none; color:var(--green-lt); font-size:14px; font-weight:600; padding-top:12px;">
+          ✓ Abone oldunuz — teşekkürler!
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────────── -->
+<footer>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <div class="logo"><img src="Logo_white@2x.png" alt="AL ENERJİ" height="44" style="display:block;width:auto;"></div>
+        <p class="desc">Mühendislik odaklı, uzun vadeli enerji iş ortağı. 2004'ten bu yana.</p>
+        <div class="addr">Mustafa Kemal Mah. Dumlupınar Blv. No:274/7<br>06530 Çankaya / Ankara<br><br>+90 312 000 00 00<br>info@alenerji.com.tr</div>
+      </div>
+      <div>
+        <h4>Hizmetler</h4>
+        <a href="hizmetler.html#uretim">Üretim & Saha Geliştirme</a>
+        <a href="hizmetler.html#depolama">Enerji Depolama (BESS)</a>
+        <a href="hizmetler.html#ticaret">Enerji Ticareti</a>
+        <a href="hizmetler.html#danismanlik">Sürdürülebilirlik</a>
+      </div>
+      <div>
+        <h4>Kurumsal</h4>
+        <a href="hakkimizda.html">Hakkımızda</a>
+        <a href="#">Projeler</a>
+        <a href="perspektif.html">Perspektif</a>
+        <a href="#">Kariyer</a>
+      </div>
+      <div>
+        <h4>İletişim</h4>
+        <a href="iletisim.html">İletişim Formu</a>
+        <a href="tel:+903120000000">+90 312 000 00 00</a>
+        <a href="mailto:info@alenerji.com.tr">info@alenerji.com.tr</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">© 2026 AL ENERJİ. Tüm hakları saklıdır.</div>
+      <div class="footer-bottom-right">
+        <a href="#">KVKK Aydınlatma</a>
+        <a href="#">Gizlilik Politikası</a>
+        <a href="#">Kullanım Koşulları</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── NAV ──────────────────────────────────────────────────
+const nav    = document.getElementById('nav');
+const pHero  = document.getElementById('page-hero');
+const burger = document.getElementById('nav-burger');
+const drawer = document.getElementById('nav-mobile');
+
+nav.classList.add('dark-mode');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('dark-mode', pHero.getBoundingClientRect().bottom > 64);
+  nav.classList.toggle('scrolled', window.scrollY > 0);
+}, { passive:true });
+
+burger.addEventListener('click', () => {
+  const open = burger.classList.toggle('open');
+  drawer.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  burger.classList.remove('open'); drawer.classList.remove('open');
+  burger.setAttribute('aria-expanded', false); document.body.style.overflow = '';
+}));
+
+// ── HERO PARALLAX ────────────────────────────────────────
+const phBg = document.getElementById('page-hero-bg');
+window.addEventListener('scroll', () => {
+  if (pHero.getBoundingClientRect().bottom > 0)
+    phBg.style.transform = `translateY(${window.scrollY * 0.28}px)`;
+}, { passive:true });
+
+// ── KATEGORİ FİLTRE ──────────────────────────────────────
+// PHP'de bu kısım GET param ile sayfa yeniden yüklenerek çalışır.
+// Wireframe'de JS filtresi ile simüle ediyoruz.
+const catTabs   = document.querySelectorAll('.cat-tab');
+const cards     = document.querySelectorAll('.article-card');
+const gridCount = document.getElementById('grid-count');
+const artCount  = document.getElementById('article-count');
+
+catTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    catTabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const slug = tab.dataset.slug;
+    let visible = 0;
+    cards.forEach(card => {
+      const match = !slug || card.dataset.category === slug;
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+    gridCount.textContent = visible + ' haber';
+    artCount.textContent  = (visible + 1) + ' haber'; // +1 öne çıkan
+  });
+});
+
+// ── SAYFALAMA (wireframe simülasyonu) ────────────────────
+document.querySelectorAll('.pg-btn:not(.disabled)').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (isNaN(parseInt(btn.textContent))) return;
+    document.querySelectorAll('.pg-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+// ── BÜLTEN FORMU ─────────────────────────────────────────
+document.getElementById('nl-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = e.target.querySelector('.nl-btn');
+  btn.textContent = '...'; btn.disabled = true;
+  await new Promise(r => setTimeout(r, 700));
+  e.target.style.display = 'none';
+  document.getElementById('nl-success').style.display = 'block';
+});
+
+// ── SCROLL REVEAL ─────────────────────────────────────────
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const sibs = [...e.target.parentElement.querySelectorAll('[data-reveal]')];
+    setTimeout(() => e.target.classList.add('in'), sibs.indexOf(e.target) * 60);
+    revObs.unobserve(e.target);
+  });
+}, { threshold:0.07 });
+document.querySelectorAll('[data-reveal]').forEach(el => revObs.observe(el));
+</script>
+</body>
+</html>
