@@ -60,7 +60,18 @@ nav.dark-mode .navlinks { color:#fff; }
 .navlinks a::after { content:''; position:absolute; left:0; bottom:-5px; height:1.5px; width:0; background:var(--green-dk); transition:width .22s ease; }
 nav.dark-mode .navlinks a::after { background:var(--green-lt); }
 .navlinks a:hover::after { width:100%; }
-@media(max-width:768px) { .navlinks { display:none; } }
+.nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; cursor:pointer; padding:6px; border:none; background:transparent; border-radius:4px; }
+.nav-burger span { display:block; width:22px; height:1.5px; background:var(--text); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
+nav.dark-mode .nav-burger span { background:#fff; }
+.nav-burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+.nav-mobile { position:fixed; top:64px; left:0; right:0; background:var(--surface); z-index:99; padding:24px var(--gut) 32px; border-top:1px solid var(--border); box-shadow:0 8px 32px rgba(0,0,0,.1); opacity:0; transform:translateY(-6px); pointer-events:none; transition:opacity .22s ease, transform .22s ease; }
+.nav-mobile.open { opacity:1; transform:none; pointer-events:all; }
+.nav-mobile a { display:block; font-size:1rem; font-weight:600; padding:13px 0; border-bottom:1px solid var(--border); color:var(--text); }
+.nav-mobile a:last-of-type { border-bottom:0; }
+.nav-mobile .mob-cta { display:block; margin-top:20px; text-align:center; background:var(--navy); color:#fff !important; padding:14px; border-radius:var(--r-ctrl); font-weight:600; }
+@media(max-width:768px) { .navlinks { display:none; } .nav-burger { display:flex; } }
 
 .nav-cta { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:11px 22px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid transparent; transition:transform .15s ease, background .15s ease; background:var(--navy); color:#fff; }
 nav.dark-mode .nav-cta { background:transparent; border-color:rgba(255,255,255,.28); color:#fff; }
@@ -426,15 +437,26 @@ footer a:hover { color:#fff; }
       <img class="logo-dark"  src="Logo_white@2x.png" alt="AL ENERJİ" height="42" style="width:auto;">
     </div>
     <div class="navlinks">
-      <a>Hizmetler</a>
-      <a>Projeler</a>
-      <a>Hakkımızda</a>
-      <a>Haberler</a>
-      <a>İletişim</a>
+      <a href="hizmetler.html">Hizmetler</a>
+      <a href="projeler.html">Projeler</a>
+      <a href="hakkimizda.html">Hakkımızda</a>
+      <a href="perspektif.html">Perspektif</a>
+      <a href="iletisim.html">İletişim</a>
     </div>
-    <button class="nav-cta"><span class="arr">Bize Ulaşın <span>→</span></span></button>
+    <button class="nav-cta" onclick="location.href='iletisim.html'"><span class="arr">Bize Ulaşın <span>→</span></span></button>
+    <button class="nav-burger" id="nav-burger" aria-label="Menüyü aç/kapat" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a href="hizmetler.html">Hizmetler</a>
+  <a href="projeler.html">Projeler</a>
+  <a href="hakkimizda.html">Hakkımızda</a>
+  <a href="perspektif.html">Perspektif</a>
+  <a href="iletisim.html">İletişim</a>
+  <a href="iletisim.html" class="mob-cta">Bize Ulaşın</a>
+</div>
 
 <header class="hero" id="hero">
   <div class="hero-bg" id="hero-bg"></div>
@@ -994,24 +1016,24 @@ footer a:hover { color:#fff; }
       </div>
       <div>
         <h4>Hizmetler</h4>
-        <a>Üretim & Saha Geliştirme</a>
-        <a>Enerji Depolama (BESS)</a>
-        <a>Enerji Ticareti</a>
-        <a>Sürdürülebilirlik</a>
+        <a href="hizmetler.html#uretim">Üretim & Saha Geliştirme</a>
+        <a href="hizmetler.html#depolama">Enerji Depolama (BESS)</a>
+        <a href="hizmetler.html#ticaret">Enerji Ticareti</a>
+        <a href="hizmetler.html#danismanlik">Sürdürülebilirlik</a>
       </div>
       <div>
         <h4>Kurumsal</h4>
-        <a>Hakkımızda</a>
-        <a>Projeler</a>
-        <a>Haberler</a>
-        <a>Kariyer</a>
+        <a href="hakkimizda.html">Hakkımızda</a>
+        <a href="projeler.html">Projeler</a>
+        <a href="perspektif.html">Perspektif</a>
+        <a href="#">Kariyer</a>
       </div>
       <div>
         <h4>İletişim</h4>
-        <a>info@alenerji.com.tr</a>
-        <a>+90 312 000 00 00</a>
-        <a>LinkedIn</a>
-        <a>Bize Ulaşın</a>
+        <a href="mailto:info@alenerji.com.tr">info@alenerji.com.tr</a>
+        <a href="tel:+903120000000">+90 312 000 00 00</a>
+        <a href="#">LinkedIn</a>
+        <a href="iletisim.html">Bize Ulaşın</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1222,6 +1244,24 @@ let testiInterval = setInterval(() => {
 }, 5000);
 
 restartTestiProgress();
+
+// ── Hamburger menü ────────────────────────────────────────
+const burger = document.getElementById('nav-burger');
+const drawer = document.getElementById('nav-mobile');
+if (burger && drawer) {
+  burger.addEventListener('click', () => {
+    const open = burger.classList.toggle('open');
+    drawer.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    drawer.classList.remove('open');
+    burger.setAttribute('aria-expanded', false);
+    document.body.style.overflow = '';
+  }));
+}
 </script>
 </body>
 </html>
