@@ -25,7 +25,6 @@ body { font-family:var(--fh); background:var(--bg); color:var(--text); line-heig
 a { color:inherit; text-decoration:none; }
 .wrap { max-width:var(--max); margin:0 auto; padding:0 var(--gut); }
 .sec { padding:var(--spy) 0; }
-.hr { height:1px; background:var(--border); border:0; }
 
 .label { display:inline-flex; align-items:center; gap:12px; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green-lt); margin-bottom:18px; }
 .label::after { content:''; order:-1; width:7px; height:7px; border-radius:9999px; background:var(--green-lt); animation:labelPulse 2.4s ease-in-out infinite; }
@@ -37,7 +36,6 @@ h1 { font-size:clamp(2.4rem,6vw,3.75rem); font-weight:700; line-height:1.05; let
 h1 em { color:var(--green-lt); font-style:italic; }
 h2 { font-size:clamp(1.7rem,3.5vw,2.1rem); font-weight:700; line-height:1.12; letter-spacing:-.02em; }
 h3 { font-size:1.375rem; font-weight:600; line-height:1.25; }
-h4 { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--green-lt); margin-bottom:14px; }
 .lead { font-size:1.0625rem; color:var(--text-2); max-width:54ch; margin-top:18px; }
 
 /* NAV */
@@ -79,12 +77,6 @@ nav.dark-mode .nav-cta::before { background:rgba(255,255,255,.14); }
 .nav-cta:hover::before { transform:translateX(0); }
 
 /* BUTTONS */
-.btn { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:13px 26px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid transparent; transition:transform .15s ease; }
-.btn::before { content:''; position:absolute; inset:0; z-index:-1; transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
-.btn:hover { transform:translateY(-1px); }
-.btn:hover::before { transform:translateX(0); }
-.btn-primary { background:var(--navy); color:#fff; }
-.btn-primary::before { background:var(--green-dk); }
 .btn-white { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:13px 26px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid #fff; background:#fff; color:var(--navy); transition:transform .15s ease; }
 .btn-white::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--green-lt); transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
 .btn-white:hover { transform:translateY(-1px); color:#fff; }
@@ -111,59 +103,99 @@ nav.dark-mode .nav-cta::before { background:rgba(255,255,255,.14); }
 .page-hero h1 { color:#fff; }
 .page-hero .lead { color:var(--on-dark-muted); max-width:52ch; }
 
-/* STATS BAR */
-.stats-bar { display:grid; grid-template-columns:repeat(4,1fr); border:1px solid var(--border); border-radius:var(--r-card); overflow:hidden; background:var(--surface); }
-.stat-item { padding:32px 28px; border-left:1px solid var(--border); }
-.stat-item:first-child { border-left:0; }
-.stat-val { font-family:var(--fm); font-size:2.4rem; font-weight:500; color:var(--navy); line-height:1; }
-.stat-label { font-size:13px; color:var(--muted); margin-top:8px; }
+/* STATS DARK BAND */
+.stats-dark { background:var(--navy); padding:64px 0; border-bottom:1px solid rgba(255,255,255,.06); }
+.stats-dark .stats-inner { display:grid; grid-template-columns:repeat(4,1fr); }
+.stats-dark .stat-item { padding:0 36px; border-left:1px solid rgba(255,255,255,.10); }
+.stats-dark .stat-item:first-child { border-left:0; padding-left:0; }
+.stats-dark .stat-val { font-family:var(--fm); font-size:clamp(38px,5.5vw,72px); font-weight:700; color:#fff; line-height:1; letter-spacing:-.02em; }
+.stats-dark .stat-unit { font-size:.55em; opacity:.6; font-weight:500; }
+.stats-dark .stat-label { font-size:12px; color:rgba(255,255,255,.38); margin-top:14px; letter-spacing:.1em; text-transform:uppercase; font-family:var(--fm); }
+.stats-dark .stat-note { font-size:11px; color:rgba(255,255,255,.18); margin-top:6px; line-height:1.4; }
 @media(max-width:768px) {
-  .stats-bar { grid-template-columns:repeat(2,1fr); }
-  .stat-item:nth-child(3) { border-left:0; }
-  .stat-item:nth-child(n+3) { border-top:1px solid var(--border); }
+  .stats-dark .stats-inner { grid-template-columns:repeat(2,1fr); gap:0; }
+  .stats-dark .stat-item { padding:28px 20px; border-left:1px solid rgba(255,255,255,.10); border-top:1px solid rgba(255,255,255,.10); }
+  .stats-dark .stat-item:first-child { border-top:0; border-left:0; }
+  .stats-dark .stat-item:nth-child(2) { border-top:0; }
+  .stats-dark .stat-item:nth-child(odd) { border-left:0; }
 }
 
-/* SPLIT */
-.split { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
-@media(max-width:768px) { .split { grid-template-columns:1fr; gap:40px; } }
-.split .img { border-radius:var(--r-card); overflow:hidden; border:1px solid var(--border); }
-.split .img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .8s ease; }
-.split .img:hover img { transform:scale(1.03); }
-.split-img-tall { height:540px; }
-.story-body { display:flex; flex-direction:column; gap:16px; }
-.story-body p { color:var(--text-2); font-size:15.5px; line-height:1.75; }
-
-/* TIMELINE */
-.milestones { display:flex; flex-direction:column; gap:0; margin-top:40px; border-left:1.5px solid var(--border); padding-left:28px; }
-.milestone { position:relative; padding-bottom:24px; }
-.milestone:last-child { padding-bottom:0; }
-.milestone::before { content:''; position:absolute; left:-35px; top:5px; width:10px; height:10px; border-radius:9999px; background:var(--surface); border:1.5px solid var(--border-strong); transition:border-color .2s, background .2s; }
-.milestone:hover::before { border-color:var(--green-dk); background:var(--green-lt); }
-.milestone-year { font-family:var(--fm); font-size:11px; letter-spacing:.12em; color:var(--green-lt); margin-bottom:4px; }
-.milestone-text { font-size:14px; color:var(--text-2); line-height:1.6; }
+/* HIKAYE — ERA TIMELINE */
+.hikaye-hdr { max-width:720px; margin-bottom:72px; }
+.hikaye-hdr h2 { margin:12px 0 20px; font-size:clamp(32px,3.5vw,46px); line-height:1.1; letter-spacing:-.03em; }
+.hikaye-intro { font-size:16px; line-height:1.78; color:var(--text-2); max-width:64ch; }
+.timeline-wrap { display:flex; flex-direction:column; }
+.era { display:grid; grid-template-columns:160px 1fr; gap:32px 56px; padding:40px 0; border-top:1px solid var(--border); align-items:start; transition:border-color .2s; }
+.era:hover { border-color:var(--border-strong); }
+.era-dates { display:flex; flex-direction:column; align-items:center; gap:0; padding-top:3px; }
+.era-start { font-family:var(--fm); font-size:clamp(22px,2.2vw,32px); font-weight:700; color:var(--navy); line-height:1; }
+.era-sep { width:1.5px; height:24px; background:var(--green-lt); margin:10px 0; opacity:.55; }
+.era-end { font-family:var(--fm); font-size:clamp(18px,1.8vw,26px); font-weight:500; color:var(--navy); line-height:1; opacity:.35; }
+.era-single { font-family:var(--fm); font-size:clamp(22px,2.2vw,32px); font-weight:700; color:var(--navy); line-height:1; }
+.era-content h3 { font-size:1.05rem; font-weight:700; color:var(--navy); margin-bottom:12px; line-height:1.3; }
+.era-content p { font-size:14.5px; color:var(--text-2); line-height:1.75; }
+@media(max-width:768px) {
+  .era { grid-template-columns:1fr; gap:12px; }
+  .era-dates { flex-direction:row; align-items:center; gap:10px; }
+  .era-sep { width:18px; height:1.5px; margin:0; }
+}
 
 /* CEO QUOTE */
-.quote-sec { padding:96px 0; background:var(--navy); }
-.quote-inner { max-width:820px; margin:0 auto; text-align:center; padding:0 var(--gut); }
-.quote-open { font-size:5rem; color:var(--green-lt); opacity:.25; line-height:.7; margin-bottom:16px; font-family:Georgia, serif; }
-.quote-body { font-size:clamp(1.05rem,1.8vw,1.3rem); font-weight:500; line-height:1.8; color:rgba(244,246,244,.82); letter-spacing:-.01em; }
+.quote-sec {
+  padding:104px 0;
+  background-color:var(--navy);
+  background-image:radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size:26px 26px;
+  position:relative;
+  overflow:hidden;
+}
+.quote-sec::before {
+  content:'\201C';
+  position:absolute; top:-32px; left:48px;
+  font-size:280px; font-family:Georgia,serif;
+  color:rgba(255,255,255,.055); line-height:1;
+  pointer-events:none; user-select:none;
+}
+.quote-sec::after {
+  content:'\201D';
+  position:absolute; bottom:-96px; right:48px;
+  font-size:280px; font-family:Georgia,serif;
+  color:rgba(255,255,255,.055); line-height:1;
+  pointer-events:none; user-select:none;
+}
+.quote-inner { max-width:820px; margin:0 auto; text-align:center; position:relative; z-index:1; }
+.quote-body { font-size:clamp(1.05rem,1.8vw,1.3rem); font-weight:500; line-height:1.82; color:rgba(244,246,244,.82); letter-spacing:-.01em; }
 .quote-body em { font-style:normal; color:var(--green-lt); }
-.quote-attr { margin-top:40px; font-family:var(--fm); font-size:11px; letter-spacing:.14em; color:rgba(244,246,244,.28); text-transform:uppercase; }
+.quote-attr { margin-top:44px; font-family:var(--fm); font-size:11px; letter-spacing:.16em; color:rgba(244,246,244,.25); text-transform:uppercase; }
+.quote-attr::before { content:'—  '; }
 
-/* VALUES / 4 PILLARS */
-.values-intro { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:end; margin-bottom:52px; }
-@media(max-width:768px) { .values-intro { grid-template-columns:1fr; gap:24px; } }
-.values-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
-@media(max-width:768px) { .values-grid { grid-template-columns:1fr; } }
-.value-card { border:1px solid var(--border); border-radius:var(--r-card); padding:36px 28px; background:var(--surface); transition:border-color .22s ease, transform .22s ease; }
-.value-card:hover { border-color:var(--green-dk); transform:translateY(-3px); }
-.value-num { font-family:var(--fm); font-size:11px; letter-spacing:.16em; color:var(--border-strong); margin-bottom:20px; display:block; transition:color .22s; }
-.value-card:hover .value-num { color:var(--green-dk); }
-.value-ico { width:44px; height:44px; border:1px solid var(--border); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; transition:border-color .22s, background .22s; }
-.value-card:hover .value-ico { border-color:var(--green-dk); background:rgba(31,61,51,.05); }
-.value-ico svg { width:20px; height:20px; stroke:var(--green-dk); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
-.value-card h3 { margin-bottom:12px; font-size:1.0625rem; }
-.value-card p { color:var(--text-2); font-size:14px; line-height:1.72; }
+/* 4 PILLARS */
+.pillars-intro { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:end; margin-bottom:56px; }
+@media(max-width:768px) { .pillars-intro { grid-template-columns:1fr; gap:24px; } }
+.pillars-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:var(--border); border-radius:var(--r-card); overflow:hidden; }
+@media(max-width:768px) { .pillars-grid { grid-template-columns:1fr; } }
+.pillar-card {
+  position:relative; overflow:hidden;
+  background:var(--surface);
+  padding:44px 40px 48px;
+  border-top:3px solid var(--green-lt);
+  transition:background .22s ease;
+}
+.pillar-card:hover { background:#F6FAF7; }
+.pillar-card::after {
+  content:attr(data-n);
+  position:absolute; bottom:-24px; right:12px;
+  font-size:140px; font-weight:900; font-family:var(--fm);
+  color:rgba(11,20,48,.04); line-height:1;
+  pointer-events:none; user-select:none;
+  transition:color .22s ease;
+}
+.pillar-card:hover::after { color:rgba(93,179,138,.07); }
+.pillar-ico { width:44px; height:44px; border:1px solid var(--border); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:24px; transition:border-color .22s, background .22s; }
+.pillar-card:hover .pillar-ico { border-color:var(--green-lt); background:rgba(93,179,138,.07); }
+.pillar-ico svg { width:20px; height:20px; stroke:var(--green-dk); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.pillar-card h3 { font-size:1.075rem; font-weight:700; color:var(--navy); margin-bottom:14px; line-height:1.3; }
+.pillar-card p { font-size:14px; color:var(--text-2); line-height:1.74; max-width:44ch; }
 
 /* CERTIFICATIONS */
 .cert-row { display:grid; grid-template-columns:repeat(5,1fr); border:1px solid var(--border); border-radius:var(--r-card); overflow:hidden; background:var(--surface); }
@@ -176,7 +208,8 @@ nav.dark-mode .nav-cta::before { background:rgba(255,255,255,.14); }
   .cert-item { border-top:1px solid var(--border); }
   .cert-item:nth-child(1), .cert-item:nth-child(2) { border-top:0; }
 }
-.cert-badge { width:44px; height:44px; border-radius:9999px; border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; }
+.cert-badge { width:44px; height:44px; border-radius:9999px; border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; transition:border-color .2s, background .2s; }
+.cert-item:hover .cert-badge { border-color:var(--green-lt); background:rgba(93,179,138,.07); }
 .cert-badge svg { width:20px; height:20px; stroke:var(--green-dk); stroke-width:1.5; fill:none; stroke-linecap:round; }
 .cert-name { font-family:var(--fm); font-size:12px; font-weight:500; color:var(--navy); }
 .cert-desc { font-size:11px; color:var(--muted); }
@@ -255,94 +288,136 @@ footer a:hover { color:#fff; }
       <span class="current">Hakkımızda</span>
     </div>
     <h1>Enerjinin<br><em>Mühendislik Hali.</em></h1>
-    <p class="lead">2004'ten bu yana serbest enerji piyasasının her aşamasında — geliştirme, lisanslama, EPC, karbon sertifikasyonu ve M&A brokerage.</p>
+    <p class="lead">2004'ten bu yana enerji piyasasının her aşamasında — geliştirme, lisanslama, EPC, karbon sertifikasyonu ve M&A brokerage.</p>
   </div>
 </section>
 
-<!-- STATS BAR -->
-<section style="padding:64px 0; background:var(--surface-alt); border-bottom:1px solid var(--border);">
+<!-- STATS DARK BAND -->
+<section class="stats-dark" data-reveal>
   <div class="wrap">
-    <div class="stats-bar" data-reveal>
+    <div class="stats-inner">
       <div class="stat-item">
-        <div class="stat-val">22+</div>
-        <div class="stat-label">Yıl saha deneyimi</div>
+        <div class="stat-val">22<span class="stat-unit">yıl</span></div>
+        <div class="stat-label">Saha Deneyimi</div>
+        <div class="stat-note">2004 — 2026</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val">80 MW</div>
-        <div class="stat-label">Geliştirilen ve satılan HES</div>
+        <div class="stat-val">80<span class="stat-unit">MW</span></div>
+        <div class="stat-label">Geliştirilen HES</div>
+        <div class="stat-note">9 santral, 0'dan geliştirilip satıldı</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val">295+ MW</div>
-        <div class="stat-label">RES proje portföyü</div>
+        <div class="stat-val">295<span class="stat-unit">MW</span></div>
+        <div class="stat-label">RES Proje Portföyü</div>
+        <div class="stat-note">74,2 MW lisanslı kapasite dahil</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val">220+ MW</div>
-        <div class="stat-label">GES EPC hacmi</div>
+        <div class="stat-val">220<span class="stat-unit">MW+</span></div>
+        <div class="stat-label">GES EPC Hacmi</div>
+        <div class="stat-note">Arazi ve çatı GES projeleri</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HİKAYE -->
-<section class="sec" id="hikaye">
+<!-- HİKAYE — ERA TIMELINE -->
+<section class="sec" id="hikaye" style="background:var(--surface-alt); border-bottom:1px solid var(--border);">
   <div class="wrap">
-    <div class="split">
-      <div class="split-img-tall img" data-reveal>
-        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1000&fit=crop" alt="AL ENERJİ saha çalışması" loading="lazy">
-      </div>
-      <div data-reveal>
-        <span class="label">Hikayemiz</span>
-        <h2>Kilometre Taşları</h2>
-        <div class="story-body" style="margin-top:20px;">
-          <p>2004 yılından bu yana serbest enerji piyasasının her aşamasına bizzat tanıklık ettik; ilk saha etütlerinden lisanslama ve kamu ihalelerine, öz mal santral kurulumlarından uluslararası varlık devirlerine kadar enerjinin tüm yaşam döngüsünü yönettik.</p>
-          <p>Teorik varsayımlarla değil, gerçekleşmiş saha verileriyle, saatlik simülasyonlarla, hukuki güvenceyle ve yüksek mühendislik disipliniyle piyasa oyuncuları ve yatırımcılar için sarsılmaz bir güven köprüsü inşa ediyoruz.</p>
+    <div class="hikaye-hdr" data-reveal>
+      <span class="label">Hikayemiz</span>
+      <h2>2004'ten Bu Yana,<br>Her Aşamada.</h2>
+      <p class="hikaye-intro">İlk saha etütlerinden lisanslama ve kamu ihalelerine, öz mal santral kurulumlarından uluslararası varlık devirlerine kadar enerjinin tüm yaşam döngüsünü bizzat yönettik. Teorik değil, sahada doğrulanmış.</p>
+    </div>
+    <div class="timeline-wrap">
+
+      <div class="era" data-reveal>
+        <div class="era-dates">
+          <span class="era-start">2004</span>
+          <span class="era-sep"></span>
+          <span class="era-end">2010</span>
         </div>
-        <div class="milestones">
-          <div class="milestone">
-            <div class="milestone-year">2004 — 2010</div>
-            <div class="milestone-text">Akarsu HES geliştirme ve portföy danışmanlığı. Toplam kurulu gücü 80 MW'ı bulan 9 HES projesini 0'dan geliştirip sattık; 480 MW yakın HES portföyüne danışmanlık yürüttük.</div>
-          </div>
-          <div class="milestone">
-            <div class="milestone-year">2007 — 2015</div>
-            <div class="milestone-text">Rüzgar enerjisi geliştirme hamlesi. Türkiye genelinde 295,6 MW'lık RES portföyü geliştirildi; 2011 TEİAŞ ihalelerinde 74,2 MW lisanslı RES gücü kazanıldı.</div>
-          </div>
-          <div class="milestone">
-            <div class="milestone-year">2007 — 2016</div>
-            <div class="milestone-text">South Pole iş birliğiyle uluslararası karbon sertifikasyonu. Çaldere HES (VCS), Dora-1 JES (VCS) ve Dora-2 JES (Gold Standard) tesislerinin uluslararası tescilleri tamamlandı.</div>
-          </div>
-          <div class="milestone">
-            <div class="milestone-year">2010</div>
-            <div class="milestone-text">Özelleştirme İdaresi (ÖİB) HES ihaleleri. 3 portföy grubunda teknik saha incelemesi, değerleme raporlaması ve ihale süreçleri yürütüldü.</div>
-          </div>
-          <div class="milestone">
-            <div class="milestone-year">2016 — 2020</div>
-            <div class="milestone-text">GES EPC, öz mal kurulumları ve tesis denetimleri. Arazi ve çatı GES projelerinde 220 MW+ mühendislik, EPC ve bağımsız denetim hacmine ulaşıldı.</div>
-          </div>
-          <div class="milestone">
-            <div class="milestone-year">2021 — 2026</div>
-            <div class="milestone-text">BESS entegrasyonu, M&A Brokerage ve bölgesel açılım. 20 yıllık geliştirici tecrübesiyle Proje Brokerage hizmeti müstakil bir iş alanına dönüştürüldü; Doğu Avrupa ve AB pazarları takibe alındı.</div>
-          </div>
+        <div class="era-content">
+          <h3>Akarsu HES Geliştirme ve Portföy Danışmanlığı</h3>
+          <p>Kendi öz sermayemiz ve mühendislik gücümüzle toplam kurulu gücü 80 MW'ı bulan 9 adet hidroelektrik santralini (HES) 0'dan geliştirip satışını başarıyla gerçekleştirdik. Aynı dönemde Türkiye genelinde 480 MW'a yakın HES projesinin teknik incelemeleri, fizibiliteleri ve yatırım danışmanlığı süreçlerini yürüttük.</p>
         </div>
       </div>
+
+      <div class="era" data-reveal>
+        <div class="era-dates">
+          <span class="era-start">2007</span>
+          <span class="era-sep"></span>
+          <span class="era-end">2015</span>
+        </div>
+        <div class="era-content">
+          <h3>Rüzgar Enerjisi (RES) Geliştirme ve Kapasite İhaleleri</h3>
+          <p>Türkiye genelinde kurulan rüzgar ölçüm direkleriyle 295,6 MW'lık dev bir RES proje portföyü geliştirildi. 2011 yılında gerçekleştirilen TEİAŞ kapasite tahsis ihalelerinde yarışma süreçleri sonucunda 74,2 MW lisanslı RES gücü bizzat kazanıldı.</p>
+        </div>
+      </div>
+
+      <div class="era" data-reveal>
+        <div class="era-dates">
+          <span class="era-start">2007</span>
+          <span class="era-sep"></span>
+          <span class="era-end">2016</span>
+        </div>
+        <div class="era-content">
+          <h3>Uluslararası Karbon Sertifikasyonu — South Pole İş Birliği</h3>
+          <p>Küresel iklim ve karbon yönetiminin lider kuruluşu South Pole ile stratejik iş birliği başlatıldı. Çaldere HES (8,91 MWe — VCS), Dora-1 JES (7,36 MWe — VCS) ve Dora-2 JES (9,50 MWe — Gold Standard) tesislerinin uluslararası karbon tescilleri tamamlandı. Doğrulama ve emisyon azaltım belgelendirme süreçleri 9 yıl sürdürüldü.</p>
+        </div>
+      </div>
+
+      <div class="era" data-reveal>
+        <div class="era-dates">
+          <span class="era-single">2010</span>
+        </div>
+        <div class="era-content">
+          <h3>Kamu Özelleştirme İhaleleri (ÖİB) ve Saha Ekspertizi</h3>
+          <p>Özelleştirme İdaresi Başkanlığı (ÖİB) tarafından gerçekleştirilen kamu akarsu HES özelleştirmelerinde 3 portföy grubundaki (7., 11. ve 14. Gruplar) santrallerin teknik saha incelemesi, değerleme raporlaması ve ihale teklif süreçleri bizzat yönetildi.</p>
+        </div>
+      </div>
+
+      <div class="era" data-reveal>
+        <div class="era-dates">
+          <span class="era-start">2016</span>
+          <span class="era-sep"></span>
+          <span class="era-end">2020</span>
+        </div>
+        <div class="era-content">
+          <h3>GES EPC, Öz Mal Kurulumlar ve Tesis Denetimleri</h3>
+          <p>Güneş enerjisinin pazara girmesiyle birlikte arazi ve çatı GES projelerinde 220 MW+ mühendislik, EPC, öz mal yatırımları ve bağımsız denetim hacmine ulaşıldı. Termal Drone, I-V Curve ve EL testleri dahil IEC standartlarında kalite güvencesi uygulandı.</p>
+        </div>
+      </div>
+
+      <div class="era" data-reveal>
+        <div class="era-dates">
+          <span class="era-start">2021</span>
+          <span class="era-sep"></span>
+          <span class="era-end">2026</span>
+        </div>
+        <div class="era-content">
+          <h3>BESS Entegrasyonu, M&A Brokerage ve Bölgesel Açılım</h3>
+          <p>Batarya Depolama Sistemleri (BESS) ve hibrit santral mühendisliğine odaklanıldı. 20 yıllık geliştirici tecrübesi ve uzman enerji hukukçularının katılımıyla Proje Brokerage & M&A hizmeti müstakil bir iş alanına dönüştürüldü. Doğu Avrupa ve AB pazarlarındaki bölgesel fırsatlar aktif olarak takibe alındı.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
 <!-- YÖNETİM MESAJI -->
 <section class="quote-sec">
-  <div class="quote-inner" data-reveal>
-    <div class="quote-open">&ldquo;</div>
+  <div class="quote-inner wrap" data-reveal>
     <p class="quote-body">
       Bir projeyi geliştirmek, işletmek veya devretmek; sadece bugünün rakamlarını değil, yılın <em>8.760 saatinin</em> her anındaki risk ve fırsat dengesini doğru okumaktır. Bu yüzden felsefemizin merkezine <em>'Mühendislik Hassasiyeti'</em> kavramını koyduk. Kağıt üzerindeki vaatlere değil, sahada doğrulanmış veriye ve hukuki güvenceye inanıyoruz.
     </p>
-    <div class="quote-attr">— AL ENERJİ Yönetimi</div>
+    <div class="quote-attr">AL ENERJİ Yönetimi</div>
   </div>
 </section>
 
 <!-- 4 TEMEL SÜTUN -->
-<section class="sec" style="background:var(--surface-alt); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+<section class="sec" style="background:var(--surface-alt); border-bottom:1px solid var(--border);">
   <div class="wrap">
-    <div class="values-intro">
+    <div class="pillars-intro">
       <div data-reveal>
         <span class="label">Bizi Biz Yapan</span>
         <h2>Dört Temel Sütun.</h2>
@@ -351,39 +426,40 @@ footer a:hover { color:#fff; }
         <p class="lead">Uygulayıcı ve yatırımcı kökenli bir yapı olarak hem sahayı hem piyasayı bilen ekibimizle, müşterilerimize teorinin ötesinde somut değer yaratıyoruz.</p>
       </div>
     </div>
-    <div class="values-grid">
-      <div class="value-card" data-reveal>
-        <span class="value-num">01</span>
-        <div class="value-ico">
+    <div class="pillars-grid">
+
+      <div class="pillar-card" data-n="01" data-reveal>
+        <div class="pillar-ico">
           <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
         </div>
         <h3>Uygulayıcı ve Yatırımcı Kökenli Olmak</h3>
-        <p>Kendi öz mal santrallerimizi sıfırdan lisanslayıp sattık, 295,6 MW RES portföyü geliştirdik. Hem yatırımcının hem saha mühendisinin dilini en iyi biz konuşuruz; masa başı danışmanlığının ötesinde gerçek saha deneyimi sunuyoruz.</p>
+        <p>Kendi öz mal santrallerimizi sıfırdan lisanslayıp sattık, 295,6 MW RES portföyü geliştirdik. Hem yatırımcının hem saha mühendisinin dilini en iyi biz konuşuruz; masa başı danışmanlığının ötesinde gerçek saha deneyimi.</p>
       </div>
-      <div class="value-card" data-reveal>
-        <span class="value-num">02</span>
-        <div class="value-ico">
+
+      <div class="pillar-card" data-n="02" data-reveal>
+        <div class="pillar-ico">
           <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
         </div>
         <h3>Müşavirliğin Ötesinde Hukuki & Sözleşmesel Güç</h3>
-        <p>Proje alım-satımlarında (M&A) bizzat proje geliştirip satmış olmaktan gelen sözleşme tecrübemiz en büyük farkımızdır. Uzman enerji hukukçularımızla SPA ve SHA süreçlerinde teknik ve hukuki riskleri sıfırlayan çözümler sunarız.</p>
+        <p>Bizzat proje geliştirip satmış olmaktan gelen sözleşme tecrübemiz en büyük farkımızdır. Uzman enerji hukukçularımızla SPA ve SHA süreçlerinde teknik ve hukuki riskleri sıfırlayan çözümler sunuyoruz.</p>
       </div>
-      <div class="value-card" data-reveal>
-        <span class="value-num">03</span>
-        <div class="value-ico">
+
+      <div class="pillar-card" data-n="03" data-reveal>
+        <div class="pillar-ico">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/><path d="M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/></svg>
         </div>
         <h3>Mühendislik Hassasiyeti & Teknolojik Entegrasyon</h3>
-        <p>Santrallerimizi afaki kabullerle değil; 8.760 saatlik nakit akış simülasyonları, PVSyst/WAsP analizleri ve BESS esnekliğiyle tasarlarız. Saha testleri (Termal Drone, I-V Curve, EL) ve IEC standartlarıyla bilginin doğruluğunu garanti ederiz.</p>
+        <p>8.760 saatlik nakit akış simülasyonları, PVSyst/WAsP analizleri ve BESS esnekliğiyle tasarım yapıyoruz. Termal Drone, I-V Curve ve EL testleriyle IEC standartlarında doğrulama güvencesi sağlıyoruz.</p>
       </div>
-      <div class="value-card" data-reveal>
-        <span class="value-num">04</span>
-        <div class="value-ico">
+
+      <div class="pillar-card" data-n="04" data-reveal>
+        <div class="pillar-ico">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
         </div>
         <h3>Uluslararası Standartlar ve Karbon Bilinci</h3>
-        <p>South Pole ortaklığıyla küresel karbon sertifikasyonlarına (VCS & Gold Standard) dönüştürdüğümüz 9 yıllık tescil ve doğrulama tecrübemiz var. Tüm teknik altyapımızı Avrupa Şebeke Kodları ve uluslararası bankalanabilirlik kriterlerine uyumlu yönetiriz.</p>
+        <p>South Pole ortaklığıyla küresel karbon sertifikasyonlarına (VCS & Gold Standard) dönüştürdüğümüz 9 yıllık tescil ve doğrulama tecrübesi. Tüm altyapımız Avrupa Şebeke Kodları ve uluslararası bankalanabilirlik kriterlerine uyumlu.</p>
       </div>
+
     </div>
   </div>
 </section>
@@ -419,10 +495,10 @@ footer a:hover { color:#fff; }
       </div>
       <div class="cert-item">
         <div class="cert-badge">
-          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         </div>
-        <div class="cert-name">EPDK</div>
-        <div class="cert-desc">Üretim & Ticaret Lisansı</div>
+        <div class="cert-name">IEC</div>
+        <div class="cert-desc">Uluslararası Elektroteknik Test Standartları</div>
       </div>
       <div class="cert-item">
         <div class="cert-badge">
@@ -502,11 +578,7 @@ const pageHero = document.getElementById('page-hero');
 nav.classList.add('dark-mode');
 window.addEventListener('scroll', () => {
   const heroBottom = pageHero.getBoundingClientRect().bottom;
-  if (heroBottom <= 64) {
-    nav.classList.remove('dark-mode');
-  } else {
-    nav.classList.add('dark-mode');
-  }
+  nav.classList.toggle('dark-mode', heroBottom > 64);
   nav.classList.toggle('scrolled', window.scrollY > 0);
 }, { passive: true });
 
@@ -514,9 +586,7 @@ window.addEventListener('scroll', () => {
 const pageHeroBg = document.getElementById('page-hero-bg');
 window.addEventListener('scroll', () => {
   const r = pageHero.getBoundingClientRect();
-  if (r.bottom > 0) {
-    pageHeroBg.style.transform = `translateY(${window.scrollY * 0.28}px)`;
-  }
+  if (r.bottom > 0) pageHeroBg.style.transform = `translateY(${window.scrollY * 0.28}px)`;
 }, { passive: true });
 
 // CTA PARALLAX
@@ -525,34 +595,28 @@ const ctaParSec = document.getElementById('cta-par');
 if (ctaParBg) {
   window.addEventListener('scroll', () => {
     const r = ctaParSec.getBoundingClientRect();
-    if (r.bottom > 0 && r.top < window.innerHeight) {
+    if (r.bottom > 0 && r.top < window.innerHeight)
       ctaParBg.style.transform = `translateY(${(-r.top / window.innerHeight) * 38}px)`;
-    }
   }, { passive: true });
 }
 
 // SCROLL REVEAL
-const revealEls = document.querySelectorAll('[data-reveal]');
 const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach((e) => {
+  entries.forEach(e => {
     if (e.isIntersecting) {
       const siblings = [...e.target.parentElement.querySelectorAll('[data-reveal]')];
-      const idx = siblings.indexOf(e.target);
-      setTimeout(() => e.target.classList.add('in'), idx * 70);
+      setTimeout(() => e.target.classList.add('in'), siblings.indexOf(e.target) * 70);
       revealObs.unobserve(e.target);
     }
   });
 }, { threshold: 0.12 });
-revealEls.forEach(el => revealObs.observe(el));
+document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
 
 // LABEL REVEAL
-const labelEls = document.querySelectorAll('.label');
-const labelObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('in'); labelObs.unobserve(e.target); }
-  });
+const labelObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); labelObs.unobserve(e.target); } });
 }, { threshold: 0.5 });
-labelEls.forEach(el => labelObs.observe(el));
+document.querySelectorAll('.label').forEach(el => labelObs.observe(el));
 
 // HAMBURGER
 const burger = document.getElementById('navBurger');
@@ -563,13 +627,11 @@ if (burger && mobileNav) {
     mobileNav.classList.toggle('open', open);
     document.body.style.overflow = open ? 'hidden' : '';
   });
-  mobileNav.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      burger.classList.remove('open');
-      mobileNav.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-  });
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
 }
 </script>
 </body>
