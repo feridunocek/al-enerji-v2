@@ -305,26 +305,8 @@ nav.dark-mode .nav-burger span { background:#fff; }
   .broker-cap h3 { margin-top:44px; }
 }
 
-/* BROKERAGE CTA — referans: auron.nomadenstudio.com "Ready to Switch to Solar?" bölümü.
-   Full-bleed fotoğraf + koyu yeşil/lacivert overlay, sola yaslı içerik, sağda negatif alan,
-   highlighter-marker vurgulu başlık, pill buton + yeşil ok rozeti, güven kümesi (partner baş harfleri). */
-.broker-cta-sec { position:relative; overflow:hidden; isolation:isolate; padding:50px 0; color:#fff; }
-.broker-cta-photo {
-  position:absolute; inset:-24% -4%; z-index:-2;
-  background-image:url('https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=2000&fit=crop');
-  background-size:cover; background-position:center; will-change:transform;
-}
-.broker-cta-overlay {
-  position:absolute; inset:0; z-index:-1;
-  background:linear-gradient(100deg, rgba(11,20,48,.92) 0%, rgba(11,20,48,.78) 32%, rgba(20,45,40,.42) 62%, rgba(20,45,40,.18) 100%);
-}
-.broker-cta-content { max-width:600px; }
-.broker-cta-content .label { color:var(--green-lt); }
-.broker-cta-headline { margin:22px 0 20px; font-size:clamp(36px,4vw,56px); line-height:1.16; letter-spacing:-.02em; font-weight:700; color:#fff; }
 .cta-highlight { position:relative; display:inline-block; padding:0 6px; }
 .cta-highlight::before { content:''; position:absolute; inset:3px -4px; background:rgba(93,179,138,.32); transform:rotate(-1.1deg); border-radius:6px; z-index:-1; }
-.broker-cta-lead { margin:0 0 40px; max-width:46ch; font-size:16px; line-height:1.7; color:rgba(255,255,255,.8); }
-.broker-cta-actions { display:flex; align-items:center; }
 .btn-pill {
   display:inline-flex; align-items:center; gap:16px; padding:6px 6px 6px 26px; border-radius:var(--r-ctrl);
   border:1.5px solid rgba(93,179,138,.55); background:rgba(255,255,255,.04); color:#fff;
@@ -332,9 +314,6 @@ nav.dark-mode .nav-burger span { background:#fff; }
 }
 .btn-pill:hover { border-color:var(--green-lt); background:rgba(255,255,255,.09); }
 .btn-pill-arrow { width:36px; height:36px; border-radius:50%; background:var(--green-lt); color:var(--navy); display:inline-flex; align-items:center; justify-content:center; font-size:15px; flex:0 0 auto; }
-@media(max-width:900px) {
-  .broker-cta-sec { padding:40px 0; }
-}
 
 /* PROJECT LIFECYCLE — 7 adım, sticky-scroll (statik kart grid DEĞİL — kilitli karar). Kaynak: ANSAYFA.docx "UÇTAN UCA PROJE GELİŞTİRME SPEKTRUMU". */
 .lifecycle-sec { background:var(--surface-alt); }
@@ -455,7 +434,7 @@ nav.dark-mode .nav-burger span { background:#fff; }
 .cta-par-sec { position:relative; overflow:hidden; min-height:390px; display:flex; align-items:center; justify-content:center; }
 .cta-par-bg { position:absolute; inset:-18% 0; will-change:transform; background:linear-gradient(rgba(11,20,48,.80),rgba(11,20,48,.80)), url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2000&fit=crop') center/cover no-repeat; }
 .cta-par-inner { position:relative; z-index:1; text-align:center; max-width:780px; padding:56px var(--gut); margin:0 auto; }
-.cta-par-inner h2 { color:#fff; font-size:clamp(2.8rem,5.5vw,4.5rem); font-weight:700; line-height:1.05; letter-spacing:-.02em; }
+.cta-par-inner h2 { color:#fff; font-size:clamp(1.75rem,2.8vw,2.5rem); font-weight:700; line-height:1.1; letter-spacing:-.02em; }
 .cta-par-inner h2 em { font-style:italic; color:var(--green-lt); }
 .cta-par-inner .lead { color:rgba(244,246,244,.58); margin-top:20px; max-width:52ch; margin-left:auto; margin-right:auto; }
 .cta-par-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:36px; }
@@ -672,28 +651,12 @@ footer a:hover { color:#fff; }
   </div>
 </section>
 
-<!-- 04b — BROKERAGE CTA — referans: auron.nomadenstudio.com "Ready to Switch to Solar?" bölümü, Meridian sistemine uyarlandı. Fotoğraf + görsel şimdilik placeholder (rüzgar türbini stok görseli, gerçek saha fotoğrafı ile değişecek). Güven kümesi marquee'deki gerçek partner isimlerinin baş harfleri (rastgele stok yüz fotoğrafı DEĞİL). -->
-<section class="broker-cta-sec">
-  <div class="broker-cta-photo" data-parallax></div>
-  <div class="broker-cta-overlay"></div>
-  <div class="wrap">
-    <div class="broker-cta-content">
-      <span class="label in">Sıradaki Adım</span>
-      <h2 class="broker-cta-headline">Geliştirdiğiniz Projeleri<br><span class="cta-highlight">Doğru Yatırımcılarla</span> Buluşturuyoruz.</h2>
-      <p class="broker-cta-lead">Onaylı yenilenebilir enerji projelerini portföyünüze katmak için uzman ekibimizle iletişime geçin.</p>
-      <div class="broker-cta-actions">
-        <a class="btn-pill" href="#brokerage">Proje Portföyü &amp; Brokerage İletişimi <span class="btn-pill-arrow">↗</span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- PARALLAX CTA -->
 <section class="cta-par-sec" id="cta-par">
   <div class="cta-par-bg" id="cta-par-bg"></div>
   <div class="cta-par-inner">
     <span class="label" style="color:rgba(255,255,255,.45); margin-bottom:20px; display:block;">Sıradaki Adım</span>
-    <h2>Geliştirdiğiniz Projeleri<br><span class="cta-highlight">Doğru Yatırımcılarla</span> Buluşturuyoruz.</h2>
+    <h2>Geliştirdiğiniz Projeleri <span class="cta-highlight">Doğru Yatırımcılarla</span> Buluşturuyoruz.</h2>
     <p class="lead">Onaylı yenilenebilir enerji projelerini portföyünüze katmak için uzman ekibimizle iletişime geçin.</p>
     <div class="cta-par-btns">
       <a class="btn-pill" href="iletisim.html">Proje Portföyü &amp; Brokerage İletişimi <span class="btn-pill-arrow">↗</span></a>
@@ -1044,28 +1007,6 @@ document.querySelectorAll('.label').forEach(function (el) {
   }, { threshold: 0.3 });
   io.observe(el);
 });
-
-// Brokerage CTA — JS parallax (background-attachment:fixed KULLANILMIYOR, iOS'ta çalışmıyor — MEMORY.md kararı)
-(function () {
-  var bg = document.querySelector('.broker-cta-photo');
-  if (!bg || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var section = bg.closest('.broker-cta-sec');
-  var ticking = false;
-  function update() {
-    var rect = section.getBoundingClientRect();
-    var vh = window.innerHeight;
-    var progress = (rect.top + rect.height / 2 - vh / 2) / (vh / 2 + rect.height / 2);
-    var shift = Math.max(-1, Math.min(1, progress)) * 110;
-    bg.style.transform = 'translate3d(0,' + shift.toFixed(1) + 'px,0)';
-    ticking = false;
-  }
-  function onScroll() {
-    if (!ticking) { requestAnimationFrame(update); ticking = true; }
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
-  update();
-})();
 
 // Project Lifecycle — sticky-scroll: aktif adımı ortalanmış viewport bandına göre belirler,
 // sağdaki sabit (sticky) panelin numara/başlık/ilerleme çubuğunu günceller.
