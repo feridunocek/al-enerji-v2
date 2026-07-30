@@ -317,6 +317,9 @@ nav.dark-mode .nav-burger span { background:#fff; }
 }
 .btn-pill:hover { border-color:var(--green-lt); background:rgba(255,255,255,.09); }
 .btn-pill-arrow { width:36px; height:36px; border-radius:50%; background:var(--green-lt); color:var(--navy); display:inline-flex; align-items:center; justify-content:center; font-size:15px; flex:0 0 auto; }
+.btn-pill.dk { color:var(--navy); border-color:rgba(11,20,48,.25); background:transparent; }
+.btn-pill.dk:hover { border-color:var(--navy); background:rgba(11,20,48,.05); }
+.btn-pill.dk .btn-pill-arrow { background:var(--navy); color:#fff; }
 
 /* PROJECT LIFECYCLE — 7 adım, sticky-scroll (statik kart grid DEĞİL — kilitli karar). Kaynak: ANSAYFA.docx "UÇTAN UCA PROJE GELİŞTİRME SPEKTRUMU". */
 .lifecycle-sec { background:var(--surface-alt); }
@@ -907,7 +910,7 @@ footer a:hover { color:#fff; }
       </div>
     </div>
     <div style="text-align:center; margin-top:48px;">
-      <button class="btn-pill" onclick="location.href='projeler.html'" style="display:inline-flex;">Tüm Projeleri Gör <span class="btn-pill-arrow">→</span></button>
+      <button class="btn-pill dk" onclick="location.href='projeler.html'" style="display:inline-flex;">Tüm Projeleri Gör <span class="btn-pill-arrow">→</span></button>
     </div>
   </div>
 </section>
