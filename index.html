@@ -238,8 +238,9 @@ nav.dark-mode .nav-burger span { background:#fff; }
 
 /* ÜÇ STRATEJİK EKSEN — eşit 3 kart, görsel arkaplan + hover'da açıklama/etiket (referans dosyanın service-card fikri, tasarım sistemine uyarlandı) */
 .axes-sec { padding-top:8px; padding-bottom:calc(var(--spy) + 24px); }
-.axes-hdr { margin-bottom:48px; }
-.axes-hdr h2 { margin:16px 0 0; font-size:clamp(32px,3vw,46px); line-height:1.1; letter-spacing:-.03em; font-weight:700; color:var(--navy); max-width:18ch; }
+.axes-hdr { margin-bottom:48px; max-width:720px; }
+.axes-hdr h2 { margin:16px 0 16px; font-size:clamp(32px,3vw,46px); line-height:1.1; letter-spacing:-.03em; font-weight:700; color:var(--navy); }
+.axes-desc { margin:0; font-size:16px; line-height:1.75; color:var(--muted); max-width:68ch; }
 .axes-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
 .axis-card-img {
   position:relative; isolation:isolate; overflow:hidden; min-height:420px; padding:32px 28px 28px;
@@ -355,8 +356,9 @@ nav.dark-mode .nav-burger span { background:#fff; }
 .tr-sec { background:var(--surface); }
 .tr-topbar { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:48px; flex-wrap:wrap; gap:12px; }
 .tr-topbar .label { margin-bottom:8px; }
-.tr-topbar-left { display:flex; flex-direction:column; }
-.tr-subtitle { font-size:14px; color:var(--muted); letter-spacing:.01em; }
+.tr-topbar-left { display:flex; flex-direction:column; max-width:580px; }
+.tr-heading { margin:0 0 12px; font-size:clamp(26px,2.4vw,36px); line-height:1.15; letter-spacing:-.025em; font-weight:700; color:var(--navy); }
+.tr-subtitle { font-size:15px; line-height:1.65; color:var(--muted); }
 .tr-range-total { font-family:var(--fm); font-size:13px; letter-spacing:.05em; color:var(--muted); }
 
 .tr-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
@@ -584,7 +586,8 @@ footer a:hover { color:#fff; }
   <div class="wrap">
     <div class="axes-hdr">
       <span class="label">Faaliyet Alanlarımız</span>
-      <h2>Projede de Varız, Piyasada da.</h2>
+      <h2>Enerjinin Her Aşamasında</h2>
+      <p class="axes-desc">Enerjiyi geliştiriyor, yönetiyor ve değere dönüştürüyoruz. Mühendislikten depolamaya, proje geliştirmeden yatırım ve varlık yönetimine kadar enerjinin her aşamasında bütüncül çözümler sunuyoruz.</p>
     </div>
     <div class="axes-cards">
       <a class="axis-card-img" href="/cozumler/enerji-epc" style="background-image:url('https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1200&fit=crop')">
@@ -747,7 +750,8 @@ footer a:hover { color:#fff; }
     <div class="tr-topbar">
       <div class="tr-topbar-left">
         <span class="label in">Sayılarla AL ENERJİ</span>
-        <span class="tr-subtitle">22 yılda bıraktığımız iz — sahadan gelen rakamlarla.</span>
+        <h2 class="tr-heading">Her Rakamın Arkasında Bir Proje Var</h2>
+        <span class="tr-subtitle">2004'ten bugüne; geliştirme, ihale, mühendislik ve yatırım süreçlerinde edindiğimiz saha deneyiminin ölçülebilir karşılığı.</span>
       </div>
       <span class="tr-range-total">2004 — 2026</span>
     </div>
