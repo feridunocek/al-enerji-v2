@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AL ENERJİ — Kurumsal Site Demo v2</title>
+<title>AL ENERJİ — Homepage v3 DRAFT (Hero / Statement / Üç Eksen)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
   --navy:#0B1430; --green-dk:#1F3D33; --green-lt:#5DB38A;
@@ -15,7 +15,7 @@
   --text:#0B1430; --text-2:#3A4356; --muted:#6B7280;
   --on-dark:#F4F6F4; --on-dark-muted:rgba(244,246,244,.6);
   --fh:'Hanken Grotesk',sans-serif; --fm:'JetBrains Mono',monospace;
-  --max:1200px; --gut:64px; --spy:96px; --r-ctrl:4px; --r-card:8px;
+  --max:1200px; --gut:64px; --spy:96px; --r-ctrl:9999px; --r-card:8px;
 }
 @media(max-width:768px) { :root { --gut:24px; --spy:64px; } }
 
@@ -27,39 +27,32 @@ a { color:inherit; text-decoration:none; }
 .sec { padding:var(--spy) 0; }
 .hr { height:1px; background:var(--border); border:0; }
 
+/* Section label — canlı siteyle birebir: nabız gibi atan yeşil nokta + scroll'da açılan çizgi. Her section başlığında kullanılacak ortak bileşen. */
 .label { display:inline-flex; align-items:center; gap:12px; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green-dk); margin-bottom:18px; }
-.label::after { content:''; order:-1; width:7px; height:7px; border-radius:9999px; background:var(--green-dk); animation:pulse 2.4s ease-in-out infinite; }
+.label::after { content:''; order:-1; width:7px; height:7px; border-radius:9999px; background:var(--green-dk); animation:labelPulse 2.4s ease-in-out infinite; }
 .label::before { content:''; width:0; height:1.5px; background:var(--green-dk); transition:width .6s ease .15s; }
 .label.in::before { width:28px; }
-@keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.35; transform:scale(.6); } }
+@keyframes labelPulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.35; transform:scale(.6); } }
+@media(prefers-reduced-motion:reduce) { .label::after { animation:none; } }
 
 h1 { font-size:clamp(2.4rem,6vw,3.75rem); font-weight:700; line-height:1.05; letter-spacing:-.02em; }
-h1 em { color:var(--green-lt); font-style:normal; }
 h2 { font-size:clamp(1.7rem,3.5vw,2.1rem); font-weight:700; line-height:1.12; letter-spacing:-.02em; }
 h3 { font-size:1.375rem; font-weight:600; line-height:1.25; }
-h4 { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--green-lt); margin-bottom:14px; }
 .lead { font-size:1.0625rem; color:var(--text-2); max-width:54ch; margin-top:18px; }
 .mono { font-family:var(--fm); }
 
-.demobar { display:none; }
-
 /* NAVIGATION */
-nav { position:sticky; top:0; z-index:50; height:64px; display:flex; align-items:center; background:rgba(251,252,251,.85); backdrop-filter:blur(10px); }
-nav.dark-mode { background:rgba(11,20,48,.72); backdrop-filter:blur(10px); }
+nav { position:sticky; top:0; z-index:50; height:64px; display:flex; align-items:center; background:rgba(251,252,251,.85); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); transition:background .3s ease, border-color .3s ease; }
+nav.dark-mode { background:rgba(11,20,48,.82) !important; backdrop-filter:blur(12px); border-bottom-color:transparent !important; }
 nav.scrolled { border-bottom:1px solid var(--border); }
 nav .wrap { display:flex; align-items:center; justify-content:space-between; width:100%; }
-.logo { display:flex; align-items:center; }
-.logo-light { display:block; }
-.logo-dark  { display:none; }
-nav.dark-mode .logo-light { display:none; }
-nav.dark-mode .logo-dark  { display:block; }
-
-.navlinks { display:flex; gap:32px; font-size:14px; font-weight:500; color:var(--text); }
+.logo img { height:38px; width:auto; }
+.navlinks { display:flex; gap:32px; font-size:14px; font-weight:500; color:var(--text); transition:color .3s ease; }
 nav.dark-mode .navlinks { color:#fff; }
-.navlinks a { position:relative; cursor:pointer; }
-.navlinks a::after { content:''; position:absolute; left:0; bottom:-5px; height:1.5px; width:0; background:var(--green-dk); transition:width .22s ease; }
-nav.dark-mode .navlinks a::after { background:var(--green-lt); }
-.navlinks a:hover::after { width:100%; }
+.navlinks a:hover { color:var(--green-dk); }
+nav.dark-mode .navlinks a:hover { color:var(--green-lt); }
+.nav-cta { display:inline-flex; align-items:center; gap:6px; padding:11px 22px; border-radius:var(--r-ctrl); font-size:14px; font-weight:600; background:var(--navy); color:#fff; transition:background .3s ease, border-color .3s ease; }
+nav.dark-mode .nav-cta { background:transparent; border:1.5px solid rgba(255,255,255,.3); }
 .nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; cursor:pointer; padding:6px; border:none; background:transparent; border-radius:4px; }
 .nav-burger span { display:block; width:22px; height:1.5px; background:var(--text); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
 nav.dark-mode .nav-burger span { background:#fff; }
@@ -71,345 +64,435 @@ nav.dark-mode .nav-burger span { background:#fff; }
 .nav-mobile a { display:block; font-size:1rem; font-weight:600; padding:13px 0; border-bottom:1px solid var(--border); color:var(--text); }
 .nav-mobile a:last-of-type { border-bottom:0; }
 .nav-mobile .mob-cta { display:block; margin-top:20px; text-align:center; background:var(--navy); color:#fff !important; padding:14px; border-radius:var(--r-ctrl); font-weight:600; }
-@media(max-width:768px) { .navlinks { display:none; } .nav-burger { display:flex; } }
-
-.nav-cta { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:11px 22px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid transparent; transition:transform .15s ease, background .15s ease; background:var(--navy); color:#fff; }
-nav.dark-mode .nav-cta { background:transparent; border-color:rgba(255,255,255,.28); color:#fff; }
-.nav-cta::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--green-dk); transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
-nav.dark-mode .nav-cta::before { background:rgba(255,255,255,.14); }
-.nav-cta:hover { transform:translateY(-1px); }
-.nav-cta:hover::before { transform:translateX(0); }
-.nav-cta:hover { color:#fff; }
-nav.dark-mode .nav-cta:hover { color:#fff; }
+@media(max-width:768px) { .navlinks, .nav-cta { display:none; } .nav-burger { display:flex; } }
 
 /* HERO */
-.hero { position:relative; height:100svh; min-height:640px; display:flex; flex-direction:column; overflow:hidden; z-index:1; }
-.hero-bg {
-  position:absolute; inset:0; z-index:0; will-change:transform;
+.hero { position:relative; min-height:92svh; display:flex; flex-direction:column; overflow:hidden; }
+.hero-bg { position:absolute; inset:0; z-index:0;
   background:
     linear-gradient(180deg, rgba(11,20,48,.92) 0%, rgba(11,20,48,.78) 55%, rgba(11,20,48,.90) 100%),
     url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2400&fit=crop') center/cover no-repeat;
 }
-.hero-bg::after {
-  content:''; position:absolute; inset:0;
-  background:repeating-linear-gradient(90deg, transparent 0, transparent 79px, rgba(255,255,255,.015) 79px, rgba(255,255,255,.015) 80px);
-}
-
-.hero-center {
-  position:relative; z-index:1; flex:1;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  text-align:center; padding:88px var(--gut) 40px;
-  animation:heroIn .9s ease .15s both;
-}
-.hero-center .label { color:var(--green-lt); }
-.hero-center h1 { color:#fff; max-width:18ch; margin:0 auto; }
+.hero-center { position:relative; z-index:1; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:96px var(--gut) 56px; }
+.hero-center .label { color:var(--green-lt); justify-content:center; }
+.hero-center h1 { color:#fff; max-width:20ch; margin:0 auto; }
 .hero-center h1 em { color:var(--green-lt); font-style:normal; }
 .hero-center .lead { color:var(--on-dark-muted); max-width:48ch; margin:18px auto 0; }
-
 .hero-buttons { display:flex; gap:16px; margin-top:32px; flex-wrap:wrap; justify-content:center; }
-.btn-white { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:13px 26px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid #fff; background:#fff; color:var(--navy); transition:transform .15s ease; }
-.btn-white::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--green-lt); transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
-.btn-white:hover { transform:translateY(-1px); color:#fff; }
-.btn-white:hover::before { transform:translateX(0); }
-
-.btn-ghost-w { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:13px 26px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid rgba(255,255,255,.28); background:rgba(255,255,255,.06); color:#fff; transition:transform .15s ease; }
-.btn-ghost-w::before { content:''; position:absolute; inset:0; z-index:-1; background:rgba(255,255,255,.14); transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
-.btn-ghost-w:hover { transform:translateY(-1px); }
-.btn-ghost-w:hover::before { transform:translateX(0); }
-
-/* Hero inline stats */
-.hero-rule { width:100%; max-width:480px; height:1px; background:rgba(255,255,255,.12); margin:32px auto 0; }
-.hero-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:0; width:100%; max-width:560px; margin:0 auto; }
-.hero-stat { padding:20px 0; border-left:1px solid rgba(255,255,255,.1); }
-.hero-stat:first-child { border-left:0; }
-.hero-stat .n { font-family:var(--fm); font-size:1.75rem; font-weight:500; color:#fff; line-height:1; }
-.hero-stat .l { font-size:11px; color:var(--on-dark-muted); margin-top:5px; letter-spacing:.01em; }
-@media(max-width:768px) {
-  .hero-stats { grid-template-columns:repeat(2,1fr); max-width:320px; }
-  .hero-stat { padding:16px 0; }
-  .hero-stat:nth-child(3) { border-left:0; }
-  .hero-stat:nth-child(n+3) { border-top:1px solid rgba(255,255,255,.08); }
-}
-
-/* Scroll indicator — traveling light */
+.btn-white { display:inline-flex; align-items:center; gap:6px; padding:13px 26px; border-radius:var(--r-ctrl); font-size:14px; font-weight:600; border:1.5px solid #fff; background:#fff; color:var(--navy); }
+.btn-ghost-w { display:inline-flex; align-items:center; gap:6px; padding:13px 26px; border-radius:var(--r-ctrl); font-size:14px; font-weight:600; border:1.5px solid rgba(255,255,255,.28); background:rgba(255,255,255,.06); color:#fff; }
+.hero-rule { width:100%; max-width:520px; height:1px; background:rgba(255,255,255,.12); margin:32px auto 0; }
+/* Scroll indicator — traveling light (canlı siteden birebir) */
 .hero-scroll { position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:8px; margin-top:36px; }
 .scroll-label { font-family:var(--fm); font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.28); }
 .scroll-line { width:1px; height:44px; background:rgba(255,255,255,.14); position:relative; overflow:hidden; }
 .scroll-line::after { content:''; position:absolute; left:0; width:100%; height:45%; background:linear-gradient(to bottom, transparent, rgba(255,255,255,.75), transparent); animation:scrollLine 1.7s ease-in-out infinite; }
 @keyframes scrollLine { 0% { top:-45%; } 100% { top:145%; } }
 @media(prefers-reduced-motion:reduce) { .scroll-line::after { animation:none; opacity:.5; top:25%; } }
+.hero-stats-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:0; width:100%; max-width:520px; margin:0 auto; }
+.hero-stat { padding:20px 0; border-left:1px solid rgba(255,255,255,.1); }
+.hero-stat:first-child { border-left:0; }
+.hero-stat .n { font-family:var(--fm); font-size:1.75rem; font-weight:500; color:#fff; line-height:1; }
+.hero-stat .l { font-size:11px; color:var(--on-dark-muted); margin-top:5px; letter-spacing:.01em; }
+@media(max-width:768px) { .hero-stats-3 { grid-template-columns:1fr; max-width:280px; } .hero-stat { border-left:0; border-top:1px solid rgba(255,255,255,.1); } .hero-stat:first-child { border-top:0; } }
 
-@keyframes heroIn { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
+/* COMPANY STATEMENT — ince ayar #2, dışarıdan gelen kod birebir uygulandı */
+.stmt-sec {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  padding: 90px 0 95px;
+  min-height: 470px;
+}
+.stmt-sec .wrap {
+  position: relative;
+  z-index: 2;
+}
+.stmt-hdr {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: 120px;
+  align-items: start;
+}
+.stmt-sec .label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #536964;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.stmt-sec .label::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  border-radius: 50%;
+  background: #6E8F7A;
+}
+.stmt-sec .label::after { display: none; } /* global .label'ın nabız noktası burada çift nokta yaratıyordu, kapatıldı */
+.stmt-hdr h2 {
+  max-width: 590px;
+  margin: 28px 0 0;
+  font-size: clamp(42px, 3vw, 58px);
+  line-height: 1.08;
+  letter-spacing: -.04em;
+  font-weight: 600;
+  color: #0B1430;
+}
+.stmt-right {
+  max-width: 650px;
+}
+.stmt-right p {
+  margin: 0;
+  font-size: clamp(18px, 1.25vw, 22px);
+  line-height: 1.7;
+  letter-spacing: -.015em;
+  color: #485065;
+}
+.stmt-right p + p {
+  margin-top: 24px;
+}
+.stmt-right strong {
+  color: #14182b;
+  font-weight: 600;
+}
+.stmt-tags {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 30px;
+  padding-top: 22px;
+  max-width: 540px;
+  border-top: 1px solid #D6D9D5;
+}
+.stmt-tags span {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #58706A;
+}
+.stmt-tags span:not(:last-child)::after {
+  content: "·";
+  color: #B9BEBC;
+}
+/* Sağ alttaki illüstrasyon — KÖK NEDEN BULUNDU: kaynak PNG şeffaf zeminde KOYU çizgi (Read tool önizlemesi yanıltmış, koyu vinyet göstermişti).
+   invert/grayscale filtresi koyu çizgileri BEYAZA çevirip beyaz zeminde görünmez kılıyordu — kaldırıldı. contain kullanıyoruz, kırpma riski yok. */
+.stmt-sec::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: -470px;
+  width: 100%;
+  height: 260%;
+  background-image: url("assets/illustration-transmission-solar.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: contain;
+  opacity: 0.08;
+  pointer-events: none;
+}
+@media (max-width: 900px) {
+  .stmt-sec {
+    padding: 70px 0 80px;
+    min-height: auto;
+  }
+  .stmt-hdr {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .stmt-sec::before {
+    width: 320px;
+    height: 260px;
+    right: -10px;
+    bottom: -10px;
+    opacity: .12;
+  }
+}
 
 /* MARQUEE */
-.marquee-section { padding:44px 0; }
-.marquee-header { display:flex; align-items:center; gap:20px; justify-content:center; margin-bottom:32px; }
-.marquee-header::before, .marquee-header::after { content:''; flex:1; height:1px; background:var(--border); }
+.marquee-section { padding:48px 0; border-bottom:1px solid var(--border); }
+.marquee-header { display:flex; align-items:center; justify-content:center; margin-bottom:32px; }
 .marquee-header .text { font-size:11px; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); white-space:nowrap; }
-.marquee-wrap { overflow:hidden; }
+/* kenar yumuşatma: mask-image ile viewport kenarlarında opaklık sıfıra iner — dekoratif gradient DEĞİL, fonksiyonel kırpma */
+.marquee-wrap {
+  overflow:hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
 .marquee { display:flex; gap:48px; animation:marquee 36s linear infinite; }
 .marquee:hover { animation-play-state:paused; }
 @keyframes marquee { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
-.marquee-item { flex:0 0 auto; font-family:var(--fm); font-size:12px; color:var(--border-strong); border-right:1px solid var(--border); padding-right:48px; white-space:nowrap; transition:color .2s ease; cursor:pointer; }
+.marquee-item { flex:0 0 auto; font-family:var(--fm); font-size:12px; color:var(--border-strong); border-right:1px solid var(--border); padding-right:48px; white-space:nowrap; transition:color .2s ease; }
 .marquee-item:hover { color:var(--navy); }
-@media(prefers-reduced-motion:reduce) { .marquee { animation:none; } }
 
-/* BUTTONS (all variants) */
-.btn { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:13px 26px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid transparent; transition:transform .15s ease; }
-.btn::before { content:''; position:absolute; inset:0; z-index:-1; transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
-.btn:hover { transform:translateY(-1px); }
-.btn:hover::before { transform:translateX(0); }
-
-.btn-primary { background:var(--navy); color:#fff; }
-.btn-primary::before { background:var(--green-dk); }
-
-.btn-accent { background:var(--green-dk); color:#fff; }
-.btn-accent::before { background:#152b23; }
-
-.btn-secondary { background:transparent; color:var(--navy); border-color:var(--navy); }
-.btn-secondary::before { background:var(--navy); }
-.btn-secondary:hover { color:#fff; }
-
-.btn .arr span { transition:transform .18s ease; }
-.btn:hover .arr span { transform:translateX(4px); }
-
-/* SECTION LAYOUTS */
-.split { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
-@media(max-width:768px) { .split { grid-template-columns:1fr; } }
-.split .img { height:380px; border-radius:var(--r-card); overflow:hidden; border:1px solid var(--border); }
-.split .img img { width:100%; height:100%; object-fit:cover; transition:transform .8s ease; }
-.split .img:hover img { transform:scale(1.04); }
-
-/* TAGS */
-.tags { display:flex; gap:10px; margin-top:20px; flex-wrap:wrap; }
-.tag { display:inline-flex; align-items:center; font-size:12px; border:1px solid var(--border); border-radius:4px; padding:6px 12px; transition:border-color .2s ease; cursor:pointer; }
-.tag:hover { border-color:var(--navy); }
-
-/* SERVICES */
-.svc { display:grid; grid-template-columns:52px 1fr auto; gap:28px; align-items:start; padding:28px 0; border-top:1px solid var(--border); }
-.svc:last-child { border-bottom:1px solid var(--border); }
-.svc .idx { font-family:var(--fm); font-size:2rem; font-weight:400; color:var(--border-strong); line-height:1; transition:color .2s ease; }
-.svc:hover .idx { color:var(--green-dk); }
-.svc h3 { margin-bottom:6px; transition:color .18s ease; }
-.svc:hover h3 { color:var(--green-dk); }
-.svc p { color:var(--text-2); font-size:15px; max-width:60ch; }
-.svc-end { position:relative; width:120px; height:80px; display:flex; align-items:center; justify-content:flex-end; }
-.svc-thumb { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:6px; opacity:0; transform:translateX(8px); transition:opacity .28s ease, transform .28s ease; }
-.svc:hover .svc-thumb { opacity:1; transform:none; }
-.svc-ico { position:absolute; right:0; opacity:1; transition:opacity .2s ease, transform .22s ease; stroke-width:1.5px; stroke:var(--green-dk); fill:none; }
-.svc:hover .svc-ico { opacity:0; }
-@media(max-width:768px) { .svc-end { width:88px; height:64px; } }
-
-/* TECH / ANALYTICS SECTION */
-/* overflow:hidden kaldırıldı — sticky çalışması için şart */
-.tech-sec { position:relative; background:#06101E; }
-.tech-bg-clip { position:absolute; inset:0; overflow:hidden; z-index:0; pointer-events:none; }
-.tech-par { position:absolute; inset:-25% 0; will-change:transform;
-  background:
-    radial-gradient(ellipse 55% 60% at 15% 70%, rgba(31,61,51,.5) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 55% at 85% 25%, rgba(11,20,48,.75) 0%, transparent 55%),
-    radial-gradient(ellipse 100% 100% at 50% 50%, #06101E 25%, transparent 100%);
+/* ÜÇ STRATEJİK EKSEN — eşit 3 kart, görsel arkaplan + hover'da açıklama/etiket (referans dosyanın service-card fikri, tasarım sistemine uyarlandı) */
+.axes-sec { padding-top:8px; padding-bottom:calc(var(--spy) + 24px); }
+.axes-hdr { margin-bottom:28px; }
+.axes-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+.axis-card-img {
+  position:relative; isolation:isolate; overflow:hidden; min-height:420px; padding:32px 28px 28px;
+  display:flex; flex-direction:column; color:#fff; background-size:cover; background-position:center;
+  outline:none; cursor:pointer; border:1px solid var(--border); border-radius:var(--r-card);
+  text-decoration:none;
 }
-.tech-intro { position:relative; z-index:1; max-width:var(--max); margin:0 auto; padding:var(--spy) var(--gut) 64px; }
-.tech-intro h2 { color:var(--on-dark); max-width:22ch; }
-.tech-intro .lead { color:var(--on-dark-muted); margin-top:16px; max-width:52ch; }
-/* Sticky scroll layout */
-.tech-scroll { display:grid; grid-template-columns:1fr 1fr; position:relative; z-index:1; }
-.tech-step { min-height:80vh; display:flex; align-items:center; padding:72px var(--gut) 72px calc(50vw - var(--max)/2 + var(--gut)); }
-.tech-step-inner { max-width:42ch; opacity:.25; transform:translateX(-12px); transition:opacity .5s ease, transform .5s ease; }
-.tech-step.active .tech-step-inner { opacity:1; transform:none; }
-.tech-step-num { font-family:var(--fm); font-size:11px; letter-spacing:.18em; color:rgba(93,179,138,.32); display:block; margin-bottom:18px; transition:color .4s; }
-.tech-step.active .tech-step-num { color:var(--green-lt); }
-.tech-step-ico { width:44px; height:44px; border:1px solid rgba(93,179,138,.16); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; transition:border-color .4s, background .4s; }
-.tech-step.active .tech-step-ico { border-color:rgba(93,179,138,.55); background:rgba(93,179,138,.1); }
-.tech-step-ico svg { width:20px; height:20px; stroke:var(--green-lt); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
-.tech-step h3 { font-size:1.25rem; font-weight:600; color:var(--on-dark); margin-bottom:12px; }
-.tech-step p { font-size:14.5px; color:var(--on-dark-muted); line-height:1.7; }
-/* Sticky image panel — contained frame */
-.tech-scroll-right { position:sticky; top:64px; height:calc(100svh - 64px); display:flex; align-items:center; padding:48px 56px 48px 20px; }
-.feat-frame { position:relative; width:100%; max-width:460px; aspect-ratio:4/3; border-radius:12px; overflow:hidden; border:1px solid rgba(93,179,138,.18); box-shadow:0 28px 64px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.04); flex-shrink:0; }
-.feat-img { position:absolute; inset:0; opacity:0; transition:opacity .65s ease; }
-.feat-img.active { opacity:1; }
-.feat-img img { width:100%; height:100%; object-fit:cover; filter:brightness(.82) saturate(.85); }
-.feat-img::after { content:''; position:absolute; inset:0; background:linear-gradient(to bottom, transparent 38%, rgba(6,16,30,.62) 100%); }
-.feat-img-tag { position:absolute; bottom:14px; right:14px; z-index:2; background:rgba(5,13,26,.9); border:1px solid rgba(93,179,138,.22); border-radius:6px; padding:10px 14px; backdrop-filter:blur(10px); }
-.feat-img-tag .fv { font-family:var(--fm); font-size:1.2rem; font-weight:500; color:#5DB38A; line-height:1; }
-.feat-img-tag .fl { font-family:var(--fm); font-size:8px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.3); margin-top:4px; }
-.tech-cta { position:relative; z-index:1; max-width:var(--max); margin:0 auto; padding:56px var(--gut) var(--spy); border-top:1px solid rgba(255,255,255,.07); }
-@media(max-width:768px) {
-  .tech-scroll { grid-template-columns:1fr; }
-  .tech-scroll-right { display:none; }
-  .tech-step { min-height:auto; padding:44px var(--gut); }
-  .tech-step-inner { opacity:1 !important; transform:none !important; }
+.axis-card-img::after {
+  content:''; position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(180deg, rgba(11,20,48,.78) 0%, rgba(11,20,48,.62) 45%, rgba(11,20,48,.97) 100%);
+  mix-blend-mode:multiply;
+  transition:background .6s cubic-bezier(.25,.1,.25,1);
+}
+.axis-card-img:hover::after, .axis-card-img:focus-visible::after {
+  background:linear-gradient(180deg, rgba(11,20,48,.85) 0%, rgba(11,20,48,.68) 40%, rgba(11,20,48,.98) 100%);
+}
+.axis-card-top { display:flex; justify-content:space-between; align-items:center; font-family:var(--fm); font-size:11px; letter-spacing:.1em; text-transform:uppercase; }
+.axis-card-top .axis-num { color:rgba(255,255,255,.7); }
+.axis-card-top .axis-cat-group { display:flex; align-items:center; gap:6px; }
+.axis-card-top .axis-cat { color:var(--green-lt); font-weight:600; display:inline-block; transition:transform .5s cubic-bezier(.25,.1,.25,1); }
+.axis-card-top .axis-arrow { color:var(--green-lt); font-weight:600; opacity:0; transform:translateX(-6px); transition:opacity .5s cubic-bezier(.25,.1,.25,1), transform .5s cubic-bezier(.25,.1,.25,1); }
+.axis-card-img:hover .axis-cat, .axis-card-img:focus-visible .axis-cat { transform:translateX(-6px); }
+.axis-card-img:hover .axis-arrow, .axis-card-img:focus-visible .axis-arrow { opacity:1; transform:translateX(0); }
+.axis-card-body { margin-top:auto; }
+.axis-card-img h3 { margin:0 0 14px; font-size:1.375rem; line-height:1.22; max-width:26ch; }
+.axis-card-details {
+  display:grid; grid-template-rows:0fr;
+  transition:grid-template-rows .6s cubic-bezier(.25,.1,.25,1);
+}
+.axis-card-details-inner { overflow:hidden; opacity:0; transition:opacity .45s ease; }
+.axis-card-img:hover .axis-card-details, .axis-card-img:focus-visible .axis-card-details { grid-template-rows:1fr; }
+.axis-card-img:hover .axis-card-details-inner, .axis-card-img:focus-visible .axis-card-details-inner { opacity:1; transition:opacity .5s ease .12s; }
+.axis-card-details p { color:rgba(255,255,255,.82); font-size:14px; line-height:1.65; }
+.axis-card-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+.axis-card-tags span { padding:5px 10px; border:1px solid rgba(255,255,255,.32); font-family:var(--fm); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:#fff; }
+@media(hover:none) { .axis-card-details { grid-template-rows:1fr; } .axis-card-details-inner { opacity:1; } }
+@media(max-width:900px) { .axes-cards { grid-template-columns:1fr; gap:20px; } .axis-card-img { min-height:340px; } }
+
+/* BROKERAGE / M&A — koyu zemin, derinlemesine anlatı + numaralı capability listesi (icon-grid DEĞİL, imza numaralı-liste hareketi) */
+.broker-sec { background:var(--navy); color:var(--on-dark); }
+.broker-sec .label { color:var(--green-lt); }
+.broker-hdr { display:grid; grid-template-columns:1fr 0.9fr; gap:120px; align-items:start; }
+.broker-hdr h2 { max-width:520px; margin:28px 0 0; font-size:clamp(38px,2.8vw,50px); line-height:1.1; letter-spacing:-.03em; font-weight:600; color:#fff; }
+.broker-right { max-width:640px; }
+.broker-right p { margin:0; font-size:16px; line-height:1.75; color:var(--on-dark-muted); }
+.broker-right p + p { margin-top:20px; }
+.broker-right strong { color:#fff; font-weight:600; }
+.broker-caps { display:grid; grid-template-columns:repeat(3,1fr); margin-top:72px; border-top:1px solid rgba(244,246,244,.16); }
+.broker-cap { position:relative; isolation:isolate; padding:8px 32px 4px 0; border-left:1px solid rgba(244,246,244,.16); padding-left:32px; }
+.broker-cap:first-child { border-left:none; padding-left:0; }
+.broker-cap-num {
+  position:absolute; top:-10px; left:0; z-index:-1;
+  font-family:var(--fh); font-weight:900; font-size:132px; line-height:1; letter-spacing:-.05em;
+  color:rgba(244,246,244,.08);
+}
+.broker-cap:first-child .broker-cap-num { left:0; }
+.broker-cap h3 { position:relative; font-size:1.125rem; line-height:1.3; color:#fff; margin:64px 0 12px; max-width:24ch; }
+.broker-cap p { position:relative; font-size:14px; line-height:1.65; color:var(--on-dark-muted); margin:0; max-width:32ch; }
+@media(max-width:900px) {
+  .broker-hdr { grid-template-columns:1fr; gap:40px; }
+  .broker-caps { grid-template-columns:1fr; margin-top:48px; }
+  .broker-cap { border-left:none; border-top:1px solid rgba(244,246,244,.16); padding:24px 0 0; }
+  .broker-cap:first-child { border-top:none; }
+  .broker-cap-num { font-size:96px; }
+  .broker-cap h3 { margin-top:44px; }
 }
 
-/* SERVICE CARDS */
-.svc-hdr { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:end; margin-bottom:52px; }
-.svc-hdr .lead { margin-top:16px; }
-.svc-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
-.svc-card { position:relative; overflow:hidden; background:var(--surface); border:1px solid var(--border); border-radius:var(--r-card); padding:32px 24px 28px; display:flex; flex-direction:column; transition:border-color .22s ease, transform .22s ease; }
-.svc-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--green-dk); transform:scaleX(0); transform-origin:left; transition:transform .32s ease; border-radius:var(--r-card) var(--r-card) 0 0; }
-.svc-card::after { content:''; position:absolute; inset:0; background:rgba(93,179,138,0); transition:background .25s ease; pointer-events:none; }
-.svc-card:hover { border-color:var(--border-strong); transform:translateY(-3px); }
-.svc-card:hover::before { transform:scaleX(1); }
-.svc-card:hover::after { background:rgba(93,179,138,.032); }
-.svc-icon { width:44px; height:44px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; border:1px solid var(--border); border-radius:50%; transition:border-color .22s ease, background .22s ease; }
-.svc-icon svg { width:22px; height:22px; stroke:var(--green-dk); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
-.svc-card:hover .svc-icon { border-color:var(--green-dk); background:rgba(93,179,138,.08); }
-.svc-card h3 { font-size:1.0625rem; font-weight:600; margin-bottom:10px; line-height:1.3; }
-.svc-card p { color:var(--text-2); font-size:14px; line-height:1.65; flex:1; }
-.svc-link { display:inline-flex; align-items:center; gap:5px; font-size:13px; font-weight:600; color:var(--green-dk); margin-top:22px; position:relative; }
-.svc-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px; background:var(--green-dk); transition:width .25s ease; }
-.svc-card:hover .svc-link::after { width:calc(100% - 14px); }
-.svc-link span { display:inline-block; transition:transform .18s ease; }
-.svc-card:hover .svc-link span { transform:translateX(5px); }
-@media(max-width:768px) { .svc-hdr { grid-template-columns:1fr; gap:24px; margin-bottom:36px; } .svc-cards { grid-template-columns:1fr 1fr; } }
-@media(max-width:480px) { .svc-cards { grid-template-columns:1fr; } }
+/* BROKERAGE CTA — referans: auron.nomadenstudio.com "Ready to Switch to Solar?" bölümü.
+   Full-bleed fotoğraf + koyu yeşil/lacivert overlay, sola yaslı içerik, sağda negatif alan,
+   highlighter-marker vurgulu başlık, pill buton + yeşil ok rozeti, güven kümesi (partner baş harfleri). */
+.broker-cta-sec { position:relative; overflow:hidden; isolation:isolate; padding:50px 0; color:#fff; }
+.broker-cta-photo {
+  position:absolute; inset:-24% -4%; z-index:-2;
+  background-image:url('https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=2000&fit=crop');
+  background-size:cover; background-position:center; will-change:transform;
+}
+.broker-cta-overlay {
+  position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(100deg, rgba(11,20,48,.92) 0%, rgba(11,20,48,.78) 32%, rgba(20,45,40,.42) 62%, rgba(20,45,40,.18) 100%);
+}
+.broker-cta-content { max-width:600px; }
+.broker-cta-content .label { color:var(--green-lt); }
+.broker-cta-headline { margin:22px 0 20px; font-size:clamp(36px,4vw,56px); line-height:1.16; letter-spacing:-.02em; font-weight:700; color:#fff; }
+.cta-highlight { position:relative; display:inline-block; padding:0 6px; }
+.cta-highlight::before { content:''; position:absolute; inset:3px -4px; background:rgba(93,179,138,.32); transform:rotate(-1.1deg); border-radius:6px; z-index:-1; }
+.broker-cta-lead { margin:0 0 40px; max-width:46ch; font-size:16px; line-height:1.7; color:rgba(255,255,255,.8); }
+.broker-cta-actions { display:flex; align-items:center; }
+.btn-pill {
+  display:inline-flex; align-items:center; gap:16px; padding:6px 6px 6px 26px; border-radius:var(--r-ctrl);
+  border:1.5px solid rgba(93,179,138,.55); background:rgba(255,255,255,.04); color:#fff;
+  font-size:14px; font-weight:600; text-decoration:none; transition:border-color .3s ease, background .3s ease;
+}
+.btn-pill:hover { border-color:var(--green-lt); background:rgba(255,255,255,.09); }
+.btn-pill-arrow { width:36px; height:36px; border-radius:50%; background:var(--green-lt); color:var(--navy); display:inline-flex; align-items:center; justify-content:center; font-size:15px; flex:0 0 auto; }
+@media(max-width:900px) {
+  .broker-cta-sec { padding:40px 0; }
+}
 
-/* DARK SECTION */
-.dark { background:var(--navy); color:var(--on-dark); }
-.dark h2 { color:#fff; }
-.dark .lead { color:var(--on-dark-muted); }
+/* PROJECT LIFECYCLE — 7 adım, sticky-scroll (statik kart grid DEĞİL — kilitli karar). Kaynak: ANSAYFA.docx "UÇTAN UCA PROJE GELİŞTİRME SPEKTRUMU". */
+.lifecycle-sec { background:var(--surface-alt); }
+.lifecycle-hdr { max-width:680px; margin-bottom:64px; }
+.lifecycle-hdr h2 { margin:22px 0 20px; font-size:clamp(34px,3.2vw,48px); line-height:1.14; letter-spacing:-.03em; font-weight:600; color:var(--navy); }
+.lifecycle-hdr p { margin:0; font-size:17px; line-height:1.7; color:var(--text-2); max-width:60ch; }
+.lifecycle-grid { display:grid; grid-template-columns:.78fr 1.22fr; gap:80px; align-items:start; }
+.lifecycle-sticky { position:sticky; top:120px; }
+.lifecycle-progress { display:flex; align-items:baseline; gap:6px; font-family:var(--fm); color:var(--navy); }
+.lifecycle-progress-num { font-size:56px; font-weight:700; letter-spacing:-.03em; line-height:1; transition:opacity .25s ease; }
+.lifecycle-progress-total { font-size:16px; color:var(--muted); }
+.lifecycle-progress-bar { position:relative; height:2px; background:var(--border); margin:24px 0 20px; border-radius:2px; overflow:hidden; }
+.lifecycle-progress-fill { position:absolute; inset:0 auto 0 0; width:14.2857%; background:var(--green-dk); transition:width .35s cubic-bezier(.25,.1,.25,1); }
+.lifecycle-sticky-title { margin:0; font-size:1.25rem; line-height:1.35; color:var(--navy); max-width:32ch; min-height:3.6em; transition:opacity .3s ease; }
+.lifecycle-visual { position:relative; margin-top:32px; aspect-ratio:4/5; max-width:380px; border-radius:var(--r-card); overflow:hidden; border:1px solid var(--border); background:var(--surface); }
+.lifecycle-visual-img { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity .7s ease; }
+.lifecycle-visual-img.is-active { opacity:1; }
+.lifecycle-visual::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(11,20,48,0) 60%, rgba(11,20,48,.28) 100%); pointer-events:none; }
+@media(max-width:900px) { .lifecycle-visual { display:none; } }
+.lifecycle-steps { display:flex; flex-direction:column; }
+.lifecycle-step { padding:52px 0; border-top:1px solid var(--border); opacity:.4; transition:opacity .5s ease; }
+.lifecycle-step:first-child { border-top:none; }
+.lifecycle-step.is-active { opacity:1; }
+.lifecycle-step-top { display:flex; align-items:baseline; gap:16px; margin-bottom:16px; }
+.lifecycle-step-num { font-family:var(--fm); font-size:13px; letter-spacing:.08em; color:var(--green-dk); }
+.lifecycle-step h4 { margin:0; font-size:1.25rem; line-height:1.3; color:var(--navy); max-width:36ch; }
+.lifecycle-step p { margin:0; font-size:15.5px; line-height:1.75; color:var(--text-2); max-width:60ch; }
+@media(max-width:900px) {
+  .lifecycle-grid { grid-template-columns:1fr; gap:0; }
+  .lifecycle-sticky { position:static; margin-bottom:32px; }
+}
 
-/* CONTACT FORM */
-.contact-grid { display:grid; grid-template-columns:1fr 1.5fr; gap:80px; align-items:start; }
-.contact-meta { display:flex; flex-direction:column; gap:14px; margin-top:36px; }
-.contact-row { display:flex; align-items:center; gap:10px; font-size:14px; color:var(--text-2); }
-.contact-form { display:flex; flex-direction:column; gap:18px; }
-.form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-.form-group { display:flex; flex-direction:column; gap:7px; }
-.form-group label { font-family:var(--fm); font-size:10px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:rgba(244,246,244,.4); }
-.form-input { width:100%; border:1px solid rgba(255,255,255,.1); border-radius:var(--r-ctrl); padding:11px 13px; font-family:var(--fh); font-size:15px; color:var(--on-dark); background:rgba(255,255,255,.06); outline:none; transition:border-color .18s ease, background .18s ease; appearance:none; -webkit-appearance:none; }
-.form-input:focus { border-color:var(--green-lt); background:rgba(255,255,255,.09); }
-.form-input::placeholder { color:rgba(244,246,244,.25); }
-textarea.form-input { resize:vertical; min-height:118px; line-height:1.6; }
-@media(max-width:768px) { .contact-grid { grid-template-columns:1fr; gap:44px; } .form-row { grid-template-columns:1fr; } }
+/* TRACK RECORD — 9 metrik, kompakt kart grid, AÇIK ZEMİN (koyu + doku beğenilmedi). Kart boyu SABİT
+   (hover'da section/grid hiç hareket etmiyor) — hover'da ikon kaybolup header küçülerek yer açıyor,
+   açıklama o boşlukta beliriyor, hafif gölge+kalkma eklendi. Kartların kendisi hafif yeşil tonlu.
+   Referans: kullanıcının paylaştığı sade kart örneği + ANSAYFA.docx verisi. */
+.tr-sec { background:var(--surface); }
+.tr-topbar { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:40px; flex-wrap:wrap; gap:12px; }
+.tr-topbar .label { margin-bottom:0; }
+.tr-range-total { font-family:var(--fm); font-size:13px; letter-spacing:.05em; color:var(--muted); }
+
+.tr-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.tr-cell {
+  position:relative; display:flex; flex-direction:column; min-height:200px; padding:14px 12px;
+  background:rgb(26 26 53 / 7%); border:1px solid rgba(31,61,51,.14); border-radius:var(--r-card);
+  cursor:pointer; outline:none; overflow:hidden;
+  transition:background .35s ease, border-color .35s ease, box-shadow .35s ease, transform .35s ease;
+}
+.tr-cell:hover, .tr-cell:focus-visible, .tr-cell.is-open {
+  background:rgb(26 26 53 / 11%); border-color:rgba(31,61,51,.3);
+  box-shadow:0 16px 32px -14px rgba(11,20,48,.22); transform:translateY(-3px);
+}
+
+.tr-toggle {
+  position:absolute; top:20px; right:20px; font-family:var(--fm); font-size:14px; line-height:1; color:var(--muted);
+  transition:transform .35s ease, color .35s ease;
+}
+.tr-cell:hover .tr-toggle, .tr-cell:focus-visible .tr-toggle, .tr-cell.is-open .tr-toggle { transform:rotate(45deg); color:var(--green-dk); }
+
+.tr-icon {
+  width:38px; height:38px; margin-bottom:16px; border-radius:50%; border:1px solid rgba(31,61,51,.22);
+  display:flex; align-items:center; justify-content:center; color:var(--green-dk); flex:0 0 auto;
+}
+.tr-icon svg { width:18px; height:18px; }
+
+.tr-num { font-family:var(--fm); font-weight:700; font-size:24px; letter-spacing:-.02em; color:var(--green-lt); transition:font-size .4s cubic-bezier(.25,.1,.25,1); }
+.tr-annot { font-size:.55em; font-weight:500; color:var(--muted); margin-left:2px; }
+.tr-short {
+  margin-top:8px; font-family:var(--fm); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--navy);
+  max-width:24ch; line-height:1.5; transition:margin-top .35s ease, font-size .35s ease;
+}
+.tr-cell:hover .tr-num, .tr-cell:focus-visible .tr-num, .tr-cell.is-open .tr-num { font-size:18px; }
+.tr-cell:hover .tr-short, .tr-cell:focus-visible .tr-short, .tr-cell.is-open .tr-short { margin-top:4px; font-size:10px; }
+
+.tr-detail { max-height:0; opacity:0; overflow:hidden; transition:max-height .45s cubic-bezier(.25,.1,.25,1), opacity .3s ease; }
+.tr-cell:hover .tr-detail, .tr-cell:focus-visible .tr-detail, .tr-cell.is-open .tr-detail { max-height:150px; opacity:1; }
+.tr-detail p { margin:5px 0 0; font-size:12px; line-height:1.55; color:var(--text-2); }
+
+@media(max-width:900px) { .tr-grid { grid-template-columns:1fr; } }
+@media(min-width:901px) and (max-width:1200px) { .tr-grid { grid-template-columns:repeat(2,1fr); } }
+
+/* SÜRDÜRÜLEBİLİRLİK — "breathing section" (referans PDF: iki yoğun bölümden sonra sakinleşme). Zemin
+   bilinçli olarak override edilmedi (body'nin --bg'si) — en nötr, en az "tasarlanmış" duran section bu
+   olsun istendi. 2007 → 2016 → Günümüz kronolojisi, ikon/foto yok, sade tipografi + hairline timeline. */
+.sustain-hdr { max-width:640px; }
+.sustain-hdr h2 { margin:22px 0 16px; font-size:clamp(32px,3vw,46px); line-height:1.16; letter-spacing:-.03em; font-weight:600; color:var(--navy); }
+.sustain-hdr p { margin:0; font-size:17px; line-height:1.7; color:var(--text-2); max-width:56ch; }
+
+.sustain-timeline { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; margin-top:72px; }
+.sustain-point { position:relative; padding-top:26px; }
+.sustain-point::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:var(--border-strong); }
+.sustain-point::after {
+  content:''; position:absolute; top:-5px; left:0; width:11px; height:11px; border-radius:50%;
+  background:var(--green-dk); border:3px solid var(--bg);
+}
+.sustain-year { display:block; font-family:var(--fm); font-size:14px; font-weight:700; letter-spacing:.02em; color:var(--navy); margin-bottom:16px; }
+.sustain-point h3 { margin:0 0 10px; font-size:1.05rem; line-height:1.32; color:var(--navy); max-width:26ch; }
+.sustain-point p { margin:0; font-size:14px; line-height:1.75; color:var(--text-2); max-width:34ch; }
+@media(max-width:900px) {
+  .sustain-timeline { grid-template-columns:1fr; gap:0; }
+  .sustain-point { padding-top:26px; padding-bottom:26px; }
+  .sustain-point + .sustain-point::before { top:0; }
+}
+
+/* FINAL CTA — koyu lacivert kapanış. Ritim: Track Record (açık) → Sürdürülebilirlik (açık/nötr) →
+   burada koyu ile kapanış + doğrudan koyu footer'a geçiş (aradaki hairline yeterli ayrım). Brokerage
+   CTA'da öğrenilen ders tekrar uygulandı: tüm cümleyi ortalayıp büyütmek yerine başlık/alt metin/buton
+   ayrışması + asimetrik grid (broker-hdr ile aynı desen; sitenin kendi CTA "imzası" haline geldi). */
+.final-cta-sec { background:var(--navy); color:var(--on-dark); }
+.final-cta-sec .label { color:var(--green-lt); }
+.final-cta-grid { display:grid; grid-template-columns:1.15fr .85fr; gap:100px; align-items:center; }
+.final-cta-grid h2 { margin:22px 0 0; font-size:clamp(34px,3.6vw,52px); line-height:1.14; letter-spacing:-.03em; font-weight:600; color:#fff; max-width:15ch; }
+.final-cta-side p { margin:0 0 32px; font-size:16px; line-height:1.75; color:var(--on-dark-muted); max-width:42ch; }
+.final-cta-actions { display:flex; flex-wrap:wrap; gap:16px; }
+@media(max-width:900px) { .final-cta-grid { grid-template-columns:1fr; gap:36px; } }
 
 /* PARALLAX CTA */
 .cta-par-sec { position:relative; overflow:hidden; min-height:390px; display:flex; align-items:center; justify-content:center; }
-.cta-par-bg { position:absolute; inset:-18% 0; will-change:transform;
-  background:
-    linear-gradient(rgba(11,20,48,.80), rgba(11,20,48,.80)),
-    url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2000&fit=crop') center/cover no-repeat;
-}
+.cta-par-bg { position:absolute; inset:-18% 0; will-change:transform; background:linear-gradient(rgba(11,20,48,.80),rgba(11,20,48,.80)), url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2000&fit=crop') center/cover no-repeat; }
 .cta-par-inner { position:relative; z-index:1; text-align:center; max-width:780px; padding:56px var(--gut); margin:0 auto; }
 .cta-par-inner h2 { color:#fff; font-size:clamp(2.8rem,5.5vw,4.5rem); font-weight:700; line-height:1.05; letter-spacing:-.02em; }
 .cta-par-inner h2 em { font-style:italic; color:var(--green-lt); }
 .cta-par-inner .lead { color:rgba(244,246,244,.58); margin-top:20px; max-width:52ch; margin-left:auto; margin-right:auto; }
 .cta-par-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:36px; }
 
-/* CARDS */
-.grid3 { display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; }
-@media(max-width:768px) { .grid3 { grid-template-columns:1fr; } }
-.card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-card); overflow:hidden; transition:border-color .2s ease, transform .2s ease; }
-.card:hover { border-color:var(--navy); transform:translateY(-2px); }
-.card .img { height:180px; overflow:hidden; position:relative; }
-.card .img img { width:100%; height:100%; object-fit:cover; filter:grayscale(.2); transition:filter .35s ease, transform .45s ease; }
-.card:hover .img img { filter:none; transform:scale(1.04); }
-.card .body { padding:20px; }
-.badge { display:inline-block; font-family:var(--fm); font-size:11px; color:var(--green-dk); border:1px solid var(--border); border-radius:9999px; padding:4px 12px; margin-bottom:12px; }
-.card h3 { margin-bottom:8px; }
-.metric { font-family:var(--fm); font-size:13px; color:var(--muted); margin-top:8px; }
-
-/* FILTER */
-.filter-row { display:flex; gap:12px; margin-bottom:32px; flex-wrap:wrap; }
-.flt { position:relative; overflow:hidden; z-index:0; display:inline-block; padding:8px 18px; border:1px solid var(--border); border-radius:9999px; font-size:13px; font-weight:600; cursor:pointer; background:transparent; color:var(--muted); transition:color .2s ease; font-family:var(--fh); }
+/* PROJELER */
+.prj-sec-hdr { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:28px; flex-wrap:wrap; gap:16px; }
+.filter-row { display:flex; gap:10px; flex-wrap:wrap; }
+.flt { position:relative; overflow:hidden; z-index:0; display:inline-block; padding:7px 18px; border:1px solid var(--border); border-radius:var(--r-ctrl); font-size:13px; font-weight:600; cursor:pointer; background:transparent; color:var(--muted); transition:color .2s ease; font-family:var(--fh); }
 .flt::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--navy); transform:translateX(-100%); transition:transform .28s ease; }
-.flt.active { color:#fff; border-color:var(--navy); background:var(--navy); }
+.flt.active { color:#fff; border-color:var(--navy); }
 .flt.active::before { transform:translateX(0); }
-.flt:hover { color:var(--navy); }
-
+.flt:hover:not(.active) { color:var(--navy); }
+.grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+@media(max-width:900px) { .grid3 { grid-template-columns:repeat(2,1fr); } }
+@media(max-width:560px) { .grid3 { grid-template-columns:1fr; } }
+.prj-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-card); overflow:hidden; transition:border-color .22s ease, transform .22s ease, box-shadow .22s ease; }
+.prj-card:hover { border-color:var(--navy); transform:translateY(-3px); box-shadow:0 12px 32px -10px rgba(11,20,48,.18); }
+.prj-card .img { height:180px; overflow:hidden; }
+.prj-card .img img { width:100%; height:100%; object-fit:cover; filter:grayscale(.15); transition:filter .35s ease, transform .45s ease; }
+.prj-card:hover .img img { filter:none; transform:scale(1.04); }
+.prj-card .body { padding:20px; }
+.prj-card h3 { font-size:1.05rem; line-height:1.3; margin-bottom:6px; }
+.prj-badge { display:inline-block; font-family:var(--fm); font-size:11px; color:var(--green-dk); border:1px solid var(--border); border-radius:var(--r-ctrl); padding:4px 12px; margin-bottom:12px; }
+.prj-metric { font-family:var(--fm); font-size:12px; color:var(--muted); margin-top:8px; }
 @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
-.prj-card { animation:fadeIn .3s ease forwards; }
+.prj-card.anim { animation:fadeIn .3s ease forwards; }
 
-/* WHY SECTION */
-.why-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
-@media(max-width:768px) { .why-grid { grid-template-columns:1fr; } }
-.why-list { display:flex; flex-direction:column; gap:40px; margin-top:32px; }
-.feat { display:grid; grid-template-columns:60px 1fr; gap:22px; align-items:start; }
-.feat-ring { width:60px; height:60px; border:1px solid var(--border); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:border-color .2s ease, background .2s ease; }
-.feat:hover .feat-ring { border-color:var(--green-dk); background:rgba(31,61,51,.05); }
-.feat-ring svg { stroke:var(--green-dk); stroke-width:1.5px; fill:none; }
-.feat h3 { margin-bottom:4px; }
-.feat p { color:var(--text-2); font-size:15px; }
-
-.video-box { position:relative; height:400px; border-radius:var(--r-card); overflow:hidden; border:1px solid var(--border); }
-.video-box img { width:100%; height:100%; object-fit:cover; }
-.play-btn { position:absolute; inset:0; margin:auto; width:86px; height:86px; border-radius:9999px; background:var(--green-dk); color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform .2s ease; }
-.play-btn:hover { transform:scale(1.07); }
-
-.contact-strip { display:grid; grid-template-columns:1fr 1fr; gap:0; margin-top:24px; border-radius:var(--r-card); overflow:hidden; border:1px solid var(--border); }
-@media(max-width:520px) { .contact-strip { grid-template-columns:1fr; } }
-.contact-strip .cell { padding:24px 28px; display:flex; flex-direction:column; justify-content:center; }
-.contact-strip .cell.green { background:var(--green-dk); color:#fff; }
-.contact-strip .label-text { font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
-.contact-strip .cell.green .label-text { color:rgba(255,255,255,.7); }
-.contact-strip .value { font-family:var(--fm); font-weight:500; font-size:1.1rem; margin-top:6px; color:var(--green-dk); }
-.contact-strip .cell.green .value { color:#fff; }
-
-/* TESTIMONIALS */
-.testi-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
-@media(max-width:768px) { .testi-grid { grid-template-columns:1fr; } }
-.orbit { position:relative; height:420px; }
-.orbit .arc { position:absolute; left:24px; top:8px; width:400px; height:400px; border:1.5px solid var(--border); border-radius:9999px; }
-@media(max-width:768px) { .orbit .arc { display:none; } }
-.orbit .main { position:absolute; left:0; top:50%; transform:translateY(-50%); width:280px; height:280px; border-radius:9999px; overflow:hidden; border:1px solid var(--border); }
-.orbit .main img { width:100%; height:100%; object-fit:cover; }
-.orbit .av { position:absolute; width:56px; height:56px; border-radius:9999px; overflow:hidden; border:2px solid var(--surface); background:var(--surface-alt); transition:border-color .2s ease, transform .2s ease; cursor:pointer; }
-@media(max-width:768px) { .orbit .av { display:none; } }
-.orbit .av img { width:100%; height:100%; object-fit:cover; filter:grayscale(.5); transition:filter .2s ease; }
-.orbit .av.active { border-color:var(--green-dk); box-shadow:0 0 0 3px rgba(31,61,51,.25); transform:scale(1.1); }
-.orbit .av.active img { filter:none; }
-
-.quote-wrap { position:relative; min-height:120px; }
-.quote { font-size:1.375rem; font-weight:500; line-height:1.5; color:var(--text-2); max-width:54ch; transition:opacity .4s ease, transform .4s ease; }
-.quote.fade { opacity:0; transform:translateY(8px); }
-
-.author { display:flex; gap:14px; align-items:center; margin-top:28px; }
-.author-av { width:44px; height:44px; border-radius:9999px; background:var(--green-dk); color:#fff; display:flex; align-items:center; justify-content:center; font-family:var(--fm); font-weight:600; font-size:13px; flex-shrink:0; }
-.author-name { font-weight:700; font-size:1rem; }
-.author-role { font-size:13px; color:var(--muted); }
-
-.testi-progress { height:1.5px; background:var(--border); border-radius:9999px; overflow:hidden; margin-top:24px; }
-.testi-progress-bar { height:100%; background:var(--green-dk); width:0%; }
-
-/* BLOG */
-.blog-header { display:grid; grid-template-columns:1fr auto; gap:32px; align-items:start; margin-bottom:40px; }
-@media(max-width:768px) { .blog-header { grid-template-columns:1fr; } }
-.blog-grid { display:grid; grid-template-columns:1.55fr 1fr; gap:24px; }
-@media(max-width:768px) { .blog-grid { grid-template-columns:1fr; } }
-
-.blog-feat { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-card); overflow:hidden; transition:border-color .2s ease, transform .2s ease; display:flex; flex-direction:column; }
-.blog-feat:hover { border-color:var(--navy); transform:translateY(-2px); }
-.blog-feat .img { height:260px; overflow:hidden; }
-.blog-feat .img img { width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
-.blog-feat:hover .img img { transform:scale(1.04); }
-.blog-feat .body { padding:28px; flex:1; display:flex; flex-direction:column; }
-.blog-cat { font-family:var(--fm); font-size:11px; color:var(--green-dk); text-transform:uppercase; margin-bottom:10px; }
-.blog-feat h3 { margin-bottom:12px; }
-.blog-excerpt { color:var(--text-2); font-size:15px; margin-bottom:12px; flex:1; }
-.blog-meta { font-family:var(--fm); font-size:12px; color:var(--muted); margin-bottom:14px; }
-.blog-link { color:var(--green-dk); font-weight:600; text-decoration:underline; }
-
-.blog-aside { display:flex; flex-direction:column; gap:24px; }
-.blog-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-card); overflow:hidden; transition:border-color .2s ease, transform .2s ease; display:flex; }
-.blog-card:hover { border-color:var(--navy); transform:translateY(-2px); }
-.blog-card .img { width:110px; flex-shrink:0; height:100%; overflow:hidden; }
-.blog-card .img img { width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
-.blog-card:hover .img img { transform:scale(1.08); }
-.blog-card .body { padding:18px; display:flex; flex-direction:column; justify-content:space-between; flex:1; }
-.blog-card .cat { font-family:var(--fm); font-size:11px; color:var(--green-dk); text-transform:uppercase; }
-.blog-card h4 { font-size:14px; font-weight:600; line-height:1.3; margin-bottom:6px; color:var(--text); text-transform:none; letter-spacing:0; }
-.blog-card .excerpt { font-size:13px; color:var(--text-2); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-.blog-card .meta { font-family:var(--fm); font-size:11px; color:var(--muted); margin-top:8px; }
+/* REVEAL */
+[data-reveal] { opacity:0; transform:translateY(20px); transition:opacity .65s ease, transform .65s ease; }
+[data-reveal].in { opacity:1; transform:none; }
+@media(prefers-reduced-motion:reduce) { [data-reveal] { opacity:1; transform:none; transition:none; } }
 
 /* FOOTER */
 footer { background:#050B18; color:var(--on-dark); padding:72px 0 32px; border-top:1px solid rgba(255,255,255,.08); }
 footer .grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:32px; border-top:1px solid rgba(255,255,255,.10); padding-top:48px; }
 @media(max-width:768px) { footer .grid { grid-template-columns:1fr 1fr; } }
 footer h4 { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--green-lt); margin-bottom:14px; }
-footer .logo { color:#fff; }
-footer .logo small { color:var(--green-lt); }
 footer .desc { color:var(--on-dark-muted); font-size:14px; margin-top:16px; max-width:36ch; }
 footer .addr { font-family:var(--fm); font-size:13px; color:var(--on-dark-muted); line-height:1.8; }
 footer a { display:block; color:var(--on-dark-muted); font-size:14px; padding:6px 0; transition:color .2s ease; }
@@ -419,74 +502,50 @@ footer a:hover { color:#fff; }
 .footer-bottom-left { font-family:var(--fm); font-size:12px; color:var(--on-dark-muted); }
 .footer-bottom-right { display:flex; gap:20px; font-size:13px; }
 .footer-bottom-right a { padding:0; }
-
-/* REVEAL ANIMATIONS */
-[data-reveal] { opacity:0; transform:translateY(20px); transition:opacity .65s ease, transform .65s ease; }
-[data-reveal].in { opacity:1; transform:none; }
-@media(prefers-reduced-motion:reduce) { [data-reveal] { opacity:1; transform:none; transition:none; } .label::after { animation:none; } .marquee { animation:none; } }
 </style>
 </head>
 <body>
 
-<div class="demobar">STİL DEMO v2 · 004_al-enerji_corporate · Meridian preset · Hanken Grotesk + JetBrains Mono</div>
-
 <nav id="nav">
   <div class="wrap">
-    <div class="logo">
-      <img class="logo-light" src="Logo_black@2x.png" alt="AL ENERJİ" height="42" style="width:auto;">
-      <img class="logo-dark"  src="Logo_white@2x.png" alt="AL ENERJİ" height="42" style="width:auto;">
-    </div>
+    <div class="logo"><img src="Logo_black@2x.png" alt="AL ENERJİ"></div>
     <div class="navlinks">
       <a href="hizmetler.html">Hizmetler</a>
       <a href="projeler.html">Projeler</a>
       <a href="hakkimizda.html">Hakkımızda</a>
-      <a href="perspektif.html">Perspektif</a>
       <a href="iletisim.html">İletişim</a>
     </div>
-    <button class="nav-cta" onclick="location.href='iletisim.html'"><span class="arr">Bize Ulaşın <span>→</span></span></button>
     <button class="nav-burger" id="nav-burger" aria-label="Menüyü aç/kapat" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
+    <button class="nav-cta" onclick="location.href='iletisim.html'">Bize Ulaşın →</button>
   </div>
 </nav>
 <div class="nav-mobile" id="nav-mobile">
   <a href="hizmetler.html">Hizmetler</a>
   <a href="projeler.html">Projeler</a>
   <a href="hakkimizda.html">Hakkımızda</a>
-  <a href="perspektif.html">Perspektif</a>
   <a href="iletisim.html">İletişim</a>
-  <a href="iletisim.html" class="mob-cta">Bize Ulaşın</a>
+  <a href="iletisim.html" class="mob-cta">Bize Ulaşın →</a>
 </div>
 
-<header class="hero" id="hero">
-  <div class="hero-bg" id="hero-bg"></div>
+<!-- 01 — HERO -->
+<header class="hero">
+  <div class="hero-bg"></div>
   <div class="hero-center">
-    <span class="label">Enerji · Depolama · Brokerage</span>
-    <h1>Mühendislik odaklı<br><em>enerji ortaklığı.</em></h1>
-    <p class="lead">Üretim, depolama ve enerji ticaretinde — ölçülebilir performans, şeffaf raporlama, Avrupa standartlarında iş ortaklığı.</p>
+    <span class="label">ENERGY · STORAGE · BROKERAGE</span>
+    <h1>Enerjiyi Bugünden<br><em>Geleceğe Taşıyoruz.</em></h1>
+    <p class="lead">Yenilenebilir enerji, batarya depolama teknolojileri ve enerji piyasası çözümleri için güvenilir iş ortağınız.</p>
     <div class="hero-rule"></div>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="n" data-count="20">20+</div>
-        <div class="l">Yıl deneyim</div>
-      </div>
-      <div class="hero-stat">
-        <div class="n" data-count="500">500+</div>
-        <div class="l">MW kapasite</div>
-      </div>
-      <div class="hero-stat">
-        <div class="n" data-count="100">100+</div>
-        <div class="l">Proje</div>
-      </div>
-      <div class="hero-stat">
-        <div class="n" data-count="12">12</div>
-        <div class="l">Ülke</div>
-      </div>
+    <div class="hero-stats-3">
+      <div class="hero-stat"><div class="n">20+ YIL</div><div class="l">Saha & mühendislik</div></div>
+      <div class="hero-stat"><div class="n">1 GW+</div><div class="l">Proje ve varlık tecrübesi</div></div>
+      <div class="hero-stat"><div class="n">2004 → BUGÜN</div><div class="l">Kesintisiz faaliyet</div></div>
     </div>
     <div class="hero-rule"></div>
     <div class="hero-buttons">
-      <button class="btn-white"><span class="arr">Projelerimiz <span>→</span></span></button>
-      <button class="btn-ghost-w"><span class="arr">Teklif Alın</span></button>
+      <button class="btn-white">Hizmetlerimiz →</button>
+      <button class="btn-ghost-w">Bize Ulaşın</button>
     </div>
     <div class="hero-scroll">
       <div class="scroll-label">Aşağı kaydır</div>
@@ -495,72 +554,9 @@ footer a:hover { color:#fff; }
   </div>
 </header>
 
-<section class="sec" id="hizmetler">
-  <div class="wrap">
-    <div class="svc-hdr" data-reveal>
-      <div>
-        <span class="label">Hizmetlerimiz</span>
-        <h2>Enerji değer zincirinin<br>her halkasında.</h2>
-      </div>
-      <div>
-        <p class="lead">Stratejiden uygulamaya, operasyonlardan sürekli iyileştirmeye kadar tüm süreçlerde yanınızdayız.</p>
-        <button class="btn btn-secondary" style="margin-top:24px;"><span class="arr">Tüm Hizmetler <span>→</span></span></button>
-      </div>
-    </div>
-    <div class="svc-cards">
-      <div class="svc-card" data-reveal>
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="3.5"/>
-            <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M19.07 4.93l-1.77 1.77M6.7 17.3l-1.77 1.77"/>
-          </svg>
-        </div>
-        <h3>Üretim & Saha Geliştirme</h3>
-        <p>Güneş ve rüzgar santrallerinin fizibiliteden devreye almaya kadar mühendislik yönetimi. Teknik tasarım, entegrasyon, performans izleme.</p>
-        <a class="svc-link">Detayları İncele <span>→</span></a>
-      </div>
-      <div class="svc-card" data-reveal>
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24">
-            <rect x="3" y="7" width="16" height="11" rx="1.5"/>
-            <path d="M19 10.5h2v4h-2M9 7V5.5h6V7"/>
-            <path d="M10.5 14.5l1.5-3 1.5 2 1-1.5"/>
-          </svg>
-        </div>
-        <h3>Enerji Depolama (BESS)</h3>
-        <p>Şebeke ölçekli batarya sistemlerinin tasarımı, entegrasyonu ve performans izleme. Uzun ömürlü, yüksek verimli çözümler.</p>
-        <a class="svc-link">Detayları İncele <span>→</span></a>
-      </div>
-      <div class="svc-card" data-reveal>
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24">
-            <polyline points="3 17 8 11 12 15 18 7"/>
-            <path d="M18 7h4M18 7v4"/>
-          </svg>
-        </div>
-        <h3>Enerji Ticareti & Brokerage</h3>
-        <p>Toptan piyasalarda portföy yönetimi, dengeleme ve uzun vadeli tedarik sözleşmeleri. Risk yönetimi ve optimizasyon.</p>
-        <a class="svc-link">Detayları İncele <span>→</span></a>
-      </div>
-      <div class="svc-card" data-reveal>
-        <div class="svc-icon">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 3c-4 5.5-8 7-8 11.5a8 8 0 0016 0C20 10 16 8.5 12 3z"/>
-            <path d="M12 12.5c0-2 1.5-3 3.5-4"/>
-          </svg>
-        </div>
-        <h3>Sürdürülebilirlik Danışmanlığı</h3>
-        <p>Karbon azaltımı, ESG hedefleri ve enerji geçiş stratejilerinde teknik danışmanlık. Avrupa standartlarında raporlama.</p>
-        <a class="svc-link">Detayları İncele <span>→</span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="marquee-section" style="border-bottom:1px solid var(--border);">
-  <div class="marquee-header">
-    <span class="text">Birlikte Çalıştığımız Firmalar</span>
-  </div>
+<!-- MARQUEE — referans markalar korunuyor, Hero'nun hemen altına taşındı -->
+<section class="marquee-section">
+  <div class="marquee-header"><span class="text">Birlikte Çalıştığımız Firmalar</span></div>
   <div class="marquee-wrap">
     <div class="marquee">
       <div class="marquee-item">ENERJİSA</div>
@@ -583,162 +579,110 @@ footer a:hover { color:#fff; }
   </div>
 </section>
 
-<section class="tech-sec" id="teknoloji">
-  <!-- bg clip wrapper: overflow:hidden burada, tech-sec'te değil — sticky bozulmasın -->
-  <div class="tech-bg-clip"><div class="tech-par" id="tech-par"></div></div>
-
-  <!-- Intro header -->
-  <div class="tech-intro" data-reveal>
-    <span class="label" style="color:var(--green-lt);">Veri & Analitik</span>
-    <h2>Sahadan merkeze,<br>anlık görünürlük.</h2>
-    <p class="lead">Tüm portföyünüzü tek ekranda izleyin. Gerçek zamanlı performans verisi, piyasa fiyatı takibi ve öngörüsel analitik — kritik kararları hızlandırın.</p>
-  </div>
-
-  <!-- Sticky scroll -->
-  <div class="tech-scroll">
-    <!-- Left: steps -->
-    <div class="tech-scroll-left">
-      <div class="tech-step active" data-step="0">
-        <div class="tech-step-inner">
-          <div class="tech-step-ico">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22"/><circle cx="12" cy="12" r="8" stroke-dasharray="3 1.8" opacity=".5"/></svg>
-          </div>
-          <span class="tech-step-num">01</span>
-          <h3>Gerçek Zamanlı İzleme</h3>
-          <p>Saha sensörlerinden merkeze saniye bazlı veri akışı. Tüm üniteleri tek ekrandan izleyin, anlık uyarılarla sahaya her zaman bir adım önde olun.</p>
-        </div>
-      </div>
-      <div class="tech-step" data-step="1">
-        <div class="tech-step-inner">
-          <div class="tech-step-ico">
-            <svg viewBox="0 0 24 24"><polyline points="3 17 8 11 12 15 18 7"/><path d="M18 7h4M18 7v4"/></svg>
-          </div>
-          <span class="tech-step-num">02</span>
-          <h3>Piyasa & Portföy Analitik</h3>
-          <p>EPİAŞ entegrasyonu ile spot fiyat takibi, portföy dengeleme ve gelir optimizasyonu. Piyasa verisi ile saha verisi tek tabloda.</p>
-        </div>
-      </div>
-      <div class="tech-step" data-step="2">
-        <div class="tech-step-inner">
-          <div class="tech-step-ico">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M8 8h5M8 16h3"/></svg>
-          </div>
-          <span class="tech-step-num">03</span>
-          <h3>Otomatik Raporlama</h3>
-          <p>Avrupa standartlarında aylık ve yıllık performans raporları otomatik üretilir. Yatırımcı sunumuna hazır format, sıfır manuel iş.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Right: sticky framed image card -->
-    <div class="tech-scroll-right">
-      <div class="feat-frame">
-        <div class="feat-img active" data-img="0">
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&fit=crop" alt="Gerçek Zamanlı İzleme" loading="lazy">
-          <div class="feat-img-tag">
-            <div class="fv">98.6%</div>
-            <div class="fl">Sistem Verimliliği</div>
-          </div>
-        </div>
-        <div class="feat-img" data-img="1">
-          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1000&fit=crop" alt="Piyasa Analitik" loading="lazy">
-          <div class="feat-img-tag">
-            <div class="fv">₺2,840</div>
-            <div class="fl">Spot Fiyat / MWh</div>
-          </div>
-        </div>
-        <div class="feat-img" data-img="2">
-          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1000&fit=crop" alt="Otomatik Raporlama" loading="lazy">
-          <div class="feat-img-tag">
-            <div class="fv">A+</div>
-            <div class="fl">Portföy Skoru</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CTA -->
-  <div class="tech-cta" data-reveal>
-    <button class="btn btn-accent"><span class="arr">Teknolojiyi Keşfedin <span>→</span></span></button>
-  </div>
-</section>
-
-<section class="sec" style="background:var(--surface-alt); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+<!-- 02 — COMPANY STATEMENT -->
+<section class="sec stmt-sec">
   <div class="wrap">
-    <div class="why-grid">
+    <div class="stmt-hdr">
       <div>
-        <span class="label" data-reveal>Neden Biz?</span>
-        <h2 data-reveal>Mühendislik odaklı.<br>Uzun vadeli.</h2>
-        <div class="why-list">
-          <div class="feat" data-reveal>
-            <div class="feat-ring">
-              <svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg>
-            </div>
-            <div>
-              <h3>Zaman Verimliliği</h3>
-              <p>İhtiyaç analizinden devreye alma kadar hızlı ve koordineli proje yönetimi. Zamanında teslim, sorunsuz operasyon.</p>
-            </div>
-          </div>
-          <div class="feat" data-reveal>
-            <div class="feat-ring">
-              <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2v20M2 12h20M3 3l18 18M21 3L3 21"/></svg>
-            </div>
-            <div>
-              <h3>Maliyet Şeffaflığı</h3>
-              <p>Açık fiyatlandırma ve saydamlık. Gizli maliye yok, tüm detaylar önceden belirtilir.</p>
-            </div>
-          </div>
-          <div class="feat" data-reveal>
-            <div class="feat-ring">
-              <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2z"/><path d="M12 7v5l4 2"/></svg>
-            </div>
-            <div>
-              <h3>Uzun Vadeli Ortaklık</h3>
-              <p>Tek seferlik anlaşmalar değil, sürdürülebilir iş ilişkileri kurarız. Teknik desteğimiz devreye almadan sonra da devam eder.</p>
-            </div>
-          </div>
-        </div>
+        <span class="label in">2004 — 2026 · Deneyim</span>
+        <h2>20 Yılı Aşkın Süredir<br>Enerji Yatırımlarının<br>Her Aşamasındayız.</h2>
       </div>
-      <div>
-        <div class="video-box" data-reveal>
-          <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=1000&fit=crop" alt="AL ENERJİ tanıtım">
-          <div class="play-btn">
-            <svg viewBox="0 0 24 24" width="32" height="32" fill="#fff" stroke="none"><path d="M9 7l9 5-9 5z"/></svg>
-          </div>
-        </div>
-        <div class="contact-strip">
-          <div class="cell green">
-            <div class="label-text">Teklif için arayın</div>
-            <div class="value">+90 312 000 00 00</div>
-          </div>
-          <div class="cell">
-            <div class="label-text">E-posta</div>
-            <div class="value">info@alenerji.com.tr</div>
-          </div>
-        </div>
+      <div class="stmt-right">
+        <p>Kamu özelleştirme ihalelerinden özel sektör yeşil saha yatırımlarına kadar her aşamada santral geliştiriyor, kuruyor ve işletiyoruz.</p>
+        <p>Bu derin saha tecrübesini bugün <strong>Brokerage ve M&amp;A</strong> süreçlerine taşıyoruz.</p>
+        <div class="stmt-tags"><span>Energy</span><span>Storage</span><span>Brokerage</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="sec" id="hakkimizda">
+<!-- 03 — ÜÇ STRATEJİK EKSEN — eşit 3 kart, referans dosyanın service-card yaklaşımı (görsel arkaplan + hover'da açıklama/etiket), tasarım sistemine uyarlandı -->
+<section class="sec axes-sec" id="cozumler">
   <div class="wrap">
-    <div class="split" data-reveal>
-      <div class="img">
-        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1200&fit=crop" alt="AL ENERJİ tesis" loading="lazy">
-      </div>
-      <div>
-        <span class="label">Hakkımızda</span>
-        <h2>20 yılı aşkın saha<br>tecrübesi, tek disiplin.</h2>
-        <p class="lead">Üretimden depolamaya, enerji ticaretinden danışmanlığa kadar tüm değer zincirini tek elden yönetiyoruz. Avrupa standartlarında raporlama ve uzun vadeli ortaklık anlayışıyla.</p>
-        <div class="tags">
-          <div class="tag">Yenilenebilir Enerji</div>
-          <div class="tag">Enerji Depolama</div>
-          <div class="tag">Brokerage</div>
-          <div class="tag">Danışmanlık</div>
+    <div class="axes-hdr">
+      <span class="label">Üç Stratejik Eksen</span>
+    </div>
+    <div class="axes-cards">
+      <a class="axis-card-img" href="/cozumler/enerji-epc" style="background-image:url('https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1200&fit=crop')">
+        <div class="axis-card-top"><span class="axis-num">01</span><span class="axis-cat-group"><span class="axis-cat">Energy</span><span class="axis-arrow">→</span></span></div>
+        <div class="axis-card-body">
+          <h3>Geliştirme, Mühendislik &amp; EPC</h3>
+          <div class="axis-card-details"><div class="axis-card-details-inner">
+          <p>Güneş (GES), Rüzgar (RES) ve Hidroelektrik (HES) projelerinde; arazi seçiminden ruhsatlandırmaya, mühendislikten anahtar teslim kuruluma kadar uçtan uca hizmet.</p>
+          <div class="axis-card-tags"><span>GES</span><span>RES</span><span>HES</span></div>
+        </div></div>
         </div>
-        <button class="btn btn-secondary" style="margin-top:24px;"><span class="arr">Şirketi Tanıyın <span>→</span></span></button>
+      </a>
+      <a class="axis-card-img" href="/cozumler/depolama" style="background-image:url('https://images.unsplash.com/photo-1613665813446-82a78c468a1d?q=80&w=1200&fit=crop')">
+        <div class="axis-card-top"><span class="axis-num">02</span><span class="axis-cat-group"><span class="axis-cat">Storage</span><span class="axis-arrow">→</span></span></div>
+        <div class="axis-card-body">
+          <h3>Depolama &amp; Hibrit Çözümler</h3>
+          <div class="axis-card-details"><div class="axis-card-details-inner">
+          <p>Batarya Enerji Depolama Sistemleri (BESS) ve hibrit tesis mühendisliğiyle şebeke esnekliğini artırıyor, sürekliliği ileri teknoloji ve saha uzmanlığımızla garanti altına alıyoruz.</p>
+          <div class="axis-card-tags"><span>BESS</span><span>Hybrid</span></div>
+        </div></div>
+        </div>
+      </a>
+      <a class="axis-card-img" href="/cozumler/brokerage-ma" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&fit=crop')">
+        <div class="axis-card-top"><span class="axis-num">03</span><span class="axis-cat-group"><span class="axis-cat">Brokerage</span><span class="axis-arrow">→</span></span></div>
+        <div class="axis-card-body">
+          <h3>Genişleyen Piyasa &amp; Sermaye Ağımız</h3>
+          <div class="axis-card-details"><div class="axis-card-details-inner">
+          <p>Yenilenebilir enerji varlıklarının alım-satımı, lisans devirleri ve M&amp;A süreçlerinde yatırımcılar ile geliştiriciler arasında teknik ve finansal köprüler kuruyoruz.</p>
+          <div class="axis-card-tags"><span>M&amp;A</span><span>TDD</span><span>Değerleme</span></div>
+        </div></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 04 — BROKERAGE / M&A — koyu section, derinlemesine anlatı + 3 capability (numaralı liste) + CTA. Kaynak: ANSAYFA.docx "STRATEJİK VURGU" bloğu. -->
+<section class="sec broker-sec" id="brokerage">
+  <div class="wrap">
+    <div class="broker-hdr">
+      <div>
+        <span class="label in">M&amp;A ve Proje Brokerage</span>
+        <h2>Sahayı da İhaleyi de Bilen<br>Güvenilir Danışmanlık.</h2>
+      </div>
+      <div class="broker-right">
+        <p>Biz sadece masa başında finansal aracılık yapan bir kurum değiliz. 2004'ten bu yana <strong>ÖİB kamu akarsu santrali özelleştirmelerinde</strong> sahada birebir teknik değerleme yaparak ihalelere katıldık, <strong>TEİAŞ/TEDAŞ kapasite ihalelerinde</strong> yüzlerce megavatlık RES ve GES portföyleri geliştirip yarışmaları kazandık; öz mal santrallerimizin yanında onlarca projenin ruhsat, inşaat ve kabul sürecini başarıyla yönettik.</p>
+        <p>Şimdi tüm bu 20 yıllık saha, ihale ve mevzuat yetkinliğimizi <strong>Proje Alım-Satımı (Brokerage) ve M&amp;A</strong> alanına taşıyoruz — geliştirdiğiniz projelerin veya satın almak istediğiniz varlıkların gerçek değerini saha gözüyle analiz ediyor, hukuki, teknik ve finansal riskleri sıfırlayarak alıcı ve satıcı taraflar için şeffaf bir yatırım ortamı yaratıyoruz.</p>
+      </div>
+    </div>
+
+    <div class="broker-caps">
+      <div class="broker-cap">
+        <span class="broker-cap-num">01</span>
+        <h3>Teknik &amp; Hukuki Due Diligence (TDD)</h3>
+        <p>Projenin arazi, izin, imar ve şebeke durumunu bağımsız mühendislik gözüyle denetleriz.</p>
+      </div>
+      <div class="broker-cap">
+        <span class="broker-cap-num">02</span>
+        <h3>Doğru Değerleme &amp; Piyasa Analizi</h3>
+        <p>Gerçekleşmiş saha maliyetlerine ve nakit akış simülasyonlarına dayalı gerçekçi varlık değerlemesi sunarız.</p>
+      </div>
+      <div class="broker-cap">
+        <span class="broker-cap-num">03</span>
+        <h3>Bütüncül İşlem Yönetimi</h3>
+        <p>Gizlilik sözleşmelerinden (NDA) nihai hisse/lisans devir sözleşmelerine kadar tüm finansal, teknik ve operasyonel süreci yönetiriz.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 04b — BROKERAGE CTA — referans: auron.nomadenstudio.com "Ready to Switch to Solar?" bölümü, Meridian sistemine uyarlandı. Fotoğraf + görsel şimdilik placeholder (rüzgar türbini stok görseli, gerçek saha fotoğrafı ile değişecek). Güven kümesi marquee'deki gerçek partner isimlerinin baş harfleri (rastgele stok yüz fotoğrafı DEĞİL). -->
+<section class="broker-cta-sec">
+  <div class="broker-cta-photo" data-parallax></div>
+  <div class="broker-cta-overlay"></div>
+  <div class="wrap">
+    <div class="broker-cta-content">
+      <span class="label in">Sıradaki Adım</span>
+      <h2 class="broker-cta-headline">Geliştirdiğiniz Projeleri<br><span class="cta-highlight">Doğru Yatırımcılarla</span> Buluşturuyoruz.</h2>
+      <p class="broker-cta-lead">Onaylı yenilenebilir enerji projelerini portföyünüze katmak için uzman ekibimizle iletişime geçin.</p>
+      <div class="broker-cta-actions">
+        <a class="btn-pill" href="#brokerage">Proje Portföyü &amp; Brokerage İletişimi <span class="btn-pill-arrow">↗</span></a>
       </div>
     </div>
   </div>
@@ -747,25 +691,191 @@ footer a:hover { color:#fff; }
 <!-- PARALLAX CTA -->
 <section class="cta-par-sec" id="cta-par">
   <div class="cta-par-bg" id="cta-par-bg"></div>
-  <div class="cta-par-inner" data-reveal>
+  <div class="cta-par-inner">
     <span class="label" style="color:rgba(255,255,255,.45); margin-bottom:20px; display:block;">Birlikte çalışalım</span>
     <h2>Enerji projeniz için<br><em>güvenilir</em> bir ortak.</h2>
-    <p class="lead">Üretim, depolama ve enerji ticaretinde — ölçülebilir performans, şeffaf raporlama, Avrupa standartlarında iş ortaklığı.</p>
+    <p class="lead">Üretim, depolama ve enerji ticaretinde — ölçülebilir performans, şeffaf raporlama, uçtan uca iş ortaklığı.</p>
     <div class="cta-par-btns">
-      <button class="btn-white">Görüşme Planlayın →</button>
-      <button class="btn-ghost-w">Referanslarımız</button>
+      <button class="btn-white" onclick="location.href='iletisim.html'">Görüşme Planlayın →</button>
+      <button class="btn-ghost-w" onclick="location.href='projeler.html'">Referanslarımız</button>
     </div>
   </div>
 </section>
 
-<section class="sec">
+<!-- 05 — PROJECT LIFECYCLE — 7 adım sticky-scroll. Kaynak: ANSAYFA.docx "UÇTAN UCA PROJE GELİŞTİRME SPEKTRUMU (0'DAN İŞLETMEYE)". -->
+<section class="sec lifecycle-sec" id="surec">
   <div class="wrap">
-    <div class="blog-header">
-      <div>
-        <span class="label" data-reveal>Projeler</span>
-        <h2 data-reveal>Sahadaki işler.</h2>
+    <div class="lifecycle-hdr">
+      <span class="label in">Uçtan Uca Proje Geliştirme</span>
+      <h2>Mühendislik Precision:<br>Fikirden Santral Kabulüne</h2>
+      <p>Sadece proje alım-satımına aracılık etmiyor; öz mal santrallerimizde ve yatırımcı projelerinde mevzuatın ve sahanın gerçek kronolojisine birebir uygun olarak, ilk kapasite araştırmasından ticari işletmeye ve idari tescillere kadar tüm süreçleri bizzat yönetiyoruz:</p>
+    </div>
+
+    <div class="lifecycle-grid">
+      <div class="lifecycle-sticky">
+        <div class="lifecycle-progress">
+          <span class="lifecycle-progress-num">01</span>
+          <span class="lifecycle-progress-total">/ 07</span>
+        </div>
+        <div class="lifecycle-progress-bar"><div class="lifecycle-progress-fill"></div></div>
+        <h3 class="lifecycle-sticky-title">Kapasite Araştırması, Saha Seçimi &amp; Mülkiyet Ön Analizi</h3>
+        <!-- Adım görselleri — şimdilik placeholder stok fotoğraf (tema uyumlu), gerçek saha fotoğrafıyla değişecek -->
+        <div class="lifecycle-visual">
+          <div class="lifecycle-visual-img is-active" data-visual="01" style="background-image:url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=900&fit=crop')"></div>
+          <div class="lifecycle-visual-img" data-visual="02" style="background-image:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=900&fit=crop')"></div>
+          <div class="lifecycle-visual-img" data-visual="03" style="background-image:url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=900&fit=crop')"></div>
+          <div class="lifecycle-visual-img" data-visual="04" style="background-image:url('https://images.unsplash.com/photo-1580982327559-c1202864eb05?q=80&w=900&fit=crop')"></div>
+          <div class="lifecycle-visual-img" data-visual="05" style="background-image:url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=900&fit=crop')"></div>
+          <div class="lifecycle-visual-img" data-visual="06" style="background-image:url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=900&fit=crop')"></div>
+          <div class="lifecycle-visual-img" data-visual="07" style="background-image:url('https://images.unsplash.com/photo-1497440001374-f26997328c1b?q=80&w=900&fit=crop')"></div>
+        </div>
       </div>
-      <div class="filter-row" style="margin-bottom:0;">
+
+      <div class="lifecycle-steps">
+        <div class="lifecycle-step" data-num="01" data-title="Kapasite Araştırması, Saha Seçimi &amp; Mülkiyet Ön Analizi">
+          <div class="lifecycle-step-top"><span class="lifecycle-step-num">01 / 07</span></div>
+          <h4>Kapasite Araştırması, Saha Seçimi &amp; Mülkiyet Ön Analizi</h4>
+          <p>Şebekede (TEİAŞ/TEDAŞ) bağlantı kapasitesinin araştırılması; konum olarak uygun arazilerin tespiti; kiralama, satın alma veya kamulaştırmaya uygunluk analizi. Arazinin statüsünün incelenmesi ve vasıf değişikliği ön araştırmalarının yapılması.</p>
+        </div>
+        <div class="lifecycle-step" data-num="02" data-title="Kapasite Tahsisi &amp; İhale / Başvuru Süreçleri">
+          <div class="lifecycle-step-top"><span class="lifecycle-step-num">02 / 07</span></div>
+          <h4>Kapasite Tahsisi &amp; İhale / Başvuru Süreçleri</h4>
+          <p>Tesis ve faaliyet tipine uygun şekilde kapasite tahsis başvurularının yapılması; yarışmalı/ihaleli veya doğrudan kriter bazlı tahsis süreçlerinin takibi ve yönetimi.</p>
+        </div>
+        <div class="lifecycle-step" data-num="03" data-title="Saha Etütleri, Ölçümler &amp; Ön Hazırlık">
+          <div class="lifecycle-step-top"><span class="lifecycle-step-num">03 / 07</span></div>
+          <h4>Saha Etütleri, Ölçümler &amp; Ön Hazırlık</h4>
+          <p>Kapasite tahsisi sonrasında imar planlarına esas olacak halihazır haritaların alımı ve onayı; jeolojik ve jeoteknik etütlerin yapılması; rüzgar ve güneş projelerinde mevzuata uygun rüzgar/ışınım ölçüm süreçlerinin yürütülmesi ve Toprak Koruma Kurulu raporlarının hazırlanması.</p>
+        </div>
+        <div class="lifecycle-step" data-num="04" data-title="ÇED Süreçleri, İmar Planlaması &amp; Kurum Görüşleri">
+          <div class="lifecycle-step-top"><span class="lifecycle-step-num">04 / 07</span></div>
+          <h4>ÇED Süreçleri, İmar Planlaması &amp; Kurum Görüşleri</h4>
+          <p>ÇED (Çevresel Etki Değerlendirmesi) süreçlerinin yürütülmesi ve kararın alınması. Şehir plancıları ile imar planlarının hazırlanması, başvuru yapılması, tüm kamu kurum görüşlerinin toplanması; olumlu ÇED ve kurum görüşleriyle birlikte imar planlarının askı ve onay süreçlerinin tamamlanması.</p>
+        </div>
+        <div class="lifecycle-step" data-num="05" data-title="Mühendislik Tasarımı, Simülasyonlar &amp; Teknik Proje Onayları">
+          <div class="lifecycle-step-top"><span class="lifecycle-step-num">05 / 07</span></div>
+          <h4>Mühendislik Tasarımı, Simülasyonlar &amp; Teknik Proje Onayları</h4>
+          <p>İmar ve ÇED süreçlerine paralel olarak detaylı elektrik ve mekanik tasarımların yapılması, üretim simülasyonlarının hazırlanması ve ilgili kamu/şebeke kurumlarından teknik proje onaylarının alınması.</p>
+        </div>
+        <div class="lifecycle-step" data-num="06" data-title="Ruhsatlandırma, Ekipman Tedariki &amp; EPC Saha İnşaatı">
+          <div class="lifecycle-step-top"><span class="lifecycle-step-num">06 / 07</span></div>
+          <h4>Ruhsatlandırma, Ekipman Tedariki &amp; EPC Saha İnşaatı</h4>
+          <p>İnşaat ruhsatının alınması; sahanın inşaata hazırlanması ve RES projeleri için yol analizi/altyapı çalışmalarının yürütülmesi. Ana ekipman (türbin, panel, evirici, BESS) tedarik anlaşmalarının yapılması, lojistik takibi, inşaat ve saha montaj süreçlerinin eksiksiz yürütülmesi.</p>
+        </div>
+        <div class="lifecycle-step" data-num="07" data-title="Resmi Kabul, Ticari İşletme &amp; Sanayi Sicil Tescili">
+          <div class="lifecycle-step-top"><span class="lifecycle-step-num">07 / 07</span></div>
+          <h4>Resmi Kabul, Ticari İşletme &amp; Sanayi Sicil Tescili</h4>
+          <p>Resmi Bakanlık kabulünün yapılması, santralin ticari işletmeye alınması; iskan, işyeri açma ve çalışma ruhsatının temini. Ticari işletme döneminde Sanayi Sicil Kaydının yapılması, Sanayi Sicil Belgesinin edinilmesi ve üretim verilerinin düzenli takibi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 — TRACK RECORD — 9 metrik, "Data Wall". Referans PDF'teki orijinal fikre dönüldü: sade rakam+kısa
+     etiket, tam açıklama sadece hover/tıklamada (progressive disclosure). Kaynak: ANSAYFA.docx "SAYILARLA
+     AL ENERJİ" (doküman başlığı "8 Ana Metrik" diyor ama 9 madde listeli — kullanıcı bunu 9 olarak teyit etti). -->
+<section class="sec tr-sec" id="rakamlar">
+  <div class="wrap">
+    <div class="tr-topbar">
+      <span class="label in">Track Record</span>
+      <span class="tr-range-total">2004 — 2026</span>
+    </div>
+    <div class="tr-grid">
+      <div class="tr-cell" tabindex="0">
+        <span class="tr-toggle">+</span>
+        <span class="tr-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="9"/><circle cx="16" cy="16" r="1.4" fill="currentColor" stroke="none"/><path d="M16 4.5v3M16 24.5v3M4.5 16h3M24.5 16h3"/></svg></span>
+        <div class="tr-num">20+ Yıl</div>
+        <div class="tr-short">Mühendislik &amp; Saha</div>
+        <div class="tr-detail">
+          <p>Türkiye ve bölgesel pazarlarda kesintisiz proje geliştirme, mühendislik, EPC, denetim ve danışmanlık birikimi.</p>
+        </div>
+      </div>
+      <div class="tr-cell" tabindex="0">
+        <span class="tr-toggle">+</span>
+        <span class="tr-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 27V11"/><circle cx="16" cy="10" r="1.3" fill="currentColor" stroke="none"/><path d="M16 10L9.5 6.5M16 10l7-2M16 10l2 7"/></svg></span>
+        <div class="tr-num">295,6 MW</div>
+        <div class="tr-short">RES Portföyü</div>
+        <div class="tr-detail">
+          <p>Geliştirilen ve rüzgar enerjisi kapasite yarışmalarına bizzat sunulan RES proje portföyü.</p>
+        </div>
+      </div>
+      <div class="tr-cell" tabindex="0">
+        <span class="tr-toggle">+</span>
+        <span class="tr-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="9.5"/><path d="M11.5 16.5l3 3 6-6.5"/></svg></span>
+        <div class="tr-num">74,2 MW</div>
+        <div class="tr-short">Kazanılan RES Kapasitesi</div>
+        <div class="tr-detail">
+          <p>TEİAŞ RES yarışmalarında başarıyla kazanılan ve lisanslanan rüzgar santrali kapasitesi.</p>
+        </div>
+      </div>
+      <div class="tr-cell" tabindex="0">
+        <span class="tr-toggle">+</span>
+        <span class="tr-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13.5c2.4-2.8 5.3-2.8 7.7 0s5.3 2.8 7.7 0s5.3-2.8 7.7 0"/><path d="M5 19.5c2.4-2.8 5.3-2.8 7.7 0s5.3 2.8 7.7 0s5.3-2.8 7.7 0"/></svg></span>
+        <div class="tr-num">80 MW <span class="tr-annot">/ 9 Santral</span></div>
+        <div class="tr-short">Geliştirilip Satılan HES</div>
+        <div class="tr-detail">
+          <p>Kendi imkanlarımızla 0'dan geliştirilen ve devri tamamlanan hidroelektrik santralleri.</p>
+        </div>
+      </div>
+      <div class="tr-cell" tabindex="0">
+        <span class="tr-toggle">+</span>
+        <span class="tr-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="14" r="7.5"/><path d="M19.5 19.5L26.5 26.5"/></svg></span>
+        <div class="tr-num">480 MW</div>
+        <div class="tr-short">HES Danışmanlık Hacmi</div>
+        <div class="tr-detail">
+          <p>Teknik inceleme, fizibilite ve yatırım danışmanlığı yürütülen HES projeleri.</p>
+        </div>
+      </div>
+      <div class="tr-cell" tabindex="0">
+        <span class="tr-toggle">+</span>
+        <span class="tr-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="6"/><path d="M16 4.5v3M16 24.5v3M4.5 16h3M24.5 16h3M8 8l2.1 2.1M21.9 21.9L24 24M8 24l2.1-2.1M21.9 10.1L24 8"/></svg></span>
+        <div class="tr-num">220 MW+</div>
+        <div class="tr-short">GES Projeleri</div>
+        <div class="tr-detail">
+          <p>0'dan işletmeye proje geliştirme, EPC kurulumu, Owner's Engineer ve TDD çalışmaları.</p>
+        </div>
+      </div>
+      <div class="tr-cell" tabindex="0">
+        <span class="tr-toggle">+</span>
+        <span class="tr-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13.5L16 6l10 7.5"/><path d="M8 13.5v11M14 13.5v11M18 13.5v11M24 13.5v11"/><path d="M5 24.5h22"/></svg></span>
+        <div class="tr-num">16,7 MW <span class="tr-annot">(9 Santral)</span></div>
+        <div class="tr-short">ÖİB HES İhalesi</div>
+        <div class="tr-detail">
+          <p>ÖİB ihalesinde sahada incelenen ve değerlemesi yapılan kamu akarsu HES paketleri.</p>
+        </div>
+      </div>
+      <div class="tr-cell" tabindex="0">
+        <span class="tr-toggle">+</span>
+        <span class="tr-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24.5c0-11 11-15.5 17-15.5c0 5.5-3.5 16.5-14.5 16.5c-2.5 0-2.5-1-2.5-1z"/><path d="M9 23.5c3.5-3.5 8-8 12-12"/></svg></span>
+        <div class="tr-num">25,8 MW <span class="tr-annot">(3 Santral)</span></div>
+        <div class="tr-short">Karbon Sertifikasyonu</div>
+        <div class="tr-detail">
+          <p>South Pole iş birliğiyle tescillenen VCS / Gold Standard emisyon azaltım projeleri.</p>
+        </div>
+      </div>
+      <div class="tr-cell" tabindex="0">
+        <span class="tr-toggle">+</span>
+        <span class="tr-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="9.5"/><path d="M6.5 16h19"/><path d="M16 6.5c3 3 3 16.5 0 19.5c-3-3-3-16.5 0-19.5z"/></svg></span>
+        <div class="tr-num">1 GW+</div>
+        <div class="tr-short">Toplam Teknik Hacim</div>
+        <div class="tr-detail">
+          <p>HES, RES, GES, BESS ve Atık Isı'da geliştirilen, kurulan, denetlenen ve değerlemesi yapılan toplam hacim.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06b — PROJELER -->
+<section class="sec" id="projeler" style="background:var(--surface-alt); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <div class="prj-sec-hdr">
+      <div>
+        <span class="label">Projeler</span>
+        <h2>Sahadaki işler.</h2>
+      </div>
+      <div class="filter-row">
         <button class="flt active" data-f="*">Tümü</button>
         <button class="flt" data-f="ges-res">GES / RES</button>
         <button class="flt" data-f="depolama">BESS</button>
@@ -773,235 +883,114 @@ footer a:hover { color:#fff; }
       </div>
     </div>
     <div class="grid3">
-      <div class="card prj-card" data-f="depolama" data-reveal>
-        <div class="img">
-          <img src="https://images.unsplash.com/photo-1620714223084-8fcacc2dbe4d?q=80&w=600&fit=crop" alt="Konya BESS">
-        </div>
+      <div class="prj-card" data-f="depolama">
+        <div class="img"><img src="https://images.unsplash.com/photo-1620714223084-8fcacc2dbe4d?q=80&w=600&fit=crop" alt="Konya BESS" loading="lazy"></div>
         <div class="body">
-          <div class="badge">BESS</div>
+          <div class="prj-badge">BESS</div>
           <h3>Konya Batarya Depolama Sahası</h3>
-          <div class="metric">120 MWh · 2025 · Konya, TR</div>
+          <div class="prj-metric">120 MWh · 2025 · Konya, TR</div>
         </div>
       </div>
-      <div class="card prj-card" data-f="ges-res" data-reveal>
-        <div class="img">
-          <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=600&fit=crop" alt="İzmir GES">
-        </div>
+      <div class="prj-card" data-f="ges-res">
+        <div class="img"><img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=600&fit=crop" alt="İzmir GES" loading="lazy"></div>
         <div class="body">
-          <div class="badge">GES</div>
+          <div class="prj-badge">GES</div>
           <h3>İzmir Güneş Enerji Santrali</h3>
-          <div class="metric">45 MW · 2024 · İzmir, TR</div>
+          <div class="prj-metric">45 MW · 2024 · İzmir, TR</div>
         </div>
       </div>
-      <div class="card prj-card" data-f="ticaret" data-reveal>
-        <div class="img">
-          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=600&fit=crop" alt="Dengeleme Portföyü">
-        </div>
+      <div class="prj-card" data-f="ticaret">
+        <div class="img"><img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=600&fit=crop" alt="Dengeleme Portföyü" loading="lazy"></div>
         <div class="body">
-          <div class="badge">TİCARET</div>
+          <div class="prj-badge">TİCARET</div>
           <h3>Çok Ülkeli Dengeleme Portföyü</h3>
-          <div class="metric">8 ülke · Sürüyor</div>
+          <div class="prj-metric">8 ülke · Sürüyor</div>
         </div>
       </div>
-      <div class="card prj-card" data-f="ges-res" data-reveal>
-        <div class="img">
-          <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=600&fit=crop" alt="Ege RES">
-        </div>
+      <div class="prj-card" data-f="ges-res">
+        <div class="img"><img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=600&fit=crop" alt="Ege RES" loading="lazy"></div>
         <div class="body">
-          <div class="badge">RES</div>
+          <div class="prj-badge">RES</div>
           <h3>Ege Bölgesi Rüzgar Enerji Santrali</h3>
-          <div class="metric">80 MW · 2023 · İzmir, TR</div>
+          <div class="prj-metric">80 MW · 2023 · İzmir, TR</div>
         </div>
       </div>
-      <div class="card prj-card" data-f="depolama" data-reveal>
-        <div class="img">
-          <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?q=80&w=600&fit=crop" alt="Ankara Depolama">
-        </div>
+      <div class="prj-card" data-f="depolama">
+        <div class="img"><img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?q=80&w=600&fit=crop" alt="Ankara Depolama" loading="lazy"></div>
         <div class="body">
-          <div class="badge">BESS</div>
+          <div class="prj-badge">BESS</div>
           <h3>Şebeke Ölçekli Depolama Sistemi</h3>
-          <div class="metric">60 MWh · 2024 · Ankara, TR</div>
+          <div class="prj-metric">60 MWh · 2024 · Ankara, TR</div>
         </div>
       </div>
-      <div class="card prj-card" data-f="ticaret" data-reveal>
-        <div class="img">
-          <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=600&fit=crop" alt="PPA Danışmanlığı">
-        </div>
+      <div class="prj-card" data-f="ticaret">
+        <div class="img"><img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=600&fit=crop" alt="PPA Danışmanlığı" loading="lazy"></div>
         <div class="body">
-          <div class="badge">TİCARET</div>
+          <div class="prj-badge">TİCARET</div>
           <h3>Yenilenebilir PPA Danışmanlığı</h3>
-          <div class="metric">150 MW · TR + DE</div>
+          <div class="prj-metric">150 MW · TR + DE</div>
         </div>
       </div>
     </div>
     <div style="text-align:center; margin-top:48px;">
-      <button class="btn btn-secondary"><span class="arr">Tüm Projeleri Gör <span>→</span></span></button>
+      <button class="btn-pill" onclick="location.href='projeler.html'" style="display:inline-flex;">Tüm Projeleri Gör <span class="btn-pill-arrow">→</span></button>
     </div>
   </div>
 </section>
 
-<hr class="hr">
-
-<section class="sec">
+<!-- 07 — SÜRDÜRÜLEBİLİRLİK — "breathing section", 2007→2016→Günümüz kronolojisi. Kaynak: ANSAYFA.docx
+     "SÜRDÜRÜLEBİLİRLİK & KARBON YÖNETİMİ" + referans PDF'in "gerçek geçmiş→sertifikasyon→bugünkü
+     danışmanlık" yönlendirmesi (soyut ikon/foto yok, sade tipografi). -->
+<section class="sec sustain-sec" id="surdurulebilirlik">
   <div class="wrap">
-    <div class="blog-header">
-      <div>
-        <span class="label" data-reveal>Haberler & İçgörüler</span>
-        <h2 data-reveal>Sektör perspektifi.</h2>
-      </div>
-      <div>
-        <button class="btn btn-secondary"><span class="arr">Tüm Yazılar <span>→</span></span></button>
-      </div>
+    <div class="sustain-hdr">
+      <span class="label in">Sürdürülebilirlik</span>
+      <h2>Karbon Nötr Bir Gelecek İçin Küresel Standartlar.</h2>
+      <p>AL Enerji yalnızca santral kurmakla kalmaz; iklim krizine karşı ölçülebilir çözümler üretir.</p>
     </div>
-    <div class="blog-grid">
-      <article class="blog-feat" data-reveal>
-        <div class="img">
-          <img src="https://images.unsplash.com/photo-1620714223084-8fcacc2dbe4d?q=80&w=1200&fit=crop" alt="BESS yazısı">
-        </div>
-        <div class="body">
-          <div class="blog-cat">Enerji Depolama</div>
-          <h3>Türkiye'de Şebeke Ölçekli Batarya Depolama Sistemlerinin Geleceği</h3>
-          <p class="blog-excerpt">YEKA süreçlerinin gelişimi ve BESS yatırımlarında finansman modelleri üzerine kapsamlı bir değerlendirme. Uzman görüşleri ve pazar analizi.</p>
-          <div class="blog-meta">14 Haz 2026 · 8 dk okuma</div>
-          <a class="blog-link">Devamını Oku →</a>
-        </div>
-      </article>
-      <div class="blog-aside">
-        <article class="blog-card" data-reveal>
-          <div class="img">
-            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=400&fit=crop" alt="EPİAŞ yazısı">
-          </div>
-          <div class="body">
-            <div class="blog-cat">Enerji Piyasaları</div>
-            <h4>EPİAŞ Gün Öncesi Piyasasında Yeni Dönem</h4>
-            <p class="excerpt">Son düzenlemeler ve piyasa yapısındaki değişikliklerin analizi.</p>
-            <div class="meta">8 Haz 2026 · 5 dk</div>
-            <a class="blog-link">Oku →</a>
-          </div>
-        </article>
-        <article class="blog-card" data-reveal>
-          <div class="img">
-            <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=400&fit=crop" alt="Regülasyon yazısı">
-          </div>
-          <div class="body">
-            <div class="blog-cat">Regülasyon</div>
-            <h4>Lisanssız GES Kapasitesinde Yeni Sınır Düzenlemeleri</h4>
-            <p class="excerpt">Yenilenebilir enerji lisanslama sisteminde yaşanan değişiklikler.</p>
-            <div class="meta">1 Haz 2026 · 4 dk</div>
-            <a class="blog-link">Oku →</a>
-          </div>
-        </article>
+
+    <div class="sustain-timeline">
+      <div class="sustain-point">
+        <span class="sustain-year">2007</span>
+        <h3>South Pole İş Birliği Başlıyor</h3>
+        <p>İsviçre merkezli South Pole ile Türkiye'deki HES ve JES projelerinde emisyon azaltım sertifikasyonu süreçleri başlatıldı.</p>
+      </div>
+      <div class="sustain-point">
+        <span class="sustain-year">2016</span>
+        <h3>VCS &amp; Gold Standard Sertifikasyonu</h3>
+        <p>25,8 MW / 3 santral (Çaldere HES, Dora-1 JES, Dora-2 JES) için emisyon azaltım sertifikasyonu tescillendi ve doğrulandı.</p>
+      </div>
+      <div class="sustain-point">
+        <span class="sustain-year">Günümüz</span>
+        <h3>CBAM / SKDM Danışmanlığı</h3>
+        <p>Karbon düzenlemelerine uyum sağlayan kurumsal sanayi tesisleri için karbon ayak izi yönetimi ve yeşil dönüşüm danışmanlığı sunuyoruz.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="sec" style="background:var(--surface-alt); border-top:1px solid var(--border);">
-  <div class="wrap">
-    <div class="testi-grid">
-      <div class="orbit">
-        <div class="arc"></div>
-        <div class="main">
-          <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=600&fit=crop" alt="Müşteri">
-        </div>
-        <div class="av" style="top:30px; left:295px;" data-idx="0">
-          <img src="https://i.pravatar.cc/120?img=1" alt="Avatar">
-        </div>
-        <div class="av" style="top:110px; left:355px;" data-idx="1">
-          <img src="https://i.pravatar.cc/120?img=2" alt="Avatar">
-        </div>
-        <div class="av active" style="top:198px; left:375px;" data-idx="2">
-          <img src="https://i.pravatar.cc/120?img=3" alt="Avatar">
-        </div>
-        <div class="av" style="top:286px; left:355px;" data-idx="3">
-          <img src="https://i.pravatar.cc/120?img=4" alt="Avatar">
-        </div>
-        <div class="av" style="top:362px; left:295px;" data-idx="4">
-          <img src="https://i.pravatar.cc/120?img=5" alt="Avatar">
-        </div>
-      </div>
-      <div>
-        <span class="label" data-reveal>Referanslar</span>
-        <h2 data-reveal>Müşterilerimiz anlatıyor.</h2>
-        <div class="quote-wrap" data-reveal>
-          <p class="quote" id="quote-text">"İhtiyaç analizinden devreye almaya kadar tüm süreci tek elden, şeffaf ve zamanında yönettiler."</p>
-        </div>
-        <div class="author" data-reveal>
-          <div class="author-av" id="testi-initials">MA</div>
-          <div>
-            <div class="author-name" id="testi-name">Mehmet Aydın</div>
-            <div class="author-role" id="testi-role">Tesis Yatırımcısı</div>
-          </div>
-        </div>
-        <div class="testi-progress">
-          <div class="testi-progress-bar" id="testi-bar"></div>
-        </div>
+<!-- 08 — FINAL CTA — Kaynak: ANSAYFA.docx "ALT ÇAĞRI ALANI" + referans PDF s.12. Buton hiyerarşisi
+     kilitli karar: birincil dolu-beyaz "Bizimle İletişime Geçin", ikincil ghost-outline "Proje Portföyü
+     & M&A İletişimi" — PDF'in "iki CTA'nın hiyerarşisi aynı olmamalı" talimatı burada uygulandı. -->
+<section class="sec final-cta-sec" id="iletisim">
+  <div class="wrap final-cta-grid">
+    <div>
+      <span class="label in">Sonraki Adım</span>
+      <h2>Enerji Yatırımlarınızda Uçtan Uca Çözüm Ortağınız Olmaya Hazırız.</h2>
+    </div>
+    <div class="final-cta-side">
+      <p>Projelerinizi sıfırdan geliştirmek, tesislerinizi teknik olarak denetlemek, EPC çözümleri almak veya alım-satım portföyümüzü incelemek için bizimle iletişime geçin.</p>
+      <div class="final-cta-actions">
+        <button class="btn-white">Bizimle İletişime Geçin →</button>
+        <button class="btn-ghost-w">Proje Portföyü &amp; M&amp;A İletişimi</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT FORM -->
-<section class="sec" id="iletisim" style="background:var(--navy);">
-  <div class="wrap">
-    <div class="contact-grid">
-      <div data-reveal>
-        <span class="label" style="color:var(--green-lt);">İletişim</span>
-        <h2 style="color:#fff;">Projenizi<br>konuşalım.</h2>
-        <p class="lead" style="margin-top:16px; color:var(--on-dark-muted);">Enerji üretimi, depolama veya ticaret konularında uzman ekibimizle görüşmek için formu doldurun.</p>
-        <div class="contact-meta">
-          <div class="contact-row" style="color:var(--on-dark-muted);">
-            <svg viewBox="0 0 24 24" width="15" height="15" stroke="var(--green-lt)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.8 19.8 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
-            +90 312 000 00 00
-          </div>
-          <div class="contact-row" style="color:var(--on-dark-muted);">
-            <svg viewBox="0 0 24 24" width="15" height="15" stroke="var(--green-lt)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            info@alenerji.com.tr
-          </div>
-          <div class="contact-row" style="color:var(--on-dark-muted);">
-            <svg viewBox="0 0 24 24" width="15" height="15" stroke="var(--green-lt)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Ankara, Türkiye
-          </div>
-        </div>
-      </div>
-      <form class="contact-form" data-reveal>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="f-name">Ad Soyad</label>
-            <input class="form-input" type="text" id="f-name" placeholder="Adınız Soyadınız">
-          </div>
-          <div class="form-group">
-            <label for="f-email">E-posta</label>
-            <input class="form-input" type="email" id="f-email" placeholder="ornek@sirket.com">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="f-phone">Telefon</label>
-            <input class="form-input" type="tel" id="f-phone" placeholder="+90 5xx xxx xx xx">
-          </div>
-          <div class="form-group">
-            <label for="f-topic">Konu</label>
-            <select class="form-input" id="f-topic">
-              <option value="" disabled selected>Seçiniz</option>
-              <option>Enerji Üretimi</option>
-              <option>BESS / Depolama</option>
-              <option>Enerji Ticareti</option>
-              <option>Danışmanlık</option>
-              <option>Diğer</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="f-msg">Mesajınız</label>
-          <textarea class="form-input" id="f-msg" rows="4" placeholder="Projeniz veya sorunuz hakkında kısaca bilgi verin…"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;"><span class="arr">Gönder <span>→</span></span></button>
-      </form>
-    </div>
-  </div>
-</section>
-
+<!-- 09 — FOOTER — canlı sitenin (al-enerji-v2.vercel.app) mevcut footer yapısı esas alındı: marka
+     bloğu, adres/iletişim, üç link kolonu, copyright + yasal linkler. Link mimarisi bu taslağın
+     kendi bölüm kimliklerine göre güncellendi. -->
 <footer>
   <div class="wrap">
     <div class="grid">
@@ -1016,16 +1005,15 @@ footer a:hover { color:#fff; }
       </div>
       <div>
         <h4>Hizmetler</h4>
-        <a href="hizmetler.html#uretim">Üretim & Saha Geliştirme</a>
+        <a href="hizmetler.html#uretim">Üretim &amp; Saha Geliştirme</a>
         <a href="hizmetler.html#depolama">Enerji Depolama (BESS)</a>
-        <a href="hizmetler.html#ticaret">Enerji Ticareti</a>
-        <a href="hizmetler.html#danismanlik">Sürdürülebilirlik</a>
+        <a href="#brokerage">Enerji Ticareti</a>
+        <a href="#surdurulebilirlik">Sürdürülebilirlik</a>
       </div>
       <div>
         <h4>Kurumsal</h4>
         <a href="hakkimizda.html">Hakkımızda</a>
         <a href="projeler.html">Projeler</a>
-        <a href="perspektif.html">Perspektif</a>
         <a href="#">Kariyer</a>
       </div>
       <div>
@@ -1048,220 +1036,146 @@ footer a:hover { color:#fff; }
 </footer>
 
 <script>
-// NAV SCROLL STATE
-const nav = document.getElementById('nav');
-const hero = document.getElementById('hero');
-window.addEventListener('scroll', () => {
-  const heroBottom = hero.getBoundingClientRect().bottom;
-  if (heroBottom <= 64) {
-    nav.classList.add('dark-mode');
-  } else {
-    nav.classList.remove('dark-mode');
-  }
-  if (window.scrollY > 0) {
-    nav.classList.add('scrolled');
-  } else {
-    nav.classList.remove('scrolled');
-  }
+// Section label — çizgi scroll'da/yüklemede açılıyor (canlı sitedeki .label.in davranışı)
+document.querySelectorAll('.label').forEach(function (el) {
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) { el.classList.add('in'); io.disconnect(); }
+    });
+  }, { threshold: 0.3 });
+  io.observe(el);
 });
 
-// TECH STICKY SCROLL — scroll event yerine IntersectionObserver kullanmak
-// yön sorununa neden oluyor; merkeze-en-yakın-adım yöntemi her iki yönde de çalışır
-const techStepEls = document.querySelectorAll('.tech-step');
-const featImgEls = document.querySelectorAll('.feat-img');
-if (techStepEls.length && featImgEls.length) {
-  function updateTechActive() {
-    const mid = window.innerHeight * 0.48;
-    let bestIdx = 0, bestDist = Infinity;
-    techStepEls.forEach((el, i) => {
-      const r = el.getBoundingClientRect();
-      const center = r.top + r.height * 0.5;
-      const dist = Math.abs(center - mid);
-      if (dist < bestDist) { bestDist = dist; bestIdx = i; }
-    });
-    techStepEls.forEach((el, i) => el.classList.toggle('active', i === bestIdx));
-    featImgEls.forEach((el, i) => el.classList.toggle('active', i === bestIdx));
+// Brokerage CTA — JS parallax (background-attachment:fixed KULLANILMIYOR, iOS'ta çalışmıyor — MEMORY.md kararı)
+(function () {
+  var bg = document.querySelector('.broker-cta-photo');
+  if (!bg || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var section = bg.closest('.broker-cta-sec');
+  var ticking = false;
+  function update() {
+    var rect = section.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var progress = (rect.top + rect.height / 2 - vh / 2) / (vh / 2 + rect.height / 2);
+    var shift = Math.max(-1, Math.min(1, progress)) * 110;
+    bg.style.transform = 'translate3d(0,' + shift.toFixed(1) + 'px,0)';
+    ticking = false;
   }
-  window.addEventListener('scroll', () => {
-    const sec = document.getElementById('teknoloji');
-    if (!sec) return;
-    const r = sec.getBoundingClientRect();
-    if (r.top < window.innerHeight && r.bottom > 0) updateTechActive();
-  }, { passive: true });
-  updateTechActive();
-}
+  function onScroll() {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+})();
 
-// CTA PARALLAX
-const ctaParBg = document.getElementById('cta-par-bg');
-const ctaParSec = document.getElementById('cta-par');
-if (ctaParBg && ctaParSec) {
-  window.addEventListener('scroll', () => {
-    const r = ctaParSec.getBoundingClientRect();
+// Project Lifecycle — sticky-scroll: aktif adımı ortalanmış viewport bandına göre belirler,
+// sağdaki sabit (sticky) panelin numara/başlık/ilerleme çubuğunu günceller.
+(function () {
+  var steps = Array.prototype.slice.call(document.querySelectorAll('.lifecycle-step'));
+  if (!steps.length) return;
+  var progressNum = document.querySelector('.lifecycle-progress-num');
+  var progressFill = document.querySelector('.lifecycle-progress-fill');
+  var stickyTitle = document.querySelector('.lifecycle-sticky-title');
+  var visuals = Array.prototype.slice.call(document.querySelectorAll('.lifecycle-visual-img'));
+  var total = steps.length;
+
+  function setActive(step) {
+    steps.forEach(function (s) { s.classList.toggle('is-active', s === step); });
+    if (progressNum) progressNum.textContent = step.dataset.num;
+    if (progressFill) progressFill.style.width = (parseInt(step.dataset.num, 10) / total * 100) + '%';
+    if (stickyTitle) stickyTitle.textContent = step.dataset.title;
+    visuals.forEach(function (v) { v.classList.toggle('is-active', v.dataset.visual === step.dataset.num); });
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) setActive(entry.target);
+    });
+  }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+
+  steps.forEach(function (s) { io.observe(s); });
+  setActive(steps[0]);
+})();
+
+// Track Record data-wall — tıklama ile pinleme (hover olmayan dokunmatik cihazlar için; masaüstünde hover zaten çalışıyor)
+document.querySelectorAll('.tr-cell').forEach(function (cell) {
+  cell.addEventListener('click', function () { cell.classList.toggle('is-open'); });
+  cell.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); cell.classList.toggle('is-open'); }
+  });
+});
+
+// NAV SCROLL — hero'daki koyu arka plan üzerindeyken nav dark-mode
+(function () {
+  var nav = document.getElementById('nav');
+  var hero = document.querySelector('.hero');
+  if (!nav || !hero) return;
+  function updateNav() {
+    var heroBottom = hero.getBoundingClientRect().bottom;
+    nav.classList.toggle('dark-mode', heroBottom > 64);
+    nav.classList.toggle('scrolled', window.scrollY > 0);
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+})();
+
+// PARALLAX CTA
+(function () {
+  var bg = document.getElementById('cta-par-bg');
+  var sec = document.getElementById('cta-par');
+  if (!bg || window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  window.addEventListener('scroll', function () {
+    var r = sec.getBoundingClientRect();
     if (r.bottom > 0 && r.top < window.innerHeight) {
-      const p = -r.top / window.innerHeight;
-      ctaParBg.style.transform = `translateY(${p * 38}px)`;
+      bg.style.transform = 'translateY(' + (-r.top / window.innerHeight * 38).toFixed(1) + 'px)';
     }
   }, { passive: true });
-}
-
-// TECH SECTION PARALLAX
-const techPar = document.getElementById('tech-par');
-const techSec = document.getElementById('teknoloji');
-if (techPar && techSec) {
-  window.addEventListener('scroll', () => {
-    const rect = techSec.getBoundingClientRect();
-    if (rect.bottom > 0 && rect.top < window.innerHeight) {
-      const progress = -rect.top / window.innerHeight;
-      techPar.style.transform = `translateY(${progress * 45}px)`;
-    }
-  }, { passive: true });
-}
-
-// HERO PARALLAX
-const heroBg = document.getElementById('hero-bg');
-if (heroBg) {
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    if (scrollY < window.innerHeight * 1.5) {
-      heroBg.style.transform = `translateY(${scrollY * 0.28}px)`;
-    }
-  }, { passive: true });
-}
+})();
 
 // SCROLL REVEAL
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('in');
-      revealObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-
-document.querySelectorAll('[data-reveal]').forEach(el => {
-  const sibs = [...(el.parentElement?.children || [])].filter(c => c.hasAttribute('data-reveal'));
-  const idx = sibs.indexOf(el);
-  el.style.transitionDelay = (Math.min(idx, 6) * 0.07) + 's';
-  revealObs.observe(el);
-});
-
-document.querySelectorAll('.label').forEach(el => {
-  const idx = [...document.querySelectorAll('.label')].indexOf(el);
-  el.style.transitionDelay = (Math.min(idx, 6) * 0.07) + 's';
-  revealObs.observe(el);
-});
-
-// NUMBER COUNTER
-const counterObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const el = e.target;
-      const target = parseInt(el.dataset.count);
-      const suffix = el.textContent.includes('+') ? '+' : '';
-      let current = 0;
-      const start = Date.now();
-      const duration = 1800;
-      const animate = () => {
-        const elapsed = Date.now() - start;
-        const progress = Math.min(elapsed / duration, 1);
-        const easeProgress = 1 - Math.pow(1 - progress, 3);
-        current = Math.floor(easeProgress * target);
-        el.textContent = current + suffix;
-        if (progress < 1) requestAnimationFrame(animate);
-      };
-      animate();
-      counterObs.unobserve(el);
-    }
-  });
-}, { threshold: 0.5 });
-
-document.querySelectorAll('[data-count]').forEach(el => {
-  counterObs.observe(el);
-});
+(function () {
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(function (el) { obs.observe(el); });
+})();
 
 // PROJECT FILTER
-document.querySelectorAll('.flt').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.flt').forEach(b => b.classList.remove('active'));
+document.querySelectorAll('.flt').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    document.querySelectorAll('.flt').forEach(function (b) { b.classList.remove('active'); });
     btn.classList.add('active');
-    const filter = btn.dataset.f;
-    document.querySelectorAll('.prj-card').forEach(card => {
-      if (filter === '*' || card.dataset.f === filter) {
-        card.style.display = '';
-      } else {
-        card.style.display = 'none';
-      }
+    var f = btn.dataset.f;
+    document.querySelectorAll('.prj-card').forEach(function (card) {
+      var show = f === '*' || card.dataset.f === f;
+      card.style.display = show ? '' : 'none';
+      if (show) { card.classList.remove('anim'); void card.offsetWidth; card.classList.add('anim'); }
     });
   });
 });
 
-// TESTIMONIALS AUTO-ROTATE
-const testimonials = [
-  { quote: '"İhtiyaç analizinden devreye almaya kadar tüm süreci tek elden, şeffaf ve zamanında yönettiler."', name: 'Mehmet Aydın', role: 'Tesis Yatırımcısı', initials: 'MA', avIdx: 0 },
-  { quote: '"Teknik derinlikleri ve Avrupa standartlarındaki raporlama bizi en çok etkileyen özellikleriydi."', name: 'Selin Kaya', role: 'Enerji Direktörü', initials: 'SK', avIdx: 1 },
-  { quote: '"BESS projesinin her aşamasında koordinasyon mükemmeldi. Zamanında ve bütçe dahilinde teslim ettiler."', name: 'Caner Öztürk', role: 'CEO, GES A.Ş.', initials: 'CÖ', avIdx: 2 },
-  { quote: '"Enerji ticareti portföyümüzün yönetiminde sağladıkları katma değer beklentilerimizin çok ötesindeydi."', name: 'Ayşe Demirtaş', role: 'CFO, Enerji Holding', initials: 'AD', avIdx: 3 }
-];
-
-let testiIdx = 0;
-const updateTestimonial = () => {
-  const t = testimonials[testiIdx];
-  const quoteEl = document.getElementById('quote-text');
-  quoteEl.classList.add('fade');
-  setTimeout(() => {
-    quoteEl.textContent = t.quote;
-    document.getElementById('testi-name').textContent = t.name;
-    document.getElementById('testi-role').textContent = t.role;
-    document.getElementById('testi-initials').textContent = t.initials;
-    document.querySelectorAll('.orbit .av').forEach(av => av.classList.remove('active'));
-    document.querySelectorAll('.orbit .av')[t.avIdx].classList.add('active');
-    quoteEl.classList.remove('fade');
-  }, 350);
-};
-
-document.querySelectorAll('.orbit .av').forEach((av, idx) => {
-  av.addEventListener('click', () => {
-    testiIdx = idx;
-    updateTestimonial();
-    restartTestiProgress();
-  });
-});
-
-const restartTestiProgress = () => {
-  const bar = document.getElementById('testi-bar');
-  bar.style.transition = 'none';
-  bar.style.width = '0%';
-  setTimeout(() => {
-    bar.style.transition = 'width linear 5000ms';
-    bar.style.width = '100%';
-  }, 50);
-};
-
-let testiInterval = setInterval(() => {
-  testiIdx = (testiIdx + 1) % testimonials.length;
-  updateTestimonial();
-  restartTestiProgress();
-}, 5000);
-
-restartTestiProgress();
-
-// ── Hamburger menü ────────────────────────────────────────
-const burger = document.getElementById('nav-burger');
-const drawer = document.getElementById('nav-mobile');
-if (burger && drawer) {
-  burger.addEventListener('click', () => {
-    const open = burger.classList.toggle('open');
+// HAMBURGER
+(function () {
+  var burger = document.getElementById('nav-burger');
+  var drawer = document.getElementById('nav-mobile');
+  if (!burger || !drawer) return;
+  burger.addEventListener('click', function () {
+    var open = burger.classList.toggle('open');
     drawer.classList.toggle('open', open);
     burger.setAttribute('aria-expanded', open);
     document.body.style.overflow = open ? 'hidden' : '';
   });
-  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    burger.classList.remove('open');
-    drawer.classList.remove('open');
-    burger.setAttribute('aria-expanded', false);
-    document.body.style.overflow = '';
-  }));
-}
+  drawer.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      burger.classList.remove('open');
+      drawer.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+})();
 </script>
 </body>
 </html>

@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AL ENERJİ — Kurumsal Site Demo v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#0B1430; --green-dk:#1F3D33; --green-lt:#5DB38A;
+  --bg:#FBFCFB; --surface:#FFFFFF; --surface-alt:#EFF1EF;
+  --border:#D6D9D5; --border-strong:#B9BFBA;
+  --text:#0B1430; --text-2:#3A4356; --muted:#6B7280;
+  --on-dark:#F4F6F4; --on-dark-muted:rgba(244,246,244,.6);
+  --fh:'Hanken Grotesk',sans-serif; --fm:'JetBrains Mono',monospace;
+  --max:1200px; --gut:64px; --spy:96px; --r-ctrl:4px; --r-card:8px;
+}
+@media(max-width:768px) { :root { --gut:24px; --spy:64px; } }
+
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { font-family:var(--fh); background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
+a { color:inherit; text-decoration:none; }
+.wrap { max-width:var(--max); margin:0 auto; padding:0 var(--gut); }
+.sec { padding:var(--spy) 0; }
+.hr { height:1px; background:var(--border); border:0; }
+
+.label { display:inline-flex; align-items:center; gap:12px; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green-dk); margin-bottom:18px; }
+.label::after { content:''; order:-1; width:7px; height:7px; border-radius:9999px; background:var(--green-dk); animation:pulse 2.4s ease-in-out infinite; }
+.label::before { content:''; width:0; height:1.5px; background:var(--green-dk); transition:width .6s ease .15s; }
+.label.in::before { width:28px; }
+@keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.35; transform:scale(.6); } }
+
+h1 { font-size:clamp(2.4rem,6vw,3.75rem); font-weight:700; line-height:1.05; letter-spacing:-.02em; }
+h1 em { color:var(--green-lt); font-style:normal; }
+h2 { font-size:clamp(1.7rem,3.5vw,2.1rem); font-weight:700; line-height:1.12; letter-spacing:-.02em; }
+h3 { font-size:1.375rem; font-weight:600; line-height:1.25; }
+h4 { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--green-lt); margin-bottom:14px; }
+.lead { font-size:1.0625rem; color:var(--text-2); max-width:54ch; margin-top:18px; }
+.mono { font-family:var(--fm); }
+
+.demobar { display:none; }
+
+/* NAVIGATION */
+nav { position:sticky; top:0; z-index:50; height:64px; display:flex; align-items:center; background:rgba(251,252,251,.85); backdrop-filter:blur(10px); }
+nav.dark-mode { background:rgba(11,20,48,.72); backdrop-filter:blur(10px); }
+nav.scrolled { border-bottom:1px solid var(--border); }
+nav .wrap { display:flex; align-items:center; justify-content:space-between; width:100%; }
+.logo { display:flex; align-items:center; }
+.logo-light { display:block; }
+.logo-dark  { display:none; }
+nav.dark-mode .logo-light { display:none; }
+nav.dark-mode .logo-dark  { display:block; }
+
+.navlinks { display:flex; gap:32px; font-size:14px; font-weight:500; color:var(--text); }
+nav.dark-mode .navlinks { color:#fff; }
+.navlinks a { position:relative; cursor:pointer; }
+.navlinks a::after { content:''; position:absolute; left:0; bottom:-5px; height:1.5px; width:0; background:var(--green-dk); transition:width .22s ease; }
+nav.dark-mode .navlinks a::after { background:var(--green-lt); }
+.navlinks a:hover::after { width:100%; }
+.nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; cursor:pointer; padding:6px; border:none; background:transparent; border-radius:4px; }
+.nav-burger span { display:block; width:22px; height:1.5px; background:var(--text); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
+nav.dark-mode .nav-burger span { background:#fff; }
+.nav-burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+.nav-mobile { position:fixed; top:64px; left:0; right:0; background:var(--surface); z-index:99; padding:24px var(--gut) 32px; border-top:1px solid var(--border); box-shadow:0 8px 32px rgba(0,0,0,.1); opacity:0; transform:translateY(-6px); pointer-events:none; transition:opacity .22s ease, transform .22s ease; }
+.nav-mobile.open { opacity:1; transform:none; pointer-events:all; }
+.nav-mobile a { display:block; font-size:1rem; font-weight:600; padding:13px 0; border-bottom:1px solid var(--border); color:var(--text); }
+.nav-mobile a:last-of-type { border-bottom:0; }
+.nav-mobile .mob-cta { display:block; margin-top:20px; text-align:center; background:var(--navy); color:#fff !important; padding:14px; border-radius:var(--r-ctrl); font-weight:600; }
+@media(max-width:768px) { .navlinks { display:none; } .nav-burger { display:flex; } }
+
+.nav-cta { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:11px 22px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid transparent; transition:transform .15s ease, background .15s ease; background:var(--navy); color:#fff; }
+nav.dark-mode .nav-cta { background:transparent; border-color:rgba(255,255,255,.28); color:#fff; }
+.nav-cta::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--green-dk); transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
+nav.dark-mode .nav-cta::before { background:rgba(255,255,255,.14); }
+.nav-cta:hover { transform:translateY(-1px); }
+.nav-cta:hover::before { transform:translateX(0); }
+.nav-cta:hover { color:#fff; }
+nav.dark-mode .nav-cta:hover { color:#fff; }
+
+/* HERO */
+.hero { position:relative; height:100svh; min-height:640px; display:flex; flex-direction:column; overflow:hidden; z-index:1; }
+.hero-bg {
+  position:absolute; inset:0; z-index:0; will-change:transform;
+  background:
+    linear-gradient(180deg, rgba(11,20,48,.92) 0%, rgba(11,20,48,.78) 55%, rgba(11,20,48,.90) 100%),
+    url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2400&fit=crop') center/cover no-repeat;
+}
+.hero-bg::after {
+  content:''; position:absolute; inset:0;
+  background:repeating-linear-gradient(90deg, transparent 0, transparent 79px, rgba(255,255,255,.015) 79px, rgba(255,255,255,.015) 80px);
+}
+
+.hero-center {
+  position:relative; z-index:1; flex:1;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:88px var(--gut) 40px;
+  animation:heroIn .9s ease .15s both;
+}
+.hero-center .label { color:var(--green-lt); }
+.hero-center h1 { color:#fff; max-width:18ch; margin:0 auto; }
+.hero-center h1 em { color:var(--green-lt); font-style:normal; }
+.hero-center .lead { color:var(--on-dark-muted); max-width:48ch; margin:18px auto 0; }
+
+.hero-buttons { display:flex; gap:16px; margin-top:32px; flex-wrap:wrap; justify-content:center; }
+.btn-white { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:13px 26px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid #fff; background:#fff; color:var(--navy); transition:transform .15s ease; }
+.btn-white::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--green-lt); transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
+.btn-white:hover { transform:translateY(-1px); color:#fff; }
+.btn-white:hover::before { transform:translateX(0); }
+
+.btn-ghost-w { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:13px 26px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid rgba(255,255,255,.28); background:rgba(255,255,255,.06); color:#fff; transition:transform .15s ease; }
+.btn-ghost-w::before { content:''; position:absolute; inset:0; z-index:-1; background:rgba(255,255,255,.14); transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
+.btn-ghost-w:hover { transform:translateY(-1px); }
+.btn-ghost-w:hover::before { transform:translateX(0); }
+
+/* Hero inline stats */
+.hero-rule { width:100%; max-width:480px; height:1px; background:rgba(255,255,255,.12); margin:32px auto 0; }
+.hero-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:0; width:100%; max-width:560px; margin:0 auto; }
+.hero-stat { padding:20px 0; border-left:1px solid rgba(255,255,255,.1); }
+.hero-stat:first-child { border-left:0; }
+.hero-stat .n { font-family:var(--fm); font-size:1.75rem; font-weight:500; color:#fff; line-height:1; }
+.hero-stat .l { font-size:11px; color:var(--on-dark-muted); margin-top:5px; letter-spacing:.01em; }
+@media(max-width:768px) {
+  .hero-stats { grid-template-columns:repeat(2,1fr); max-width:320px; }
+  .hero-stat { padding:16px 0; }
+  .hero-stat:nth-child(3) { border-left:0; }
+  .hero-stat:nth-child(n+3) { border-top:1px solid rgba(255,255,255,.08); }
+}
+
+/* Scroll indicator — traveling light */
+.hero-scroll { position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:8px; margin-top:36px; }
+.scroll-label { font-family:var(--fm); font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.28); }
+.scroll-line { width:1px; height:44px; background:rgba(255,255,255,.14); position:relative; overflow:hidden; }
+.scroll-line::after { content:''; position:absolute; left:0; width:100%; height:45%; background:linear-gradient(to bottom, transparent, rgba(255,255,255,.75), transparent); animation:scrollLine 1.7s ease-in-out infinite; }
+@keyframes scrollLine { 0% { top:-45%; } 100% { top:145%; } }
+@media(prefers-reduced-motion:reduce) { .scroll-line::after { animation:none; opacity:.5; top:25%; } }
+
+@keyframes heroIn { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
+
+/* MARQUEE */
+.marquee-section { padding:44px 0; }
+.marquee-header { display:flex; align-items:center; gap:20px; justify-content:center; margin-bottom:32px; }
+.marquee-header::before, .marquee-header::after { content:''; flex:1; height:1px; background:var(--border); }
+.marquee-header .text { font-size:11px; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); white-space:nowrap; }
+.marquee-wrap { overflow:hidden; }
+.marquee { display:flex; gap:48px; animation:marquee 36s linear infinite; }
+.marquee:hover { animation-play-state:paused; }
+@keyframes marquee { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+.marquee-item { flex:0 0 auto; font-family:var(--fm); font-size:12px; color:var(--border-strong); border-right:1px solid var(--border); padding-right:48px; white-space:nowrap; transition:color .2s ease; cursor:pointer; }
+.marquee-item:hover { color:var(--navy); }
+@media(prefers-reduced-motion:reduce) { .marquee { animation:none; } }
+
+/* BUTTONS (all variants) */
+.btn { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:13px 26px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid transparent; transition:transform .15s ease; }
+.btn::before { content:''; position:absolute; inset:0; z-index:-1; transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
+.btn:hover { transform:translateY(-1px); }
+.btn:hover::before { transform:translateX(0); }
+
+.btn-primary { background:var(--navy); color:#fff; }
+.btn-primary::before { background:var(--green-dk); }
+
+.btn-accent { background:var(--green-dk); color:#fff; }
+.btn-accent::before { background:#152b23; }
+
+.btn-secondary { background:transparent; color:var(--navy); border-color:var(--navy); }
+.btn-secondary::before { background:var(--navy); }
+.btn-secondary:hover { color:#fff; }
+
+.btn .arr span { transition:transform .18s ease; }
+.btn:hover .arr span { transform:translateX(4px); }
+
+/* SECTION LAYOUTS */
+.split { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+@media(max-width:768px) { .split { grid-template-columns:1fr; } }
+.split .img { height:380px; border-radius:var(--r-card); overflow:hidden; border:1px solid var(--border); }
+.split .img img { width:100%; height:100%; object-fit:cover; transition:transform .8s ease; }
+.split .img:hover img { transform:scale(1.04); }
+
+/* TAGS */
+.tags { display:flex; gap:10px; margin-top:20px; flex-wrap:wrap; }
+.tag { display:inline-flex; align-items:center; font-size:12px; border:1px solid var(--border); border-radius:4px; padding:6px 12px; transition:border-color .2s ease; cursor:pointer; }
+.tag:hover { border-color:var(--navy); }
+
+/* SERVICES */
+.svc { display:grid; grid-template-columns:52px 1fr auto; gap:28px; align-items:start; padding:28px 0; border-top:1px solid var(--border); }
+.svc:last-child { border-bottom:1px solid var(--border); }
+.svc .idx { font-family:var(--fm); font-size:2rem; font-weight:400; color:var(--border-strong); line-height:1; transition:color .2s ease; }
+.svc:hover .idx { color:var(--green-dk); }
+.svc h3 { margin-bottom:6px; transition:color .18s ease; }
+.svc:hover h3 { color:var(--green-dk); }
+.svc p { color:var(--text-2); font-size:15px; max-width:60ch; }
+.svc-end { position:relative; width:120px; height:80px; display:flex; align-items:center; justify-content:flex-end; }
+.svc-thumb { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:6px; opacity:0; transform:translateX(8px); transition:opacity .28s ease, transform .28s ease; }
+.svc:hover .svc-thumb { opacity:1; transform:none; }
+.svc-ico { position:absolute; right:0; opacity:1; transition:opacity .2s ease, transform .22s ease; stroke-width:1.5px; stroke:var(--green-dk); fill:none; }
+.svc:hover .svc-ico { opacity:0; }
+@media(max-width:768px) { .svc-end { width:88px; height:64px; } }
+
+/* TECH / ANALYTICS SECTION */
+/* overflow:hidden kaldırıldı — sticky çalışması için şart */
+.tech-sec { position:relative; background:#06101E; }
+.tech-bg-clip { position:absolute; inset:0; overflow:hidden; z-index:0; pointer-events:none; }
+.tech-par { position:absolute; inset:-25% 0; will-change:transform;
+  background:
+    radial-gradient(ellipse 55% 60% at 15% 70%, rgba(31,61,51,.5) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 55% at 85% 25%, rgba(11,20,48,.75) 0%, transparent 55%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #06101E 25%, transparent 100%);
+}
+.tech-intro { position:relative; z-index:1; max-width:var(--max); margin:0 auto; padding:var(--spy) var(--gut) 64px; }
+.tech-intro h2 { color:var(--on-dark); max-width:22ch; }
+.tech-intro .lead { color:var(--on-dark-muted); margin-top:16px; max-width:52ch; }
+/* Sticky scroll layout */
+.tech-scroll { display:grid; grid-template-columns:1fr 1fr; position:relative; z-index:1; }
+.tech-step { min-height:80vh; display:flex; align-items:center; padding:72px var(--gut) 72px calc(50vw - var(--max)/2 + var(--gut)); }
+.tech-step-inner { max-width:42ch; opacity:.25; transform:translateX(-12px); transition:opacity .5s ease, transform .5s ease; }
+.tech-step.active .tech-step-inner { opacity:1; transform:none; }
+.tech-step-num { font-family:var(--fm); font-size:11px; letter-spacing:.18em; color:rgba(93,179,138,.32); display:block; margin-bottom:18px; transition:color .4s; }
+.tech-step.active .tech-step-num { color:var(--green-lt); }
+.tech-step-ico { width:44px; height:44px; border:1px solid rgba(93,179,138,.16); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; transition:border-color .4s, background .4s; }
+.tech-step.active .tech-step-ico { border-color:rgba(93,179,138,.55); background:rgba(93,179,138,.1); }
+.tech-step-ico svg { width:20px; height:20px; stroke:var(--green-lt); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.tech-step h3 { font-size:1.25rem; font-weight:600; color:var(--on-dark); margin-bottom:12px; }
+.tech-step p { font-size:14.5px; color:var(--on-dark-muted); line-height:1.7; }
+/* Sticky image panel — contained frame */
+.tech-scroll-right { position:sticky; top:64px; height:calc(100svh - 64px); display:flex; align-items:center; padding:48px 56px 48px 20px; }
+.feat-frame { position:relative; width:100%; max-width:460px; aspect-ratio:4/3; border-radius:12px; overflow:hidden; border:1px solid rgba(93,179,138,.18); box-shadow:0 28px 64px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.04); flex-shrink:0; }
+.feat-img { position:absolute; inset:0; opacity:0; transition:opacity .65s ease; }
+.feat-img.active { opacity:1; }
+.feat-img img { width:100%; height:100%; object-fit:cover; filter:brightness(.82) saturate(.85); }
+.feat-img::after { content:''; position:absolute; inset:0; background:linear-gradient(to bottom, transparent 38%, rgba(6,16,30,.62) 100%); }
+.feat-img-tag { position:absolute; bottom:14px; right:14px; z-index:2; background:rgba(5,13,26,.9); border:1px solid rgba(93,179,138,.22); border-radius:6px; padding:10px 14px; backdrop-filter:blur(10px); }
+.feat-img-tag .fv { font-family:var(--fm); font-size:1.2rem; font-weight:500; color:#5DB38A; line-height:1; }
+.feat-img-tag .fl { font-family:var(--fm); font-size:8px; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.3); margin-top:4px; }
+.tech-cta { position:relative; z-index:1; max-width:var(--max); margin:0 auto; padding:56px var(--gut) var(--spy); border-top:1px solid rgba(255,255,255,.07); }
+@media(max-width:768px) {
+  .tech-scroll { grid-template-columns:1fr; }
+  .tech-scroll-right { display:none; }
+  .tech-step { min-height:auto; padding:44px var(--gut); }
+  .tech-step-inner { opacity:1 !important; transform:none !important; }
+}
+
+/* SERVICE CARDS */
+.svc-hdr { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:end; margin-bottom:52px; }
+.svc-hdr .lead { margin-top:16px; }
+.svc-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+.svc-card { position:relative; overflow:hidden; background:var(--surface); border:1px solid var(--border); border-radius:var(--r-card); padding:32px 24px 28px; display:flex; flex-direction:column; transition:border-color .22s ease, transform .22s ease; }
+.svc-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--green-dk); transform:scaleX(0); transform-origin:left; transition:transform .32s ease; border-radius:var(--r-card) var(--r-card) 0 0; }
+.svc-card::after { content:''; position:absolute; inset:0; background:rgba(93,179,138,0); transition:background .25s ease; pointer-events:none; }
+.svc-card:hover { border-color:var(--border-strong); transform:translateY(-3px); }
+.svc-card:hover::before { transform:scaleX(1); }
+.svc-card:hover::after { background:rgba(93,179,138,.032); }
+.svc-icon { width:44px; height:44px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; border:1px solid var(--border); border-radius:50%; transition:border-color .22s ease, background .22s ease; }
+.svc-icon svg { width:22px; height:22px; stroke:var(--green-dk); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.svc-card:hover .svc-icon { border-color:var(--green-dk); background:rgba(93,179,138,.08); }
+.svc-card h3 { font-size:1.0625rem; font-weight:600; margin-bottom:10px; line-height:1.3; }
+.svc-card p { color:var(--text-2); font-size:14px; line-height:1.65; flex:1; }
+.svc-link { display:inline-flex; align-items:center; gap:5px; font-size:13px; font-weight:600; color:var(--green-dk); margin-top:22px; position:relative; }
+.svc-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px; background:var(--green-dk); transition:width .25s ease; }
+.svc-card:hover .svc-link::after { width:calc(100% - 14px); }
+.svc-link span { display:inline-block; transition:transform .18s ease; }
+.svc-card:hover .svc-link span { transform:translateX(5px); }
+@media(max-width:768px) { .svc-hdr { grid-template-columns:1fr; gap:24px; margin-bottom:36px; } .svc-cards { grid-template-columns:1fr 1fr; } }
+@media(max-width:480px) { .svc-cards { grid-template-columns:1fr; } }
+
+/* DARK SECTION */
+.dark { background:var(--navy); color:var(--on-dark); }
+.dark h2 { color:#fff; }
+.dark .lead { color:var(--on-dark-muted); }
+
+/* CONTACT FORM */
+.contact-grid { display:grid; grid-template-columns:1fr 1.5fr; gap:80px; align-items:start; }
+.contact-meta { display:flex; flex-direction:column; gap:14px; margin-top:36px; }
+.contact-row { display:flex; align-items:center; gap:10px; font-size:14px; color:var(--text-2); }
+.contact-form { display:flex; flex-direction:column; gap:18px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.form-group { display:flex; flex-direction:column; gap:7px; }
+.form-group label { font-family:var(--fm); font-size:10px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:rgba(244,246,244,.4); }
+.form-input { width:100%; border:1px solid rgba(255,255,255,.1); border-radius:var(--r-ctrl); padding:11px 13px; font-family:var(--fh); font-size:15px; color:var(--on-dark); background:rgba(255,255,255,.06); outline:none; transition:border-color .18s ease, background .18s ease; appearance:none; -webkit-appearance:none; }
+.form-input:focus { border-color:var(--green-lt); background:rgba(255,255,255,.09); }
+.form-input::placeholder { color:rgba(244,246,244,.25); }
+textarea.form-input { resize:vertical; min-height:118px; line-height:1.6; }
+@media(max-width:768px) { .contact-grid { grid-template-columns:1fr; gap:44px; } .form-row { grid-template-columns:1fr; } }
+
+/* PARALLAX CTA */
+.cta-par-sec { position:relative; overflow:hidden; min-height:390px; display:flex; align-items:center; justify-content:center; }
+.cta-par-bg { position:absolute; inset:-18% 0; will-change:transform;
+  background:
+    linear-gradient(rgba(11,20,48,.80), rgba(11,20,48,.80)),
+    url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2000&fit=crop') center/cover no-repeat;
+}
+.cta-par-inner { position:relative; z-index:1; text-align:center; max-width:780px; padding:56px var(--gut); margin:0 auto; }
+.cta-par-inner h2 { color:#fff; font-size:clamp(2.8rem,5.5vw,4.5rem); font-weight:700; line-height:1.05; letter-spacing:-.02em; }
+.cta-par-inner h2 em { font-style:italic; color:var(--green-lt); }
+.cta-par-inner .lead { color:rgba(244,246,244,.58); margin-top:20px; max-width:52ch; margin-left:auto; margin-right:auto; }
+.cta-par-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:36px; }
+
+/* CARDS */
+.grid3 { display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; }
+@media(max-width:768px) { .grid3 { grid-template-columns:1fr; } }
+.card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-card); overflow:hidden; transition:border-color .2s ease, transform .2s ease; }
+.card:hover { border-color:var(--navy); transform:translateY(-2px); }
+.card .img { height:180px; overflow:hidden; position:relative; }
+.card .img img { width:100%; height:100%; object-fit:cover; filter:grayscale(.2); transition:filter .35s ease, transform .45s ease; }
+.card:hover .img img { filter:none; transform:scale(1.04); }
+.card .body { padding:20px; }
+.badge { display:inline-block; font-family:var(--fm); font-size:11px; color:var(--green-dk); border:1px solid var(--border); border-radius:9999px; padding:4px 12px; margin-bottom:12px; }
+.card h3 { margin-bottom:8px; }
+.metric { font-family:var(--fm); font-size:13px; color:var(--muted); margin-top:8px; }
+
+/* FILTER */
+.filter-row { display:flex; gap:12px; margin-bottom:32px; flex-wrap:wrap; }
+.flt { position:relative; overflow:hidden; z-index:0; display:inline-block; padding:8px 18px; border:1px solid var(--border); border-radius:9999px; font-size:13px; font-weight:600; cursor:pointer; background:transparent; color:var(--muted); transition:color .2s ease; font-family:var(--fh); }
+.flt::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--navy); transform:translateX(-100%); transition:transform .28s ease; }
+.flt.active { color:#fff; border-color:var(--navy); background:var(--navy); }
+.flt.active::before { transform:translateX(0); }
+.flt:hover { color:var(--navy); }
+
+@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+.prj-card { animation:fadeIn .3s ease forwards; }
+
+/* WHY SECTION */
+.why-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
+@media(max-width:768px) { .why-grid { grid-template-columns:1fr; } }
+.why-list { display:flex; flex-direction:column; gap:40px; margin-top:32px; }
+.feat { display:grid; grid-template-columns:60px 1fr; gap:22px; align-items:start; }
+.feat-ring { width:60px; height:60px; border:1px solid var(--border); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:border-color .2s ease, background .2s ease; }
+.feat:hover .feat-ring { border-color:var(--green-dk); background:rgba(31,61,51,.05); }
+.feat-ring svg { stroke:var(--green-dk); stroke-width:1.5px; fill:none; }
+.feat h3 { margin-bottom:4px; }
+.feat p { color:var(--text-2); font-size:15px; }
+
+.video-box { position:relative; height:400px; border-radius:var(--r-card); overflow:hidden; border:1px solid var(--border); }
+.video-box img { width:100%; height:100%; object-fit:cover; }
+.play-btn { position:absolute; inset:0; margin:auto; width:86px; height:86px; border-radius:9999px; background:var(--green-dk); color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform .2s ease; }
+.play-btn:hover { transform:scale(1.07); }
+
+.contact-strip { display:grid; grid-template-columns:1fr 1fr; gap:0; margin-top:24px; border-radius:var(--r-card); overflow:hidden; border:1px solid var(--border); }
+@media(max-width:520px) { .contact-strip { grid-template-columns:1fr; } }
+.contact-strip .cell { padding:24px 28px; display:flex; flex-direction:column; justify-content:center; }
+.contact-strip .cell.green { background:var(--green-dk); color:#fff; }
+.contact-strip .label-text { font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+.contact-strip .cell.green .label-text { color:rgba(255,255,255,.7); }
+.contact-strip .value { font-family:var(--fm); font-weight:500; font-size:1.1rem; margin-top:6px; color:var(--green-dk); }
+.contact-strip .cell.green .value { color:#fff; }
+
+/* TESTIMONIALS */
+.testi-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
+@media(max-width:768px) { .testi-grid { grid-template-columns:1fr; } }
+.orbit { position:relative; height:420px; }
+.orbit .arc { position:absolute; left:24px; top:8px; width:400px; height:400px; border:1.5px solid var(--border); border-radius:9999px; }
+@media(max-width:768px) { .orbit .arc { display:none; } }
+.orbit .main { position:absolute; left:0; top:50%; transform:translateY(-50%); width:280px; height:280px; border-radius:9999px; overflow:hidden; border:1px solid var(--border); }
+.orbit .main img { width:100%; height:100%; object-fit:cover; }
+.orbit .av { position:absolute; width:56px; height:56px; border-radius:9999px; overflow:hidden; border:2px solid var(--surface); background:var(--surface-alt); transition:border-color .2s ease, transform .2s ease; cursor:pointer; }
+@media(max-width:768px) { .orbit .av { display:none; } }
+.orbit .av img { width:100%; height:100%; object-fit:cover; filter:grayscale(.5); transition:filter .2s ease; }
+.orbit .av.active { border-color:var(--green-dk); box-shadow:0 0 0 3px rgba(31,61,51,.25); transform:scale(1.1); }
+.orbit .av.active img { filter:none; }
+
+.quote-wrap { position:relative; min-height:120px; }
+.quote { font-size:1.375rem; font-weight:500; line-height:1.5; color:var(--text-2); max-width:54ch; transition:opacity .4s ease, transform .4s ease; }
+.quote.fade { opacity:0; transform:translateY(8px); }
+
+.author { display:flex; gap:14px; align-items:center; margin-top:28px; }
+.author-av { width:44px; height:44px; border-radius:9999px; background:var(--green-dk); color:#fff; display:flex; align-items:center; justify-content:center; font-family:var(--fm); font-weight:600; font-size:13px; flex-shrink:0; }
+.author-name { font-weight:700; font-size:1rem; }
+.author-role { font-size:13px; color:var(--muted); }
+
+.testi-progress { height:1.5px; background:var(--border); border-radius:9999px; overflow:hidden; margin-top:24px; }
+.testi-progress-bar { height:100%; background:var(--green-dk); width:0%; }
+
+/* BLOG */
+.blog-header { display:grid; grid-template-columns:1fr auto; gap:32px; align-items:start; margin-bottom:40px; }
+@media(max-width:768px) { .blog-header { grid-template-columns:1fr; } }
+.blog-grid { display:grid; grid-template-columns:1.55fr 1fr; gap:24px; }
+@media(max-width:768px) { .blog-grid { grid-template-columns:1fr; } }
+
+.blog-feat { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-card); overflow:hidden; transition:border-color .2s ease, transform .2s ease; display:flex; flex-direction:column; }
+.blog-feat:hover { border-color:var(--navy); transform:translateY(-2px); }
+.blog-feat .img { height:260px; overflow:hidden; }
+.blog-feat .img img { width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
+.blog-feat:hover .img img { transform:scale(1.04); }
+.blog-feat .body { padding:28px; flex:1; display:flex; flex-direction:column; }
+.blog-cat { font-family:var(--fm); font-size:11px; color:var(--green-dk); text-transform:uppercase; margin-bottom:10px; }
+.blog-feat h3 { margin-bottom:12px; }
+.blog-excerpt { color:var(--text-2); font-size:15px; margin-bottom:12px; flex:1; }
+.blog-meta { font-family:var(--fm); font-size:12px; color:var(--muted); margin-bottom:14px; }
+.blog-link { color:var(--green-dk); font-weight:600; text-decoration:underline; }
+
+.blog-aside { display:flex; flex-direction:column; gap:24px; }
+.blog-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-card); overflow:hidden; transition:border-color .2s ease, transform .2s ease; display:flex; }
+.blog-card:hover { border-color:var(--navy); transform:translateY(-2px); }
+.blog-card .img { width:110px; flex-shrink:0; height:100%; overflow:hidden; }
+.blog-card .img img { width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
+.blog-card:hover .img img { transform:scale(1.08); }
+.blog-card .body { padding:18px; display:flex; flex-direction:column; justify-content:space-between; flex:1; }
+.blog-card .cat { font-family:var(--fm); font-size:11px; color:var(--green-dk); text-transform:uppercase; }
+.blog-card h4 { font-size:14px; font-weight:600; line-height:1.3; margin-bottom:6px; color:var(--text); text-transform:none; letter-spacing:0; }
+.blog-card .excerpt { font-size:13px; color:var(--text-2); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.blog-card .meta { font-family:var(--fm); font-size:11px; color:var(--muted); margin-top:8px; }
+
+/* FOOTER */
+footer { background:#050B18; color:var(--on-dark); padding:72px 0 32px; border-top:1px solid rgba(255,255,255,.08); }
+footer .grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:32px; border-top:1px solid rgba(255,255,255,.10); padding-top:48px; }
+@media(max-width:768px) { footer .grid { grid-template-columns:1fr 1fr; } }
+footer h4 { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--green-lt); margin-bottom:14px; }
+footer .logo { color:#fff; }
+footer .logo small { color:var(--green-lt); }
+footer .desc { color:var(--on-dark-muted); font-size:14px; margin-top:16px; max-width:36ch; }
+footer .addr { font-family:var(--fm); font-size:13px; color:var(--on-dark-muted); line-height:1.8; }
+footer a { display:block; color:var(--on-dark-muted); font-size:14px; padding:6px 0; transition:color .2s ease; }
+footer a:hover { color:#fff; }
+.footer-bottom { display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,.08); margin-top:48px; padding-top:20px; gap:20px; }
+@media(max-width:768px) { .footer-bottom { flex-direction:column; align-items:flex-start; } }
+.footer-bottom-left { font-family:var(--fm); font-size:12px; color:var(--on-dark-muted); }
+.footer-bottom-right { display:flex; gap:20px; font-size:13px; }
+.footer-bottom-right a { padding:0; }
+
+/* REVEAL ANIMATIONS */
+[data-reveal] { opacity:0; transform:translateY(20px); transition:opacity .65s ease, transform .65s ease; }
+[data-reveal].in { opacity:1; transform:none; }
+@media(prefers-reduced-motion:reduce) { [data-reveal] { opacity:1; transform:none; transition:none; } .label::after { animation:none; } .marquee { animation:none; } }
+</style>
+</head>
+<body>
+
+<div class="demobar">STİL DEMO v2 · 004_al-enerji_corporate · Meridian preset · Hanken Grotesk + JetBrains Mono</div>
+
+<nav id="nav">
+  <div class="wrap">
+    <div class="logo">
+      <img class="logo-light" src="Logo_black@2x.png" alt="AL ENERJİ" height="42" style="width:auto;">
+      <img class="logo-dark"  src="Logo_white@2x.png" alt="AL ENERJİ" height="42" style="width:auto;">
+    </div>
+    <div class="navlinks">
+      <a href="hizmetler.html">Hizmetler</a>
+      <a href="projeler.html">Projeler</a>
+      <a href="hakkimizda.html">Hakkımızda</a>
+      <a href="perspektif.html">Perspektif</a>
+      <a href="iletisim.html">İletişim</a>
+    </div>
+    <button class="nav-cta" onclick="location.href='iletisim.html'"><span class="arr">Bize Ulaşın <span>→</span></span></button>
+    <button class="nav-burger" id="nav-burger" aria-label="Menüyü aç/kapat" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a href="hizmetler.html">Hizmetler</a>
+  <a href="projeler.html">Projeler</a>
+  <a href="hakkimizda.html">Hakkımızda</a>
+  <a href="perspektif.html">Perspektif</a>
+  <a href="iletisim.html">İletişim</a>
+  <a href="iletisim.html" class="mob-cta">Bize Ulaşın</a>
+</div>
+
+<header class="hero" id="hero">
+  <div class="hero-bg" id="hero-bg"></div>
+  <div class="hero-center">
+    <span class="label">Enerji · Depolama · Brokerage</span>
+    <h1>Mühendislik odaklı<br><em>enerji ortaklığı.</em></h1>
+    <p class="lead">Üretim, depolama ve enerji ticaretinde — ölçülebilir performans, şeffaf raporlama, Avrupa standartlarında iş ortaklığı.</p>
+    <div class="hero-rule"></div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="n" data-count="20">20+</div>
+        <div class="l">Yıl deneyim</div>
+      </div>
+      <div class="hero-stat">
+        <div class="n" data-count="500">500+</div>
+        <div class="l">MW kapasite</div>
+      </div>
+      <div class="hero-stat">
+        <div class="n" data-count="100">100+</div>
+        <div class="l">Proje</div>
+      </div>
+      <div class="hero-stat">
+        <div class="n" data-count="12">12</div>
+        <div class="l">Ülke</div>
+      </div>
+    </div>
+    <div class="hero-rule"></div>
+    <div class="hero-buttons">
+      <button class="btn-white"><span class="arr">Projelerimiz <span>→</span></span></button>
+      <button class="btn-ghost-w"><span class="arr">Teklif Alın</span></button>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-label">Aşağı kaydır</div>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+</header>
+
+<section class="sec" id="hizmetler">
+  <div class="wrap">
+    <div class="svc-hdr" data-reveal>
+      <div>
+        <span class="label">Hizmetlerimiz</span>
+        <h2>Enerji değer zincirinin<br>her halkasında.</h2>
+      </div>
+      <div>
+        <p class="lead">Stratejiden uygulamaya, operasyonlardan sürekli iyileştirmeye kadar tüm süreçlerde yanınızdayız.</p>
+        <button class="btn btn-secondary" style="margin-top:24px;"><span class="arr">Tüm Hizmetler <span>→</span></span></button>
+      </div>
+    </div>
+    <div class="svc-cards">
+      <div class="svc-card" data-reveal>
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3.5"/>
+            <path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M19.07 4.93l-1.77 1.77M6.7 17.3l-1.77 1.77"/>
+          </svg>
+        </div>
+        <h3>Üretim & Saha Geliştirme</h3>
+        <p>Güneş ve rüzgar santrallerinin fizibiliteden devreye almaya kadar mühendislik yönetimi. Teknik tasarım, entegrasyon, performans izleme.</p>
+        <a class="svc-link">Detayları İncele <span>→</span></a>
+      </div>
+      <div class="svc-card" data-reveal>
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="7" width="16" height="11" rx="1.5"/>
+            <path d="M19 10.5h2v4h-2M9 7V5.5h6V7"/>
+            <path d="M10.5 14.5l1.5-3 1.5 2 1-1.5"/>
+          </svg>
+        </div>
+        <h3>Enerji Depolama (BESS)</h3>
+        <p>Şebeke ölçekli batarya sistemlerinin tasarımı, entegrasyonu ve performans izleme. Uzun ömürlü, yüksek verimli çözümler.</p>
+        <a class="svc-link">Detayları İncele <span>→</span></a>
+      </div>
+      <div class="svc-card" data-reveal>
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24">
+            <polyline points="3 17 8 11 12 15 18 7"/>
+            <path d="M18 7h4M18 7v4"/>
+          </svg>
+        </div>
+        <h3>Enerji Ticareti & Brokerage</h3>
+        <p>Toptan piyasalarda portföy yönetimi, dengeleme ve uzun vadeli tedarik sözleşmeleri. Risk yönetimi ve optimizasyon.</p>
+        <a class="svc-link">Detayları İncele <span>→</span></a>
+      </div>
+      <div class="svc-card" data-reveal>
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3c-4 5.5-8 7-8 11.5a8 8 0 0016 0C20 10 16 8.5 12 3z"/>
+            <path d="M12 12.5c0-2 1.5-3 3.5-4"/>
+          </svg>
+        </div>
+        <h3>Sürdürülebilirlik Danışmanlığı</h3>
+        <p>Karbon azaltımı, ESG hedefleri ve enerji geçiş stratejilerinde teknik danışmanlık. Avrupa standartlarında raporlama.</p>
+        <a class="svc-link">Detayları İncele <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="marquee-section" style="border-bottom:1px solid var(--border);">
+  <div class="marquee-header">
+    <span class="text">Birlikte Çalıştığımız Firmalar</span>
+  </div>
+  <div class="marquee-wrap">
+    <div class="marquee">
+      <div class="marquee-item">ENERJİSA</div>
+      <div class="marquee-item">BORUSAN ENERJİ</div>
+      <div class="marquee-item">AKSA ENERJİ</div>
+      <div class="marquee-item">ERDEMİR</div>
+      <div class="marquee-item">SABANCI HOLDİNG</div>
+      <div class="marquee-item">İÇDAŞ ENERJİ</div>
+      <div class="marquee-item">ALARKO</div>
+      <div class="marquee-item">SANKO ENERJİ</div>
+      <div class="marquee-item">ENERJİSA</div>
+      <div class="marquee-item">BORUSAN ENERJİ</div>
+      <div class="marquee-item">AKSA ENERJİ</div>
+      <div class="marquee-item">ERDEMİR</div>
+      <div class="marquee-item">SABANCI HOLDİNG</div>
+      <div class="marquee-item">İÇDAŞ ENERJİ</div>
+      <div class="marquee-item">ALARKO</div>
+      <div class="marquee-item">SANKO ENERJİ</div>
+    </div>
+  </div>
+</section>
+
+<section class="tech-sec" id="teknoloji">
+  <!-- bg clip wrapper: overflow:hidden burada, tech-sec'te değil — sticky bozulmasın -->
+  <div class="tech-bg-clip"><div class="tech-par" id="tech-par"></div></div>
+
+  <!-- Intro header -->
+  <div class="tech-intro" data-reveal>
+    <span class="label" style="color:var(--green-lt);">Veri & Analitik</span>
+    <h2>Sahadan merkeze,<br>anlık görünürlük.</h2>
+    <p class="lead">Tüm portföyünüzü tek ekranda izleyin. Gerçek zamanlı performans verisi, piyasa fiyatı takibi ve öngörüsel analitik — kritik kararları hızlandırın.</p>
+  </div>
+
+  <!-- Sticky scroll -->
+  <div class="tech-scroll">
+    <!-- Left: steps -->
+    <div class="tech-scroll-left">
+      <div class="tech-step active" data-step="0">
+        <div class="tech-step-inner">
+          <div class="tech-step-ico">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22"/><circle cx="12" cy="12" r="8" stroke-dasharray="3 1.8" opacity=".5"/></svg>
+          </div>
+          <span class="tech-step-num">01</span>
+          <h3>Gerçek Zamanlı İzleme</h3>
+          <p>Saha sensörlerinden merkeze saniye bazlı veri akışı. Tüm üniteleri tek ekrandan izleyin, anlık uyarılarla sahaya her zaman bir adım önde olun.</p>
+        </div>
+      </div>
+      <div class="tech-step" data-step="1">
+        <div class="tech-step-inner">
+          <div class="tech-step-ico">
+            <svg viewBox="0 0 24 24"><polyline points="3 17 8 11 12 15 18 7"/><path d="M18 7h4M18 7v4"/></svg>
+          </div>
+          <span class="tech-step-num">02</span>
+          <h3>Piyasa & Portföy Analitik</h3>
+          <p>EPİAŞ entegrasyonu ile spot fiyat takibi, portföy dengeleme ve gelir optimizasyonu. Piyasa verisi ile saha verisi tek tabloda.</p>
+        </div>
+      </div>
+      <div class="tech-step" data-step="2">
+        <div class="tech-step-inner">
+          <div class="tech-step-ico">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8M8 8h5M8 16h3"/></svg>
+          </div>
+          <span class="tech-step-num">03</span>
+          <h3>Otomatik Raporlama</h3>
+          <p>Avrupa standartlarında aylık ve yıllık performans raporları otomatik üretilir. Yatırımcı sunumuna hazır format, sıfır manuel iş.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: sticky framed image card -->
+    <div class="tech-scroll-right">
+      <div class="feat-frame">
+        <div class="feat-img active" data-img="0">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&fit=crop" alt="Gerçek Zamanlı İzleme" loading="lazy">
+          <div class="feat-img-tag">
+            <div class="fv">98.6%</div>
+            <div class="fl">Sistem Verimliliği</div>
+          </div>
+        </div>
+        <div class="feat-img" data-img="1">
+          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1000&fit=crop" alt="Piyasa Analitik" loading="lazy">
+          <div class="feat-img-tag">
+            <div class="fv">₺2,840</div>
+            <div class="fl">Spot Fiyat / MWh</div>
+          </div>
+        </div>
+        <div class="feat-img" data-img="2">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1000&fit=crop" alt="Otomatik Raporlama" loading="lazy">
+          <div class="feat-img-tag">
+            <div class="fv">A+</div>
+            <div class="fl">Portföy Skoru</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="tech-cta" data-reveal>
+    <button class="btn btn-accent"><span class="arr">Teknolojiyi Keşfedin <span>→</span></span></button>
+  </div>
+</section>
+
+<section class="sec" style="background:var(--surface-alt); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <div class="why-grid">
+      <div>
+        <span class="label" data-reveal>Neden Biz?</span>
+        <h2 data-reveal>Mühendislik odaklı.<br>Uzun vadeli.</h2>
+        <div class="why-list">
+          <div class="feat" data-reveal>
+            <div class="feat-ring">
+              <svg viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div>
+              <h3>Zaman Verimliliği</h3>
+              <p>İhtiyaç analizinden devreye alma kadar hızlı ve koordineli proje yönetimi. Zamanında teslim, sorunsuz operasyon.</p>
+            </div>
+          </div>
+          <div class="feat" data-reveal>
+            <div class="feat-ring">
+              <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2v20M2 12h20M3 3l18 18M21 3L3 21"/></svg>
+            </div>
+            <div>
+              <h3>Maliyet Şeffaflığı</h3>
+              <p>Açık fiyatlandırma ve saydamlık. Gizli maliye yok, tüm detaylar önceden belirtilir.</p>
+            </div>
+          </div>
+          <div class="feat" data-reveal>
+            <div class="feat-ring">
+              <svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2z"/><path d="M12 7v5l4 2"/></svg>
+            </div>
+            <div>
+              <h3>Uzun Vadeli Ortaklık</h3>
+              <p>Tek seferlik anlaşmalar değil, sürdürülebilir iş ilişkileri kurarız. Teknik desteğimiz devreye almadan sonra da devam eder.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="video-box" data-reveal>
+          <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=1000&fit=crop" alt="AL ENERJİ tanıtım">
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="#fff" stroke="none"><path d="M9 7l9 5-9 5z"/></svg>
+          </div>
+        </div>
+        <div class="contact-strip">
+          <div class="cell green">
+            <div class="label-text">Teklif için arayın</div>
+            <div class="value">+90 312 000 00 00</div>
+          </div>
+          <div class="cell">
+            <div class="label-text">E-posta</div>
+            <div class="value">info@alenerji.com.tr</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="hakkimizda">
+  <div class="wrap">
+    <div class="split" data-reveal>
+      <div class="img">
+        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1200&fit=crop" alt="AL ENERJİ tesis" loading="lazy">
+      </div>
+      <div>
+        <span class="label">Hakkımızda</span>
+        <h2>20 yılı aşkın saha<br>tecrübesi, tek disiplin.</h2>
+        <p class="lead">Üretimden depolamaya, enerji ticaretinden danışmanlığa kadar tüm değer zincirini tek elden yönetiyoruz. Avrupa standartlarında raporlama ve uzun vadeli ortaklık anlayışıyla.</p>
+        <div class="tags">
+          <div class="tag">Yenilenebilir Enerji</div>
+          <div class="tag">Enerji Depolama</div>
+          <div class="tag">Brokerage</div>
+          <div class="tag">Danışmanlık</div>
+        </div>
+        <button class="btn btn-secondary" style="margin-top:24px;"><span class="arr">Şirketi Tanıyın <span>→</span></span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARALLAX CTA -->
+<section class="cta-par-sec" id="cta-par">
+  <div class="cta-par-bg" id="cta-par-bg"></div>
+  <div class="cta-par-inner" data-reveal>
+    <span class="label" style="color:rgba(255,255,255,.45); margin-bottom:20px; display:block;">Birlikte çalışalım</span>
+    <h2>Enerji projeniz için<br><em>güvenilir</em> bir ortak.</h2>
+    <p class="lead">Üretim, depolama ve enerji ticaretinde — ölçülebilir performans, şeffaf raporlama, Avrupa standartlarında iş ortaklığı.</p>
+    <div class="cta-par-btns">
+      <button class="btn-white">Görüşme Planlayın →</button>
+      <button class="btn-ghost-w">Referanslarımız</button>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="blog-header">
+      <div>
+        <span class="label" data-reveal>Projeler</span>
+        <h2 data-reveal>Sahadaki işler.</h2>
+      </div>
+      <div class="filter-row" style="margin-bottom:0;">
+        <button class="flt active" data-f="*">Tümü</button>
+        <button class="flt" data-f="ges-res">GES / RES</button>
+        <button class="flt" data-f="depolama">BESS</button>
+        <button class="flt" data-f="ticaret">Ticaret</button>
+      </div>
+    </div>
+    <div class="grid3">
+      <div class="card prj-card" data-f="depolama" data-reveal>
+        <div class="img">
+          <img src="https://images.unsplash.com/photo-1620714223084-8fcacc2dbe4d?q=80&w=600&fit=crop" alt="Konya BESS">
+        </div>
+        <div class="body">
+          <div class="badge">BESS</div>
+          <h3>Konya Batarya Depolama Sahası</h3>
+          <div class="metric">120 MWh · 2025 · Konya, TR</div>
+        </div>
+      </div>
+      <div class="card prj-card" data-f="ges-res" data-reveal>
+        <div class="img">
+          <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=600&fit=crop" alt="İzmir GES">
+        </div>
+        <div class="body">
+          <div class="badge">GES</div>
+          <h3>İzmir Güneş Enerji Santrali</h3>
+          <div class="metric">45 MW · 2024 · İzmir, TR</div>
+        </div>
+      </div>
+      <div class="card prj-card" data-f="ticaret" data-reveal>
+        <div class="img">
+          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=600&fit=crop" alt="Dengeleme Portföyü">
+        </div>
+        <div class="body">
+          <div class="badge">TİCARET</div>
+          <h3>Çok Ülkeli Dengeleme Portföyü</h3>
+          <div class="metric">8 ülke · Sürüyor</div>
+        </div>
+      </div>
+      <div class="card prj-card" data-f="ges-res" data-reveal>
+        <div class="img">
+          <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=600&fit=crop" alt="Ege RES">
+        </div>
+        <div class="body">
+          <div class="badge">RES</div>
+          <h3>Ege Bölgesi Rüzgar Enerji Santrali</h3>
+          <div class="metric">80 MW · 2023 · İzmir, TR</div>
+        </div>
+      </div>
+      <div class="card prj-card" data-f="depolama" data-reveal>
+        <div class="img">
+          <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?q=80&w=600&fit=crop" alt="Ankara Depolama">
+        </div>
+        <div class="body">
+          <div class="badge">BESS</div>
+          <h3>Şebeke Ölçekli Depolama Sistemi</h3>
+          <div class="metric">60 MWh · 2024 · Ankara, TR</div>
+        </div>
+      </div>
+      <div class="card prj-card" data-f="ticaret" data-reveal>
+        <div class="img">
+          <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=600&fit=crop" alt="PPA Danışmanlığı">
+        </div>
+        <div class="body">
+          <div class="badge">TİCARET</div>
+          <h3>Yenilenebilir PPA Danışmanlığı</h3>
+          <div class="metric">150 MW · TR + DE</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:48px;">
+      <button class="btn btn-secondary"><span class="arr">Tüm Projeleri Gör <span>→</span></span></button>
+    </div>
+  </div>
+</section>
+
+<hr class="hr">
+
+<section class="sec">
+  <div class="wrap">
+    <div class="blog-header">
+      <div>
+        <span class="label" data-reveal>Haberler & İçgörüler</span>
+        <h2 data-reveal>Sektör perspektifi.</h2>
+      </div>
+      <div>
+        <button class="btn btn-secondary"><span class="arr">Tüm Yazılar <span>→</span></span></button>
+      </div>
+    </div>
+    <div class="blog-grid">
+      <article class="blog-feat" data-reveal>
+        <div class="img">
+          <img src="https://images.unsplash.com/photo-1620714223084-8fcacc2dbe4d?q=80&w=1200&fit=crop" alt="BESS yazısı">
+        </div>
+        <div class="body">
+          <div class="blog-cat">Enerji Depolama</div>
+          <h3>Türkiye'de Şebeke Ölçekli Batarya Depolama Sistemlerinin Geleceği</h3>
+          <p class="blog-excerpt">YEKA süreçlerinin gelişimi ve BESS yatırımlarında finansman modelleri üzerine kapsamlı bir değerlendirme. Uzman görüşleri ve pazar analizi.</p>
+          <div class="blog-meta">14 Haz 2026 · 8 dk okuma</div>
+          <a class="blog-link">Devamını Oku →</a>
+        </div>
+      </article>
+      <div class="blog-aside">
+        <article class="blog-card" data-reveal>
+          <div class="img">
+            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=400&fit=crop" alt="EPİAŞ yazısı">
+          </div>
+          <div class="body">
+            <div class="blog-cat">Enerji Piyasaları</div>
+            <h4>EPİAŞ Gün Öncesi Piyasasında Yeni Dönem</h4>
+            <p class="excerpt">Son düzenlemeler ve piyasa yapısındaki değişikliklerin analizi.</p>
+            <div class="meta">8 Haz 2026 · 5 dk</div>
+            <a class="blog-link">Oku →</a>
+          </div>
+        </article>
+        <article class="blog-card" data-reveal>
+          <div class="img">
+            <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=400&fit=crop" alt="Regülasyon yazısı">
+          </div>
+          <div class="body">
+            <div class="blog-cat">Regülasyon</div>
+            <h4>Lisanssız GES Kapasitesinde Yeni Sınır Düzenlemeleri</h4>
+            <p class="excerpt">Yenilenebilir enerji lisanslama sisteminde yaşanan değişiklikler.</p>
+            <div class="meta">1 Haz 2026 · 4 dk</div>
+            <a class="blog-link">Oku →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="background:var(--surface-alt); border-top:1px solid var(--border);">
+  <div class="wrap">
+    <div class="testi-grid">
+      <div class="orbit">
+        <div class="arc"></div>
+        <div class="main">
+          <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=600&fit=crop" alt="Müşteri">
+        </div>
+        <div class="av" style="top:30px; left:295px;" data-idx="0">
+          <img src="https://i.pravatar.cc/120?img=1" alt="Avatar">
+        </div>
+        <div class="av" style="top:110px; left:355px;" data-idx="1">
+          <img src="https://i.pravatar.cc/120?img=2" alt="Avatar">
+        </div>
+        <div class="av active" style="top:198px; left:375px;" data-idx="2">
+          <img src="https://i.pravatar.cc/120?img=3" alt="Avatar">
+        </div>
+        <div class="av" style="top:286px; left:355px;" data-idx="3">
+          <img src="https://i.pravatar.cc/120?img=4" alt="Avatar">
+        </div>
+        <div class="av" style="top:362px; left:295px;" data-idx="4">
+          <img src="https://i.pravatar.cc/120?img=5" alt="Avatar">
+        </div>
+      </div>
+      <div>
+        <span class="label" data-reveal>Referanslar</span>
+        <h2 data-reveal>Müşterilerimiz anlatıyor.</h2>
+        <div class="quote-wrap" data-reveal>
+          <p class="quote" id="quote-text">"İhtiyaç analizinden devreye almaya kadar tüm süreci tek elden, şeffaf ve zamanında yönettiler."</p>
+        </div>
+        <div class="author" data-reveal>
+          <div class="author-av" id="testi-initials">MA</div>
+          <div>
+            <div class="author-name" id="testi-name">Mehmet Aydın</div>
+            <div class="author-role" id="testi-role">Tesis Yatırımcısı</div>
+          </div>
+        </div>
+        <div class="testi-progress">
+          <div class="testi-progress-bar" id="testi-bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="sec" id="iletisim" style="background:var(--navy);">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div data-reveal>
+        <span class="label" style="color:var(--green-lt);">İletişim</span>
+        <h2 style="color:#fff;">Projenizi<br>konuşalım.</h2>
+        <p class="lead" style="margin-top:16px; color:var(--on-dark-muted);">Enerji üretimi, depolama veya ticaret konularında uzman ekibimizle görüşmek için formu doldurun.</p>
+        <div class="contact-meta">
+          <div class="contact-row" style="color:var(--on-dark-muted);">
+            <svg viewBox="0 0 24 24" width="15" height="15" stroke="var(--green-lt)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.8 19.8 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+            +90 312 000 00 00
+          </div>
+          <div class="contact-row" style="color:var(--on-dark-muted);">
+            <svg viewBox="0 0 24 24" width="15" height="15" stroke="var(--green-lt)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            info@alenerji.com.tr
+          </div>
+          <div class="contact-row" style="color:var(--on-dark-muted);">
+            <svg viewBox="0 0 24 24" width="15" height="15" stroke="var(--green-lt)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Ankara, Türkiye
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" data-reveal>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-name">Ad Soyad</label>
+            <input class="form-input" type="text" id="f-name" placeholder="Adınız Soyadınız">
+          </div>
+          <div class="form-group">
+            <label for="f-email">E-posta</label>
+            <input class="form-input" type="email" id="f-email" placeholder="ornek@sirket.com">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-phone">Telefon</label>
+            <input class="form-input" type="tel" id="f-phone" placeholder="+90 5xx xxx xx xx">
+          </div>
+          <div class="form-group">
+            <label for="f-topic">Konu</label>
+            <select class="form-input" id="f-topic">
+              <option value="" disabled selected>Seçiniz</option>
+              <option>Enerji Üretimi</option>
+              <option>BESS / Depolama</option>
+              <option>Enerji Ticareti</option>
+              <option>Danışmanlık</option>
+              <option>Diğer</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="f-msg">Mesajınız</label>
+          <textarea class="form-input" id="f-msg" rows="4" placeholder="Projeniz veya sorunuz hakkında kısaca bilgi verin…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;"><span class="arr">Gönder <span>→</span></span></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <div class="logo"><img src="Logo_white@2x.png" alt="AL ENERJİ" height="44" style="display:block; width:auto;"></div>
+        <p class="desc">Mühendislik odaklı, uzun vadeli enerji iş ortağı. 2004'ten bu yana.</p>
+        <div class="addr">
+          Mustafa Kemal Mah. Dumlupınar Blv. No:274/7<br>06530 Çankaya / Ankara<br><br>
+          +90 312 000 00 00<br>
+          info@alenerji.com.tr
+        </div>
+      </div>
+      <div>
+        <h4>Hizmetler</h4>
+        <a href="hizmetler.html#uretim">Üretim & Saha Geliştirme</a>
+        <a href="hizmetler.html#depolama">Enerji Depolama (BESS)</a>
+        <a href="hizmetler.html#ticaret">Enerji Ticareti</a>
+        <a href="hizmetler.html#danismanlik">Sürdürülebilirlik</a>
+      </div>
+      <div>
+        <h4>Kurumsal</h4>
+        <a href="hakkimizda.html">Hakkımızda</a>
+        <a href="projeler.html">Projeler</a>
+        <a href="perspektif.html">Perspektif</a>
+        <a href="#">Kariyer</a>
+      </div>
+      <div>
+        <h4>İletişim</h4>
+        <a href="mailto:info@alenerji.com.tr">info@alenerji.com.tr</a>
+        <a href="tel:+903120000000">+90 312 000 00 00</a>
+        <a href="#">LinkedIn</a>
+        <a href="iletisim.html">Bize Ulaşın</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">© 2026 AL ENERJİ. Tüm hakları saklıdır.</div>
+      <div class="footer-bottom-right">
+        <a href="#">KVKK Aydınlatma</a>
+        <a href="#">Gizlilik Politikası</a>
+        <a href="#">Kullanım Koşulları</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// NAV SCROLL STATE
+const nav = document.getElementById('nav');
+const hero = document.getElementById('hero');
+window.addEventListener('scroll', () => {
+  const heroBottom = hero.getBoundingClientRect().bottom;
+  if (heroBottom <= 64) {
+    nav.classList.add('dark-mode');
+  } else {
+    nav.classList.remove('dark-mode');
+  }
+  if (window.scrollY > 0) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+// TECH STICKY SCROLL — scroll event yerine IntersectionObserver kullanmak
+// yön sorununa neden oluyor; merkeze-en-yakın-adım yöntemi her iki yönde de çalışır
+const techStepEls = document.querySelectorAll('.tech-step');
+const featImgEls = document.querySelectorAll('.feat-img');
+if (techStepEls.length && featImgEls.length) {
+  function updateTechActive() {
+    const mid = window.innerHeight * 0.48;
+    let bestIdx = 0, bestDist = Infinity;
+    techStepEls.forEach((el, i) => {
+      const r = el.getBoundingClientRect();
+      const center = r.top + r.height * 0.5;
+      const dist = Math.abs(center - mid);
+      if (dist < bestDist) { bestDist = dist; bestIdx = i; }
+    });
+    techStepEls.forEach((el, i) => el.classList.toggle('active', i === bestIdx));
+    featImgEls.forEach((el, i) => el.classList.toggle('active', i === bestIdx));
+  }
+  window.addEventListener('scroll', () => {
+    const sec = document.getElementById('teknoloji');
+    if (!sec) return;
+    const r = sec.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) updateTechActive();
+  }, { passive: true });
+  updateTechActive();
+}
+
+// CTA PARALLAX
+const ctaParBg = document.getElementById('cta-par-bg');
+const ctaParSec = document.getElementById('cta-par');
+if (ctaParBg && ctaParSec) {
+  window.addEventListener('scroll', () => {
+    const r = ctaParSec.getBoundingClientRect();
+    if (r.bottom > 0 && r.top < window.innerHeight) {
+      const p = -r.top / window.innerHeight;
+      ctaParBg.style.transform = `translateY(${p * 38}px)`;
+    }
+  }, { passive: true });
+}
+
+// TECH SECTION PARALLAX
+const techPar = document.getElementById('tech-par');
+const techSec = document.getElementById('teknoloji');
+if (techPar && techSec) {
+  window.addEventListener('scroll', () => {
+    const rect = techSec.getBoundingClientRect();
+    if (rect.bottom > 0 && rect.top < window.innerHeight) {
+      const progress = -rect.top / window.innerHeight;
+      techPar.style.transform = `translateY(${progress * 45}px)`;
+    }
+  }, { passive: true });
+}
+
+// HERO PARALLAX
+const heroBg = document.getElementById('hero-bg');
+if (heroBg) {
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    if (scrollY < window.innerHeight * 1.5) {
+      heroBg.style.transform = `translateY(${scrollY * 0.28}px)`;
+    }
+  }, { passive: true });
+}
+
+// SCROLL REVEAL
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+document.querySelectorAll('[data-reveal]').forEach(el => {
+  const sibs = [...(el.parentElement?.children || [])].filter(c => c.hasAttribute('data-reveal'));
+  const idx = sibs.indexOf(el);
+  el.style.transitionDelay = (Math.min(idx, 6) * 0.07) + 's';
+  revealObs.observe(el);
+});
+
+document.querySelectorAll('.label').forEach(el => {
+  const idx = [...document.querySelectorAll('.label')].indexOf(el);
+  el.style.transitionDelay = (Math.min(idx, 6) * 0.07) + 's';
+  revealObs.observe(el);
+});
+
+// NUMBER COUNTER
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      const target = parseInt(el.dataset.count);
+      const suffix = el.textContent.includes('+') ? '+' : '';
+      let current = 0;
+      const start = Date.now();
+      const duration = 1800;
+      const animate = () => {
+        const elapsed = Date.now() - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        current = Math.floor(easeProgress * target);
+        el.textContent = current + suffix;
+        if (progress < 1) requestAnimationFrame(animate);
+      };
+      animate();
+      counterObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('[data-count]').forEach(el => {
+  counterObs.observe(el);
+});
+
+// PROJECT FILTER
+document.querySelectorAll('.flt').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.flt').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.f;
+    document.querySelectorAll('.prj-card').forEach(card => {
+      if (filter === '*' || card.dataset.f === filter) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+// TESTIMONIALS AUTO-ROTATE
+const testimonials = [
+  { quote: '"İhtiyaç analizinden devreye almaya kadar tüm süreci tek elden, şeffaf ve zamanında yönettiler."', name: 'Mehmet Aydın', role: 'Tesis Yatırımcısı', initials: 'MA', avIdx: 0 },
+  { quote: '"Teknik derinlikleri ve Avrupa standartlarındaki raporlama bizi en çok etkileyen özellikleriydi."', name: 'Selin Kaya', role: 'Enerji Direktörü', initials: 'SK', avIdx: 1 },
+  { quote: '"BESS projesinin her aşamasında koordinasyon mükemmeldi. Zamanında ve bütçe dahilinde teslim ettiler."', name: 'Caner Öztürk', role: 'CEO, GES A.Ş.', initials: 'CÖ', avIdx: 2 },
+  { quote: '"Enerji ticareti portföyümüzün yönetiminde sağladıkları katma değer beklentilerimizin çok ötesindeydi."', name: 'Ayşe Demirtaş', role: 'CFO, Enerji Holding', initials: 'AD', avIdx: 3 }
+];
+
+let testiIdx = 0;
+const updateTestimonial = () => {
+  const t = testimonials[testiIdx];
+  const quoteEl = document.getElementById('quote-text');
+  quoteEl.classList.add('fade');
+  setTimeout(() => {
+    quoteEl.textContent = t.quote;
+    document.getElementById('testi-name').textContent = t.name;
+    document.getElementById('testi-role').textContent = t.role;
+    document.getElementById('testi-initials').textContent = t.initials;
+    document.querySelectorAll('.orbit .av').forEach(av => av.classList.remove('active'));
+    document.querySelectorAll('.orbit .av')[t.avIdx].classList.add('active');
+    quoteEl.classList.remove('fade');
+  }, 350);
+};
+
+document.querySelectorAll('.orbit .av').forEach((av, idx) => {
+  av.addEventListener('click', () => {
+    testiIdx = idx;
+    updateTestimonial();
+    restartTestiProgress();
+  });
+});
+
+const restartTestiProgress = () => {
+  const bar = document.getElementById('testi-bar');
+  bar.style.transition = 'none';
+  bar.style.width = '0%';
+  setTimeout(() => {
+    bar.style.transition = 'width linear 5000ms';
+    bar.style.width = '100%';
+  }, 50);
+};
+
+let testiInterval = setInterval(() => {
+  testiIdx = (testiIdx + 1) % testimonials.length;
+  updateTestimonial();
+  restartTestiProgress();
+}, 5000);
+
+restartTestiProgress();
+
+// ── Hamburger menü ────────────────────────────────────────
+const burger = document.getElementById('nav-burger');
+const drawer = document.getElementById('nav-mobile');
+if (burger && drawer) {
+  burger.addEventListener('click', () => {
+    const open = burger.classList.toggle('open');
+    drawer.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    drawer.classList.remove('open');
+    burger.setAttribute('aria-expanded', false);
+    document.body.style.overflow = '';
+  }));
+}
+</script>
+</body>
+</html>
