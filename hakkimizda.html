@@ -27,11 +27,11 @@ a { color:inherit; text-decoration:none; }
 .sec { padding:var(--spy) 0; }
 .hr { height:1px; background:var(--border); border:0; }
 
-.label { display:inline-flex; align-items:center; gap:12px; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green-dk); margin-bottom:18px; }
-.label::after { content:''; order:-1; width:7px; height:7px; border-radius:9999px; background:var(--green-dk); animation:pulse 2.4s ease-in-out infinite; }
-.label::before { content:''; width:0; height:1.5px; background:var(--green-dk); transition:width .6s ease .15s; }
+.label { display:inline-flex; align-items:center; gap:12px; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green-lt); margin-bottom:18px; }
+.label::after { content:''; order:-1; width:7px; height:7px; border-radius:9999px; background:var(--green-lt); animation:labelPulse 2.4s ease-in-out infinite; }
+.label::before { content:''; width:0; height:1.5px; background:var(--green-lt); transition:width .6s ease .15s; }
 .label.in::before { width:28px; }
-@keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.35; transform:scale(.6); } }
+@keyframes labelPulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.35; transform:scale(.6); } }
 
 h1 { font-size:clamp(2.4rem,6vw,3.75rem); font-weight:700; line-height:1.05; letter-spacing:-.02em; }
 h1 em { color:var(--green-lt); font-style:italic; }
@@ -85,11 +85,6 @@ nav.dark-mode .nav-cta::before { background:rgba(255,255,255,.14); }
 .btn:hover::before { transform:translateX(0); }
 .btn-primary { background:var(--navy); color:#fff; }
 .btn-primary::before { background:var(--green-dk); }
-.btn-secondary { background:transparent; color:var(--navy); border-color:var(--navy); }
-.btn-secondary::before { background:var(--navy); }
-.btn-secondary:hover { color:#fff; }
-.btn .arr span { transition:transform .18s ease; }
-.btn:hover .arr span { transform:translateX(4px); }
 .btn-white { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:13px 26px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid #fff; background:#fff; color:var(--navy); transition:transform .15s ease; }
 .btn-white::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--green-lt); transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
 .btn-white:hover { transform:translateY(-1px); color:#fff; }
@@ -98,11 +93,6 @@ nav.dark-mode .nav-cta::before { background:rgba(255,255,255,.14); }
 .btn-ghost-w::before { content:''; position:absolute; inset:0; z-index:-1; background:rgba(255,255,255,.14); transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
 .btn-ghost-w:hover { transform:translateY(-1px); }
 .btn-ghost-w:hover::before { transform:translateX(0); }
-
-/* TAGS */
-.tags { display:flex; gap:10px; margin-top:20px; flex-wrap:wrap; }
-.tag { display:inline-flex; align-items:center; font-size:12px; border:1px solid var(--border); border-radius:4px; padding:6px 12px; transition:border-color .2s ease; }
-.tag:hover { border-color:var(--navy); }
 
 /* PAGE HERO */
 .page-hero { position:relative; height:52vh; min-height:400px; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; }
@@ -139,24 +129,31 @@ nav.dark-mode .nav-cta::before { background:rgba(255,255,255,.14); }
 .split .img { border-radius:var(--r-card); overflow:hidden; border:1px solid var(--border); }
 .split .img img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .8s ease; }
 .split .img:hover img { transform:scale(1.03); }
-.split-img-tall { height:480px; }
-.split-img-sq { height:400px; }
+.split-img-tall { height:540px; }
 .story-body { display:flex; flex-direction:column; gap:16px; }
 .story-body p { color:var(--text-2); font-size:15.5px; line-height:1.75; }
 
-/* TIMELINE DOTS */
+/* TIMELINE */
 .milestones { display:flex; flex-direction:column; gap:0; margin-top:40px; border-left:1.5px solid var(--border); padding-left:28px; }
-.milestone { position:relative; padding-bottom:28px; }
+.milestone { position:relative; padding-bottom:24px; }
 .milestone:last-child { padding-bottom:0; }
 .milestone::before { content:''; position:absolute; left:-35px; top:5px; width:10px; height:10px; border-radius:9999px; background:var(--surface); border:1.5px solid var(--border-strong); transition:border-color .2s, background .2s; }
 .milestone:hover::before { border-color:var(--green-dk); background:var(--green-lt); }
-.milestone-year { font-family:var(--fm); font-size:11px; letter-spacing:.12em; color:var(--green-dk); margin-bottom:4px; }
-.milestone-text { font-size:14.5px; color:var(--text-2); line-height:1.6; }
+.milestone-year { font-family:var(--fm); font-size:11px; letter-spacing:.12em; color:var(--green-lt); margin-bottom:4px; }
+.milestone-text { font-size:14px; color:var(--text-2); line-height:1.6; }
 
-/* VALUES */
+/* CEO QUOTE */
+.quote-sec { padding:96px 0; background:var(--navy); }
+.quote-inner { max-width:820px; margin:0 auto; text-align:center; padding:0 var(--gut); }
+.quote-open { font-size:5rem; color:var(--green-lt); opacity:.25; line-height:.7; margin-bottom:16px; font-family:Georgia, serif; }
+.quote-body { font-size:clamp(1.05rem,1.8vw,1.3rem); font-weight:500; line-height:1.8; color:rgba(244,246,244,.82); letter-spacing:-.01em; }
+.quote-body em { font-style:normal; color:var(--green-lt); }
+.quote-attr { margin-top:40px; font-family:var(--fm); font-size:11px; letter-spacing:.14em; color:rgba(244,246,244,.28); text-transform:uppercase; }
+
+/* VALUES / 4 PILLARS */
 .values-intro { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:end; margin-bottom:52px; }
 @media(max-width:768px) { .values-intro { grid-template-columns:1fr; gap:24px; } }
-.values-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.values-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
 @media(max-width:768px) { .values-grid { grid-template-columns:1fr; } }
 .value-card { border:1px solid var(--border); border-radius:var(--r-card); padding:36px 28px; background:var(--surface); transition:border-color .22s ease, transform .22s ease; }
 .value-card:hover { border-color:var(--green-dk); transform:translateY(-3px); }
@@ -165,24 +162,8 @@ nav.dark-mode .nav-cta::before { background:rgba(255,255,255,.14); }
 .value-ico { width:44px; height:44px; border:1px solid var(--border); border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; transition:border-color .22s, background .22s; }
 .value-card:hover .value-ico { border-color:var(--green-dk); background:rgba(31,61,51,.05); }
 .value-ico svg { width:20px; height:20px; stroke:var(--green-dk); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
-.value-card h3 { margin-bottom:12px; font-size:1.125rem; }
-.value-card p { color:var(--text-2); font-size:14.5px; line-height:1.7; }
-
-/* TEAM */
-.team-intro { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:end; margin-bottom:52px; }
-@media(max-width:768px) { .team-intro { grid-template-columns:1fr; gap:24px; } }
-.team-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
-@media(max-width:900px) { .team-grid { grid-template-columns:repeat(2,1fr); } }
-@media(max-width:480px) { .team-grid { grid-template-columns:1fr; } }
-.team-card { border:1px solid var(--border); border-radius:var(--r-card); overflow:hidden; background:var(--surface); transition:border-color .22s ease, transform .22s ease; }
-.team-card:hover { border-color:var(--navy); transform:translateY(-3px); }
-.team-photo { height:260px; overflow:hidden; background:var(--surface-alt); }
-.team-photo img { width:100%; height:100%; object-fit:cover; filter:grayscale(.2); transition:filter .4s ease, transform .5s ease; display:block; }
-.team-card:hover .team-photo img { filter:none; transform:scale(1.05); }
-.team-info { padding:20px 20px 22px; }
-.team-name { font-weight:700; font-size:1rem; }
-.team-role { font-size:13px; color:var(--muted); margin-top:4px; }
-.team-dept { display:inline-block; font-family:var(--fm); font-size:10px; color:var(--green-dk); border:1px solid var(--border); border-radius:4px; padding:3px 10px; margin-top:12px; letter-spacing:.06em; }
+.value-card h3 { margin-bottom:12px; font-size:1.0625rem; }
+.value-card p { color:var(--text-2); font-size:14px; line-height:1.72; }
 
 /* CERTIFICATIONS */
 .cert-row { display:grid; grid-template-columns:repeat(5,1fr); border:1px solid var(--border); border-radius:var(--r-card); overflow:hidden; background:var(--surface); }
@@ -208,7 +189,7 @@ nav.dark-mode .nav-cta::before { background:rgba(255,255,255,.14); }
     url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2000&fit=crop') center/cover no-repeat;
 }
 .cta-par-inner { position:relative; z-index:1; text-align:center; max-width:780px; padding:56px var(--gut); margin:0 auto; }
-.cta-par-inner h2 { color:#fff; font-size:clamp(2.8rem,5.5vw,4.5rem); font-weight:700; line-height:1.05; letter-spacing:-.02em; }
+.cta-par-inner h2 { color:#fff; font-size:clamp(2rem,4vw,3rem); font-weight:700; line-height:1.1; letter-spacing:-.02em; }
 .cta-par-inner h2 em { font-style:italic; color:var(--green-lt); }
 .cta-par-inner .lead { color:rgba(244,246,244,.58); margin-top:20px; max-width:52ch; margin-left:auto; margin-right:auto; }
 .cta-par-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:36px; }
@@ -273,8 +254,8 @@ footer a:hover { color:#fff; }
       <span class="sep">/</span>
       <span class="current">Hakkımızda</span>
     </div>
-    <h1>20 yılı aşkın<br><em>saha tecrübesi.</em></h1>
-    <p class="lead">2004'ten bu yana enerji üretimi, depolama ve ticaretinde — tek elden, şeffaf ve ölçülebilir.</p>
+    <h1>Enerjinin<br><em>Mühendislik Hali.</em></h1>
+    <p class="lead">2004'ten bu yana serbest enerji piyasasının her aşamasında — geliştirme, lisanslama, EPC, karbon sertifikasyonu ve M&A brokerage.</p>
   </div>
 </section>
 
@@ -283,59 +264,63 @@ footer a:hover { color:#fff; }
   <div class="wrap">
     <div class="stats-bar" data-reveal>
       <div class="stat-item">
-        <div class="stat-val">20+</div>
-        <div class="stat-label">Yıl deneyim</div>
+        <div class="stat-val">22+</div>
+        <div class="stat-label">Yıl saha deneyimi</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val">500+</div>
-        <div class="stat-label">MW kapasite</div>
+        <div class="stat-val">80 MW</div>
+        <div class="stat-label">Geliştirilen ve satılan HES</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val">100+</div>
-        <div class="stat-label">Tamamlanan proje</div>
+        <div class="stat-val">295+ MW</div>
+        <div class="stat-label">RES proje portföyü</div>
       </div>
       <div class="stat-item">
-        <div class="stat-val">12</div>
-        <div class="stat-label">Ülke</div>
+        <div class="stat-val">220+ MW</div>
+        <div class="stat-label">GES EPC hacmi</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HIKAYE / STORY -->
+<!-- HİKAYE -->
 <section class="sec" id="hikaye">
   <div class="wrap">
     <div class="split">
       <div class="split-img-tall img" data-reveal>
-        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1000&fit=crop" alt="AL ENERJİ tesis" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1000&fit=crop" alt="AL ENERJİ saha çalışması" loading="lazy">
       </div>
       <div data-reveal>
         <span class="label">Hikayemiz</span>
-        <h2>Enerji sektörünün her boyutunda, başından beri.</h2>
-        <div class="story-body" style="margin-top:24px;">
-          <p>AL ENERJİ, Türkiye'nin yenilenebilir enerji dönüşümünün henüz başladığı 2004 yılında Ankara'da kuruldu. Kuruluşundan bu yana yenilenebilir üretim, enerji depolama ve ticaret alanlarında bütünleşik bir yapı olarak büyüdü.</p>
-          <p>Bugün Türkiye'nin dört bir yanındaki GES ve RES sahalarının yanı sıra Orta Asya ve Orta Doğu'da da aktif proje portföyüyle faaliyet gösteriyoruz. Her projede mühendislik disiplini, şeffaf raporlama ve uzun vadeli ortaklık anlayışını merkeze alıyoruz.</p>
+        <h2>Kilometre Taşları</h2>
+        <div class="story-body" style="margin-top:20px;">
+          <p>2004 yılından bu yana serbest enerji piyasasının her aşamasına bizzat tanıklık ettik; ilk saha etütlerinden lisanslama ve kamu ihalelerine, öz mal santral kurulumlarından uluslararası varlık devirlerine kadar enerjinin tüm yaşam döngüsünü yönettik.</p>
+          <p>Teorik varsayımlarla değil, gerçekleşmiş saha verileriyle, saatlik simülasyonlarla, hukuki güvenceyle ve yüksek mühendislik disipliniyle piyasa oyuncuları ve yatırımcılar için sarsılmaz bir güven köprüsü inşa ediyoruz.</p>
         </div>
         <div class="milestones">
           <div class="milestone">
-            <div class="milestone-year">2004</div>
-            <div class="milestone-text">Ankara'da kuruldu. İlk GES geliştirme projesi başladı.</div>
+            <div class="milestone-year">2004 — 2010</div>
+            <div class="milestone-text">Akarsu HES geliştirme ve portföy danışmanlığı. Toplam kurulu gücü 80 MW'ı bulan 9 HES projesini 0'dan geliştirip sattık; 480 MW yakın HES portföyüne danışmanlık yürüttük.</div>
+          </div>
+          <div class="milestone">
+            <div class="milestone-year">2007 — 2015</div>
+            <div class="milestone-text">Rüzgar enerjisi geliştirme hamlesi. Türkiye genelinde 295,6 MW'lık RES portföyü geliştirildi; 2011 TEİAŞ ihalelerinde 74,2 MW lisanslı RES gücü kazanıldı.</div>
+          </div>
+          <div class="milestone">
+            <div class="milestone-year">2007 — 2016</div>
+            <div class="milestone-text">South Pole iş birliğiyle uluslararası karbon sertifikasyonu. Çaldere HES (VCS), Dora-1 JES (VCS) ve Dora-2 JES (Gold Standard) tesislerinin uluslararası tescilleri tamamlandı.</div>
           </div>
           <div class="milestone">
             <div class="milestone-year">2010</div>
-            <div class="milestone-text">RES projelerine giriş. 100 MW eşiği aşıldı.</div>
+            <div class="milestone-text">Özelleştirme İdaresi (ÖİB) HES ihaleleri. 3 portföy grubunda teknik saha incelemesi, değerleme raporlaması ve ihale süreçleri yürütüldü.</div>
           </div>
           <div class="milestone">
-            <div class="milestone-year">2018</div>
-            <div class="milestone-text">BESS (enerji depolama) bölümü kuruldu. EPİAŞ lisansı alındı.</div>
+            <div class="milestone-year">2016 — 2020</div>
+            <div class="milestone-text">GES EPC, öz mal kurulumları ve tesis denetimleri. Arazi ve çatı GES projelerinde 220 MW+ mühendislik, EPC ve bağımsız denetim hacmine ulaşıldı.</div>
           </div>
           <div class="milestone">
-            <div class="milestone-year">2022</div>
-            <div class="milestone-text">Uluslararası ticaret masası açıldı. 12 ülkeye ulaşıldı.</div>
-          </div>
-          <div class="milestone">
-            <div class="milestone-year">2024</div>
-            <div class="milestone-text">500+ MW aktif kapasite. Avrupa raporlama standartlarına geçiş.</div>
+            <div class="milestone-year">2021 — 2026</div>
+            <div class="milestone-text">BESS entegrasyonu, M&A Brokerage ve bölgesel açılım. 20 yıllık geliştirici tecrübesiyle Proje Brokerage hizmeti müstakil bir iş alanına dönüştürüldü; Doğu Avrupa ve AB pazarları takibe alındı.</div>
           </div>
         </div>
       </div>
@@ -343,106 +328,68 @@ footer a:hover { color:#fff; }
   </div>
 </section>
 
-<!-- DEĞERLER / VALUES -->
+<!-- YÖNETİM MESAJI -->
+<section class="quote-sec">
+  <div class="quote-inner" data-reveal>
+    <div class="quote-open">&ldquo;</div>
+    <p class="quote-body">
+      Bir projeyi geliştirmek, işletmek veya devretmek; sadece bugünün rakamlarını değil, yılın <em>8.760 saatinin</em> her anındaki risk ve fırsat dengesini doğru okumaktır. Bu yüzden felsefemizin merkezine <em>'Mühendislik Hassasiyeti'</em> kavramını koyduk. Kağıt üzerindeki vaatlere değil, sahada doğrulanmış veriye ve hukuki güvenceye inanıyoruz.
+    </p>
+    <div class="quote-attr">— AL ENERJİ Yönetimi</div>
+  </div>
+</section>
+
+<!-- 4 TEMEL SÜTUN -->
 <section class="sec" style="background:var(--surface-alt); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
   <div class="wrap">
     <div class="values-intro">
       <div data-reveal>
-        <span class="label">Değerlerimiz</span>
-        <h2>Kararlarımızın arkasındaki ilkeler.</h2>
+        <span class="label">Bizi Biz Yapan</span>
+        <h2>Dört Temel Sütun.</h2>
       </div>
       <div data-reveal>
-        <p class="lead">Her projeyi uzun vadeli bir ilişkinin başlangıcı olarak görüyoruz. Bu anlayış, tüm iş yapma biçimimizi şekillendiriyor.</p>
+        <p class="lead">Uygulayıcı ve yatırımcı kökenli bir yapı olarak hem sahayı hem piyasayı bilen ekibimizle, müşterilerimize teorinin ötesinde somut değer yaratıyoruz.</p>
       </div>
     </div>
     <div class="values-grid">
       <div class="value-card" data-reveal>
         <span class="value-num">01</span>
         <div class="value-ico">
-          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
         </div>
-        <h3>Mühendislik Odaklılık</h3>
-        <p>Her karar veri ve teknik analiz üzerine inşa edilir. Saha deneyimimiz ve analitik altyapımız, isabetli öngörüler üretmemizi sağlar.</p>
+        <h3>Uygulayıcı ve Yatırımcı Kökenli Olmak</h3>
+        <p>Kendi öz mal santrallerimizi sıfırdan lisanslayıp sattık, 295,6 MW RES portföyü geliştirdik. Hem yatırımcının hem saha mühendisinin dilini en iyi biz konuşuruz; masa başı danışmanlığının ötesinde gerçek saha deneyimi sunuyoruz.</p>
       </div>
       <div class="value-card" data-reveal>
         <span class="value-num">02</span>
         <div class="value-ico">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
         </div>
-        <h3>Şeffaflık</h3>
-        <p>Tüm proje süreçleri, finansal veriler ve performans raporları açık paylaşılır. Gizli maliyet yoktur; her şey önceden tanımlanır.</p>
+        <h3>Müşavirliğin Ötesinde Hukuki & Sözleşmesel Güç</h3>
+        <p>Proje alım-satımlarında (M&A) bizzat proje geliştirip satmış olmaktan gelen sözleşme tecrübemiz en büyük farkımızdır. Uzman enerji hukukçularımızla SPA ve SHA süreçlerinde teknik ve hukuki riskleri sıfırlayan çözümler sunarız.</p>
       </div>
       <div class="value-card" data-reveal>
         <span class="value-num">03</span>
         <div class="value-ico">
-          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/><path d="M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/></svg>
         </div>
-        <h3>Uzun Vadeli Ortaklık</h3>
-        <p>Tek seferlik işlemler değil, sürdürülebilir iş ilişkileri kuruyoruz. Projenin devreye alınmasından sonra da teknik desteğimiz devam eder.</p>
+        <h3>Mühendislik Hassasiyeti & Teknolojik Entegrasyon</h3>
+        <p>Santrallerimizi afaki kabullerle değil; 8.760 saatlik nakit akış simülasyonları, PVSyst/WAsP analizleri ve BESS esnekliğiyle tasarlarız. Saha testleri (Termal Drone, I-V Curve, EL) ve IEC standartlarıyla bilginin doğruluğunu garanti ederiz.</p>
+      </div>
+      <div class="value-card" data-reveal>
+        <span class="value-num">04</span>
+        <div class="value-ico">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+        </div>
+        <h3>Uluslararası Standartlar ve Karbon Bilinci</h3>
+        <p>South Pole ortaklığıyla küresel karbon sertifikasyonlarına (VCS & Gold Standard) dönüştürdüğümüz 9 yıllık tescil ve doğrulama tecrübemiz var. Tüm teknik altyapımızı Avrupa Şebeke Kodları ve uluslararası bankalanabilirlik kriterlerine uyumlu yönetiriz.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- EKİP / TEAM -->
-<section class="sec" id="ekip">
-  <div class="wrap">
-    <div class="team-intro">
-      <div data-reveal>
-        <span class="label">Ekibimiz</span>
-        <h2>Sahayı ve piyasayı<br>bilen uzmanlar.</h2>
-      </div>
-      <div data-reveal>
-        <p class="lead">Mühendislik, finans ve enerji ticareti alanlarından gelen disiplinler arası bir ekiple çalışıyoruz.</p>
-      </div>
-    </div>
-    <div class="team-grid">
-      <div class="team-card" data-reveal>
-        <div class="team-photo">
-          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=600&fit=crop" alt="Ahmet Yılmaz" loading="lazy">
-        </div>
-        <div class="team-info">
-          <div class="team-name">Ahmet Yılmaz</div>
-          <div class="team-role">Genel Müdür</div>
-          <div class="team-dept">Yönetim</div>
-        </div>
-      </div>
-      <div class="team-card" data-reveal>
-        <div class="team-photo">
-          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=600&fit=crop" alt="Fatma Kaya" loading="lazy">
-        </div>
-        <div class="team-info">
-          <div class="team-name">Fatma Kaya</div>
-          <div class="team-role">Teknik Direktör</div>
-          <div class="team-dept">Mühendislik</div>
-        </div>
-      </div>
-      <div class="team-card" data-reveal>
-        <div class="team-photo">
-          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&fit=crop" alt="Mehmet Demir" loading="lazy">
-        </div>
-        <div class="team-info">
-          <div class="team-name">Mehmet Demir</div>
-          <div class="team-role">Ticaret Müdürü</div>
-          <div class="team-dept">Enerji Ticareti</div>
-        </div>
-      </div>
-      <div class="team-card" data-reveal>
-        <div class="team-photo">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&fit=crop" alt="Selin Arslan" loading="lazy">
-        </div>
-        <div class="team-info">
-          <div class="team-name">Selin Arslan</div>
-          <div class="team-role">Sürdürülebilirlik Direktörü</div>
-          <div class="team-dept">ESG & Raporlama</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERTİFİKALAR -->
-<section style="padding:72px 0; background:var(--surface-alt); border-top:1px solid var(--border);">
+<!-- SERTİFİKALAR & LİSANSLAR -->
+<section style="padding:72px 0; background:var(--surface); border-bottom:1px solid var(--border);">
   <div class="wrap">
     <div style="text-align:center; margin-bottom:48px;" data-reveal>
       <span class="label">Sertifikasyon & Lisanslar</span>
@@ -453,22 +400,22 @@ footer a:hover { color:#fff; }
         <div class="cert-badge">
           <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <div class="cert-name">ISO 9001</div>
-        <div class="cert-desc">Kalite Yönetimi</div>
+        <div class="cert-name">South Pole</div>
+        <div class="cert-desc">Karbon Sertifikasyon Ortağı</div>
       </div>
       <div class="cert-item">
         <div class="cert-badge">
-          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
-        <div class="cert-name">ISO 14001</div>
-        <div class="cert-desc">Çevre Yönetimi</div>
+        <div class="cert-name">VCS</div>
+        <div class="cert-desc">Voluntary Carbon Standard</div>
       </div>
       <div class="cert-item">
         <div class="cert-badge">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
         </div>
-        <div class="cert-name">ISO 45001</div>
-        <div class="cert-desc">İş Sağlığı & Güvenliği</div>
+        <div class="cert-name">Gold Standard</div>
+        <div class="cert-desc">Karbon Emisyon Azaltımı</div>
       </div>
       <div class="cert-item">
         <div class="cert-badge">
@@ -492,12 +439,12 @@ footer a:hover { color:#fff; }
 <section class="cta-par-sec" id="cta-par">
   <div class="cta-par-bg" id="cta-par-bg"></div>
   <div class="cta-par-inner" data-reveal>
-    <span class="label" style="color:rgba(255,255,255,.45); margin-bottom:20px; display:block;">Birlikte çalışalım</span>
-    <h2>Enerji projeniz için<br><em>güvenilir</em> bir ortak.</h2>
-    <p class="lead">Üretim, depolama ve enerji ticaretinde — ölçülebilir performans, şeffaf raporlama, Avrupa standartlarında iş ortaklığı.</p>
+    <span class="label" style="color:rgba(255,255,255,.45); margin-bottom:20px; display:block; justify-content:center;">Birlikte Çalışalım</span>
+    <h2>Enerji Yatırımlarınızda<br>20 Yıllık Birikimimizle<br><em>Yanınızdayız.</em></h2>
+    <p class="lead">Projelerinizi geliştirmek, tesislerinizi bağımsız teknik gözle denetlemek veya şeffaf M&A portföyümüzü incelemek için uzman ekibimizle iletişime geçin.</p>
     <div class="cta-par-btns">
-      <button class="btn-white">Görüşme Planlayın →</button>
-      <button class="btn-ghost-w">Projelerimiz</button>
+      <button class="btn-white" onclick="location.href='iletisim.html'">Görüşme Planlayın →</button>
+      <button class="btn-ghost-w" onclick="location.href='projeler.html'">Projelerimizi İnceleyin</button>
     </div>
   </div>
 </section>
@@ -519,15 +466,15 @@ footer a:hover { color:#fff; }
         <h4>Hizmetler</h4>
         <a href="hizmetler.html#uretim">Üretim & Saha Geliştirme</a>
         <a href="hizmetler.html#depolama">Enerji Depolama (BESS)</a>
-        <a href="hizmetler.html#ticaret">Enerji Ticareti</a>
-        <a href="hizmetler.html#danismanlik">Sürdürülebilirlik</a>
+        <a href="hizmetler.html#brokerage">M&A Brokerage</a>
+        <a href="hizmetler.html#denetim">Saha Denetimi</a>
       </div>
       <div>
         <h4>Kurumsal</h4>
         <a href="hakkimizda.html">Hakkımızda</a>
         <a href="projeler.html">Projeler</a>
         <a href="perspektif.html">Perspektif</a>
-        <a href="iletisim.html">Kariyer</a>
+        <a href="iletisim.html">İletişim</a>
       </div>
       <div>
         <h4>İletişim</h4>
@@ -549,7 +496,7 @@ footer a:hover { color:#fff; }
 </footer>
 
 <script>
-// NAV — inner page: dark-mode when page hero visible, light after
+// NAV
 const nav = document.getElementById('nav');
 const pageHero = document.getElementById('page-hero');
 nav.classList.add('dark-mode');
@@ -587,7 +534,7 @@ if (ctaParBg) {
 // SCROLL REVEAL
 const revealEls = document.querySelectorAll('[data-reveal]');
 const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
+  entries.forEach((e) => {
     if (e.isIntersecting) {
       const siblings = [...e.target.parentElement.querySelectorAll('[data-reveal]')];
       const idx = siblings.indexOf(e.target);
