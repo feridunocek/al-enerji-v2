@@ -44,25 +44,18 @@ h4 { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--
 .demobar { display:none; }
 
 /* NAVIGATION */
-nav { position:sticky; top:0; z-index:50; height:64px; display:flex; align-items:center; background:rgba(251,252,251,.85); backdrop-filter:blur(10px); }
-nav.dark-mode { background:rgba(11,20,48,.72); backdrop-filter:blur(10px); }
-nav.scrolled { border-bottom:1px solid var(--border); }
+nav { position:sticky; top:0; z-index:50; height:64px; display:flex; align-items:center; background:rgba(251,252,251,.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); }
 nav .wrap { display:flex; align-items:center; justify-content:space-between; width:100%; }
 .logo { display:flex; align-items:center; }
 .logo-light { display:block; }
 .logo-dark  { display:none; }
-nav.dark-mode .logo-light { display:none; }
-nav.dark-mode .logo-dark  { display:block; }
 
 .navlinks { display:flex; gap:32px; font-size:14px; font-weight:500; color:var(--text); }
-nav.dark-mode .navlinks { color:#fff; }
 .navlinks a { position:relative; cursor:pointer; }
 .navlinks a::after { content:''; position:absolute; left:0; bottom:-5px; height:1.5px; width:0; background:var(--green-dk); transition:width .22s ease; }
-nav.dark-mode .navlinks a::after { background:var(--green-lt); }
 .navlinks a:hover::after { width:100%; }
-.nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; cursor:pointer; padding:6px; border:none; background:transparent; border-radius:4px; }
+.nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; cursor:pointer; padding:11px 10px; border:none; background:transparent; border-radius:4px; }
 .nav-burger span { display:block; width:22px; height:1.5px; background:var(--text); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
-nav.dark-mode .nav-burger span { background:#fff; }
 .nav-burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
 .nav-burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
 .nav-burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
@@ -74,13 +67,10 @@ nav.dark-mode .nav-burger span { background:#fff; }
 @media(max-width:768px) { .navlinks { display:none; } .nav-burger { display:flex; } }
 
 .nav-cta { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:11px 22px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid transparent; transition:transform .15s ease, background .15s ease; background:var(--navy); color:#fff; }
-nav.dark-mode .nav-cta { background:transparent; border-color:rgba(255,255,255,.28); color:#fff; }
 .nav-cta::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--green-dk); transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
-nav.dark-mode .nav-cta::before { background:rgba(255,255,255,.14); }
 .nav-cta:hover { transform:translateY(-1px); }
 .nav-cta:hover::before { transform:translateX(0); }
 .nav-cta:hover { color:#fff; }
-nav.dark-mode .nav-cta:hover { color:#fff; }
 
 /* HERO */
 .hero { position:relative; height:100svh; min-height:640px; display:flex; flex-direction:column; overflow:hidden; z-index:1; }
@@ -425,6 +415,10 @@ footer a:hover { color:#fff; }
 [data-reveal].in { opacity:1; transform:none; }
 @media(prefers-reduced-motion:reduce) { [data-reveal] { opacity:1; transform:none; transition:none; } .label::after { animation:none; } .marquee { animation:none; } }
 </style>
+  <link rel="stylesheet" href="brand-assets.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/brand/favicon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/brand/apple-touch-icon.png">
 </head>
 <body>
 
@@ -433,8 +427,8 @@ footer a:hover { color:#fff; }
 <nav id="nav">
   <div class="wrap">
     <div class="logo">
-      <img class="logo-light" src="Logo_black@2x.png" alt="AL ENERJİ" height="42" style="width:auto;">
-      <img class="logo-dark"  src="Logo_white@2x.png" alt="AL ENERJİ" height="42" style="width:auto;">
+      <img class="logo-light" src="assets/brand/V2.png" alt="AL ENERJİ" height="42" style="width:auto;">
+      <img class="logo-dark"  src="assets/brand/al_enerji_logo_white.png" alt="AL ENERJİ" height="42" style="width:auto;">
     </div>
     <div class="navlinks">
       <a href="hizmetler.html">Hizmetler</a>
@@ -710,7 +704,7 @@ footer a:hover { color:#fff; }
         <div class="contact-strip">
           <div class="cell green">
             <div class="label-text">Teklif için arayın</div>
-            <div class="value">+90 312 000 00 00</div>
+            <div class="value">+90 212 234 38 38</div>
           </div>
           <div class="cell">
             <div class="label-text">E-posta</div>
@@ -952,7 +946,7 @@ footer a:hover { color:#fff; }
         <div class="contact-meta">
           <div class="contact-row" style="color:var(--on-dark-muted);">
             <svg viewBox="0 0 24 24" width="15" height="15" stroke="var(--green-lt)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.8 19.8 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
-            +90 312 000 00 00
+            +90 212 234 38 38
           </div>
           <div class="contact-row" style="color:var(--on-dark-muted);">
             <svg viewBox="0 0 24 24" width="15" height="15" stroke="var(--green-lt)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -1006,11 +1000,11 @@ footer a:hover { color:#fff; }
   <div class="wrap">
     <div class="grid">
       <div>
-        <div class="logo"><img src="Logo_white@2x.png" alt="AL ENERJİ" height="44" style="display:block; width:auto;"></div>
+        <div class="logo"><img src="assets/brand/al_enerji_logo_white.png" alt="AL ENERJİ" height="44" style="display:block; width:auto;"></div>
         <p class="desc">Mühendislik odaklı, uzun vadeli enerji iş ortağı. 2004'ten bu yana.</p>
         <div class="addr">
-          Mustafa Kemal Mah. Dumlupınar Blv. No:274/7<br>06530 Çankaya / Ankara<br><br>
-          +90 312 000 00 00<br>
+          Nef 09 B Blok No:104<br>Kağıthane / İstanbul<br><br>
+          +90 212 234 38 38<br>
           info@alenerji.com.tr
         </div>
       </div>
@@ -1031,7 +1025,7 @@ footer a:hover { color:#fff; }
       <div>
         <h4>İletişim</h4>
         <a href="mailto:info@alenerji.com.tr">info@alenerji.com.tr</a>
-        <a href="tel:+903120000000">+90 312 000 00 00</a>
+        <a href="tel:+902122343838">+90 212 234 38 38</a>
         <a href="#">LinkedIn</a>
         <a href="iletisim.html">Bize Ulaşın</a>
       </div>
@@ -1039,9 +1033,8 @@ footer a:hover { color:#fff; }
     <div class="footer-bottom">
       <div class="footer-bottom-left">© 2026 AL ENERJİ. Tüm hakları saklıdır.</div>
       <div class="footer-bottom-right">
-        <a href="#">KVKK Aydınlatma</a>
-        <a href="#">Gizlilik Politikası</a>
-        <a href="#">Kullanım Koşulları</a>
+        <a href="kvkk-aydinlatma.html">KVKK Aydınlatma</a>
+        <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
       </div>
     </div>
   </div>
@@ -1054,14 +1047,7 @@ const hero = document.getElementById('hero');
 window.addEventListener('scroll', () => {
   const heroBottom = hero.getBoundingClientRect().bottom;
   if (heroBottom <= 64) {
-    nav.classList.add('dark-mode');
   } else {
-    nav.classList.remove('dark-mode');
-  }
-  if (window.scrollY > 0) {
-    nav.classList.add('scrolled');
-  } else {
-    nav.classList.remove('scrolled');
   }
 });
 

@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AL ENERJİ — Engineering-led renewable energy partner offering project development, EPC, BESS storage and M&A brokerage services in Turkey since 2004.">
+<meta property="og:title" content="AL ENERJİ — Engineering-Led Renewable Energy">
+<meta property="og:description" content="AL ENERJİ — Engineering-led renewable energy partner offering project development, EPC, BESS storage and M&A brokerage services in Turkey since 2004.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://al-enerji-v2.vercel.app/en/index.html">
+<link rel="canonical" href="https://al-enerji-v2.vercel.app/en/index.html">
+<link rel="alternate" hreflang="tr" href="https://al-enerji-v2.vercel.app/">
+<link rel="alternate" hreflang="en" href="https://al-enerji-v2.vercel.app/en/index.html">
+<link rel="alternate" hreflang="x-default" href="https://al-enerji-v2.vercel.app/">
+<title>AL ENERJİ — Engineering-Led Renewable Energy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#0B1430; --green-dk:#1F3D33; --green-lt:#5DB38A;
+  --bg:#FBFCFB; --surface:#FFFFFF; --surface-alt:#EFF1EF;
+  --border:#D6D9D5; --border-strong:#B9BFBA;
+  --text:#0B1430; --text-2:#3A4356; --muted:#6B7280;
+  --on-dark:#F4F6F4; --on-dark-muted:rgba(244,246,244,.6);
+  --fh:'Hanken Grotesk',sans-serif; --fm:'JetBrains Mono',monospace;
+  --max:1200px; --gut:64px; --spy:96px; --r-ctrl:9999px; --r-card:8px;
+}
+@media(max-width:768px) { :root { --gut:24px; --spy:64px; } .hero-center { padding-top:64px; padding-bottom:40px; } }
+
+* { box-sizing:border-box; margin:0; padding:0; }
+img { max-width:100%; display:block; }
+html { scroll-behavior:smooth; }
+body { font-family:var(--fh); background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
+a { color:inherit; text-decoration:none; }
+.wrap { max-width:var(--max); margin:0 auto; padding:0 var(--gut); }
+.sec { padding:var(--spy) 0; }
+.hr { height:1px; background:var(--border); border:0; }
+
+.label { display:inline-flex; align-items:center; gap:12px; font-size:14px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green-lt); margin-bottom:18px; }
+.label::after { content:''; order:-1; width:7px; height:7px; border-radius:9999px; background:var(--green-lt); animation:labelPulse 2.4s ease-in-out infinite; }
+.label::before { content:''; width:0; height:1.5px; background:var(--green-lt); transition:width .6s ease .15s; }
+.label.in::before { width:28px; }
+@keyframes labelPulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.35; transform:scale(.6); } }
+@media(prefers-reduced-motion:reduce) { .label::after { animation:none; } }
+
+h1 { font-size:clamp(2.4rem,6vw,3.75rem); font-weight:700; line-height:1.05; letter-spacing:-.02em; }
+h2 { font-size:clamp(1.7rem,3.5vw,2.1rem); font-weight:700; line-height:1.12; letter-spacing:-.02em; }
+h3 { font-size:1.375rem; font-weight:600; line-height:1.25; }
+.lead { font-size:1.0625rem; color:var(--text-2); max-width:54ch; margin-top:18px; }
+.mono { font-family:var(--fm); }
+
+/* NAVIGATION */
+nav { position:sticky; top:0; z-index:50; height:64px; display:flex; align-items:center; background:rgba(251,252,251,.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); }
+nav .wrap { display:flex; align-items:center; justify-content:space-between; width:100%; }
+.logo img { height:38px; width:auto; }
+.navlinks { display:flex; gap:32px; font-size:14px; font-weight:500; color:var(--text); }
+.navlinks a:hover { color:var(--green-dk); }
+.nav-cta { display:inline-flex; align-items:center; gap:6px; padding:11px 22px; border-radius:var(--r-ctrl); font-size:14px; font-weight:600; background:var(--navy); color:#fff; }
+.nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; cursor:pointer; padding:11px 10px; border:none; background:transparent; border-radius:4px; }
+.nav-burger span { display:block; width:22px; height:1.5px; background:var(--text); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
+.nav-burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+.nav-mobile { position:fixed; top:64px; left:0; right:0; background:var(--surface); z-index:99; padding:24px var(--gut) 32px; border-top:1px solid var(--border); box-shadow:0 8px 32px rgba(0,0,0,.1); opacity:0; transform:translateY(-6px); pointer-events:none; transition:opacity .22s ease, transform .22s ease; }
+.nav-mobile.open { opacity:1; transform:none; pointer-events:all; }
+.nav-mobile a { display:block; font-size:1rem; font-weight:600; padding:13px 0; border-bottom:1px solid var(--border); color:var(--text); }
+.nav-mobile a:last-of-type { border-bottom:0; }
+.nav-mobile .mob-cta { display:block; margin-top:20px; text-align:center; background:var(--navy); color:#fff !important; padding:14px; border-radius:var(--r-ctrl); font-weight:600; }
+@media(max-width:768px) { .navlinks, .nav-cta { display:none; } .nav-burger { display:flex; } }
+
+/* HERO */
+.hero { position:relative; min-height:92svh; display:flex; flex-direction:column; overflow:hidden; }
+.hero-bg { position:absolute; inset:0; z-index:0;
+  background:
+    linear-gradient(180deg, rgba(11,20,48,.64) 0%, rgba(11,20,48,.52) 52%, rgba(11,20,48,.82) 100%),
+    url('../assets/hero-investment-to-project.jpg') center/cover no-repeat;
+}
+.hero-center { position:relative; z-index:1; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:96px var(--gut) 56px; }
+.hero-center .label { color:var(--green-lt); justify-content:center; }
+.hero-center h1 { color:#fff; max-width:20ch; margin:0 auto; }
+.hero-center h1 em { color:var(--green-lt); font-style:normal; }
+.hero-center .lead { color:var(--on-dark-muted); max-width:48ch; margin:18px auto 0; }
+.hero-buttons { display:flex; gap:16px; margin-top:32px; flex-wrap:wrap; justify-content:center; }
+.btn-white { display:inline-flex; align-items:center; gap:6px; padding:13px 26px; border-radius:var(--r-ctrl); font-size:14px; font-weight:600; border:1.5px solid #fff; background:#fff; color:var(--navy); }
+.btn-ghost-w { display:inline-flex; align-items:center; gap:6px; padding:13px 26px; border-radius:var(--r-ctrl); font-size:14px; font-weight:600; border:1.5px solid rgba(255,255,255,.28); background:rgba(255,255,255,.06); color:#fff; }
+.hero-scroll { position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:8px; margin-top:36px; }
+.scroll-label { font-family:var(--fm); font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.28); }
+.scroll-line { width:1px; height:44px; background:rgba(255,255,255,.14); position:relative; overflow:hidden; }
+.scroll-line::after { content:''; position:absolute; left:0; width:100%; height:45%; background:linear-gradient(to bottom, transparent, rgba(255,255,255,.75), transparent); animation:scrollLine 1.7s ease-in-out infinite; }
+@keyframes scrollLine { 0% { top:-45%; } 100% { top:145%; } }
+@media(prefers-reduced-motion:reduce) { .scroll-line::after { animation:none; opacity:.5; top:25%; } }
+.hero-proofs { display:grid; grid-template-columns:repeat(4,1fr); width:100%; max-width:1120px; margin:48px auto 0; border-top:1px solid rgba(255,255,255,.12); border-bottom:1px solid rgba(255,255,255,.12); }
+.hero-proof { min-width:0; padding:28px 34px 26px; text-align:left; border-left:1px solid rgba(255,255,255,.12); }
+.hero-proof:first-child { border-left:0; }
+.hero-proof .n { display:flex; align-items:baseline; white-space:nowrap; font-family:var(--fm); font-size:clamp(40px,4vw,58px); font-weight:700; line-height:1; letter-spacing:-.055em; color:var(--green-lt); }
+.hero-proof .u { margin-left:4px; font-size:.42em; font-weight:600; letter-spacing:-.02em; color:rgba(93,179,138,.78); }
+.hero-proof .tech { margin-left:9px; font-family:var(--fh); font-size:.27em; font-weight:700; letter-spacing:.08em; color:#fff; }
+.hero-proof .l { margin-top:15px; font-family:var(--fm); font-size:11px; line-height:1.4; letter-spacing:.12em; text-transform:uppercase; color:rgba(244,246,244,.68); }
+@media(max-width:900px) { .hero-proofs { grid-template-columns:repeat(2,1fr); max-width:720px; } .hero-proof:nth-child(3) { border-left:0; } .hero-proof:nth-child(n+3) { border-top:1px solid rgba(255,255,255,.12); } }
+@media(max-width:520px) { .hero-center { padding-left:18px; padding-right:18px; } .hero-proofs { margin-top:36px; } .hero-proof { padding:22px 16px 20px; } .hero-proof .n { flex-wrap:wrap; font-size:clamp(34px,10.5vw,48px); } .hero-proof .tech { flex-basis:100%; margin:7px 0 0; font-size:11px; } .hero-proof .l { margin-top:8px; font-size:8px; } .hero-scroll { display:none; } }
+
+/* COMPANY STATEMENT */
+.stmt-sec {
+  position: relative; overflow: hidden;
+  background: #fff; padding: 90px 0 95px; min-height: 470px;
+}
+.stmt-sec .wrap { position: relative; z-index: 2; }
+.stmt-hdr { display: grid; grid-template-columns: 1fr 0.9fr; gap: 120px; align-items: start; }
+.stmt-sec .label { display: flex; align-items: center; gap: 14px; color: var(--green-lt); font-size: 14px; line-height: 1; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+.stmt-sec .label::before { content: ""; width: 8px; height: 8px; flex: 0 0 8px; border-radius: 50%; background: var(--green-lt); animation: labelPulse 2.4s ease-in-out infinite; }
+.stmt-sec .label::after { display: none; }
+.stmt-hdr h2 { max-width: 590px; margin: 28px 0 0; font-size: clamp(42px, 3vw, 58px); line-height: 1.08; letter-spacing: -.04em; font-weight: 600; color: #0B1430; }
+.stmt-right { max-width: 650px; }
+.stmt-right p { margin: 0; font-size: clamp(18px, 1.25vw, 22px); line-height: 1.7; letter-spacing: -.015em; color: #485065; }
+.stmt-right p + p { margin-top: 24px; }
+.stmt-right strong { color: #14182b; font-weight: 600; }
+.stmt-tags { display: flex; align-items: center; gap: 22px; margin-top: 30px; padding-top: 22px; max-width: 540px; border-top: 1px solid #D6D9D5; }
+.stmt-tags span { display: flex; align-items: center; gap: 22px; font-size: 13px; line-height: 1; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #58706A; }
+.stmt-tags span:not(:last-child)::after { content: "·"; color: #B9BEBC; }
+.stmt-sec::before { content: ""; position: absolute; z-index: 1; right: 0; bottom: -470px; width: 100%; height: 260%; background-image: url("../assets/illustration-transmission-solar.png"); background-repeat: no-repeat; background-position: right bottom; background-size: contain; opacity: 0.08; pointer-events: none; }
+@media (max-width: 900px) {
+  .stmt-sec { padding: 70px 0 80px; min-height: auto; }
+  .stmt-hdr { grid-template-columns: 1fr; gap: 48px; }
+  .stmt-sec::before { width: 320px; height: 260px; right: -10px; bottom: -10px; opacity: .12; }
+}
+
+/* MARQUEE */
+.marquee-section { padding:48px 0; border-bottom:1px solid var(--border); }
+.marquee-header { display:flex; align-items:center; justify-content:center; margin-bottom:32px; }
+.marquee-header .text { font-size:11px; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); white-space:nowrap; }
+.marquee-wrap { overflow:hidden; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.marquee { display:flex; gap:48px; animation:marquee 6s linear infinite; }
+.marquee:hover { animation-play-state:paused; }
+@keyframes marquee { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+.marquee-item { flex:0 0 auto; font-family:var(--fm); font-size:12px; color:var(--border-strong); border-right:1px solid var(--border); padding-right:48px; white-space:nowrap; transition:color .2s ease; }
+.marquee-item:hover { color:var(--navy); }
+
+/* THREE STRATEGIC AXES */
+.axes-sec { padding-top:8px; padding-bottom:calc(var(--spy) + 24px); }
+.axes-hdr { margin-bottom:48px; max-width:720px; }
+.axes-hdr h2 { margin:16px 0 16px; font-size:clamp(32px,3vw,46px); line-height:1.1; letter-spacing:-.03em; font-weight:700; color:var(--navy); }
+.axes-desc { margin:0; font-size:16px; line-height:1.75; color:var(--muted); max-width:68ch; }
+.axes-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+.axis-card-img { position:relative; isolation:isolate; overflow:hidden; min-height:420px; padding:32px 28px 28px; display:flex; flex-direction:column; color:#fff; background-size:cover; background-position:center; outline:none; cursor:pointer; border:1px solid var(--border); border-radius:var(--r-card); text-decoration:none; }
+.axis-card-img::after { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(11,20,48,.78) 0%, rgba(11,20,48,.62) 45%, rgba(11,20,48,.97) 100%); mix-blend-mode:multiply; transition:background .6s cubic-bezier(.25,.1,.25,1); }
+.axis-card-img:hover::after, .axis-card-img:focus-visible::after { background:linear-gradient(180deg, rgba(11,20,48,.85) 0%, rgba(11,20,48,.68) 40%, rgba(11,20,48,.98) 100%); }
+.axis-card-top { display:flex; justify-content:space-between; align-items:center; font-family:var(--fm); font-size:11px; letter-spacing:.1em; text-transform:uppercase; }
+.axis-card-top .axis-num { color:rgba(255,255,255,.7); }
+.axis-card-top .axis-cat-group { display:flex; align-items:center; gap:6px; }
+.axis-card-top .axis-cat { color:var(--green-lt); font-weight:600; display:inline-block; transition:transform .5s cubic-bezier(.25,.1,.25,1); }
+.axis-card-top .axis-arrow { display:none; }
+.axis-card-img::before {
+  content:'→';
+  position:absolute; bottom:28px; right:28px; z-index:1;
+  width:36px; height:36px; border-radius:50%;
+  background:var(--green-lt); color:#fff;
+  font-size:15px; text-align:center; line-height:36px;
+  pointer-events:none;
+}
+.axis-card-body { margin-top:auto; }
+.axis-card-img h3 { margin:0 0 14px; font-size:1.375rem; line-height:1.22; max-width:26ch; }
+.axis-card-details { display:grid; grid-template-rows:0fr; transition:grid-template-rows .6s cubic-bezier(.25,.1,.25,1); }
+.axis-card-details-inner { overflow:hidden; opacity:0; transition:opacity .45s ease; }
+.axis-card-img:hover .axis-card-details, .axis-card-img:focus-visible .axis-card-details { grid-template-rows:1fr; }
+.axis-card-img:hover .axis-card-details-inner, .axis-card-img:focus-visible .axis-card-details-inner { opacity:1; transition:opacity .5s ease .12s; }
+.axis-card-details p { color:rgba(255,255,255,.82); font-size:14px; line-height:1.65; }
+.axis-card-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+.axis-card-tags span { padding:5px 10px; border:1px solid rgba(255,255,255,.32); font-family:var(--fm); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:#fff; }
+@media(hover:none) { .axis-card-details { grid-template-rows:1fr; } .axis-card-details-inner { opacity:1; } }
+@media(max-width:900px) { .axes-cards { grid-template-columns:1fr; gap:20px; } .axis-card-img { min-height:340px; } }
+
+/* BROKERAGE */
+.broker-sec { background:var(--navy); color:var(--on-dark); }
+.broker-sec .label { color:var(--green-lt); }
+.broker-hdr { display:grid; grid-template-columns:1fr 0.9fr; gap:120px; align-items:start; }
+.broker-hdr h2 { max-width:520px; margin:28px 0 0; font-size:clamp(38px,2.8vw,50px); line-height:1.1; letter-spacing:-.03em; font-weight:600; color:#fff; }
+.broker-right { max-width:640px; }
+.broker-right p { margin:0; font-size:16px; line-height:1.75; color:var(--on-dark-muted); }
+.broker-right p + p { margin-top:20px; }
+.broker-right strong { color:#fff; font-weight:600; }
+.broker-caps { display:grid; grid-template-columns:repeat(3,1fr); margin-top:72px; border-top:1px solid rgba(244,246,244,.16); }
+.broker-cap { position:relative; isolation:isolate; display:flex; flex-direction:column; justify-content:center; padding:32px 0 32px 32px; border-left:1px solid rgba(244,246,244,.16); min-height:220px; }
+.broker-cap:first-child { border-left:none; padding-left:0; }
+.broker-cap-num { position:absolute; top:50%; right:0; left:auto; z-index:-1; transform:translateY(-50%); font-family:var(--fh); font-weight:900; font-size:180px; line-height:1; letter-spacing:-.05em; color:rgba(244,246,244,.08); }
+.broker-cap h3 { position:relative; font-size:1.125rem; line-height:1.3; color:#fff; margin:0 0 12px; max-width:24ch; }
+.broker-cap p { position:relative; font-size:14px; line-height:1.65; color:var(--on-dark-muted); margin:0; max-width:32ch; }
+@media(max-width:900px) {
+  .broker-hdr { grid-template-columns:1fr; gap:40px; }
+  .broker-caps { grid-template-columns:1fr; margin-top:48px; }
+  .broker-cap { border-left:none; border-top:1px solid rgba(244,246,244,.16); padding:24px 0 0; }
+  .broker-cap:first-child { border-top:none; }
+  .broker-cap-num { font-size:96px; }
+  .broker-cap h3 { margin-top:44px; }
+}
+
+.cta-highlight { position:relative; display:inline-block; isolation:isolate; padding:0 .12em; }
+.cta-highlight::before { content:''; position:absolute; z-index:-1; left:-.14em; right:-.14em; top:55%; height:.62em; background:linear-gradient(90deg, rgba(93,179,138,.2), rgba(93,179,138,.54) 13%, rgba(93,179,138,.46) 86%, rgba(93,179,138,.18)); clip-path:polygon(0 32%, 4% 17%, 3% 4%, 18% 12%, 35% 2%, 54% 10%, 74% 3%, 94% 12%, 100% 31%, 98% 72%, 91% 86%, 72% 78%, 52% 96%, 31% 82%, 13% 91%, 2% 74%); transform:translateY(-50%) skewX(-3deg); filter:blur(.15px); }
+.cta-highlight::after { content:''; position:absolute; z-index:-1; left:-.04em; right:.02em; top:61%; height:.12em; background:rgba(155,222,187,.32); border-radius:50%; transform:translateY(-50%); }
+.btn-pill { display:inline-flex; align-items:center; gap:16px; padding:6px 6px 6px 26px; border-radius:var(--r-ctrl); border:1.5px solid rgba(93,179,138,.55); background:rgba(255,255,255,.04); color:#fff; font-size:14px; font-weight:600; text-decoration:none; transition:border-color .3s ease, background .3s ease; }
+.btn-pill:hover { border-color:var(--green-lt); background:rgba(255,255,255,.09); }
+.btn-pill-arrow { width:36px; height:36px; border-radius:50%; background:var(--green-lt); color:#fff; display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto; }
+.btn-pill-arrow svg { width:14px; height:14px; }
+.btn-pill.dk { color:var(--navy); border-color:rgba(11,20,48,.25); background:transparent; }
+.btn-pill.dk:hover { border-color:var(--navy); background:rgba(11,20,48,.05); }
+.btn-pill.dk .btn-pill-arrow { background:var(--navy); color:#fff; }
+
+/* PROJECT LIFECYCLE */
+.lifecycle-sec { background:var(--surface-alt); }
+.lifecycle-hdr { max-width:680px; margin-bottom:64px; }
+.lifecycle-hdr h2 { margin:22px 0 20px; font-size:clamp(34px,3.2vw,48px); line-height:1.14; letter-spacing:-.03em; font-weight:600; color:var(--navy); }
+.lifecycle-hdr p { margin:0; font-size:17px; line-height:1.7; color:var(--text-2); max-width:60ch; }
+.lifecycle-grid { display:grid; grid-template-columns:.78fr 1.22fr; gap:80px; align-items:start; }
+.lifecycle-sticky { position:sticky; top:120px; }
+.lifecycle-progress { display:flex; align-items:baseline; gap:6px; font-family:var(--fm); color:var(--navy); }
+.lifecycle-progress-num { font-size:56px; font-weight:700; letter-spacing:-.03em; line-height:1; transition:opacity .25s ease; }
+.lifecycle-progress-total { font-size:16px; color:var(--muted); }
+.lifecycle-progress-bar { position:relative; height:2px; background:var(--border); margin:24px 0 20px; border-radius:2px; overflow:hidden; }
+.lifecycle-progress-fill { position:absolute; inset:0 auto 0 0; width:14.2857%; background:var(--green-dk); transition:width .35s cubic-bezier(.25,.1,.25,1); }
+.lifecycle-sticky-title { margin:0; font-size:1.25rem; line-height:1.35; color:var(--navy); max-width:32ch; min-height:3.6em; transition:opacity .3s ease; }
+.lifecycle-visual { position:relative; margin-top:32px; aspect-ratio:4/5; max-width:380px; border-radius:var(--r-card); overflow:hidden; border:1px solid var(--border); background:var(--surface); }
+.lifecycle-visual-img { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity .7s ease; }
+.lifecycle-visual-img.is-active { opacity:1; }
+.lifecycle-visual::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(11,20,48,0) 60%, rgba(11,20,48,.28) 100%); pointer-events:none; }
+@media(max-width:900px) { .lifecycle-visual { display:none; } }
+.lifecycle-steps { display:flex; flex-direction:column; }
+.lifecycle-step { padding:52px 0; border-top:1px solid var(--border); opacity:.4; transition:opacity .5s ease; }
+.lifecycle-step:first-child { border-top:none; }
+.lifecycle-step.is-active { opacity:1; }
+.lifecycle-step-top { display:flex; align-items:baseline; gap:16px; margin-bottom:16px; }
+.lifecycle-step-num { font-family:var(--fm); font-size:13px; letter-spacing:.08em; color:var(--green-dk); }
+.lifecycle-step h4 { margin:0; font-size:1.25rem; line-height:1.3; color:var(--navy); max-width:36ch; }
+.lifecycle-step p { margin:0; font-size:15.5px; line-height:1.75; color:var(--text-2); max-width:60ch; }
+@media(max-width:900px) { .lifecycle-grid { grid-template-columns:1fr; gap:0; } .lifecycle-sticky { position:sticky; top:64px; z-index:10; background:var(--surface-alt); padding-bottom:20px; padding-top:4px; border-bottom:1px solid var(--border); margin-bottom:0; } }
+
+/* TRACK RECORD */
+.tr-sec { background:var(--surface); }
+.tr-topbar { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:48px; flex-wrap:wrap; gap:12px; }
+.tr-topbar .label { margin-bottom:8px; }
+.tr-topbar-left { display:flex; flex-direction:column; max-width:580px; }
+.tr-heading { margin:0 0 12px; font-size:clamp(26px,2.4vw,36px); line-height:1.15; letter-spacing:-.025em; font-weight:700; color:var(--navy); }
+.tr-subtitle { font-size:15px; line-height:1.65; color:var(--muted); }
+.tr-range-total { font-family:var(--fm); font-size:13px; letter-spacing:.05em; color:var(--muted); }
+.tr-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.tr-cell { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; height:260px; padding:30px 26px; background:rgba(93,179,138,.08); border:1px solid rgba(93,179,138,.24); border-radius:var(--r-card); cursor:default; outline:none; overflow:hidden; transition:background .35s ease, border-color .35s ease, box-shadow .35s ease, transform .35s ease; }
+.tr-cell:hover { align-items:flex-start; justify-content:flex-start; text-align:left; background:rgba(93,179,138,.13); border-color:rgba(93,179,138,.42); box-shadow:0 12px 28px -16px rgba(31,61,51,.24); transform:none; }
+.tr-toggle { position:absolute; top:20px; right:20px; font-family:var(--fm); font-size:14px; line-height:1; color:var(--muted); pointer-events:none; transition:color .35s ease; }
+.tr-cell:hover .tr-toggle { color:var(--green-dk); }
+.tr-icon { width:42px; height:42px; margin-bottom:18px; border-radius:50%; border:1px solid rgba(31,61,51,.22); display:flex; align-items:center; justify-content:center; color:var(--green-dk); flex:0 0 auto; transition:transform .38s cubic-bezier(.25,.1,.25,1); }
+.tr-icon svg { width:21px; height:21px; }
+.tr-num { font-family:var(--fm); font-weight:700; font-size:30px; line-height:1.1; letter-spacing:-.03em; color:var(--green-lt); transition:font-size .4s cubic-bezier(.25,.1,.25,1), transform .38s cubic-bezier(.25,.1,.25,1); }
+.tr-annot { font-size:.55em; font-weight:500; color:var(--muted); margin-left:2px; }
+.tr-short { margin-top:10px; font-family:var(--fm); font-size:13px; letter-spacing:.055em; text-transform:uppercase; color:var(--navy); max-width:26ch; line-height:1.45; transition:margin-top .35s ease, font-size .35s ease, transform .38s cubic-bezier(.25,.1,.25,1); }
+.tr-cell:hover .tr-icon, .tr-cell:hover .tr-num, .tr-cell:hover .tr-short { animation:trSlideLeft .38s cubic-bezier(.25,.1,.25,1) both; }
+.tr-cell:hover .tr-num { font-size:22px; }
+.tr-cell:hover .tr-short { margin-top:5px; font-size:11px; }
+.tr-detail { max-height:0; opacity:0; overflow:hidden; transform:translateX(14px); transition:max-height .45s cubic-bezier(.25,.1,.25,1), opacity .3s ease, transform .38s ease; }
+.tr-cell:hover .tr-detail { max-height:150px; opacity:1; transform:translateX(0); }
+.tr-detail p { margin:9px 0 0; font-size:12.5px; line-height:1.55; color:var(--text-2); }
+@keyframes trSlideLeft { from { transform:translateX(14px); } to { transform:translateX(-2px); } }
+@media(max-width:900px) { .tr-grid { grid-template-columns:1fr; } }
+@media(hover:none),(max-width:768px) {
+  .tr-cell { align-items:flex-start; justify-content:flex-start; text-align:left; height:auto; min-height:260px; }
+  .tr-detail { max-height:none !important; opacity:1 !important; }
+  .tr-detail { transform:none !important; }
+  .tr-cell:hover .tr-num { font-size:30px; }
+  .tr-cell:hover .tr-short { margin-top:10px; font-size:13px; }
+  .tr-toggle { display:none; }
+}
+@media(min-width:901px) and (max-width:1200px) { .tr-grid { grid-template-columns:repeat(2,1fr); } }
+
+/* SUSTAINABILITY */
+.sustain-hdr { max-width:640px; }
+.sustain-hdr h2 { margin:22px 0 16px; font-size:clamp(32px,3vw,46px); line-height:1.16; letter-spacing:-.03em; font-weight:600; color:var(--navy); }
+.sustain-hdr p { margin:0; font-size:17px; line-height:1.7; color:var(--text-2); max-width:56ch; }
+.sustain-timeline { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; margin-top:72px; }
+.sustain-point { position:relative; padding-top:26px; }
+.sustain-point::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:var(--border-strong); }
+.sustain-point::after { content:''; position:absolute; top:-5px; left:0; width:11px; height:11px; border-radius:50%; background:var(--green-dk); border:3px solid var(--bg); }
+.sustain-year { display:block; font-family:var(--fm); font-size:14px; font-weight:700; letter-spacing:.02em; color:var(--navy); margin-bottom:16px; }
+.sustain-point h3 { margin:0 0 10px; font-size:1.05rem; line-height:1.32; color:var(--navy); max-width:26ch; }
+.sustain-point p { margin:0; font-size:14px; line-height:1.75; color:var(--text-2); max-width:34ch; }
+@media(max-width:900px) { .sustain-timeline { grid-template-columns:1fr; gap:0; } .sustain-point { padding-top:26px; padding-bottom:26px; } .sustain-point + .sustain-point::before { top:0; } }
+
+/* ENERGY TEXTURES — desktop-only, quiet crops of the homepage line illustration */
+.broker-sec, .lifecycle-sec, .sustain-sec { position:relative; overflow:clip; isolation:isolate; }
+.broker-sec > .wrap, .lifecycle-sec > .wrap, .sustain-sec > .wrap { position:relative; z-index:1; }
+@media(min-width:1100px) {
+  .broker-sec::before,
+  .lifecycle-sec::before,
+  .sustain-sec::before {
+    content:'';
+    position:absolute;
+    pointer-events:none;
+    background-repeat:no-repeat;
+    -webkit-mask-image:radial-gradient(ellipse at center, #000 28%, transparent 76%);
+    mask-image:radial-gradient(ellipse at center, #000 28%, transparent 76%);
+  }
+  .broker-sec::before {
+    top:260px;
+    left:max(24px, calc((100vw - 1240px) / 2));
+    width:min(43vw, 590px);
+    height:270px;
+    background-image:url('../assets/illustration-transmission-solar.png');
+    background-size:100% auto;
+    background-position:center 48%;
+    filter:grayscale(1) invert(1) contrast(1.35);
+    mix-blend-mode:screen;
+    opacity:.052;
+  }
+  .lifecycle-sec::before {
+    top:62px;
+    right:max(20px, calc((100vw - 1320px) / 2));
+    width:min(43vw, 620px);
+    height:330px;
+    background-image:url('../assets/illustration-transmission-solar.png');
+    background-size:100% auto;
+    background-position:center 48%;
+    mix-blend-mode:multiply;
+    opacity:.058;
+  }
+  .sustain-sec::before {
+    top:48px;
+    right:max(22px, calc((100vw - 1320px) / 2));
+    width:min(39vw, 560px);
+    height:280px;
+    background-image:url('../assets/illustration-transmission-solar.png');
+    background-size:172% auto;
+    background-position:88% 48%;
+    mix-blend-mode:multiply;
+    opacity:.066;
+  }
+}
+
+/* FINAL CTA */
+.final-cta-sec { background:var(--navy); color:var(--on-dark); }
+.final-cta-sec .label { color:var(--green-lt); }
+.final-cta-grid { display:grid; grid-template-columns:1.15fr .85fr; gap:100px; align-items:center; }
+.final-cta-grid h2 { margin:22px 0 0; font-size:clamp(34px,3.6vw,52px); line-height:1.14; letter-spacing:-.03em; font-weight:600; color:#fff; max-width:15ch; }
+.final-cta-side p { margin:0 0 32px; font-size:16px; line-height:1.75; color:var(--on-dark-muted); max-width:42ch; }
+.final-cta-actions { display:flex; flex-wrap:wrap; gap:16px; }
+@media(max-width:900px) { .final-cta-grid { grid-template-columns:1fr; gap:36px; } }
+
+/* PARALLAX CTA */
+.cta-par-sec { position:relative; overflow:hidden; min-height:390px; display:flex; align-items:center; justify-content:center; }
+.cta-par-bg { position:absolute; inset:-30% 0; will-change:transform; background:linear-gradient(rgba(11,20,48,.80),rgba(11,20,48,.80)), url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2000&fit=crop') center 40%/cover no-repeat; }
+.cta-par-inner { position:relative; z-index:1; text-align:center; max-width:920px; padding:56px 32px; margin:0 auto; }
+.cta-par-inner h2 { color:#fff; font-size:clamp(1.8rem,3vw,2.6rem); font-weight:700; line-height:1.2; letter-spacing:-.02em; }
+.cta-par-inner h2 em { font-style:italic; color:var(--green-lt); }
+.cta-par-inner .lead { color:rgba(244,246,244,.58); margin-top:20px; max-width:52ch; margin-left:auto; margin-right:auto; }
+.cta-par-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:36px; }
+
+/* PROJECTS */
+.prj-sec-hdr { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:36px; flex-wrap:wrap; gap:24px; }
+.prj-sec-hdr h2 { font-size:clamp(32px,3vw,46px); line-height:1.1; letter-spacing:-.03em; color:var(--navy); }
+.prj-sec-hdr p { max-width:48ch; color:var(--text-2); font-size:15px; line-height:1.65; }
+.grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+@media(max-width:900px) { .grid3 { grid-template-columns:repeat(2,1fr); } }
+@media(max-width:560px) { .grid3 { grid-template-columns:1fr; } }
+.prj-card { display:block; background:var(--surface); border:1px solid var(--border); border-radius:var(--r-card); overflow:hidden; transition:border-color .22s ease, transform .22s ease, box-shadow .22s ease; }
+.prj-card:hover { border-color:var(--navy); transform:translateY(-3px); box-shadow:0 12px 32px -10px rgba(11,20,48,.18); }
+.prj-card .img { height:230px; overflow:hidden; }
+.prj-card .img img { width:100%; height:100%; object-fit:cover; filter:grayscale(.15); transition:filter .35s ease, transform .45s ease; }
+.prj-card:hover .img img { filter:none; transform:scale(1.04); }
+.prj-card .body { padding:24px; }
+.prj-card h3 { font-size:1.18rem; line-height:1.3; margin-bottom:10px; color:var(--navy); }
+.prj-card p { min-height:4.8em; font-size:14px; line-height:1.6; color:var(--text-2); }
+.prj-facts { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:22px; padding-top:18px; border-top:1px solid var(--border); }
+.prj-facts strong { display:block; font-family:var(--fm); font-size:12px; color:var(--navy); }
+.prj-facts span { display:block; margin-top:3px; font-size:11px; color:var(--muted); }
+.prj-link { display:inline-block; margin-top:20px; font-size:13px; font-weight:700; color:var(--green-dk); }
+
+/* REVEAL */
+[data-reveal] { opacity:0; transform:translateY(20px); transition:opacity .65s ease, transform .65s ease; }
+[data-reveal].in { opacity:1; transform:none; }
+@media(prefers-reduced-motion:reduce) { [data-reveal] { opacity:1; transform:none; transition:none; } }
+
+/* FOOTER */
+footer { background:#050B18; color:var(--on-dark); padding:72px 0 32px; border-top:1px solid rgba(255,255,255,.08); }
+footer .grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:32px; border-top:1px solid rgba(255,255,255,.10); padding-top:48px; }
+@media(max-width:768px) { footer .grid { grid-template-columns:1fr 1fr; } }
+@media(max-width:480px) { footer .grid { grid-template-columns:1fr; } }
+footer h4 { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--green-lt); margin-bottom:14px; }
+footer .desc { color:var(--on-dark-muted); font-size:14px; margin-top:16px; max-width:36ch; }
+footer .addr { font-family:var(--fm); font-size:13px; color:var(--on-dark-muted); line-height:1.8; }
+footer a { display:block; color:var(--on-dark-muted); font-size:14px; padding:6px 0; transition:color .2s ease; }
+footer a:hover { color:#fff; }
+.footer-bottom { display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,.08); margin-top:48px; padding-top:20px; gap:20px; }
+@media(max-width:768px) { .footer-bottom { flex-direction:column; align-items:flex-start; } }
+.footer-bottom-left { font-family:var(--fm); font-size:12px; color:var(--on-dark-muted); }
+.footer-bottom-right { display:flex; gap:20px; font-size:13px; }
+.footer-bottom-right a { padding:0; }
+
+/* NAV DROPDOWN */
+.nav-item { position:relative; }
+.nav-item::after { content:''; position:absolute; top:100%; left:-16px; right:-16px; height:20px; }
+.nav-item > a { display:inline-flex; align-items:center; gap:5px; }
+.nav-caret { width:10px; height:6px; flex-shrink:0; transition:transform .2s ease; }
+.nav-item:hover .nav-caret { transform:rotate(180deg); }
+.nav-dropdown {
+  position:absolute; top:calc(100% + 16px); left:50%; transform:translateX(-50%) translateY(-6px);
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r-card); box-shadow:0 16px 48px rgba(0,0,0,.13);
+  padding:28px 24px; display:grid; grid-template-columns:1fr .7fr 1.1fr; gap:24px;
+  width:560px; opacity:0; pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease; z-index:200;
+}
+.nav-item:hover .nav-dropdown { opacity:1; pointer-events:all; transform:translateX(-50%) translateY(0); }
+.dropdown-col { display:flex; flex-direction:column; }
+.dropdown-cat { display:block; font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green-lt); margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+.nav-dropdown a { display:block; padding:8px 0; border-bottom:1px solid var(--border); text-decoration:none; }
+.nav-dropdown a:last-child { border-bottom:0; padding-bottom:0; }
+.nav-dropdown a strong { display:block; font-size:13px; font-weight:600; color:var(--navy); transition:color .18s; line-height:1.3; }
+.nav-dropdown a span { display:block; font-size:11px; color:#8a9088; margin-top:2px; line-height:1.4; }
+.nav-dropdown a:hover strong { color:var(--green-lt); }
+.nav-dropdown a.soon { opacity:.38; pointer-events:none; }
+
+/* MOBILE SERVICES EXPANDABLE */
+.mob-hiz-toggle { display:flex; justify-content:space-between; align-items:center; font-size:1rem; font-weight:600; padding:13px 0; border-bottom:1px solid var(--border); cursor:pointer; color:var(--text); user-select:none; }
+.mob-hiz-arrow { font-size:11px; display:inline-block; transition:transform .2s; opacity:.6; }
+.mob-hiz-toggle.open .mob-hiz-arrow { transform:rotate(180deg); }
+.mob-hiz-sub { display:none; padding-left:16px; }
+.mob-hiz-sub.open { display:block; }
+.mob-hiz-sub a { display:block; font-size:.9rem; font-weight:500; padding:9px 0; border-bottom:1px solid var(--border); color:#555c54; text-decoration:none; }
+.mob-hiz-sub a:first-child { font-weight:600; color:var(--navy); }
+.mob-hiz-sub a:last-child { border-bottom:0; }
+.mob-hiz-sub a.soon { opacity:.38; pointer-events:none; }
+
+/* LANG SWITCHER */
+.lang-sw { display:flex; align-items:center; gap:4px; font-family:var(--fm); font-size:10px; font-weight:600; letter-spacing:.1em; flex-shrink:0; }
+.lang-sw .lang-cur { color:var(--navy); cursor:default; }
+.lang-sw .lang-sep { color:var(--border); font-weight:400; }
+.lang-sw .lang-alt { color:var(--muted); transition:color .18s; }
+.lang-sw .lang-alt:hover { color:var(--navy); }
+.mob-lang-sw { display:flex; align-items:center; justify-content:flex-end; gap:8px; padding:12px 0; border-bottom:1px solid var(--border); font-family:var(--fm); font-size:11px; font-weight:700; letter-spacing:.08em; }
+.mob-lang-sw .lang-cur { color:var(--navy); }
+.mob-lang-sw .lang-sep { color:var(--border); }
+.mob-lang-sw .lang-alt { color:var(--muted); }
+.mob-lang-sw .lang-alt:hover { color:var(--green-dk); }
+</style>
+<link rel="stylesheet" href="../footer-std.css">
+<script src="../scroll-top.js" defer></script>
+<link rel="stylesheet" href="../nav-revision.css">  <link rel="stylesheet" href="../brand-assets.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../assets/brand/favicon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/brand/apple-touch-icon.png">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap">
+    <a href="index.html" class="logo" aria-label="AL ENERJİ home"><img src="../assets/brand/V2.png" alt="AL ENERJİ"></a>
+    <div class="navlinks">
+      <div class="nav-item">
+        <a href="services.html">Services<svg class="nav-caret" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav-dropdown"><a class="nav-all-services" href="services.html"><strong>All Services</strong><span>Explore our complete range of services</span><b aria-hidden="true">→</b></a>
+          <div class="dropdown-col">
+            <span class="dropdown-cat">Development & EPC</span>
+            <a href="project-development.html"><strong>Project Development</strong><span>From concept to operation in 7 steps</span></a>
+            <a href="epc.html"><strong>EPC & Installation</strong><span>Turnkey solar solutions</span></a>
+          </div>
+          <div class="dropdown-col">
+            <span class="dropdown-cat">Storage</span>
+            <a href="bess.html"><strong>BESS & Hybrid</strong><span>Flexible grid solutions</span></a>
+          </div>
+          <div class="dropdown-col">
+            <span class="dropdown-cat">Brokerage & Advisory</span>
+            <a href="brokerage.html"><strong>M&A Brokerage</strong><span>Solar asset transactions</span></a>
+            <a href="site-inspection.html"><strong>Site Inspection</strong><span>Owner's Engineer services</span></a>
+            <a href="carbon.html" ><strong>Carbon Management</strong><span>South Pole partnership</span></a>
+          </div>
+        </div>
+      </div>
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="lang-sw"><span class="lang-cur">EN</span><span class="lang-sep">|</span><a href="../index.html" class="lang-alt">TR</a></div>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <button class="nav-cta" onclick="location.href='contact.html'">Contact Us</button>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <div class="mob-lang-sw"><span class="lang-cur">EN</span><span class="lang-sep">|</span><a href="../index.html" class="lang-alt">TR</a></div>
+  <div class="mob-hiz-toggle" id="mobHizToggle">Services <span class="mob-hiz-arrow">▾</span></div>
+  <div class="mob-hiz-sub" id="mobHizSub">
+    <a href="services.html">All Services</a>
+    <a href="brokerage.html">M&A Brokerage</a>
+    <a href="project-development.html">Project Development</a>
+    <a href="epc.html">EPC & Installation</a>
+    <a href="site-inspection.html">Site Inspection</a>
+    <a href="bess.html">BESS & Hybrid</a>
+    <a href="carbon.html" >Carbon Management</a>
+  </div>
+  <a href="projects.html">Projects</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="mob-cta">Contact Us</a>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-center">
+    <span class="label">ENERGY · STORAGE · BROKERAGE</span>
+    <h1>Engineering Energy<br><em>For Tomorrow.</em></h1>
+    <p class="lead">Your trusted partner in renewable energy, battery storage technology and energy market solutions.</p>
+    <div class="hero-buttons">
+      <button class="btn-white" onclick="location.href='services.html'">Our Services →</button>
+      <button class="btn-ghost-w" onclick="location.href='contact.html'">Contact Us</button>
+    </div>
+    <div class="hero-proofs" aria-label="AL ENERJİ experience indicators">
+      <div class="hero-proof"><div class="n">22<span class="u">YRS</span><span class="tech">EXPERIENCE</span></div><div class="l">In Renewable Energy</div></div>
+      <div class="hero-proof"><div class="n">80<span class="u">MW</span><span class="tech">HEPP</span></div><div class="l">Development</div></div>
+      <div class="hero-proof"><div class="n">295<span class="u">MW</span><span class="tech">WPP</span></div><div class="l">Project Portfolio</div></div>
+      <div class="hero-proof"><div class="n">220<span class="u">MW+</span><span class="tech">SPP</span></div><div class="l">Development &amp; Advisory</div></div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-label">Scroll down</div>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<section class="marquee-section">
+  <div class="marquee-header"><span class="text">Companies We Work With</span></div>
+  <div class="marquee-wrap">
+    <div class="marquee">
+      <div class="marquee-item">ENERJİSA</div>
+      <div class="marquee-item">BORUSAN ENERJİ</div>
+      <div class="marquee-item">AKSA ENERJİ</div>
+      <div class="marquee-item">ERDEMİR</div>
+      <div class="marquee-item">SABANCI HOLDİNG</div>
+      <div class="marquee-item">İÇDAŞ ENERJİ</div>
+      <div class="marquee-item">ALARKO</div>
+      <div class="marquee-item">SANKO ENERJİ</div>
+      <div class="marquee-item">ENERJİSA</div>
+      <div class="marquee-item">BORUSAN ENERJİ</div>
+      <div class="marquee-item">AKSA ENERJİ</div>
+      <div class="marquee-item">ERDEMİR</div>
+      <div class="marquee-item">SABANCI HOLDİNG</div>
+      <div class="marquee-item">İÇDAŞ ENERJİ</div>
+      <div class="marquee-item">ALARKO</div>
+      <div class="marquee-item">SANKO ENERJİ</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY STATEMENT -->
+<section class="sec stmt-sec">
+  <div class="wrap">
+    <div class="stmt-hdr">
+      <div>
+        <span class="label in">2004 — 2026 · Experience</span>
+        <h2>Over 20 Years at Every Stage of Energy Investment.</h2>
+      </div>
+      <div class="stmt-right">
+        <p>From public privatisation tenders to private-sector greenfield investments, we develop, build and operate power plants at every stage of the cycle.</p>
+        <p>We now bring this deep field expertise directly into <strong>Brokerage and M&amp;A</strong> transactions.</p>
+        <div class="stmt-tags"><span>Energy</span><span>Storage</span><span>Brokerage</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THREE STRATEGIC AXES -->
+<section class="sec axes-sec" id="solutions">
+  <div class="wrap">
+    <div class="axes-hdr">
+      <span class="label">Areas of Expertise</span>
+      <h2>Three Disciplines, One Roof.</h2>
+      <p class="axes-desc">We develop, manage and create value from energy. From engineering to storage, from project development to investment and asset management — comprehensive solutions under one roof.</p>
+    </div>
+    <div class="axes-cards">
+      <a class="axis-card-img" href="services.html" style="background-image:url('https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1200&fit=crop')">
+        <div class="axis-card-top"><span class="axis-num">01</span><span class="axis-cat-group"><span class="axis-cat">Energy</span><span class="axis-arrow">→</span></span></div>
+        <div class="axis-card-body">
+          <h3>Development, Engineering &amp; EPC</h3>
+          <div class="axis-card-details"><div class="axis-card-details-inner">
+          <p>Solar (SPP), Wind (WPP) and Hydroelectric (HPP) projects — end-to-end service from site selection and licensing through engineering to turnkey installation.</p>
+          <div class="axis-card-tags"><span>SPP</span><span>WPP</span><span>HPP</span></div>
+        </div></div>
+        </div>
+      </a>
+      <a class="axis-card-img" href="bess.html" style="background-image:url('https://images.unsplash.com/photo-1613665813446-82a78c468a1d?q=80&w=1200&fit=crop')">
+        <div class="axis-card-top"><span class="axis-num">02</span><span class="axis-cat-group"><span class="axis-cat">Storage</span><span class="axis-arrow">→</span></span></div>
+        <div class="axis-card-body">
+          <h3>Storage &amp; Hybrid Solutions</h3>
+          <div class="axis-card-details"><div class="axis-card-details-inner">
+          <p>With Battery Energy Storage Systems (BESS) and hybrid plant engineering, we enhance grid flexibility and guarantee continuity with advanced technology and field expertise.</p>
+          <div class="axis-card-tags"><span>BESS</span><span>Hybrid</span></div>
+        </div></div>
+        </div>
+      </a>
+      <a class="axis-card-img" href="brokerage.html" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1200&fit=crop')">
+        <div class="axis-card-top"><span class="axis-num">03</span><span class="axis-cat-group"><span class="axis-cat">Brokerage</span><span class="axis-arrow">→</span></span></div>
+        <div class="axis-card-body">
+          <h3>Expanding Market &amp; Capital Network</h3>
+          <div class="axis-card-details"><div class="axis-card-details-inner">
+          <p>We build technical and financial bridges between investors and developers for the acquisition, sale, licence transfer and M&amp;A of renewable energy assets.</p>
+          <div class="axis-card-tags"><span>M&amp;A</span><span>TDD</span><span>Valuation</span></div>
+        </div></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- BROKERAGE / M&A -->
+<section class="sec broker-sec" id="brokerage">
+  <div class="wrap">
+    <div class="broker-hdr">
+      <div>
+        <span class="label in">M&amp;A and Project Brokerage</span>
+        <h2>Trusted Advisory That Knows<br>Both the Field and the Boardroom.</h2>
+      </div>
+      <div class="broker-right">
+        <p>We are not simply a financial intermediary. Since 2004, we have participated in <strong>POI public waterway HPP privatisation tenders</strong> with direct on-site technical valuations, developed and won hundreds of megawatts of wind and solar portfolios in <strong>TEİAŞ/TEDAŞ capacity tenders</strong>, and successfully managed the licensing, construction and acceptance of dozens of projects alongside our own plants.</p>
+        <p>We now bring all 20 years of this field, tender and regulatory expertise to <strong>Project Brokerage and M&amp;A</strong> — analysing the true value of assets you have developed or wish to acquire with an engineer's eye, and creating a transparent investment environment for buyers and sellers by eliminating legal, technical and financial risk.</p>
+      </div>
+    </div>
+
+    <div class="broker-caps">
+      <div class="broker-cap">
+        <span class="broker-cap-num">01</span>
+        <h3>Technical &amp; Legal Due Diligence (TDD)</h3>
+        <p>We audit the land, permit, zoning and grid status of a project through an independent engineering lens.</p>
+      </div>
+      <div class="broker-cap">
+        <span class="broker-cap-num">02</span>
+        <h3>Accurate Valuation &amp; Market Analysis</h3>
+        <p>We provide realistic asset valuations based on actual field costs and cash-flow simulations.</p>
+      </div>
+      <div class="broker-cap">
+        <span class="broker-cap-num">03</span>
+        <h3>End-to-End Transaction Management</h3>
+        <p>We manage the full financial, technical and operational process from NDAs through to final share/licence transfer agreements.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PARALLAX CTA -->
+<section class="cta-par-sec" id="cta-par">
+  <div class="cta-par-bg" id="cta-par-bg"></div>
+  <div class="cta-par-inner">
+    <span class="label" style="color:rgba(255,255,255,.45); margin-bottom:20px; display:block;">Next Step</span>
+    <h2>Connecting Developed Projects with<br><span class="cta-highlight">the Right Investors.</span></h2>
+    <p class="lead">Get in touch with our expert team to add approved renewable energy projects to your portfolio.</p>
+    <div class="cta-par-btns">
+      <a class="btn-pill" href="contact.html">Project Portfolio &amp; Brokerage Enquiry <span class="btn-pill-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT LIFECYCLE -->
+<section class="sec lifecycle-sec" id="process">
+  <div class="wrap">
+    <div class="lifecycle-hdr">
+      <span class="label in">End-to-End Project Development</span>
+      <h2>Engineering Precision:<br>From Concept to Commercial Operation</h2>
+      <p>We do not merely broker projects — in our own plants and investor projects, we directly manage every process from the first capacity study through commercial operation and official registrations, following the true chronology of regulations and fieldwork:</p>
+    </div>
+
+    <div class="lifecycle-grid">
+      <div class="lifecycle-sticky">
+        <div class="lifecycle-progress">
+          <span class="lifecycle-progress-num">01</span>
+          <span class="lifecycle-progress-total">/ 07</span>
+        </div>
+        <div class="lifecycle-progress-bar"><div class="lifecycle-progress-fill"></div></div>
+        <h3 class="lifecycle-sticky-title">Capacity Research, Site Selection &amp; Land Pre-Analysis</h3>
+        <div class="lifecycle-visual">
+          <div class="lifecycle-visual-img is-active" data-visual="01" style="background-image:url('../assets/lifecycle/01-site-selection.jpg')"></div>
+          <div class="lifecycle-visual-img" data-visual="02" style="background-image:url('../assets/lifecycle/02-applications.jpg')"></div>
+          <div class="lifecycle-visual-img" data-visual="03" style="background-image:url('../assets/lifecycle/03-site-survey.jpg')"></div>
+          <div class="lifecycle-visual-img" data-visual="04" style="background-image:url('../assets/lifecycle/04-environment-planning.jpg')"></div>
+          <div class="lifecycle-visual-img" data-visual="05" style="background-image:url('../assets/lifecycle/05-engineering-design.jpg')"></div>
+          <div class="lifecycle-visual-img" data-visual="06" style="background-image:url('../assets/lifecycle/06-epc-construction.jpg')"></div>
+          <div class="lifecycle-visual-img" data-visual="07" style="background-image:url('../assets/lifecycle/07-commercial-operation.jpg')"></div>
+        </div>
+      </div>
+
+      <div class="lifecycle-steps">
+        <div class="lifecycle-step" data-num="01" data-title="Capacity Research, Site Selection &amp; Land Pre-Analysis">
+          <div class="lifecycle-step-top"><span class="lifecycle-step-num">01 / 07</span></div>
+          <h4>Capacity Research, Site Selection &amp; Land Pre-Analysis</h4>
+          <p>Research into grid connection capacity (TEİAŞ/TEDAŞ); identification of suitable land parcels; analysis of feasibility for lease, purchase or expropriation. Investigation of land status and preliminary land-use reclassification studies.</p>
+        </div>
+        <div class="lifecycle-step" data-num="02" data-title="Capacity Allocation &amp; Tender / Application Processes">
+          <div class="lifecycle-step-top"><span class="lifecycle-step-num">02 / 07</span></div>
+          <h4>Capacity Allocation &amp; Tender / Application Processes</h4>
+          <p>Submission of capacity allocation applications appropriate to the plant and activity type; monitoring and management of competitive tender or direct criterion-based allocation processes.</p>
+        </div>
+        <div class="lifecycle-step" data-num="03" data-title="Site Surveys, Measurements &amp; Pre-Construction">
+          <div class="lifecycle-step-top"><span class="lifecycle-step-num">03 / 07</span></div>
+          <h4>Site Surveys, Measurements &amp; Pre-Construction</h4>
+          <p>Following capacity allocation: acquisition and approval of survey maps for zoning plans; geological and geotechnical surveys; execution of regulatory wind/irradiation measurement processes for wind and solar projects; preparation of Land Conservation Board reports.</p>
+        </div>
+        <div class="lifecycle-step" data-num="04" data-title="EIA Process, Urban Planning &amp; Regulatory Approvals">
+          <div class="lifecycle-step-top"><span class="lifecycle-step-num">04 / 07</span></div>
+          <h4>EIA Process, Urban Planning &amp; Regulatory Approvals</h4>
+          <p>Management of Environmental Impact Assessment (EIA) processes and obtaining decisions. Preparation of zoning plans with urban planners, submission, collection of all public authority opinions; completion of public display and approval processes for zoning plans with positive EIA and authority opinions.</p>
+        </div>
+        <div class="lifecycle-step" data-num="05" data-title="Engineering Design, Simulations &amp; Technical Approvals">
+          <div class="lifecycle-step-top"><span class="lifecycle-step-num">05 / 07</span></div>
+          <h4>Engineering Design, Simulations &amp; Technical Approvals</h4>
+          <p>Detailed electrical and mechanical design in parallel with zoning and EIA processes, preparation of production simulations, and obtaining technical project approvals from relevant public/grid authorities.</p>
+        </div>
+        <div class="lifecycle-step" data-num="06" data-title="Licensing, Equipment Procurement &amp; EPC Construction">
+          <div class="lifecycle-step-top"><span class="lifecycle-step-num">06 / 07</span></div>
+          <h4>Licensing, Equipment Procurement &amp; EPC Construction</h4>
+          <p>Obtaining construction permits; site preparation and road analysis/infrastructure works for wind projects. Finalising procurement agreements for major equipment (turbine, panel, inverter, BESS), logistics tracking, and full execution of construction and site assembly.</p>
+        </div>
+        <div class="lifecycle-step" data-num="07" data-title="Official Acceptance, Commercial Operation &amp; Industrial Registry">
+          <div class="lifecycle-step-top"><span class="lifecycle-step-num">07 / 07</span></div>
+          <h4>Official Acceptance, Commercial Operation &amp; Industrial Registry</h4>
+          <p>Official Ministry acceptance, commissioning to commercial operation; obtaining occupancy, workplace opening and operating permits. Industrial registry during commercial operation, acquisition of Industrial Registry Certificate and regular monitoring of production data.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACK RECORD -->
+<section class="sec tr-sec" id="numbers">
+  <div class="wrap">
+    <div class="tr-topbar">
+      <div class="tr-topbar-left">
+        <span class="label in">AL ENERJİ by the Numbers</span>
+        <h2 class="tr-heading">Every Number Represents a Real Project</h2>
+        <span class="tr-subtitle">The measurable outcome of field experience accumulated since 2004 across development, tendering, engineering and investment.</span>
+      </div>
+      <span class="tr-range-total">2004 — 2026</span>
+    </div>
+    <div class="tr-grid">
+      <div class="tr-cell">
+        <span class="tr-toggle">+</span>
+        <span class="tr-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="9"/><circle cx="16" cy="16" r="1.4" fill="currentColor" stroke="none"/><path d="M16 4.5v3M16 24.5v3M4.5 16h3M24.5 16h3"/></svg></span>
+        <div class="tr-num">20+ Yrs</div>
+        <div class="tr-short">Engineering &amp; Field</div>
+        <div class="tr-detail"><p>Continuous project development, engineering, EPC, inspection and advisory experience in Turkey and regional markets.</p></div>
+      </div>
+      <div class="tr-cell">
+        <span class="tr-toggle">+</span>
+        <span class="tr-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 13.5V28"/><circle cx="16" cy="11" r="1.6" fill="currentColor" stroke="none"/><path d="M15.4 9.7L13.6 3.2l2.8-1.1l.5 7.4M17.5 10.7l6.6-1.8l.8 2.9l-6.8.6M15.1 12.4l-4.8 5l-2.2-2.1l5.8-4.1"/></svg></span>
+        <div class="tr-num">295.6 MW</div>
+        <div class="tr-short">Wind Portfolio</div>
+        <div class="tr-detail"><p>Wind project portfolio developed and directly submitted to capacity competition tenders.</p></div>
+      </div>
+      <div class="tr-cell">
+        <span class="tr-toggle">+</span>
+        <span class="tr-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="9.5"/><path d="M11.5 16.5l3 3 6-6.5"/></svg></span>
+        <div class="tr-num">74.2 MW</div>
+        <div class="tr-short">Won Wind Capacity</div>
+        <div class="tr-detail"><p>Wind plant capacity successfully won and licensed in TEİAŞ wind competitions.</p></div>
+      </div>
+      <div class="tr-cell">
+        <span class="tr-toggle">+</span>
+        <span class="tr-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13.5c2.4-2.8 5.3-2.8 7.7 0s5.3 2.8 7.7 0s5.3-2.8 7.7 0"/><path d="M5 19.5c2.4-2.8 5.3-2.8 7.7 0s5.3 2.8 7.7 0s5.3-2.8 7.7 0"/></svg></span>
+        <div class="tr-num">80 MW <span class="tr-annot">/ 9 Plants</span></div>
+        <div class="tr-short">Developed &amp; Sold HPPs</div>
+        <div class="tr-detail"><p>Hydroelectric plants developed from scratch with own resources and successfully transferred.</p></div>
+      </div>
+      <div class="tr-cell">
+        <span class="tr-toggle">+</span>
+        <span class="tr-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="14" r="7.5"/><path d="M19.5 19.5L26.5 26.5"/></svg></span>
+        <div class="tr-num">480 MW</div>
+        <div class="tr-short">HPP Advisory Volume</div>
+        <div class="tr-detail"><p>HPP projects covered by technical review, feasibility and investment advisory.</p></div>
+      </div>
+      <div class="tr-cell">
+        <span class="tr-toggle">+</span>
+        <span class="tr-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="6"/><path d="M16 4.5v3M16 24.5v3M4.5 16h3M24.5 16h3M8 8l2.1 2.1M21.9 21.9L24 24M8 24l2.1-2.1M21.9 10.1L24 8"/></svg></span>
+        <div class="tr-num">220 MW+</div>
+        <div class="tr-short">Solar Development &amp; Advisory</div>
+        <div class="tr-detail"><p>Project development from scratch through operation, EPC installation, Owner's Engineer and TDD work.</p></div>
+      </div>
+      <div class="tr-cell">
+        <span class="tr-toggle">+</span>
+        <span class="tr-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13.5L16 6l10 7.5"/><path d="M8 13.5v11M14 13.5v11M18 13.5v11M24 13.5v11"/><path d="M5 24.5h22"/></svg></span>
+        <div class="tr-num">16.7 MW <span class="tr-annot">(9 Plants)</span></div>
+        <div class="tr-short">POI HPP Tender</div>
+        <div class="tr-detail"><p>Public waterway HPP packages assessed and valued on-site at POI tender.</p></div>
+      </div>
+      <div class="tr-cell">
+        <span class="tr-toggle">+</span>
+        <span class="tr-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24.5c0-11 11-15.5 17-15.5c0 5.5-3.5 16.5-14.5 16.5c-2.5 0-2.5-1-2.5-1z"/><path d="M9 23.5c3.5-3.5 8-8 12-12"/></svg></span>
+        <div class="tr-num">25.8 MW <span class="tr-annot">(3 Plants)</span></div>
+        <div class="tr-short">Carbon Certification</div>
+        <div class="tr-detail"><p>VCS / Gold Standard emission reduction projects registered in partnership with South Pole.</p></div>
+      </div>
+      <div class="tr-cell">
+        <span class="tr-toggle">+</span>
+        <span class="tr-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="16" r="9.5"/><path d="M6.5 16h19"/><path d="M16 6.5c3 3 3 16.5 0 19.5c-3-3-3-16.5 0-19.5z"/></svg></span>
+        <div class="tr-num">1 GW+</div>
+        <div class="tr-short">Total Technical Volume</div>
+        <div class="tr-detail"><p>Total volume developed, installed, inspected and valued across HPP, WPP, SPP, BESS and Waste Heat.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="sec" id="projects" style="background:var(--surface-alt); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="wrap">
+    <div class="prj-sec-hdr">
+      <div>
+        <span class="label">Projects</span>
+        <h2>Selected work from the field.</h2>
+      </div>
+      <p>A selection of completed work presented through real project photography, implementation details and key technical facts.</p>
+    </div>
+    <div class="grid3">
+      <a class="prj-card" href="project-kutahya-yaylakoy-spp.html">
+        <div class="img"><img src="../assets/projects/kutahya-yaylakoy/hero-saha.jpg" alt="Site view of Kütahya Yaylaköy SPP" loading="lazy"></div>
+        <div class="body">
+          <h3>Kütahya Yaylaköy SPP</h3>
+          <p>A solar power plant archive combining wide site views, implementation details and field checks through real project photography.</p>
+          <div class="prj-facts"><div><strong>2.25 MWp / 2 MWe</strong><span>Capacity</span></div><div><strong>Yaylaköy, Kütahya</strong><span>Location</span></div></div>
+          <span class="prj-link">Explore project →</span>
+        </div>
+      </a>
+      <a class="prj-card" href="project-isparta-gonen-spp.html">
+        <div class="img"><img src="../assets/projects/isparta-gonen/hava-genel.webp" alt="Aerial overview of Isparta Gönen SPP" loading="lazy"></div>
+        <div class="body">
+          <h3>Isparta Gönen SPP</h3>
+          <p>A project archive using aerial and close field photography to show plant layout, topography and solar arrays together.</p>
+          <div class="prj-facts"><div><strong>2.25 MWp / 2 MWe</strong><span>Capacity</span></div><div><strong>Gönen, Isparta</strong><span>Location</span></div></div>
+          <span class="prj-link">Explore project →</span>
+        </div>
+      </a>
+      <a class="prj-card" href="project-eskisehir-nis-32-spp.html">
+        <div class="img"><img src="../assets/projects/eskisehir-nis32/genel.webp" alt="Aerial overview of NİS 32 SPP" loading="lazy"></div>
+        <div class="body">
+          <h3>NİS 32 SPP</h3>
+          <p>An aerial project archive of the 950 kW ground-mounted solar power plant located in Tepebaşı, Eskişehir.</p>
+          <div class="prj-facts"><div><strong>950 kW</strong><span>Capacity</span></div><div><strong>Tepebaşı, Eskişehir</strong><span>Location</span></div></div>
+          <span class="prj-link">Explore project →</span>
+        </div>
+      </a>
+    </div>
+    <div style="text-align:center; margin-top:48px;">
+      <button class="btn-pill dk" onclick="location.href='../projeler.html'" style="display:inline-flex;">View All Projects <span class="btn-pill-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13L13 3M13 3H6M13 3v7"/></svg></span></button>
+    </div>
+  </div>
+</section>
+
+<!-- SUSTAINABILITY -->
+<section class="sec sustain-sec" id="sustainability">
+  <div class="wrap">
+    <div class="sustain-hdr">
+      <span class="label in">Sustainability</span>
+      <h2>Global Standards for a Carbon-Neutral Future.</h2>
+      <p>AL ENERJİ does not merely build power plants — it creates measurable solutions to the climate crisis.</p>
+    </div>
+
+    <div class="sustain-timeline">
+      <div class="sustain-point">
+        <span class="sustain-year">2007</span>
+        <h3>South Pole Partnership Begins</h3>
+        <p>Emission reduction certification processes initiated with Swiss-based South Pole for HPP and geothermal projects in Turkey.</p>
+      </div>
+      <div class="sustain-point">
+        <span class="sustain-year">2016</span>
+        <h3>VCS &amp; Gold Standard Certification</h3>
+        <p>Emission reduction certification registered and verified for 25.8 MW / 3 plants (Çaldere HPP, Dora-1, Dora-2).</p>
+      </div>
+      <div class="sustain-point">
+        <span class="sustain-year">Today</span>
+        <h3>CBAM / Carbon Management Advisory</h3>
+        <p>Carbon footprint management and green transition advisory for industrial facilities adapting to carbon regulations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="sec final-cta-sec" id="contact">
+  <div class="wrap final-cta-grid">
+    <div>
+      <span class="label in">Next Step</span>
+      <h2>Ready to Be Your End-to-End Energy Investment Partner.</h2>
+    </div>
+    <div class="final-cta-side">
+      <p>Contact us to develop your projects from scratch, conduct technical inspections on your facilities, obtain EPC solutions, or explore our transaction portfolio.</p>
+      <div class="final-cta-actions">
+        <button class="btn-white" onclick="location.href='contact.html'">Contact Us →</button>
+        <button class="btn-ghost-w" onclick="location.href='contact.html'">Project Portfolio &amp; M&amp;A Enquiry</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer-grid">
+      <div>
+        <div class="site-footer-logo"><img src="../assets/brand/al_enerji_logo_white.png" alt="AL ENERJİ" width="166" height="44"></div>
+        <p class="desc">Engineering-led, long-term energy partner. Since 2004.</p>
+        <div class="addr">Nef 09, B Block, No:104<br>Kağıthane / Istanbul, Türkiye<br><br>+90 212 234 38 38<br>info@alenerji.com.tr</div>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="project-development.html">Project Development</a>
+        <a href="epc.html">EPC &amp; Installation</a>
+        <a href="bess.html">BESS &amp; Hybrid</a>
+        <a href="brokerage.html">M&amp;A Brokerage</a>
+        <a href="site-inspection.html">Site Inspection</a>
+        <a href="carbon.html">Carbon Management</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="about.html">About Us</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html#form">Careers</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:info@alenerji.com.tr">info@alenerji.com.tr</a>
+        <a href="tel:+902122343838">+90 212 234 38 38</a>
+        <a href="contact.html">Get in Touch</a>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <div class="site-footer-bottom-left">© 2026 AL ENERJİ. All rights reserved.</div>
+      <div class="site-footer-bottom-right">
+        <a href="privacy-notice.html">Privacy Notice</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.label').forEach(function (el) {
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) { el.classList.add('in'); io.disconnect(); }
+    });
+  }, { threshold: 0.3 });
+  io.observe(el);
+});
+
+(function () {
+  var steps = Array.prototype.slice.call(document.querySelectorAll('.lifecycle-step'));
+  if (!steps.length) return;
+  var progressNum = document.querySelector('.lifecycle-progress-num');
+  var progressFill = document.querySelector('.lifecycle-progress-fill');
+  var stickyTitle = document.querySelector('.lifecycle-sticky-title');
+  var visuals = Array.prototype.slice.call(document.querySelectorAll('.lifecycle-visual-img'));
+  var total = steps.length;
+
+  function setActive(step) {
+    steps.forEach(function (s) { s.classList.toggle('is-active', s === step); });
+    if (progressNum) progressNum.textContent = step.dataset.num;
+    if (progressFill) progressFill.style.width = (parseInt(step.dataset.num, 10) / total * 100) + '%';
+    if (stickyTitle) stickyTitle.textContent = step.dataset.title;
+    visuals.forEach(function (v) { v.classList.toggle('is-active', v.dataset.visual === step.dataset.num); });
+  }
+
+  function updateActiveStep() {
+    var threshold = window.innerHeight * 0.5;
+    var active = steps[0];
+    for (var i = 0; i < steps.length; i++) {
+      if (steps[i].getBoundingClientRect().top < threshold) { active = steps[i]; } else { break; }
+    }
+    setActive(active);
+  }
+  window.addEventListener('scroll', updateActiveStep, { passive: true });
+  updateActiveStep();
+})();
+
+(function () {
+  var bg = document.getElementById('cta-par-bg');
+  var sec = document.getElementById('cta-par');
+  if (!bg || window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  window.addEventListener('scroll', function () {
+    var r = sec.getBoundingClientRect();
+    if (r.bottom > 0 && r.top < window.innerHeight) {
+      bg.style.transform = 'scale(1.2) translateY(' + (-r.top / window.innerHeight * 55).toFixed(1) + 'px)';
+    }
+  }, { passive: true });
+})();
+
+(function () {
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(function (el) { obs.observe(el); });
+})();
+
+(function () {
+  var burger = document.getElementById('navBurger');
+  var drawer = document.getElementById('navMobile');
+  if (!burger || !drawer) return;
+  burger.addEventListener('click', function () {
+    var open = burger.classList.toggle('open');
+    drawer.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  drawer.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      burger.classList.remove('open');
+      drawer.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+})();
+
+const _mht = document.getElementById('mobHizToggle');
+const _mhs = document.getElementById('mobHizSub');
+if (_mht && _mhs) {
+  _mht.addEventListener('click', () => {
+    _mht.classList.toggle('open');
+    _mhs.classList.toggle('open');
+  });
+}
+</script>
+</body>
+</html>

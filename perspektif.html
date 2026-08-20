@@ -34,30 +34,20 @@ img { max-width:100%; display:block; }
 .wrap { max-width:var(--max); margin:0 auto; padding:0 var(--gut); }
 
 /* ─── NAV ────────────────────────────────────────────── */
-nav { position:sticky; top:0; z-index:100; height:64px; display:flex; align-items:center; background:rgba(251,252,251,.9); backdrop-filter:blur(12px); }
-nav.dark-mode { background:rgba(11,20,48,.75); }
-nav.scrolled { border-bottom:1px solid var(--border); }
-nav.dark-mode.scrolled { border-bottom-color:rgba(255,255,255,.08); }
+nav { position:sticky; top:0; z-index:100; height:64px; display:flex; align-items:center; background:rgba(251,252,251,.95); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
 nav .wrap { display:flex; align-items:center; justify-content:space-between; width:100%; }
 .logo { display:flex; align-items:center; }
 .logo-light { display:block; } .logo-dark { display:none; }
-nav.dark-mode .logo-light { display:none; } nav.dark-mode .logo-dark { display:block; }
 .navlinks { display:flex; gap:28px; font-size:14px; font-weight:500; color:var(--text); }
-nav.dark-mode .navlinks { color:#fff; }
 .navlinks a { position:relative; }
 .navlinks a::after { content:''; position:absolute; left:0; bottom:-4px; height:1.5px; width:0; background:var(--green-dk); transition:width .22s ease; }
-nav.dark-mode .navlinks a::after { background:var(--green-lt); }
 .navlinks a:hover::after, .navlinks a.active::after { width:100%; }
 .navlinks a.active { color:var(--green-dk); font-weight:600; }
-nav.dark-mode .navlinks a.active { color:var(--green-lt); }
 .nav-cta { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:10px 20px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid transparent; background:var(--navy); color:#fff; transition:transform .15s ease; white-space:nowrap; }
-nav.dark-mode .nav-cta { background:transparent; border-color:rgba(255,255,255,.28); }
 .nav-cta::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--green-dk); transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
-nav.dark-mode .nav-cta::before { background:rgba(255,255,255,.14); }
 .nav-cta:hover { transform:translateY(-1px); } .nav-cta:hover::before { transform:translateX(0); }
-.nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; cursor:pointer; padding:6px; border:none; background:transparent; border-radius:4px; }
+.nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; cursor:pointer; padding:11px 10px; border:none; background:transparent; border-radius:4px; }
 .nav-burger span { display:block; width:22px; height:1.5px; background:var(--text); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
-nav.dark-mode .nav-burger span { background:#fff; }
 .nav-burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
 .nav-burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
 .nav-burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
@@ -125,6 +115,8 @@ nav.dark-mode .nav-burger span { background:#fff; }
 .author-title { font-size:12px; color:var(--muted); }
 .featured-link { display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:700; color:var(--green-dk); margin-top:20px; transition:gap .18s; }
 .featured-link:hover { gap:10px; }
+.featured-link.is-disabled, .ac-arrow.is-disabled { color:var(--muted); cursor:default; }
+.featured-link.is-disabled:hover, .ac-arrow.is-disabled:hover { gap:4px; }
 
 /* ─── HABER GRID ─────────────────────────────────────── */
 /* PHP: foreach ($articles as $article) — her kart bir satır */
@@ -199,7 +191,54 @@ footer a:hover { color:#fff; }
 [data-reveal] { opacity:0; transform:translateY(16px); transition:opacity .55s ease, transform .55s ease; }
 [data-reveal].in { opacity:1; transform:none; }
 @media(prefers-reduced-motion:reduce) { [data-reveal] { opacity:1; transform:none; transition:none; } }
+
+/* ---- NAV DROPDOWN ---- */
+.nav-item { position:relative; }
+.nav-item::after { content:''; position:absolute; top:100%; left:-16px; right:-16px; height:20px; }
+.nav-item > a { display:inline-flex; align-items:center; gap:5px; }
+.nav-caret { width:10px; height:6px; flex-shrink:0; transition:transform .2s ease; }
+.nav-item:hover .nav-caret { transform:rotate(180deg); }
+.nav-dropdown {
+  position:absolute; top:calc(100% + 16px); left:50%; transform:translateX(-50%) translateY(-6px);
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r-card); box-shadow:0 16px 48px rgba(0,0,0,.13);
+  padding:28px 24px; display:grid; grid-template-columns:1fr .7fr 1.1fr; gap:24px;
+  width:560px; opacity:0; pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease; z-index:200;
+}
+.nav-item:hover .nav-dropdown { opacity:1; pointer-events:all; transform:translateX(-50%) translateY(0); }
+.dropdown-col { display:flex; flex-direction:column; }
+.dropdown-cat {
+  display:block; font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--green-lt); margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid var(--border);
+}
+.nav-dropdown a { display:block; padding:8px 0; border-bottom:1px solid var(--border); text-decoration:none; }
+.nav-dropdown a:last-child { border-bottom:0; padding-bottom:0; }
+.nav-dropdown a strong { display:block; font-size:13px; font-weight:600; color:var(--navy); transition:color .18s; line-height:1.3; }
+.nav-dropdown a span { display:block; font-size:11px; color:#8a9088; margin-top:2px; line-height:1.4; }
+.nav-dropdown a:hover strong { color:var(--green-lt); }
+.nav-dropdown a.soon { opacity:.38; pointer-events:none; }
+/* ---- MOB HIZMETLER EXPANDABLE ---- */
+.mob-hiz-toggle {
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:1rem; font-weight:600; padding:13px 0; border-bottom:1px solid var(--border);
+  cursor:pointer; color:var(--text); user-select:none;
+}
+.mob-hiz-arrow { font-size:11px; display:inline-block; transition:transform .2s; opacity:.6; }
+.mob-hiz-toggle.open .mob-hiz-arrow { transform:rotate(180deg); }
+.mob-hiz-sub { display:none; padding-left:16px; }
+.mob-hiz-sub.open { display:block; }
+.mob-hiz-sub a { display:block; font-size:.9rem; font-weight:500; padding:9px 0; border-bottom:1px solid var(--border); color:#555c54; text-decoration:none; }
+.mob-hiz-sub a:first-child { font-weight:600; color:var(--navy); }
+.mob-hiz-sub a:last-child { border-bottom:0; }
+.mob-hiz-sub a.soon { opacity:.38; pointer-events:none; }
 </style>
+<link rel="stylesheet" href="footer-std.css">
+<script src="scroll-top.js" defer></script>
+<link rel="stylesheet" href="nav-revision.css">  <link rel="stylesheet" href="brand-assets.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/brand/favicon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/brand/apple-touch-icon.png">
 </head>
 <body>
 
@@ -207,11 +246,30 @@ footer a:hover { color:#fff; }
 <nav id="nav">
   <div class="wrap">
     <a href="index.html" class="logo">
-      <img class="logo-light" src="Logo_black@2x.png" alt="AL ENERJİ" height="42" style="width:auto;">
-      <img class="logo-dark"  src="Logo_white@2x.png" alt="AL ENERJİ" height="42" style="width:auto;">
+      <img class="logo-light" src="assets/brand/V2.png" alt="AL ENERJİ" height="42" style="width:auto;">
+      <img class="logo-dark"  src="assets/brand/al_enerji_logo_white.png" alt="AL ENERJİ" height="42" style="width:auto;">
     </a>
     <div class="navlinks">
-      <a href="hizmetler.html">Hizmetler</a>
+    <div class="nav-item">
+      <a href="hizmetler.html">Hizmetler<svg class="nav-caret" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="nav-dropdown"><a class="nav-all-services" href="hizmetler.html"><strong>Tüm Hizmetler</strong><span>Tüm hizmet alanlarımızı inceleyin</span><b aria-hidden="true">→</b></a>
+        <div class="dropdown-col">
+          <span class="dropdown-cat">Geliştirme & EPC</span>
+          <a href="proje-gelistirme.html"><strong>Proje Geliştirme</strong><span>Sıfırdan işletmeye 7 adım</span></a>
+          <a href="epc.html"><strong>EPC & Kurulum</strong><span>Anahtar teslim GES çözümleri</span></a>
+        </div>
+        <div class="dropdown-col">
+          <span class="dropdown-cat">Depolama</span>
+          <a href="bess.html"><strong>BESS & Hibrit</strong><span>Esnek şebeke çözümleri</span></a>
+        </div>
+        <div class="dropdown-col">
+          <span class="dropdown-cat">Brokerage & Danışmanlık</span>
+          <a href="brokerage.html"><strong>M&A Brokerage</strong><span>Proje alım-satım yönetimi</span></a>
+          <a href="saha-denetimi.html"><strong>Saha Denetimi</strong><span>Owner's Engineer hizmeti</span></a>
+          <a href="karbon.html" ><strong>Karbon Yönetimi</strong><span>South Pole iş birliği</span></a>
+        </div>
+      </div>
+    </div>
       <a href="projeler.html">Projeler</a>
       <a href="hakkimizda.html">Hakkımızda</a>
       <a href="perspektif.html" class="active">Perspektif</a>
@@ -224,7 +282,16 @@ footer a:hover { color:#fff; }
   </div>
 </nav>
 <div class="nav-mobile" id="nav-mobile">
-  <a href="hizmetler.html">Hizmetler</a>
+  <div class="mob-hiz-toggle" id="mobHizToggle">Hizmetler <span class="mob-hiz-arrow">▾</span></div>
+  <div class="mob-hiz-sub" id="mobHizSub">
+    <a href="hizmetler.html">Tüm Hizmetler</a>
+    <a href="brokerage.html">M&A Brokerage</a>
+    <a href="proje-gelistirme.html">Proje Geliştirme</a>
+    <a href="epc.html">EPC & Kurulum</a>
+    <a href="saha-denetimi.html">Saha Denetimi</a>
+    <a href="bess.html">BESS & Hibrit</a>
+    <a href="karbon.html" >Karbon Yönetimi</a>
+  </div>
   <a href="projeler.html">Projeler</a>
   <a href="hakkimizda.html">Hakkımızda</a>
   <a href="perspektif.html" class="active">Perspektif</a>
@@ -281,9 +348,9 @@ footer a:hover { color:#fff; }
             6 dk okuma
           </span>
         </div>
-        <h2><a href="#">EPİAŞ Spot Fiyatları 2025'te Yüzde 38 Arttı — Piyasa Değerlendirmesi</a></h2>
+        <h2>EPİAŞ Spot Fiyatları 2025'te Yüzde 38 Arttı — Piyasa Değerlendirmesi</h2>
         <p class="featured-excerpt">Geçtiğimiz yıl boyunca Türkiye elektrik spot piyasasında gözlemlenen volatilite, yenilenebilir enerji santrallerinin portföy yönetimi stratejilerini köklü biçimde değiştirdi. GÖP verilerinin kapsamlı bir analizi ve 2026 beklentilerimizi bu yazıda paylaşıyoruz.</p>
-        <a href="#" class="featured-link">Devamını Oku →</a>
+        <span class="featured-link is-disabled" aria-disabled="true">Detay sayfası hazırlanıyor</span>
         <div class="featured-author">
           <div class="author-av">AE</div>
           <div>
@@ -317,14 +384,14 @@ footer a:hover { color:#fff; }
             <span class="ac-date">9 Ocak 2026</span>
             <span class="ac-read">4 dk</span>
           </div>
-          <h3><a href="#">BESS Projeleri Türkiye'de Hız Kazanıyor — 2026 Boru Hattı</a></h3>
+          <h3>BESS Projeleri Türkiye'de Hız Kazanıyor — 2026 Boru Hattı</h3>
           <p class="ac-excerpt">TEİAŞ'ın güç sistemi esnekliğine yönelik açıklamaları, büyük ölçekli batarya depolama yatırımlarını tetikledi. Sektörde son 6 ayda başvuruları ikiye katlandı.</p>
           <div class="ac-footer">
             <div class="ac-author">
               <div class="ac-av">AE</div>
               <span class="ac-author-name">AL ENERJİ Basın</span>
             </div>
-            <a href="#" class="ac-arrow">Oku →</a>
+            <span class="ac-arrow is-disabled" aria-disabled="true">İçerik yakında</span>
           </div>
         </div>
       </article>
@@ -340,14 +407,14 @@ footer a:hover { color:#fff; }
             <span class="ac-date">5 Ocak 2026</span>
             <span class="ac-read">5 dk</span>
           </div>
-          <h3><a href="#">Avrupa Karbon Sınırında Yeni Dönem: CBAM Tam Uygulamaya Geçiyor</a></h3>
+          <h3>Avrupa Karbon Sınırında Yeni Dönem: CBAM Tam Uygulamaya Geçiyor</h3>
           <p class="ac-excerpt">AB'nin Sınırda Karbon Düzenleme Mekanizması 2026 itibarıyla gerçek maliyetlerle işlemeye başlıyor. Türk ihracatçıları için ne anlama geldiğini açıklıyoruz.</p>
           <div class="ac-footer">
             <div class="ac-author">
               <div class="ac-av">AE</div>
               <span class="ac-author-name">AL ENERJİ Basın</span>
             </div>
-            <a href="#" class="ac-arrow">Oku →</a>
+            <span class="ac-arrow is-disabled" aria-disabled="true">İçerik yakında</span>
           </div>
         </div>
       </article>
@@ -363,14 +430,14 @@ footer a:hover { color:#fff; }
             <span class="ac-date">28 Aralık 2025</span>
             <span class="ac-read">2 dk</span>
           </div>
-          <h3><a href="#">AL ENERJİ, Konya'da 50 MW'lık GES'i Devreye Aldı</a></h3>
+          <h3>AL ENERJİ, Konya'da 50 MW'lık GES'i Devreye Aldı</h3>
           <p class="ac-excerpt">Şirketimizin portföyüne kattığı en büyük güneş santrali, yılın son haftasında ticari işletmeye açıldı. Yıllık üretim kapasitesi 85 GWh olarak öngörülüyor.</p>
           <div class="ac-footer">
             <div class="ac-author">
               <div class="ac-av">AE</div>
               <span class="ac-author-name">AL ENERJİ Basın</span>
             </div>
-            <a href="#" class="ac-arrow">Oku →</a>
+            <span class="ac-arrow is-disabled" aria-disabled="true">İçerik yakında</span>
           </div>
         </div>
       </article>
@@ -386,14 +453,14 @@ footer a:hover { color:#fff; }
             <span class="ac-date">22 Aralık 2025</span>
             <span class="ac-read">7 dk</span>
           </div>
-          <h3><a href="#">Kış Dönemi Spot Yüksekliği: GES Portföyleri İçin Arbitraj Fırsatları</a></h3>
+          <h3>Kış Dönemi Spot Yüksekliği: GES Portföyleri İçin Arbitraj Fırsatları</h3>
           <p class="ac-excerpt">Doğalgaz fiyatlarındaki oynaklık ve hidrolik kapasite düşüklüğü, kış aylarında spot fiyatları rekor seviyelere taşıdı. GES sahipleri için optimum strateji ne olmalı?</p>
           <div class="ac-footer">
             <div class="ac-author">
               <div class="ac-av">AE</div>
               <span class="ac-author-name">AL ENERJİ Basın</span>
             </div>
-            <a href="#" class="ac-arrow">Oku →</a>
+            <span class="ac-arrow is-disabled" aria-disabled="true">İçerik yakında</span>
           </div>
         </div>
       </article>
@@ -409,14 +476,14 @@ footer a:hover { color:#fff; }
             <span class="ac-date">15 Aralık 2025</span>
             <span class="ac-read">3 dk</span>
           </div>
-          <h3><a href="#">Panel Fiyatları 5 Yılın Dibinde — GES Yatırımı İçin En Uygun Pencere mi?</a></h3>
+          <h3>Panel Fiyatları 5 Yılın Dibinde — GES Yatırımı İçin En Uygun Pencere mi?</h3>
           <p class="ac-excerpt">Çin üretimindeki kapasite fazlası, monokristal panel fiyatlarını watt başına 0.11 dolara indirdi. Türkiye'de proje geliştirme maliyetlerine etkisi ne oldu?</p>
           <div class="ac-footer">
             <div class="ac-author">
               <div class="ac-av">AE</div>
               <span class="ac-author-name">AL ENERJİ Basın</span>
             </div>
-            <a href="#" class="ac-arrow">Oku →</a>
+            <span class="ac-arrow is-disabled" aria-disabled="true">İçerik yakında</span>
           </div>
         </div>
       </article>
@@ -432,14 +499,14 @@ footer a:hover { color:#fff; }
             <span class="ac-date">8 Aralık 2025</span>
             <span class="ac-read">4 dk</span>
           </div>
-          <h3><a href="#">YEKA-3 Başvuruları Ocak'ta Kapanıyor — Dikkat Edilmesi Gerekenler</a></h3>
+          <h3>YEKA-3 Başvuruları Ocak'ta Kapanıyor — Dikkat Edilmesi Gerekenler</h3>
           <p class="ac-excerpt">YEKA üçüncü turu için son başvuru tarihi yaklaşıyor. Teknik şartname değişiklikleri, yerel katkı gereksinimleri ve banka finansman süreçleri hakkında özet bilgi.</p>
           <div class="ac-footer">
             <div class="ac-author">
               <div class="ac-av">AE</div>
               <span class="ac-author-name">AL ENERJİ Basın</span>
             </div>
-            <a href="#" class="ac-arrow">Oku →</a>
+            <span class="ac-arrow is-disabled" aria-disabled="true">İçerik yakında</span>
           </div>
         </div>
       </article>
@@ -478,7 +545,7 @@ footer a:hover { color:#fff; }
           <div class="nl-note">Haftada bir bülten. İstediğinizde çıkabilirsiniz.</div>
         </form>
         <div id="nl-success" style="display:none; color:var(--green-lt); font-size:14px; font-weight:600; padding-top:12px;">
-          ✓ Abone oldunuz — teşekkürler!
+          Bülten abonelik sistemi hazırlanıyor. Duyuru talepleriniz için info@alenerji.com.tr adresine yazabilirsiniz.
         </div>
       </div>
     </div>
@@ -486,42 +553,41 @@ footer a:hover { color:#fff; }
 </section>
 
 <!-- ─── FOOTER ─────────────────────────────────────────── -->
-<footer>
+<footer class="site-footer">
   <div class="wrap">
-    <div class="grid">
+    <div class="site-footer-grid">
       <div>
-        <div class="logo"><img src="Logo_white@2x.png" alt="AL ENERJİ" height="44" style="display:block;width:auto;"></div>
+        <div class="site-footer-logo"><img src="assets/brand/al_enerji_logo_white.png" alt="AL ENERJİ" width="166" height="44"></div>
         <p class="desc">Mühendislik odaklı, uzun vadeli enerji iş ortağı. 2004'ten bu yana.</p>
-        <div class="addr">Mustafa Kemal Mah. Dumlupınar Blv. No:274/7<br>06530 Çankaya / Ankara<br><br>+90 312 000 00 00<br>info@alenerji.com.tr</div>
+        <div class="addr">Nef 09 B Blok No:104<br>Kağıthane / İstanbul<br><br>+90 212 234 38 38<br>info@alenerji.com.tr</div>
       </div>
       <div>
         <h4>Hizmetler</h4>
-        <a href="hizmetler.html#uretim">Üretim & Saha Geliştirme</a>
-        <a href="hizmetler.html#depolama">Enerji Depolama (BESS)</a>
-        <a href="hizmetler.html#ticaret">Enerji Ticareti</a>
-        <a href="hizmetler.html#danismanlik">Sürdürülebilirlik</a>
+        <a href="proje-gelistirme.html">Proje Geliştirme</a>
+        <a href="epc.html">EPC &amp; Kurulum</a>
+        <a href="bess.html">BESS &amp; Hibrit</a>
+        <a href="brokerage.html">M&amp;A Brokerage</a>
+        <a href="saha-denetimi.html">Saha Denetimi</a>
+        <a href="karbon.html">Karbon Yönetimi</a>
       </div>
       <div>
         <h4>Kurumsal</h4>
         <a href="hakkimizda.html">Hakkımızda</a>
         <a href="projeler.html">Projeler</a>
-        <a href="perspektif.html">Perspektif</a>
-        <a href="#">Kariyer</a>
+        <a href="iletisim.html#form">Kariyer</a>
       </div>
       <div>
         <h4>İletişim</h4>
-        <a href="iletisim.html">İletişim Formu</a>
-        <a href="tel:+903120000000">+90 312 000 00 00</a>
         <a href="mailto:info@alenerji.com.tr">info@alenerji.com.tr</a>
-        <a href="#">LinkedIn</a>
+        <a href="tel:+902122343838">+90 212 234 38 38</a>
+        <a href="iletisim.html">Bize Ulaşın</a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-bottom-left">© 2026 AL ENERJİ. Tüm hakları saklıdır.</div>
-      <div class="footer-bottom-right">
-        <a href="#">KVKK Aydınlatma</a>
-        <a href="#">Gizlilik Politikası</a>
-        <a href="#">Kullanım Koşulları</a>
+    <div class="site-footer-bottom">
+      <div class="site-footer-bottom-left">© 2026 AL ENERJİ. Tüm hakları saklıdır.</div>
+      <div class="site-footer-bottom-right">
+        <a href="kvkk-aydinlatma.html">KVKK Aydınlatma</a>
+        <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
       </div>
     </div>
   </div>
@@ -534,11 +600,6 @@ const pHero  = document.getElementById('page-hero');
 const burger = document.getElementById('nav-burger');
 const drawer = document.getElementById('nav-mobile');
 
-nav.classList.add('dark-mode');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('dark-mode', pHero.getBoundingClientRect().bottom > 64);
-  nav.classList.toggle('scrolled', window.scrollY > 0);
-}, { passive:true });
 
 burger.addEventListener('click', () => {
   const open = burger.classList.toggle('open');
@@ -592,12 +653,10 @@ document.querySelectorAll('.pg-btn:not(.disabled)').forEach(btn => {
 });
 
 // ── BÜLTEN FORMU ─────────────────────────────────────────
-document.getElementById('nl-form').addEventListener('submit', async e => {
+document.getElementById('nl-form').addEventListener('submit', e => {
   e.preventDefault();
-  const btn = e.target.querySelector('.nl-btn');
-  btn.textContent = '...'; btn.disabled = true;
-  await new Promise(r => setTimeout(r, 700));
-  e.target.style.display = 'none';
+  const email = e.target.querySelector('input[type="email"]');
+  if (!email.checkValidity()) { email.reportValidity(); return; }
   document.getElementById('nl-success').style.display = 'block';
 });
 
@@ -611,6 +670,16 @@ const revObs = new IntersectionObserver(entries => {
   });
 }, { threshold:0.07 });
 document.querySelectorAll('[data-reveal]').forEach(el => revObs.observe(el));
+
+  // Mobile Hizmetler accordion
+  const _mht = document.getElementById('mobHizToggle');
+  const _mhs = document.getElementById('mobHizSub');
+  if (_mht && _mhs) {
+    _mht.addEventListener('click', () => {
+      _mht.classList.toggle('open');
+      _mhs.classList.toggle('open');
+    });
+  }
 </script>
 </body>
 </html>

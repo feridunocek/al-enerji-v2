@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="2004'ten bu yana enerji sektöründe mühendislik odaklı çözümler. Ekibimiz, misyonumuz ve kurumsal değerlerimiz hakkında bilgi alın.">
+    <meta property="og:title" content="Hakkımızda — AL ENERJİ">
+    <meta property="og:description" content="2004'ten bu yana enerji sektöründe mühendislik odaklı çözümler. Ekibimiz, misyonumuz ve kurumsal değerlerimiz hakkında bilgi alın.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://al-enerji-v2.vercel.app/hakkimizda.html">
+    <link rel="canonical" href="https://al-enerji-v2.vercel.app/hakkimizda.html">
 <title>Hakkımızda — AL ENERJİ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,13 +26,14 @@
 @media(max-width:768px) { :root { --gut:24px; --spy:64px; } }
 
 * { box-sizing:border-box; margin:0; padding:0; }
+    img { max-width: 100%; display: block; }
 html { scroll-behavior:smooth; }
 body { font-family:var(--fh); background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
 a { color:inherit; text-decoration:none; }
 .wrap { max-width:var(--max); margin:0 auto; padding:0 var(--gut); }
 .sec { padding:var(--spy) 0; }
 
-.label { display:inline-flex; align-items:center; gap:12px; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green-lt); margin-bottom:18px; }
+.label { display:inline-flex; align-items:center; gap:12px; font-size:14px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green-lt); margin-bottom:18px; }
 .label::after { content:''; order:-1; width:7px; height:7px; border-radius:9999px; background:var(--green-lt); animation:labelPulse 2.4s ease-in-out infinite; }
 .label::before { content:''; width:0; height:1.5px; background:var(--green-lt); transition:width .6s ease .15s; }
 .label.in::before { width:28px; }
@@ -39,26 +46,18 @@ h3 { font-size:1.375rem; font-weight:600; line-height:1.25; }
 .lead { font-size:1.0625rem; color:var(--text-2); max-width:54ch; margin-top:18px; }
 
 /* NAV */
-nav { position:sticky; top:0; z-index:50; height:64px; display:flex; align-items:center; background:rgba(251,252,251,.85); backdrop-filter:blur(10px); }
-nav.dark-mode { background:rgba(11,20,48,.72); backdrop-filter:blur(10px); }
-nav.scrolled { border-bottom:1px solid var(--border); }
+nav { position:sticky; top:0; z-index:50; height:64px; display:flex; align-items:center; background:rgba(251,252,251,.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); }
 nav .wrap { display:flex; align-items:center; justify-content:space-between; width:100%; }
 .logo { display:flex; align-items:center; }
 .logo-light { display:block; }
 .logo-dark  { display:none; }
-nav.dark-mode .logo-light { display:none; }
-nav.dark-mode .logo-dark  { display:block; }
 .navlinks { display:flex; gap:32px; font-size:14px; font-weight:500; color:var(--text); }
-nav.dark-mode .navlinks { color:#fff; }
 .navlinks a { position:relative; cursor:pointer; }
 .navlinks a::after { content:''; position:absolute; left:0; bottom:-5px; height:1.5px; width:0; background:var(--green-dk); transition:width .22s ease; }
-nav.dark-mode .navlinks a::after { background:var(--green-lt); }
 .navlinks a:hover::after { width:100%; }
 .navlinks a.active { color:var(--green-dk); }
-nav.dark-mode .navlinks a.active { color:var(--green-lt); }
-.nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; cursor:pointer; padding:6px; border:none; background:transparent; border-radius:4px; }
+.nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; cursor:pointer; padding:11px 10px; border:none; background:transparent; border-radius:4px; }
 .nav-burger span { display:block; width:22px; height:1.5px; background:var(--text); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
-nav.dark-mode .nav-burger span { background:#fff; }
 .nav-burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
 .nav-burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
 .nav-burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
@@ -67,12 +66,10 @@ nav.dark-mode .nav-burger span { background:#fff; }
 .nav-mobile a { display:block; font-size:1rem; font-weight:600; padding:13px 0; border-bottom:1px solid var(--border); color:var(--text); }
 .nav-mobile a:last-of-type { border-bottom:0; }
 .nav-mobile a.active { color:var(--green-dk); }
-.nav-mobile .mob-cta { display:block; margin-top:20px; text-align:center; background:var(--navy); color:#fff !important; padding:14px; border-radius:var(--r-ctrl); font-weight:600; }
+.nav-mobile .mob-cta { display:block; margin-top:20px; text-align:center; background:var(--navy); color:#fff !important; padding:14px; border-radius: 9999px; font-weight:600; }
 @media(max-width:768px) { .navlinks { display:none; } .nav-burger { display:flex; } }
 .nav-cta { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:11px 22px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid transparent; transition:transform .15s ease; background:var(--navy); color:#fff; }
-nav.dark-mode .nav-cta { background:transparent; border-color:rgba(255,255,255,.28); color:#fff; }
 .nav-cta::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--green-dk); transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
-nav.dark-mode .nav-cta::before { background:rgba(255,255,255,.14); }
 .nav-cta:hover { transform:translateY(-1px); color:#fff; }
 .nav-cta:hover::before { transform:translateX(0); }
 
@@ -108,10 +105,10 @@ nav.dark-mode .nav-cta::before { background:rgba(255,255,255,.14); }
 .stats-dark .stats-inner { display:grid; grid-template-columns:repeat(4,1fr); }
 .stats-dark .stat-item { padding:0 36px; border-left:1px solid rgba(255,255,255,.10); }
 .stats-dark .stat-item:first-child { border-left:0; padding-left:0; }
-.stats-dark .stat-val { font-family:var(--fm); font-size:clamp(38px,5.5vw,72px); font-weight:700; color:#fff; line-height:1; letter-spacing:-.02em; }
+.stats-dark .stat-val { font-family:var(--fm); font-size:clamp(38px,5.5vw,72px); font-weight:700; color:var(--green-lt); line-height:1; letter-spacing:-.02em; }
 .stats-dark .stat-unit { font-size:.55em; opacity:.6; font-weight:500; }
 .stats-dark .stat-label { font-size:12px; color:rgba(255,255,255,.38); margin-top:14px; letter-spacing:.1em; text-transform:uppercase; font-family:var(--fm); }
-.stats-dark .stat-note { font-size:11px; color:rgba(255,255,255,.18); margin-top:6px; line-height:1.4; }
+.stats-dark .stat-note { display:none; }
 @media(max-width:768px) {
   .stats-dark .stats-inner { grid-template-columns:repeat(2,1fr); gap:0; }
   .stats-dark .stat-item { padding:28px 20px; border-left:1px solid rgba(255,255,255,.10); border-top:1px solid rgba(255,255,255,.10); }
@@ -197,22 +194,44 @@ nav.dark-mode .nav-cta::before { background:rgba(255,255,255,.14); }
 .pillar-card h3 { font-size:1.075rem; font-weight:700; color:var(--navy); margin-bottom:14px; line-height:1.3; }
 .pillar-card p { font-size:14px; color:var(--text-2); line-height:1.74; max-width:44ch; }
 
-/* CERTIFICATIONS */
-.cert-row { display:grid; grid-template-columns:repeat(5,1fr); border:1px solid var(--border); border-radius:var(--r-card); overflow:hidden; background:var(--surface); }
-@media(max-width:768px) { .cert-row { grid-template-columns:repeat(2,1fr); } }
-.cert-item { padding:32px 20px; border-left:1px solid var(--border); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; transition:background .2s ease; text-align:center; }
-.cert-item:first-child { border-left:0; }
-.cert-item:hover { background:var(--surface-alt); }
-@media(max-width:768px) {
-  .cert-item:nth-child(odd) { border-left:0; }
-  .cert-item { border-top:1px solid var(--border); }
-  .cert-item:nth-child(1), .cert-item:nth-child(2) { border-top:0; }
+/* PROJECT CAROUSEL */
+.about-projects-sec { padding:96px 0; background:var(--surface); border-bottom:1px solid var(--border); overflow:hidden; }
+.about-projects-head { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr); gap:64px; align-items:end; margin-bottom:44px; }
+.about-projects-head h2 { margin-top:18px; max-width:15ch; }
+.about-projects-intro { color:var(--text-2); line-height:1.78; max-width:60ch; }
+.about-projects-tools { display:flex; align-items:center; justify-content:space-between; gap:20px; margin-bottom:20px; }
+.about-projects-all { font-family:var(--fm); font-size:12px; font-weight:600; letter-spacing:.05em; color:var(--navy); text-decoration:none; border-bottom:1px solid var(--green-lt); padding-bottom:4px; }
+.about-projects-controls { display:flex; align-items:center; gap:10px; }
+.about-projects-count { min-width:66px; font-family:var(--fm); font-size:11px; letter-spacing:.08em; color:var(--muted); text-align:center; }
+.about-projects-btn { width:42px; height:42px; border:1px solid var(--border); border-radius:999px; background:var(--surface); color:var(--navy); display:grid; place-items:center; cursor:pointer; transition:border-color .2s, background .2s, color .2s; }
+.about-projects-btn:hover:not(:disabled) { border-color:var(--green-lt); background:var(--green-lt); color:var(--navy); }
+.about-projects-btn:disabled { opacity:.32; cursor:default; }
+.about-projects-track { display:grid; grid-auto-flow:column; grid-auto-columns:calc((100% - 48px) / 3); gap:24px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; scrollbar-width:none; overscroll-behavior-inline:contain; padding:2px 2px 14px; }
+.about-projects-track::-webkit-scrollbar { display:none; }
+.about-project-card { scroll-snap-align:start; display:flex; flex-direction:column; min-width:0; border:1px solid var(--border); border-radius:var(--r-card); overflow:hidden; background:#fff; color:inherit; text-decoration:none; transition:transform .28s ease, border-color .28s ease, box-shadow .28s ease; }
+.about-project-card:hover { transform:translateY(-5px); border-color:rgba(93,179,138,.65); box-shadow:0 16px 40px rgba(11,20,48,.09); }
+.about-project-media { height:230px; overflow:hidden; background:var(--surface-alt); }
+.about-project-media img { width:100%; height:100%; object-fit:cover; transition:transform .55s ease; }
+.about-project-card:hover .about-project-media img { transform:scale(1.035); }
+.about-project-body { display:flex; flex-direction:column; flex:1; padding:24px; }
+.about-project-kicker { font-family:var(--fm); font-size:10px; font-weight:600; letter-spacing:.12em; color:var(--green-dk); text-transform:uppercase; }
+.about-project-card h3 { margin:10px 0 24px; font-size:1.18rem; line-height:1.3; color:var(--navy); }
+.about-project-facts { margin-top:auto; padding-top:16px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:end; gap:16px; }
+.about-project-facts span { display:block; font-size:11px; color:var(--muted); margin-bottom:4px; }
+.about-project-facts strong { display:block; font-family:var(--fm); font-size:11px; font-weight:600; color:var(--navy); }
+.about-project-arrow { flex:0 0 auto; font-size:19px; color:var(--green-dk); transition:transform .2s ease; }
+.about-project-card:hover .about-project-arrow { transform:translateX(4px); }
+@media(max-width:900px) {
+  .about-projects-head { grid-template-columns:1fr; gap:24px; }
+  .about-projects-track { grid-auto-columns:calc((100% - 20px) / 2); gap:20px; }
 }
-.cert-badge { width:44px; height:44px; border-radius:9999px; border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; transition:border-color .2s, background .2s; }
-.cert-item:hover .cert-badge { border-color:var(--green-lt); background:rgba(93,179,138,.07); }
-.cert-badge svg { width:20px; height:20px; stroke:var(--green-dk); stroke-width:1.5; fill:none; stroke-linecap:round; }
-.cert-name { font-family:var(--fm); font-size:12px; font-weight:500; color:var(--navy); }
-.cert-desc { font-size:11px; color:var(--muted); }
+@media(max-width:600px) {
+  .about-projects-sec { padding:72px 0; }
+  .about-projects-head { margin-bottom:32px; }
+  .about-projects-tools { align-items:flex-end; }
+  .about-projects-track { grid-auto-columns:86%; gap:14px; }
+  .about-project-media { height:210px; }
+}
 
 /* PARALLAX CTA */
 .cta-par-sec { position:relative; overflow:hidden; min-height:390px; display:flex; align-items:center; justify-content:center; }
@@ -231,6 +250,7 @@ nav.dark-mode .nav-cta::before { background:rgba(255,255,255,.14); }
 footer { background:#050B18; color:var(--on-dark); padding:72px 0 32px; border-top:1px solid rgba(255,255,255,.08); }
 footer .grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:32px; border-top:1px solid rgba(255,255,255,.10); padding-top:48px; }
 @media(max-width:768px) { footer .grid { grid-template-columns:1fr 1fr; } }
+    @media(max-width:480px) { footer .grid { grid-template-columns:1fr; } }
 footer h4 { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--green-lt); margin-bottom:14px; }
 footer .desc { color:var(--on-dark-muted); font-size:14px; margin-top:16px; max-width:36ch; }
 footer .addr { font-family:var(--fm); font-size:13px; color:var(--on-dark-muted); line-height:1.8; }
@@ -246,34 +266,149 @@ footer a:hover { color:#fff; }
 [data-reveal] { opacity:0; transform:translateY(20px); transition:opacity .65s ease, transform .65s ease; }
 [data-reveal].in { opacity:1; transform:none; }
 @media(prefers-reduced-motion:reduce) { [data-reveal] { opacity:1; transform:none; transition:none; } .label::after { animation:none; } }
+
+/* ---- NAV DROPDOWN ---- */
+.nav-item { position:relative; }
+.nav-item::after { content:''; position:absolute; top:100%; left:-16px; right:-16px; height:20px; }
+.nav-item > a { display:inline-flex; align-items:center; gap:5px; }
+.nav-caret { width:10px; height:6px; flex-shrink:0; transition:transform .2s ease; }
+.nav-item:hover .nav-caret { transform:rotate(180deg); }
+.nav-dropdown {
+  position:absolute; top:calc(100% + 16px); left:50%; transform:translateX(-50%) translateY(-6px);
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r-card); box-shadow:0 16px 48px rgba(0,0,0,.13);
+  padding:28px 24px; display:grid; grid-template-columns:1fr .7fr 1.1fr; gap:24px;
+  width:560px; opacity:0; pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease; z-index:200;
+}
+.nav-item:hover .nav-dropdown { opacity:1; pointer-events:all; transform:translateX(-50%) translateY(0); }
+.dropdown-col { display:flex; flex-direction:column; }
+.dropdown-cat {
+  display:block; font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--green-lt); margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid var(--border);
+}
+.nav-dropdown a { display:block; padding:8px 0; border-bottom:1px solid var(--border); text-decoration:none; }
+.nav-dropdown a:last-child { border-bottom:0; padding-bottom:0; }
+.nav-dropdown a strong { display:block; font-size:13px; font-weight:600; color:var(--navy); transition:color .18s; line-height:1.3; }
+.nav-dropdown a span { display:block; font-size:11px; color:#8a9088; margin-top:2px; line-height:1.4; }
+.nav-dropdown a:hover strong { color:var(--green-lt); }
+.nav-dropdown a.soon { opacity:.38; pointer-events:none; }
+/* ---- MOB HIZMETLER EXPANDABLE ---- */
+.mob-hiz-toggle {
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:1rem; font-weight:600; padding:13px 0; border-bottom:1px solid var(--border);
+  cursor:pointer; color:var(--text); user-select:none;
+}
+.mob-hiz-arrow { font-size:11px; display:inline-block; transition:transform .2s; opacity:.6; }
+.mob-hiz-toggle.open .mob-hiz-arrow { transform:rotate(180deg); }
+.mob-hiz-sub { display:none; padding-left:16px; }
+.mob-hiz-sub.open { display:block; }
+.mob-hiz-sub a { display:block; font-size:.9rem; font-weight:500; padding:9px 0; border-bottom:1px solid var(--border); color:#555c54; text-decoration:none; }
+.mob-hiz-sub a:first-child { font-weight:600; color:var(--navy); }
+.mob-hiz-sub a:last-child { border-bottom:0; }
+.mob-hiz-sub a.soon { opacity:.38; pointer-events:none; }
+
+    /* ─── LANG SWITCHER ──────────────────────────────────── */
+    .lang-sw { display:flex; align-items:center; gap:4px; font-family:var(--fm); font-size:10px; font-weight:600; letter-spacing:.1em; flex-shrink:0; }
+    .lang-sw .lang-cur { color:var(--navy); cursor:default; }
+    .lang-sw .lang-sep { color:var(--border); font-weight:400; }
+    .lang-sw .lang-alt { color:var(--muted); transition:color .18s; }
+    .lang-sw .lang-alt:hover { color:var(--green-dk); }
+    .mob-lang-sw { display:flex; align-items:center; justify-content:flex-end; gap:8px; padding:12px 0; border-bottom:1px solid var(--border); font-family:var(--fm); font-size:11px; font-weight:700; letter-spacing:.08em; }
+    .mob-lang-sw .lang-cur { color:var(--navy); }
+    .mob-lang-sw .lang-sep { color:var(--border); }
+    .mob-lang-sw .lang-alt { color:var(--muted); }
+    .mob-lang-sw .lang-alt:hover { color:var(--green-dk); }
+  </style>
+<link rel="alternate" hreflang="tr" href="https://al-enerji-v2.vercel.app/hakkimizda.html">
+<link rel="alternate" hreflang="en" href="https://al-enerji-v2.vercel.app/en/about.html">
+<link rel="alternate" hreflang="x-default" href="https://al-enerji-v2.vercel.app/hakkimizda.html">
+<style id="nav-std">
+/* Nav standardized from index.html */
+#nav { position:sticky; top:0; z-index:50; height:64px; display:flex; align-items:center; background:rgba(251,252,251,.95) !important; backdrop-filter:blur(10px); border-bottom:1px solid var(--border) !important; box-shadow:none !important; }
+#nav .wrap { display:flex; align-items:center; justify-content:space-between; width:100%; }
+.logo { display:flex; align-items:center; }
+.logo img { height:38px; width:auto; }
+.logo-dark { display:none !important; }
+.navlinks { display:flex; gap:32px; font-size:14px; font-weight:500; color:var(--text); }
+.navlinks a:hover { color:var(--green-dk); }
+.nav-cta { display:inline-flex !important; align-items:center; gap:6px; padding:11px 22px; font-size:14px; font-weight:600; background:var(--navy); color:#fff; border-radius:9999px; border:none; cursor:pointer; position:static; overflow:visible; }
+.nav-cta::before { display:none !important; }
+.nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; cursor:pointer; padding:11px 10px; border:none; background:transparent; border-radius:4px; }
+.nav-burger span { display:block; width:22px; height:1.5px; background:var(--text); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
+.nav-burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+.nav-mobile { display:block !important; position:fixed !important; top:64px; left:0; right:0; background:var(--surface); z-index:99; padding:24px var(--gut,24px) 32px; border-top:1px solid var(--border); box-shadow:0 8px 32px rgba(0,0,0,.1); opacity:0 !important; transform:translateY(-6px) !important; pointer-events:none !important; transition:opacity .22s ease, transform .22s ease; }
+.nav-mobile.open { opacity:1 !important; transform:none !important; pointer-events:all !important; }
+.nav-mobile a { display:block; font-size:1rem; font-weight:600; padding:13px 0; border-bottom:1px solid var(--border); color:var(--text); }
+.nav-mobile a:last-of-type { border-bottom:0; }
+.nav-mobile .mob-cta { display:block; margin-top:20px; text-align:center; background:var(--navy); color:#fff !important; padding:14px; border-radius: 9999px; font-weight:600; }
+@media(max-width:768px) { .navlinks { display:none !important; } .nav-cta { display:none !important; } .nav-burger { display:flex !important; } }
+@media(min-width:769px) { #navMobile { display:none !important; } }
 </style>
+<link rel="stylesheet" href="footer-std.css">
+<script src="scroll-top.js" defer></script>
+<link rel="stylesheet" href="nav-revision.css">  <link rel="stylesheet" href="brand-assets.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/brand/favicon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/brand/apple-touch-icon.png">
 </head>
 <body>
 
 <nav id="nav">
   <div class="wrap">
     <a href="index.html" class="logo">
-      <img class="logo-light" src="Logo_black@2x.png" alt="AL ENERJİ" height="42" style="width:auto;">
-      <img class="logo-dark"  src="Logo_white@2x.png" alt="AL ENERJİ" height="42" style="width:auto;">
+      <img class="logo-light" src="assets/brand/V2.png" alt="AL ENERJİ" height="42" style="width:auto;">
+      <img class="logo-dark"  src="assets/brand/al_enerji_logo_white.png" alt="AL ENERJİ" height="42" style="width:auto;">
     </a>
     <div class="navlinks">
-      <a href="hizmetler.html">Hizmetler</a>
+    <div class="nav-item">
+      <a href="hizmetler.html">Hizmetler<svg class="nav-caret" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <div class="nav-dropdown"><a class="nav-all-services" href="hizmetler.html"><strong>Tüm Hizmetler</strong><span>Tüm hizmet alanlarımızı inceleyin</span><b aria-hidden="true">→</b></a>
+        <div class="dropdown-col">
+          <span class="dropdown-cat">Geliştirme & EPC</span>
+          <a href="proje-gelistirme.html"><strong>Proje Geliştirme</strong><span>Sıfırdan işletmeye 7 adım</span></a>
+          <a href="epc.html"><strong>EPC & Kurulum</strong><span>Anahtar teslim GES çözümleri</span></a>
+        </div>
+        <div class="dropdown-col">
+          <span class="dropdown-cat">Depolama</span>
+          <a href="bess.html"><strong>BESS & Hibrit</strong><span>Esnek şebeke çözümleri</span></a>
+        </div>
+        <div class="dropdown-col">
+          <span class="dropdown-cat">Brokerage & Danışmanlık</span>
+          <a href="brokerage.html"><strong>M&A Brokerage</strong><span>Proje alım-satım yönetimi</span></a>
+          <a href="saha-denetimi.html"><strong>Saha Denetimi</strong><span>Owner's Engineer hizmeti</span></a>
+          <a href="karbon.html" ><strong>Karbon Yönetimi</strong><span>South Pole iş birliği</span></a>
+        </div>
+      </div>
+    </div>
       <a href="projeler.html">Projeler</a>
       <a href="hakkimizda.html" class="active">Hakkımızda</a>
-      <a href="perspektif.html">Perspektif</a>
       <a href="iletisim.html">İletişim</a>
     </div>
+    <div class="lang-sw"><span class="lang-cur">TR</span><span class="lang-sep">|</span><a href="en/about.html" class="lang-alt">EN</a></div>
     <button class="nav-burger" id="navBurger" aria-label="Menü">
       <span></span><span></span><span></span>
     </button>
-    <button class="nav-cta">Teklif Alın</button>
+    <button class="nav-cta" onclick="location.href='iletisim.html'">Teklif Alın</button>
   </div>
 </nav>
 <div class="nav-mobile" id="navMobile">
-  <a href="hizmetler.html">Hizmetler</a>
+  
+  <div class="mob-lang-sw"><span class="lang-cur">TR</span><span class="lang-sep">|</span><a href="en/about.html" class="lang-alt">EN</a></div>
+  <div class="mob-hiz-toggle" id="mobHizToggle">Hizmetler <span class="mob-hiz-arrow">▾</span></div>
+  <div class="mob-hiz-sub" id="mobHizSub">
+    <a href="hizmetler.html">Tüm Hizmetler</a>
+    <a href="brokerage.html">M&A Brokerage</a>
+    <a href="proje-gelistirme.html">Proje Geliştirme</a>
+    <a href="epc.html">EPC & Kurulum</a>
+    <a href="saha-denetimi.html">Saha Denetimi</a>
+    <a href="bess.html">BESS & Hibrit</a>
+    <a href="karbon.html" >Karbon Yönetimi</a>
+  </div>
   <a href="projeler.html">Projeler</a>
   <a href="hakkimizda.html" class="active">Hakkımızda</a>
-  <a href="perspektif.html">Perspektif</a>
   <a href="iletisim.html">İletişim</a>
   <a href="iletisim.html" class="mob-cta">Teklif Alın</a>
 </div>
@@ -464,49 +599,49 @@ footer a:hover { color:#fff; }
   </div>
 </section>
 
-<!-- SERTİFİKALAR & LİSANSLAR -->
-<section style="padding:72px 0; background:var(--surface); border-bottom:1px solid var(--border);">
+<!-- PROJE CAROUSEL -->
+<section class="about-projects-sec">
   <div class="wrap">
-    <div style="text-align:center; margin-bottom:48px;" data-reveal>
-      <span class="label">Sertifikasyon & Lisanslar</span>
-      <h2>Uluslararası standartlarda<br>onaylı süreçler.</h2>
+    <div class="about-projects-head">
+      <div data-reveal>
+        <span class="label">Sahadaki Kanıt</span>
+        <h2>Birikimimizi gerçek projelerle gösteriyoruz.</h2>
+      </div>
+      <p class="about-projects-intro" data-reveal>AL ENERJİ’nin mühendislik yaklaşımı yalnızca rakamlardan ibaret değil. Farklı ölçek ve uygulama tiplerindeki projelerimiz; geliştirme, tasarım, kurulum ve saha kontrolü yetkinliğimizin doğrudan sahadaki karşılığıdır.</p>
     </div>
-    <div class="cert-row" data-reveal>
-      <div class="cert-item">
-        <div class="cert-badge">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <div class="cert-name">South Pole</div>
-        <div class="cert-desc">Karbon Sertifikasyon Ortağı</div>
+    <div class="about-projects-tools" data-reveal>
+      <a class="about-projects-all" href="projeler.html">Tüm Projeleri Gör →</a>
+      <div class="about-projects-controls">
+        <span class="about-projects-count" id="aboutProjectCounter" aria-live="polite">01 / 06</span>
+        <button class="about-projects-btn" type="button" data-carousel-prev aria-label="Önceki proje">←</button>
+        <button class="about-projects-btn" type="button" data-carousel-next aria-label="Sonraki proje">→</button>
       </div>
-      <div class="cert-item">
-        <div class="cert-badge">
-          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <div class="cert-name">VCS</div>
-        <div class="cert-desc">Voluntary Carbon Standard</div>
-      </div>
-      <div class="cert-item">
-        <div class="cert-badge">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
-        </div>
-        <div class="cert-name">Gold Standard</div>
-        <div class="cert-desc">Karbon Emisyon Azaltımı</div>
-      </div>
-      <div class="cert-item">
-        <div class="cert-badge">
-          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-        </div>
-        <div class="cert-name">IEC</div>
-        <div class="cert-desc">Uluslararası Elektroteknik Test Standartları</div>
-      </div>
-      <div class="cert-item">
-        <div class="cert-badge">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        </div>
-        <div class="cert-name">TEİAŞ</div>
-        <div class="cert-desc">Sistem Bağlantı Onayı</div>
-      </div>
+    </div>
+    <div class="about-projects-track" id="aboutProjectTrack" aria-label="AL ENERJİ projeleri" data-reveal>
+      <a class="about-project-card" href="proje-kutahya-yaylakoy-ges.html">
+        <div class="about-project-media"><img src="assets/projects/kutahya-yaylakoy/hero-saha.jpg" alt="Kütahya Yaylaköy güneş enerjisi santrali" loading="lazy"></div>
+        <div class="about-project-body"><span class="about-project-kicker">Arazi GES</span><h3>Kütahya Yaylaköy GES</h3><div class="about-project-facts"><div><span>Kapasite</span><strong>2,25 MWp / 2 MWe</strong></div><div><span>Konum</span><strong>Yaylaköy, Kütahya</strong></div><b class="about-project-arrow">→</b></div></div>
+      </a>
+      <a class="about-project-card" href="proje-isparta-gonen-ges.html">
+        <div class="about-project-media"><img src="assets/projects/isparta-gonen/hava-genel.webp" alt="Isparta Gönen güneş enerjisi santrali" loading="lazy"></div>
+        <div class="about-project-body"><span class="about-project-kicker">Arazi GES</span><h3>Isparta Gönen GES</h3><div class="about-project-facts"><div><span>Kapasite</span><strong>2,25 MWp / 2 MWe</strong></div><div><span>Konum</span><strong>Gönen, Isparta</strong></div><b class="about-project-arrow">→</b></div></div>
+      </a>
+      <a class="about-project-card" href="proje-eskisehir-nis-32-ges.html">
+        <div class="about-project-media"><img src="assets/projects/eskisehir-nis32/genel.webp" alt="Eskişehir NİS 32 güneş enerjisi santrali" loading="lazy"></div>
+        <div class="about-project-body"><span class="about-project-kicker">Arazi GES</span><h3>NİS 32 GES</h3><div class="about-project-facts"><div><span>Kapasite</span><strong>950 kW</strong></div><div><span>Konum</span><strong>Tepebaşı, Eskişehir</strong></div><b class="about-project-arrow">→</b></div></div>
+      </a>
+      <a class="about-project-card" href="proje-mugla-orhaniye-okulu-ges.html">
+        <div class="about-project-media"><img src="assets/projects/mugla-orhaniye-okulu/genel.webp" alt="Orhaniye Okulu çatı güneş enerjisi sistemi" loading="lazy"></div>
+        <div class="about-project-body"><span class="about-project-kicker">Çatı GES</span><h3>Orhaniye Okulu Çatı GES</h3><div class="about-project-facts"><div><span>Kapasite</span><strong>10 kW</strong></div><div><span>Konum</span><strong>Marmaris, Muğla</strong></div><b class="about-project-arrow">→</b></div></div>
+      </a>
+      <a class="about-project-card" href="proje-canakkale-yayla-evi-ges.html">
+        <div class="about-project-media"><img src="assets/projects/canakkale-yayla-evi/panel-grubu.webp" alt="Çanakkale Yayla Evi güneş enerjisi sistemi" loading="lazy"></div>
+        <div class="about-project-body"><span class="about-project-kicker">Çatı GES</span><h3>Çanakkale Yayla Evi GES</h3><div class="about-project-facts"><div><span>Kapasite</span><strong>5 kW</strong></div><div><span>Konum</span><strong>Çanakkale</strong></div><b class="about-project-arrow">→</b></div></div>
+      </a>
+      <a class="about-project-card" href="proje-ciftlik-evi-ges.html">
+        <div class="about-project-media"><img src="assets/projects/ciftlik-evi/genel.webp" alt="Çiftlik Evi çatı güneş enerjisi sistemi" loading="lazy"></div>
+        <div class="about-project-body"><span class="about-project-kicker">Çatı GES</span><h3>Çiftlik Evi Çatı GES</h3><div class="about-project-facts"><div><span>Uygulama</span><strong>Çatı Tipi GES</strong></div><div><span>Arşiv</span><strong>Proje Portföyü</strong></div><b class="about-project-arrow">→</b></div></div>
+      </a>
     </div>
   </div>
 </section>
@@ -526,62 +661,47 @@ footer a:hover { color:#fff; }
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer class="site-footer">
   <div class="wrap">
-    <div class="grid">
+    <div class="site-footer-grid">
       <div>
-        <div class="logo"><img src="Logo_white@2x.png" alt="AL ENERJİ" height="44" style="display:block; width:auto;"></div>
+        <div class="site-footer-logo"><img src="assets/brand/al_enerji_logo_white.png" alt="AL ENERJİ" width="166" height="44"></div>
         <p class="desc">Mühendislik odaklı, uzun vadeli enerji iş ortağı. 2004'ten bu yana.</p>
-        <div class="addr">
-          Mustafa Kemal Mah. Dumlupınar Blv. No:274/7<br>06530 Çankaya / Ankara<br><br>
-          +90 312 000 00 00<br>
-          info@alenerji.com.tr
-        </div>
+        <div class="addr">Nef 09 B Blok No:104<br>Kağıthane / İstanbul<br><br>+90 212 234 38 38<br>info@alenerji.com.tr</div>
       </div>
       <div>
         <h4>Hizmetler</h4>
-        <a href="hizmetler.html#uretim">Üretim & Saha Geliştirme</a>
-        <a href="hizmetler.html#depolama">Enerji Depolama (BESS)</a>
-        <a href="hizmetler.html#brokerage">M&A Brokerage</a>
-        <a href="hizmetler.html#denetim">Saha Denetimi</a>
+        <a href="proje-gelistirme.html">Proje Geliştirme</a>
+        <a href="epc.html">EPC &amp; Kurulum</a>
+        <a href="bess.html">BESS &amp; Hibrit</a>
+        <a href="brokerage.html">M&amp;A Brokerage</a>
+        <a href="saha-denetimi.html">Saha Denetimi</a>
+        <a href="karbon.html">Karbon Yönetimi</a>
       </div>
       <div>
         <h4>Kurumsal</h4>
         <a href="hakkimizda.html">Hakkımızda</a>
         <a href="projeler.html">Projeler</a>
-        <a href="perspektif.html">Perspektif</a>
-        <a href="iletisim.html">İletişim</a>
+        <a href="iletisim.html#form">Kariyer</a>
       </div>
       <div>
         <h4>İletişim</h4>
         <a href="mailto:info@alenerji.com.tr">info@alenerji.com.tr</a>
-        <a href="tel:+903120000000">+90 312 000 00 00</a>
-        <a href="https://linkedin.com/company/alenerji" target="_blank">LinkedIn</a>
+        <a href="tel:+902122343838">+90 212 234 38 38</a>
         <a href="iletisim.html">Bize Ulaşın</a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-bottom-left">© 2026 AL ENERJİ. Tüm hakları saklıdır.</div>
-      <div class="footer-bottom-right">
-        <a href="#">KVKK Aydınlatma</a>
-        <a href="#">Gizlilik Politikası</a>
-        <a href="#">Kullanım Koşulları</a>
+    <div class="site-footer-bottom">
+      <div class="site-footer-bottom-left">© 2026 AL ENERJİ. Tüm hakları saklıdır.</div>
+      <div class="site-footer-bottom-right">
+        <a href="kvkk-aydinlatma.html">KVKK Aydınlatma</a>
+        <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
       </div>
     </div>
   </div>
 </footer>
 
 <script>
-// NAV
-const nav = document.getElementById('nav');
-const pageHero = document.getElementById('page-hero');
-nav.classList.add('dark-mode');
-window.addEventListener('scroll', () => {
-  const heroBottom = pageHero.getBoundingClientRect().bottom;
-  nav.classList.toggle('dark-mode', heroBottom > 64);
-  nav.classList.toggle('scrolled', window.scrollY > 0);
-}, { passive: true });
-
 // PAGE HERO PARALLAX
 const pageHeroBg = document.getElementById('page-hero-bg');
 window.addEventListener('scroll', () => {
@@ -618,6 +738,27 @@ const labelObs = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 document.querySelectorAll('.label').forEach(el => labelObs.observe(el));
 
+// PROJECT CAROUSEL
+const projectTrack = document.getElementById('aboutProjectTrack');
+if (projectTrack) {
+  const cards = [...projectTrack.querySelectorAll('.about-project-card')];
+  const prev = document.querySelector('[data-carousel-prev]');
+  const next = document.querySelector('[data-carousel-next]');
+  const counter = document.getElementById('aboutProjectCounter');
+  const step = () => cards[1] ? cards[1].offsetLeft - cards[0].offsetLeft : cards[0].offsetWidth;
+  const updateCarousel = () => {
+    const current = Math.min(cards.length - 1, Math.max(0, Math.round(projectTrack.scrollLeft / step())));
+    counter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')}`;
+    prev.disabled = projectTrack.scrollLeft < 4;
+    next.disabled = projectTrack.scrollLeft + projectTrack.clientWidth >= projectTrack.scrollWidth - 4;
+  };
+  prev.addEventListener('click', () => projectTrack.scrollBy({ left: -step(), behavior: 'smooth' }));
+  next.addEventListener('click', () => projectTrack.scrollBy({ left: step(), behavior: 'smooth' }));
+  projectTrack.addEventListener('scroll', updateCarousel, { passive: true });
+  window.addEventListener('resize', updateCarousel);
+  updateCarousel();
+}
+
 // HAMBURGER
 const burger = document.getElementById('navBurger');
 const mobileNav = document.getElementById('navMobile');
@@ -633,6 +774,41 @@ if (burger && mobileNav) {
     document.body.style.overflow = '';
   }));
 }
+
+  // Mobile Hizmetler accordion
+  const _mht = document.getElementById('mobHizToggle');
+  const _mhs = document.getElementById('mobHizSub');
+  if (_mht && _mhs) {
+    _mht.addEventListener('click', () => {
+      _mht.classList.toggle('open');
+      _mhs.classList.toggle('open');
+    });
+  }
+</script>
+<script id="burger-std">
+(function(){
+  var burger=document.getElementById('navBurger');
+  var drawer=document.getElementById('navMobile');
+  if(!burger||!drawer)return;
+  // Remove old listeners by cloning
+  var b2=burger.cloneNode(true);
+  burger.parentNode.replaceChild(b2,burger);
+  burger=b2;
+  burger.addEventListener('click',function(){
+    var open=burger.classList.toggle('open');
+    drawer.classList.toggle('open',open);
+    burger.setAttribute('aria-expanded',open);
+    document.body.style.overflow=open?'hidden':'';
+  });
+  drawer.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){
+      burger.classList.remove('open');
+      drawer.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+      document.body.style.overflow='';
+    });
+  });
+})();
 </script>
 </body>
 </html>

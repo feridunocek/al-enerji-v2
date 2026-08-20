@@ -2,22 +2,22 @@
 
 **004_al-enerji_corporate · Meridian Preset**
 
-## Sayfalar
+## Pages
 
-| Sayfa | Açıklama |
+| Page | Description |
 |-------|----------|
-| [index.html](index.html) | Anasayfa wireframe'i — tam etkileşimli |
-| [design-system.html](design-system.html) | Tasarım sistemi referans kılavuzu |
+| [index.html](index.html) | Homepage wireframe — fully interactive |
+| [design-system.html](design-system.html) | Design system reference guide |
 
-## Tasarım Kararları
+## Design Decisions
 
-- **Preset:** Meridian (İsviçre/Avrupa kurumsal minimalizm)
-- **Palet:** Navy #0B1430 · Koyu Yeşil #1F3D33
-- **Fontlar:** Hanken Grotesk + JetBrains Mono
-- **İlke:** Sıfır dekorasyon, hairline border sistemi, Nordic ince çizgili ikonlar
+- **Preset:** Meridian (Swiss/European corporate minimalism)
+- **Palette:** Navy #0B1430 · Dark Green #1F3D33
+- **Fonts:** Hanken Grotesk + JetBrains Mono
+- **Principle:** Zero decoration, hairline border system, thin-line Nordic icons
 
-Detaylı kararlar için: `DECISIONS.md` · `DESIGN.md` · `MEMORY.md`
+For detailed decisions see: `DECISIONS.md` · `DESIGN.md` · `MEMORY.md`
 
 ---
 
-*8 Fazlı Web Tasarım Sistemi — Faz 6: Wireframe*
+*8-Phase Web Design System — Phase 6: Wireframe*

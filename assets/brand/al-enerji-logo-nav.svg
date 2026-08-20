@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2596 600" role="img" aria-labelledby="title">
+  <title id="title">AL ENERJİ</title>
+  <defs>
+    <clipPath id="mark-clip">
+      <rect x="0" y="0" width="505" height="600"/>
+    </clipPath>
+    <clipPath id="wordmark-clip">
+      <rect x="575" y="145" width="2021" height="310"/>
+    </clipPath>
+    <filter id="navy" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="0 0 0 0 0.027
+                                           0 0 0 0 0.067
+                                           0 0 0 0 0.169
+                                           0 0 0 1 0"/>
+    </filter>
+  </defs>
+
+  <image href="al-enerji-logo-dark.png" width="2596" height="600"
+         clip-path="url(#mark-clip)" filter="url(#navy)"/>
+  <rect x="532" y="0" width="6" height="600" fill="#1f3d33"/>
+  <image href="al-enerji-logo-dark.png" y="125" width="2596" height="600"
+         clip-path="url(#wordmark-clip)" filter="url(#navy)"/>
+</svg>

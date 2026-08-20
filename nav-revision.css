@@ -1,0 +1,65 @@
+/* Shared navigation refinements — keeps every public page aligned. */
+#nav,
+nav#nav {
+  height: 76px !important;
+}
+
+.nav-dropdown {
+  width: 620px !important;
+  grid-template-columns: 1fr .7fr 1.1fr !important;
+}
+
+.nav-all-services {
+  grid-column: 1 / -1;
+  display: grid !important;
+  grid-template-columns: 1fr auto;
+  column-gap: 18px;
+  align-items: center;
+  padding: 0 0 16px !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+.nav-all-services strong,
+.nav-all-services span {
+  grid-column: 1;
+}
+
+.nav-all-services strong {
+  font-size: 14px !important;
+}
+
+.nav-all-services span {
+  margin-top: 3px !important;
+}
+
+.nav-all-services b {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  align-self: center;
+  color: var(--green-dk);
+  font-size: 17px;
+  font-weight: 500;
+  transition: transform .2s ease, color .2s ease;
+}
+
+.nav-all-services:hover b {
+  color: var(--green-lt);
+  transform: translateX(3px);
+}
+
+/* The old last-child rule removed the divider from Carbon and other final items. */
+.nav-dropdown .dropdown-col > a:last-child {
+  padding-bottom: 8px !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+@media (max-width: 768px) {
+  #nav,
+  nav#nav {
+    height: 68px !important;
+  }
+
+  .nav-all-services {
+    display: none !important;
+  }
+}

@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AL ENERJİ M&A Brokerage — solar and renewable energy asset transactions with 20+ years of field expertise. Technical &amp; legal due diligence, valuation, end-to-end transaction management.">
+  <meta property="og:title" content="AL ENERJİ — M&A Brokerage">
+  <meta property="og:description" content="AL ENERJİ M&A Brokerage — solar and renewable energy asset transactions with 20+ years of field expertise. Technical &amp; legal due diligence, valuation, end-to-end transaction management.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://al-enerji-v2.vercel.app/en/brokerage.html">
+  <link rel="canonical" href="https://al-enerji-v2.vercel.app/en/brokerage.html">
+  <link rel="alternate" hreflang="tr" href="https://al-enerji-v2.vercel.app/brokerage.html">
+  <link rel="alternate" hreflang="en" href="https://al-enerji-v2.vercel.app/en/brokerage.html">
+  <link rel="alternate" hreflang="x-default" href="https://al-enerji-v2.vercel.app/brokerage.html">
+  <title>AL ENERJİ — M&A Brokerage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0B1430;
+      --green-dk: #1F3D33;
+      --green-lt: #5DB38A;
+      --bg: #FBFCFB;
+      --surface: #FFFFFF;
+      --surface-alt: #EFF1EF;
+      --border: #D6D9D5;
+      --border-strong: #B9BFBA;
+      --text: #0B1430;
+      --text-2: #3A4356;
+      --muted: #6B7280;
+      --on-dark: #F4F6F4;
+      --on-dark-muted: rgba(244,246,244,0.6);
+      --fh: 'Hanken Grotesk', sans-serif;
+      --fm: 'JetBrains Mono', monospace;
+      --max: 1200px;
+      --gut: 64px;
+      --r-ctrl: 4px;
+      --r-card: 8px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--fh); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gut); }
+
+    /* ===== NAV ===== */
+    nav { position:sticky; top:0; z-index:50; height:64px; display:flex; align-items:center; background:rgba(251,252,251,.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); }
+    nav .wrap { display:flex; align-items:center; justify-content:space-between; width:100%; }
+    .logo { display:flex; align-items:center; }
+    .logo-light { display:block; }
+    .logo-dark  { display:none; }
+    .navlinks { display:flex; align-items:center; gap:32px; font-size:14px; font-weight:500; color:var(--text); }
+    .navlinks a { position:relative; cursor:pointer; }
+    .navlinks a::after { content:''; position:absolute; left:0; bottom:-5px; height:1.5px; width:0; background:var(--green-dk); transition:width .22s ease; }
+    .navlinks a:hover::after, .navlinks a.active::after { width:100%; }
+    .navlinks a.active { color:var(--green-dk); }
+    .nav-cta { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:11px 22px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid transparent; transition:transform .15s ease; background:var(--navy); color:#fff; }
+    .nav-cta::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--green-dk); transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
+    .nav-cta:hover { transform:translateY(-1px); color:#fff; }
+    .nav-cta:hover::before { transform:translateX(0); }
+    .nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; cursor:pointer; padding:11px 10px; border:none; background:transparent; border-radius:4px; }
+    .nav-burger span { display:block; width:22px; height:1.5px; background:var(--text); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
+    .nav-burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+    .nav-burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+    /* nav-item dropdown */
+    .nav-item { position:relative; }
+    .nav-item::after { content:''; position:absolute; top:100%; left:-16px; right:-16px; height:20px; }
+    .nav-item > a { display:inline-flex; align-items:center; gap:5px; }
+    .nav-caret { width:10px; height:6px; flex-shrink:0; transition:transform .2s ease; }
+    .nav-item:hover .nav-caret { transform:rotate(180deg); }
+    .nav-dropdown {
+      position:absolute; top:calc(100% + 16px); left:50%; transform:translateX(-50%) translateY(-6px);
+      background:var(--surface); border:1px solid var(--border); border-radius:var(--r-card);
+      box-shadow:0 16px 48px rgba(0,0,0,.13); padding:28px 24px;
+      display:grid; grid-template-columns:1fr .7fr 1.1fr; gap:24px; width:560px;
+      opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease; z-index:200;
+    }
+    .nav-item:hover .nav-dropdown { opacity:1; pointer-events:all; transform:translateX(-50%) translateY(0); }
+    .dropdown-col { display:flex; flex-direction:column; }
+    .dropdown-cat { display:block; font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green-lt); margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+    .nav-dropdown a { display:block; padding:8px 0; border-bottom:1px solid var(--border); }
+    .nav-dropdown a:last-child { border-bottom:0; padding-bottom:0; }
+    .nav-dropdown a strong { display:block; font-size:13px; font-weight:600; color:var(--navy); transition:color .18s; line-height:1.3; }
+    .nav-dropdown a span { display:block; font-size:11px; color:#8a9088; margin-top:2px; line-height:1.4; }
+    .nav-dropdown a:hover strong { color:var(--green-lt); }
+    .nav-dropdown a.soon { opacity:.38; pointer-events:none; }
+    /* mobile nav */
+    .nav-mobile { position:fixed; top:64px; left:0; right:0; background:var(--surface); z-index:99; padding:24px var(--gut) 32px; border-top:1px solid var(--border); box-shadow:0 8px 32px rgba(0,0,0,.1); opacity:0; transform:translateY(-6px); pointer-events:none; transition:opacity .22s ease, transform .22s ease; }
+    .nav-mobile.open { opacity:1; transform:none; pointer-events:all; }
+    .nav-mobile a { display:block; font-size:1rem; font-weight:600; padding:13px 0; border-bottom:1px solid var(--border); color:var(--text); }
+    .nav-mobile a.active { color:var(--green-dk); }
+    .nav-mobile .mob-cta { display:block; margin-top:20px; text-align:center; background:var(--navy); color:#fff !important; padding:14px; border-radius: 9999px; font-weight:600; }
+    .mob-hiz-toggle { display:flex; justify-content:space-between; align-items:center; font-size:1rem; font-weight:600; padding:13px 0; border-bottom:1px solid var(--border); cursor:pointer; color:var(--text); user-select:none; }
+    .mob-hiz-arrow { font-size:11px; display:inline-block; transition:transform .2s; opacity:.6; }
+    .mob-hiz-toggle.open .mob-hiz-arrow { transform:rotate(180deg); }
+    .mob-hiz-sub { display:none; padding-left:16px; }
+    .mob-hiz-sub.open { display:block; }
+    .mob-hiz-sub a { display:block; font-size:.9rem; font-weight:500; padding:9px 0; border-bottom:1px solid var(--border); color:#555c54; }
+    .mob-hiz-sub a.active { color:var(--green-dk); font-weight:600; }
+    .mob-hiz-sub a:last-child { border-bottom:0; }
+    .mob-hiz-sub a.soon { opacity:.38; pointer-events:none; }
+    @media(max-width:768px) { .navlinks { display:none; } .nav-cta { display:none; } .nav-burger { display:flex; } }
+    @media(min-width:769px) { .nav-mobile { display:none !important; } }
+
+    /* ===== PAGE HERO ===== */
+    .page-hero { position:relative; min-height:420px; display:flex; align-items:center; overflow:hidden; background:var(--navy); padding:72px 0; }
+    .page-hero-bg { position:absolute; inset:0; background:linear-gradient(135deg,#0B1430 0%,#1F3D33 100%); }
+    .page-hero-bg::after { content:''; position:absolute; inset:0; background:rgba(11,20,48,.55); }
+    .page-hero .wrap { position:relative; z-index:2; width:100%; }
+    .breadcrumb { display:flex; gap:8px; align-items:center; font-size:12px; color:var(--on-dark-muted); margin-bottom:16px; font-family:var(--fm); letter-spacing:.04em; }
+    .breadcrumb a { color:var(--on-dark-muted); }
+    .breadcrumb a:hover { color:var(--green-lt); }
+    .breadcrumb span { opacity:.5; }
+    .hero-cat { display:inline-block; font-family:var(--fm); font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--green-lt); margin-bottom:16px; }
+    .page-hero h1 { font-size:clamp(1.75rem,4vw,3rem); font-weight:700; color:var(--on-dark); line-height:1.15; letter-spacing:-.02em; margin-bottom:20px; max-width:760px; }
+    .page-hero .lead { font-size:1rem; color:var(--on-dark-muted); max-width:680px; line-height:1.75; margin-bottom:32px; }
+    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn-pill { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:8px; padding:13px 26px; border-radius:9999px; font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid var(--border); background:transparent; color:var(--navy); transition:transform .15s ease, color .15s ease, border-color .15s ease; }
+    .btn-pill::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--navy); border-radius:9999px; transform:translateX(-101%); transition:transform .28s ease; }
+    .btn-pill:hover { border-color:var(--navy); color:#fff; transform:translateY(-1px); }
+    .btn-pill:hover::before { transform:translateX(0); }
+    .btn-pill.dk { background:var(--navy); color:#fff; border-color:var(--navy); }
+    .btn-pill.dk::before { background:var(--green-dk); }
+    .btn-pill.dk:hover { border-color:var(--green-dk); box-shadow:0 6px 20px rgba(11,20,48,.22); }
+    .btn-pill.ghost-light { border-color:rgba(255,255,255,.28); color:rgba(255,255,255,.8); }
+    .btn-pill.ghost-light::before { background:rgba(255,255,255,.08); }
+    .btn-pill.ghost-light:hover { color:#fff; border-color:rgba(255,255,255,.5); }
+
+    /* ===== UTILITIES ===== */
+    .label { display:inline-block; font-family:var(--fm); font-size:14px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--green-lt); margin-bottom:12px; }
+    .sec-title { font-size:clamp(1.5rem,3vw,2.25rem); font-weight:700; color:var(--navy); line-height:1.2; margin-bottom:16px; }
+    .sec-lead { font-size:1rem; color:var(--text-2); line-height:1.75; max-width:680px; }
+    [data-reveal] { opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+    [data-reveal].in { opacity:1; transform:translateY(0); }
+
+    /* ===== PROCESS STEPS ===== */
+    .process-sec { padding:96px 0; background:var(--bg); }
+    .process-intro { margin-bottom:72px; }
+    .step-item { display:grid; grid-template-columns:180px 1fr; gap:56px; align-items:start; padding:56px 0; border-bottom:1px solid var(--border); }
+    .step-item:first-child { padding-top:0; }
+    .step-item:last-child { border-bottom:none; padding-bottom:0; }
+    .step-num-col { text-align:left; }
+    .step-num { font-family:var(--fm); font-size:clamp(100px,14vw,180px); font-weight:700; color:var(--navy); opacity:.055; line-height:.9; letter-spacing:-.04em; display:block; }
+    .step-badge { display:inline-block; font-family:var(--fm); font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--green-lt); margin-top:12px; }
+    .step-body h3 { font-size:1.25rem; font-weight:700; color:var(--navy); margin-bottom:16px; line-height:1.3; }
+    .step-body .step-desc { font-size:.9375rem; color:var(--text-2); line-height:1.75; margin-bottom:20px; }
+    .step-points { list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:20px; }
+    .step-points li { position:relative; display:block; padding-left:15px; font-size:.9rem; color:var(--text-2); line-height:1.5; }
+    .step-points li::before { content:''; position:absolute; left:0; top:.65em; width:5px; height:5px; border-radius:9999px; background:var(--green-lt); }
+    .step-tags { display:flex; flex-wrap:wrap; gap:7px; }
+    .step-tag { font-family:var(--fm); font-size:10px; font-weight:600; letter-spacing:.07em; padding:4px 10px; border-radius:4px; background:var(--surface-alt); border:1px solid var(--border); color:var(--text-2); }
+    @media(max-width:768px) { .step-item { grid-template-columns:1fr; gap:16px; } .step-num { font-size:72px; } }
+
+    /* ===== WHY AL ENERJİ MINI (3 cards) ===== */
+    .neden-mini-sec { background:var(--navy); padding:80px 0; }
+    .neden-mini-sec .label { color:var(--green-lt); }
+    .neden-mini-sec .sec-title { color:#fff; }
+    .neden-mini-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:rgba(255,255,255,.06); border-radius:var(--r-card); overflow:hidden; margin-top:48px; }
+    .neden-mini-card { background:var(--navy); padding:32px 28px; border-top:3px solid var(--green-lt); position:relative; isolation:isolate; overflow:hidden; display:flex; flex-direction:column; justify-content:center; min-height:210px; }
+    .neden-mini-card::after { content:attr(data-n); position:absolute; top:50%; right:0; transform:translateY(-50%); z-index:-1; font-size:180px; font-weight:900; font-family:var(--fm); color:rgba(255,255,255,.055); line-height:1; letter-spacing:-.05em; pointer-events:none; }
+    .neden-mini-card h3 { font-size:1rem; font-weight:700; color:#fff; margin:0 0 12px; line-height:1.3; position:relative; }
+    .neden-mini-card p { font-size:.875rem; color:rgba(255,255,255,.5); line-height:1.65; margin:0; position:relative; }
+    @media(max-width:768px) { .neden-mini-grid { grid-template-columns:1fr; } }
+
+    /* ===== MATRIX TABLE ===== */
+    .matrix-sec { padding:80px 0; background:var(--surface-alt); }
+    .matrix-table-wrap { overflow-x:auto; margin-top:48px; border-radius:var(--r-card); border:1px solid var(--border); }
+    .matrix-table { width:100%; border-collapse:collapse; min-width:700px; }
+    .matrix-table th { background:var(--navy); color:#fff; font-family:var(--fm); font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; padding:14px 20px; text-align:left; }
+    .matrix-table td { padding:18px 20px; font-size:.9rem; color:var(--text-2); border-bottom:1px solid var(--border); vertical-align:top; line-height:1.55; }
+    .matrix-table tr:last-child td { border-bottom:none; }
+    .matrix-table tr:nth-child(even) td { background:var(--bg); }
+    .matrix-table td:first-child { font-weight:600; color:var(--navy); white-space:nowrap; }
+    @media(max-width:768px) {
+      .matrix-table-wrap { border:none; overflow-x:visible; border-radius:0; }
+      .matrix-table { min-width:0; }
+      .matrix-table, .matrix-table thead, .matrix-table tbody, .matrix-table th, .matrix-table td, .matrix-table tr { display:block; width:100%; box-sizing:border-box; }
+      .matrix-table thead { display:none; }
+      .matrix-table tbody tr { border:1px solid var(--border); border-radius:var(--r-card); margin-bottom:10px; overflow:hidden; background:var(--surface); }
+      .matrix-table tbody tr:nth-child(even) td { background:inherit; }
+      .matrix-table td { border-bottom:1px solid var(--border); padding:12px 16px; min-width:0; word-break:break-word; overflow-wrap:break-word; }
+      .matrix-table td:last-child { border-bottom:none; }
+      .matrix-table td::before { content:attr(data-label); display:block; font-family:var(--fm); font-size:10px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--green-lt); margin-bottom:6px; }
+      .matrix-table td:first-child { background:var(--navy) !important; color:#fff !important; font-weight:700; padding:14px 16px; border-bottom:none; white-space:normal; }
+      .matrix-table td:first-child::before { display:none; }
+      .matrix-tag { white-space:normal !important; display:inline !important; background:none !important; border:none !important; padding:0 !important; border-radius:0 !important; color:var(--text-2) !important; font-family:var(--fh) !important; font-size:.875rem !important; font-weight:400 !important; letter-spacing:0 !important; }
+      .risk-tag { white-space:normal !important; display:inline !important; background:none !important; border:none !important; padding:0 !important; border-radius:0 !important; color:var(--text-2) !important; font-family:var(--fh) !important; font-size:.875rem !important; font-weight:600 !important; letter-spacing:0 !important; }
+    }
+    .matrix-tag { display:inline-block; font-family:var(--fm); font-size:10px; font-weight:600; letter-spacing:.08em; padding:3px 8px; border-radius:4px; background:rgba(93,179,138,.1); color:var(--green-dk); border:1px solid rgba(93,179,138,.22); white-space:nowrap; margin-top:4px; }
+    .risk-tag { display:inline-block; font-family:var(--fm); font-size:10px; font-weight:600; letter-spacing:.08em; padding:3px 8px; border-radius:4px; background:rgba(248,113,113,.08); color:#b91c1c; border:1px solid rgba(248,113,113,.2); white-space:nowrap; margin-top:4px; }
+
+    /* ===== FAQ ===== */
+    .faq-sec { padding:80px 0; background:var(--bg); }
+    .faq-list { margin-top:48px; max-width:800px; }
+    .faq-item { border:1px solid var(--border); border-radius:var(--r-card); margin-bottom:10px; overflow:hidden; }
+    .faq-q { display:flex; justify-content:space-between; align-items:center; padding:20px 24px; font-size:.9375rem; font-weight:600; color:var(--navy); cursor:pointer; background:var(--surface); gap:16px; user-select:none; }
+    .faq-icon { flex-shrink:0; width:22px; height:22px; border-radius:50%; border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:16px; color:var(--muted); line-height:1; transition:transform .22s ease, background .22s ease, border-color .22s ease; }
+    .faq-item.open .faq-icon { transform:rotate(45deg); background:var(--green-lt); border-color:var(--green-lt); color:#fff; }
+    .faq-a { max-height:0; overflow:hidden; transition:max-height .35s ease; background:var(--surface); }
+    .faq-a-inner { padding:0 24px 22px; font-size:.9rem; color:var(--text-2); line-height:1.75; border-top:1px solid var(--border); padding-top:16px; }
+    .faq-item.open .faq-a { max-height:600px; }
+
+    /* ===== CROSS-SERVICE STRIP ===== */
+    .cross-strip { background:var(--navy); padding:80px 0; }
+    .cross-strip .label { color:var(--green-lt); }
+    .cross-strip .strip-title { font-size:1.25rem; font-weight:700; color:#fff; margin-bottom:40px; margin-top:6px; }
+    .cross-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:rgba(255,255,255,.06); border-radius:var(--r-card); overflow:hidden; }
+    .cross-card { background:rgba(255,255,255,.02); padding:28px 24px; display:block; transition:background .2s; }
+    .cross-card:hover { background:rgba(255,255,255,.07); }
+    .cross-card.active { background:rgba(93,179,138,.1); border-top:2.5px solid var(--green-lt); }
+    .cross-cat { font-family:var(--fm); font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--green-lt); margin-bottom:8px; display:block; }
+    .cross-title { font-size:.9375rem; font-weight:700; color:#fff; display:block; margin-bottom:6px; line-height:1.3; }
+    .cross-desc { font-size:.8125rem; color:rgba(255,255,255,.42); line-height:1.5; display:block; }
+    .cross-arrow { display:inline-block; margin-top:14px; font-size:.8125rem; color:var(--green-lt); }
+    .cross-card.active .cross-title { color:var(--green-lt); }
+    .cross-card.soon { opacity:.35; pointer-events:none; }
+    @media(max-width:768px) { .cross-grid { grid-template-columns:1fr 1fr; } }
+    @media(max-width:480px) { .cross-grid { grid-template-columns:1fr; } }
+
+    /* ===== FOOTER (en/index.html style) ===== */
+    footer { background:#050B18; color:var(--on-dark); padding:72px 0 32px; border-top:1px solid rgba(255,255,255,.08); }
+    footer .grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:32px; border-top:1px solid rgba(255,255,255,.10); padding-top:48px; }
+    @media(max-width:768px) { footer .grid { grid-template-columns:1fr 1fr; } }
+    @media(max-width:480px) { footer .grid { grid-template-columns:1fr; } }
+    footer h4 { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--green-lt); margin-bottom:14px; }
+    footer .desc { color:var(--on-dark-muted); font-size:14px; margin-top:16px; max-width:36ch; }
+    footer .addr { font-family:var(--fm); font-size:13px; color:var(--on-dark-muted); line-height:1.8; }
+    footer a { display:block; color:var(--on-dark-muted); font-size:14px; padding:6px 0; transition:color .2s ease; }
+    footer a:hover { color:#fff; }
+    .footer-bottom { display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,.08); margin-top:48px; padding-top:20px; gap:20px; }
+    @media(max-width:768px) { .footer-bottom { flex-direction:column; align-items:flex-start; } }
+    .footer-bottom-left { font-family:var(--fm); font-size:12px; color:var(--on-dark-muted); }
+    .footer-bottom-right { display:flex; gap:20px; font-size:13px; }
+    .footer-bottom-right a { padding:0; }
+
+    /* ===== MOBILE RESPONSIVE ===== */
+    @media(max-width:600px) { :root { --gut:24px; } }
+
+    /* ─── LANG SWITCHER ──────────────────────────────────── */
+    .lang-sw { display:flex; align-items:center; gap:4px; font-family:var(--fm); font-size:10px; font-weight:600; letter-spacing:.1em; flex-shrink:0; }
+    .lang-sw .lang-cur { color:var(--navy); cursor:default; }
+    .lang-sw .lang-sep { color:var(--border); font-weight:400; }
+    .lang-sw .lang-alt { color:var(--muted); transition:color .18s; }
+    .lang-sw .lang-alt:hover { color:var(--green-dk); }
+    .mob-lang-sw { display:flex; align-items:center; justify-content:flex-end; gap:8px; padding:12px 0; border-bottom:1px solid var(--border); font-family:var(--fm); font-size:11px; font-weight:700; letter-spacing:.08em; }
+    .mob-lang-sw .lang-cur { color:var(--navy); }
+    .mob-lang-sw .lang-sep { color:var(--border); }
+    .mob-lang-sw .lang-alt { color:var(--muted); }
+    .mob-lang-sw .lang-alt:hover { color:var(--green-dk); }
+  </style>
+<style id="nav-std">
+/* Nav standardized from index.html */
+#nav { position:sticky; top:0; z-index:50; height:64px; display:flex; align-items:center; background:rgba(251,252,251,.95) !important; backdrop-filter:blur(10px); border-bottom:1px solid var(--border) !important; box-shadow:none !important; }
+#nav .wrap { display:flex; align-items:center; justify-content:space-between; width:100%; }
+.logo { display:flex; align-items:center; }
+.logo img { height:38px; width:auto; }
+.logo-dark { display:none !important; }
+.navlinks { display:flex; gap:32px; font-size:14px; font-weight:500; color:var(--text); }
+.navlinks a:hover { color:var(--green-dk); }
+.nav-cta { display:inline-flex !important; align-items:center; gap:6px; padding:11px 22px; font-size:14px; font-weight:600; background:var(--navy); color:#fff; border-radius:9999px; border:none; cursor:pointer; position:static; overflow:visible; }
+.nav-cta::before { display:none !important; }
+.nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; cursor:pointer; padding:11px 10px; border:none; background:transparent; border-radius:4px; }
+.nav-burger span { display:block; width:22px; height:1.5px; background:var(--text); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
+.nav-burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+.nav-mobile { display:block !important; position:fixed !important; top:64px; left:0; right:0; background:var(--surface); z-index:99; padding:24px var(--gut,24px) 32px; border-top:1px solid var(--border); box-shadow:0 8px 32px rgba(0,0,0,.1); opacity:0 !important; transform:translateY(-6px) !important; pointer-events:none !important; transition:opacity .22s ease, transform .22s ease; }
+.nav-mobile.open { opacity:1 !important; transform:none !important; pointer-events:all !important; }
+.nav-mobile a { display:block; font-size:1rem; font-weight:600; padding:13px 0; border-bottom:1px solid var(--border); color:var(--text); }
+.nav-mobile a:last-of-type { border-bottom:0; }
+.nav-mobile .mob-cta { display:block; margin-top:20px; text-align:center; background:var(--navy); color:#fff !important; padding:14px; border-radius: 9999px; font-weight:600; }
+@media(max-width:768px) { .navlinks { display:none !important; } .nav-cta { display:none !important; } .nav-burger { display:flex !important; } }
+@media(min-width:769px) { #navMobile { display:none !important; } }
+</style>
+<link rel="stylesheet" href="../footer-std.css">
+<script src="../scroll-top.js" defer></script>
+<link rel="stylesheet" href="../nav-revision.css">  <link rel="stylesheet" href="../brand-assets.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../assets/brand/favicon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/brand/apple-touch-icon.png">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="wrap">
+    <a href="index.html" class="logo">
+      <img class="logo-light" src="../assets/brand/V2.png" alt="AL ENERJİ" height="40" style="width:auto;">
+      <img class="logo-dark"  src="../assets/brand/al_enerji_logo_white.png" alt="AL ENERJİ" height="40" style="width:auto;">
+    </a>
+    <div class="navlinks">
+      <div class="nav-item">
+        <a href="services.html" class="active">Services<svg class="nav-caret" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav-dropdown"><a class="nav-all-services" href="services.html"><strong>All Services</strong><span>Explore our complete range of services</span><b aria-hidden="true">→</b></a>
+          <div class="dropdown-col">
+            <span class="dropdown-cat">Development &amp; EPC</span>
+            <a href="project-development.html"><strong>Project Development</strong><span>From concept to operation in 7 steps</span></a>
+            <a href="epc.html"><strong>EPC &amp; Installation</strong><span>Turnkey solar solutions</span></a>
+          </div>
+          <div class="dropdown-col">
+            <span class="dropdown-cat">Storage</span>
+            <a href="bess.html"><strong>BESS &amp; Hybrid</strong><span>Flexible grid solutions</span></a>
+          </div>
+          <div class="dropdown-col">
+            <span class="dropdown-cat">Brokerage &amp; Advisory</span>
+            <a href="brokerage.html" class="active"><strong>M&amp;A Brokerage</strong><span>Solar asset transactions</span></a>
+            <a href="site-inspection.html"><strong>Site Inspection</strong><span>Owner's Engineer services</span></a>
+            <a href="carbon.html" ><strong>Carbon Management</strong><span>South Pole partnership</span></a>
+          </div>
+        </div>
+      </div>
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="lang-sw"><span class="lang-cur">EN</span><span class="lang-sep">|</span><a href="../brokerage.html" class="lang-alt">TR</a></div>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <button class="nav-cta" onclick="location.href='contact.html'">Contact Us</button>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <div class="mob-lang-sw"><span class="lang-cur">EN</span><span class="lang-sep">|</span><a href="../brokerage.html" class="lang-alt">TR</a></div>
+  <div class="mob-hiz-toggle" id="mobHizToggle">Services <span class="mob-hiz-arrow">▾</span></div>
+  <div class="mob-hiz-sub" id="mobHizSub">
+    <a href="services.html">All Services</a>
+    <a href="brokerage.html" class="active">M&amp;A Brokerage</a>
+    <a href="project-development.html">Project Development</a>
+    <a href="epc.html">EPC &amp; Installation</a>
+    <a href="site-inspection.html">Site Inspection</a>
+    <a href="bess.html">BESS &amp; Hybrid</a>
+    <a href="carbon.html" >Carbon Management</a>
+  </div>
+  <a href="projects.html">Projects</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="mob-cta">Contact Us</a>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <a href="services.html">Services</a>
+      <span>/</span>
+      <span>M&amp;A Brokerage</span>
+    </div>
+    <div class="hero-cat">Brokerage &amp; Advisory</div>
+    <h1>Engineering &amp; Legal-Led<br>Project Brokerage &amp; M&amp;A Management</h1>
+    <p class="lead">Renewable energy asset transactions are not a superficial brokerage process that simply connects buyer and seller. We manage all technical, financial and legal processes end-to-end — from Letter of Intent through to final closing.</p>
+    <div class="hero-actions">
+      <button class="btn-pill dk" onclick="location.href='contact.html'">Request a Project Consultation →</button>
+      <button class="btn-pill ghost-light" onclick="location.href='services.html'">← All Services</button>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS STEPS -->
+<section class="process-sec" data-reveal>
+  <div class="wrap">
+    <div class="process-intro">
+      <div class="label">Process Architecture</div>
+      <h2 class="sec-title">4-Phase M&amp;A Process Architecture in Detail</h2>
+      <p class="sec-lead">A process that measures value created, not value lost, as it brings project parties together. We are with you at every step — from DCF modelling through to contract closing.</p>
+    </div>
+
+    <!-- Phase 01 -->
+    <div class="step-item" data-reveal>
+      <div class="step-num-col">
+        <span class="step-num">01</span>
+        <span class="step-badge">Phase 01</span>
+      </div>
+      <div class="step-body">
+        <h3>Preparation, Financial Valuation &amp; Data Room Setup</h3>
+        <p class="step-desc">Before the transaction, the project's current status is thoroughly reviewed with financial and technical simulations. The target investor audience is defined and confidentiality structures are established.</p>
+        <ul class="step-points">
+          <li><strong>DCF &amp; Cash Flow Modelling:</strong> Hourly 8,760 data points, simulated against YEKDEM / PTF benchmarks</li>
+          <li><strong>Confidential Information Memorandum (CIM) &amp; Teaser Preparation:</strong> Technical, legal and financial project file prepared to international fund standards</li>
+          <li><strong>Confidentiality Management (NDA):</strong> Data sharing and confidentiality agreements with relevant investor groups</li>
+        </ul>
+        <div class="step-tags">
+          <span class="step-tag">DCF Modelling</span>
+          <span class="step-tag">CIM / Teaser</span>
+          <span class="step-tag">NDA</span>
+          <span class="step-tag">PVSyst Simulation</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 02 -->
+    <div class="step-item" data-reveal>
+      <div class="step-num-col">
+        <span class="step-num">02</span>
+        <span class="step-badge">Phase 02</span>
+      </div>
+      <div class="step-body">
+        <h3>In-Depth Technical &amp; Legal Due Diligence (TDD &amp; LDD)</h3>
+        <p class="step-desc">Independent engineering and legal screening is applied to eliminate risks. An impartial review process that surfaces hidden risks on both sides of the transaction.</p>
+        <ul class="step-points">
+          <li><strong>Technical Due Diligence (TDD):</strong> Production performance (PR), grid compatibility, equipment warranty status, structural compliance</li>
+          <li><strong>Legal Due Diligence (LDD):</strong> Zoning, EIA, YEKDEM registration, land agreements and historical financial liabilities; Legal Risk Matrix</li>
+        </ul>
+        <div class="step-tags">
+          <span class="step-tag">TDD</span>
+          <span class="step-tag">LDD</span>
+          <span class="step-tag">PR Analysis</span>
+          <span class="step-tag">Legal Risk Matrix</span>
+          <span class="step-tag">EIA Audit</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 03 -->
+    <div class="step-item" data-reveal>
+      <div class="step-num-col">
+        <span class="step-num">03</span>
+        <span class="step-badge">Phase 03</span>
+      </div>
+      <div class="step-body">
+        <h3>Contract Engineering &amp; Negotiation Management</h3>
+        <p class="step-desc">The backbone of the transaction is built with our field experience and legal team. We structure fair and enforceable contract texts that protect the commercial interests of both parties.</p>
+        <ul class="step-points">
+          <li><strong>LOI / Term Sheet:</strong> Defining the key commercial terms, share value and timeline of the transaction</li>
+          <li><strong>SPA &amp; SHA Negotiations:</strong> Preparation of technical and financial clauses in Share Purchase and Shareholder Agreements</li>
+          <li><strong>Condition Precedents:</strong> Scheduling the mandatory administrative and technical steps prior to transfer</li>
+          <li><strong>Reps &amp; Warranties / Set-off &amp; Escrow:</strong> Bank escrow and set-off mechanisms protecting against post-transfer risks</li>
+        </ul>
+        <div class="step-tags">
+          <span class="step-tag">LOI / Term Sheet</span>
+          <span class="step-tag">SPA</span>
+          <span class="step-tag">SHA</span>
+          <span class="step-tag">Condition Precedents</span>
+          <span class="step-tag">Escrow</span>
+          <span class="step-tag">Set-off</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 04 -->
+    <div class="step-item" data-reveal>
+      <div class="step-num-col">
+        <span class="step-num">04</span>
+        <span class="step-badge">Phase 04</span>
+      </div>
+      <div class="step-body">
+        <h3>Transfer, Closing &amp; Regulatory Approvals (Closing)</h3>
+        <p class="step-desc">Following contract execution, statutory transfer processes and official regulatory approvals are completed. Final share transfer and financial settlement are executed.</p>
+        <ul class="step-points">
+          <li><strong>EMRA &amp; Distribution Company Approvals:</strong> EMRA Board Approval for licensed projects; transfer of call letter rights for unlicensed projects</li>
+          <li><strong>Bank Loan Transfers &amp; Assignments:</strong> Transfer of existing bank loans, mortgages and assignments to the new investor</li>
+          <li><strong>Closing Certificate:</strong> Final share and financial transfer completed upon confirmation that all conditions precedent have been satisfied</li>
+        </ul>
+        <div class="step-tags">
+          <span class="step-tag">EMRA Approval</span>
+          <span class="step-tag">Call Letter Transfer</span>
+          <span class="step-tag">Bank Assignment</span>
+          <span class="step-tag">Closing Certificate</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY AL ENERJİ -->
+<section class="neden-mini-sec" data-reveal>
+  <div class="wrap">
+    <div class="label">Competitive Advantage</div>
+    <h2 class="sec-title">Why AL ENERJİ M&amp;A Brokerage?</h2>
+    <div class="neden-mini-grid">
+      <div class="neden-mini-card" data-n="01">
+        <h3>Field &amp; Tender-Rooted Perspective</h3>
+        <p>You work with a team that has directly experienced all risks in the field and at the table — from public privatisation tenders to capacity allocation competitions. Expert knowledge grounded in experience, not theory.</p>
+      </div>
+      <div class="neden-mini-card" data-n="02">
+        <h3>Complementary Legal Strength</h3>
+        <p>The most critical stage where project sale transactions break down is contract negotiation. With our specialist energy lawyers, we structure fair contract texts that protect the interests of both parties.</p>
+      </div>
+      <div class="neden-mini-card" data-n="03">
+        <h3>Independent &amp; Impartial Review</h3>
+        <p>While information memoranda are prepared for the selling party to demonstrate the project's value, impartial audits are conducted for the buying party to surface hidden technical defects.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCOPE MATRIX -->
+<section class="matrix-sec" data-reveal>
+  <div class="wrap">
+    <div class="label">Scope Matrix</div>
+    <h2 class="sec-title">Regulatory &amp; Contractual Scope Matrix</h2>
+    <p class="sec-lead">Critical administrative and legal steps, risk areas and AL ENERJİ's solution approach by transaction type.</p>
+    <div class="matrix-table-wrap">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Transaction Type</th>
+            <th>Critical Administrative / Legal Step</th>
+            <th>Potential Risk Areas</th>
+            <th>AL ENERJİ Solution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Licensed Plant Transfer<br>
+              <span class="matrix-tag">WPP / SPP / HPP</span>
+            </td>
+            <td data-label="Critical Administrative / Legal Step">EMRA Board Approval and Licence Amendment</td>
+            <td data-label="Potential Risk Areas"><span class="risk-tag">Bureaucratic Delays</span><br>Share transfer approval processes</td>
+            <td data-label="AL ENERJİ Solution">Pre-structuring and follow-up management of EMRA approval processes</td>
+          </tr>
+          <tr>
+            <td>
+              Unlicensed SPP Transfer<br>
+              <span class="matrix-tag">Art. 5.1.h / 5.1.c</span>
+            </td>
+            <td data-label="Critical Administrative / Legal Step">Distribution Company Call Letter &amp; Transfer Approval</td>
+            <td data-label="Potential Risk Areas"><span class="risk-tag">Call Letter Cancellation Risk</span><br>Consumption facility non-compliance</td>
+            <td data-label="AL ENERJİ Solution">Regulatory consumption/generation netting and facility compliance audit</td>
+          </tr>
+          <tr>
+            <td>
+              Ready-to-Build Project Transfer<br>
+              <span class="matrix-tag">RTB — Ready to Build</span>
+            </td>
+            <td data-label="Critical Administrative / Legal Step">Zoning, EIA, Building Permit and Connection Agreement</td>
+            <td data-label="Potential Risk Areas"><span class="risk-tag">Zoning Cancellation Litigation</span><br>Permit expiration</td>
+            <td data-label="AL ENERJİ Solution">Zoning plan validity and vested legal rights analysis</td>
+          </tr>
+          <tr>
+            <td>
+              Operating Plant Transfer<br>
+              <span class="matrix-tag">COD — Commercial Op.</span>
+            </td>
+            <td data-label="Critical Administrative / Legal Step">Bank Project Finance Loan &amp; YEKDEM Registration</td>
+            <td data-label="Potential Risk Areas"><span class="risk-tag">Equipment Performance Degradation</span><br>Historical debt obligations</td>
+            <td data-label="AL ENERJİ Solution">TDD performance testing, PR analysis and Escrow/Set-off structure within SPA</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-sec" data-reveal>
+  <div class="wrap">
+    <div class="label">Frequently Asked Questions</div>
+    <h2 class="sec-title">About M&amp;A Brokerage</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <span>What should be considered when preparing an SPA for renewable energy asset transfers?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">The most critical points in SPA processes are: defining administrative approvals as Condition Precedents, limiting the seller's prior administrative/technical representations (Reps &amp; Warranties), and correctly structuring Escrow (escrow account) and Set-off mechanisms against post-transfer underproduction or legal sanctions.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <span>How do share transfer approval processes work for licensed and unlicensed SPP/WPP projects?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">For licensed plants, direct or indirect share changes are subject to EMRA Board Approval. For unlicensed facilities, the transfer of call letter rights in the connection agreement and company share transfers are completed with prior approvals conducted within the framework of the relevant electricity distribution company and EMRA regulations.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <span>Why is a Technical Due Diligence (TDD) report of vital importance for banks and investors?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">A TDD report verifies through independent engineering eyes not merely the plant's capacity on paper, but its actual field performance ratio (PR), equipment degradation status, grid connection constraints and land title rights. Banks treat this report as the fundamental risk criterion in project finance transfers.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <span>How are legal rights protected if the plant produces below expectations following acquisition?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-inner">In the contract structures we manage directly, production data from the first 12–24 months after the transfer date is compared against guaranteed simulation values. In case of deviation, penal clauses and warranty indemnity provisions are added to the contract, to be set off against the seller's receivables.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CROSS-SERVICE STRIP -->
+<section class="cross-strip">
+  <div class="wrap">
+    <div class="label">All Services</div>
+    <div class="strip-title">Explore Our Other Services</div>
+    <div class="cross-grid">
+      <a href="brokerage.html" class="cross-card active">
+        <span class="cross-cat">Brokerage &amp; Advisory</span>
+        <span class="cross-title">M&amp;A Brokerage</span>
+        <span class="cross-desc">Project acquisition, disposal and contract management</span>
+        <span class="cross-arrow">← You are here</span>
+      </a>
+      <a href="project-development.html" class="cross-card">
+        <span class="cross-cat">Development &amp; EPC</span>
+        <span class="cross-title">Project Development</span>
+        <span class="cross-desc">7-phase process from concept to operation</span>
+        <span class="cross-arrow">Explore →</span>
+      </a>
+      <a href="epc.html" class="cross-card">
+        <span class="cross-cat">Development &amp; EPC</span>
+        <span class="cross-title">EPC &amp; Installation</span>
+        <span class="cross-desc">Turnkey solar solutions</span>
+        <span class="cross-arrow">Explore →</span>
+      </a>
+      <a href="bess.html" class="cross-card">
+        <span class="cross-cat">Storage</span>
+        <span class="cross-title">BESS &amp; Hybrid</span>
+        <span class="cross-desc">Flexible grid and arbitrage solutions</span>
+        <span class="cross-arrow">Explore →</span>
+      </a>
+      <a href="site-inspection.html" class="cross-card">
+        <span class="cross-cat">Brokerage &amp; Advisory</span>
+        <span class="cross-title">Site Inspection</span>
+        <span class="cross-desc">Owner's Engineer and independent audit</span>
+        <span class="cross-arrow">Explore →</span>
+      </a>
+      <a href="carbon.html" class="cross-card">
+        <span class="cross-cat">Brokerage &amp; Advisory</span>
+        <span class="cross-title">Carbon Management</span>
+        <span class="cross-desc">VCS, Gold Standard, ISO 14064</span>
+        <span class="cross-arrow">Explore →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer-grid">
+      <div>
+        <div class="site-footer-logo"><img src="../assets/brand/al_enerji_logo_white.png" alt="AL ENERJİ" width="166" height="44"></div>
+        <p class="desc">Engineering-led, long-term energy partner. Since 2004.</p>
+        <div class="addr">Nef 09, B Block, No:104<br>Kağıthane / Istanbul, Türkiye<br><br>+90 212 234 38 38<br>info@alenerji.com.tr</div>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="project-development.html">Project Development</a>
+        <a href="epc.html">EPC &amp; Installation</a>
+        <a href="bess.html">BESS &amp; Hybrid</a>
+        <a href="brokerage.html">M&amp;A Brokerage</a>
+        <a href="site-inspection.html">Site Inspection</a>
+        <a href="carbon.html">Carbon Management</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="about.html">About Us</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html#form">Careers</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:info@alenerji.com.tr">info@alenerji.com.tr</a>
+        <a href="tel:+902122343838">+90 212 234 38 38</a>
+        <a href="contact.html">Get in Touch</a>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <div class="site-footer-bottom-left">© 2026 AL ENERJİ. All rights reserved.</div>
+      <div class="site-footer-bottom-right">
+        <a href="privacy-notice.html">Privacy Notice</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // burger toggle
+  const navBurger = document.getElementById('navBurger');
+  const navMobile = document.getElementById('navMobile');
+  if (navBurger && navMobile) {
+    navBurger.addEventListener('click', function() {
+      navBurger.classList.toggle('open');
+      navMobile.classList.toggle('open');
+    });
+  }
+
+  // mobile services accordion
+  const mobHizToggle = document.getElementById('mobHizToggle');
+  const mobHizSub = document.getElementById('mobHizSub');
+  if (mobHizToggle && mobHizSub) {
+    mobHizToggle.addEventListener('click', function() {
+      mobHizToggle.classList.toggle('open');
+      mobHizSub.classList.toggle('open');
+    });
+  }
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const ro = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => ro.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(other => other.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+<script id="burger-std">
+(function(){
+  var burger=document.getElementById('navBurger');
+  var drawer=document.getElementById('navMobile');
+  if(!burger||!drawer)return;
+  // Remove old listeners by cloning
+  var b2=burger.cloneNode(true);
+  burger.parentNode.replaceChild(b2,burger);
+  burger=b2;
+  burger.addEventListener('click',function(){
+    var open=burger.classList.toggle('open');
+    drawer.classList.toggle('open',open);
+    burger.setAttribute('aria-expanded',open);
+    document.body.style.overflow=open?'hidden':'';
+  });
+  drawer.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){
+      burger.classList.remove('open');
+      drawer.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+      document.body.style.overflow='';
+    });
+  });
+})();
+</script>
+</body>
+</html>

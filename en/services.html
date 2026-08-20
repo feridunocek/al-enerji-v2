@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AL ENERJİ services: M&A brokerage, project development, EPC installation, Owner's Engineer site inspection, BESS & hybrid storage and carbon management.">
+<meta property="og:title" content="AL ENERJİ — Services">
+<meta property="og:description" content="AL ENERJİ services: M&A brokerage, project development, EPC installation, Owner's Engineer site inspection, BESS & hybrid storage and carbon management.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://al-enerji-v2.vercel.app/en/services.html">
+<link rel="canonical" href="https://al-enerji-v2.vercel.app/en/services.html">
+<link rel="alternate" hreflang="tr" href="https://al-enerji-v2.vercel.app/hizmetler.html">
+<link rel="alternate" hreflang="en" href="https://al-enerji-v2.vercel.app/en/services.html">
+<link rel="alternate" hreflang="x-default" href="https://al-enerji-v2.vercel.app/hizmetler.html">
+<title>AL ENERJİ — Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ===== BASE: en/index.html CSS (verbatim) ===== */
+:root {
+  --navy:#0B1430; --green-dk:#1F3D33; --green-lt:#5DB38A;
+  --bg:#FBFCFB; --surface:#FFFFFF; --surface-alt:#EFF1EF;
+  --border:#D6D9D5; --border-strong:#B9BFBA;
+  --text:#0B1430; --text-2:#3A4356; --muted:#6B7280;
+  --on-dark:#F4F6F4; --on-dark-muted:rgba(244,246,244,.6);
+  --fh:'Hanken Grotesk',sans-serif; --fm:'JetBrains Mono',monospace;
+  --max:1200px; --gut:64px; --spy:96px; --r-ctrl:9999px; --r-card:8px;
+}
+@media(max-width:768px) { :root { --gut:24px; --spy:64px; } }
+
+* { box-sizing:border-box; margin:0; padding:0; }
+img { max-width:100%; display:block; }
+html { scroll-behavior:smooth; }
+body { font-family:var(--fh); background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
+a { color:inherit; text-decoration:none; }
+.wrap { max-width:var(--max); margin:0 auto; padding:0 var(--gut); }
+.sec { padding:var(--spy) 0; }
+.hr { height:1px; background:var(--border); border:0; }
+
+.label { display:inline-flex; align-items:center; gap:12px; font-size:14px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green-lt); margin-bottom:18px; }
+.label::after { content:''; order:-1; width:7px; height:7px; border-radius:9999px; background:var(--green-lt); animation:labelPulse 2.4s ease-in-out infinite; }
+.label::before { content:''; width:0; height:1.5px; background:var(--green-lt); transition:width .6s ease .15s; }
+.label.in::before { width:28px; }
+@keyframes labelPulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.35; transform:scale(.6); } }
+@media(prefers-reduced-motion:reduce) { .label::after { animation:none; } }
+
+h1 { font-size:clamp(2.4rem,6vw,3.75rem); font-weight:700; line-height:1.05; letter-spacing:-.02em; }
+h2 { font-size:clamp(1.7rem,3.5vw,2.1rem); font-weight:700; line-height:1.12; letter-spacing:-.02em; }
+h3 { font-size:1.375rem; font-weight:600; line-height:1.25; }
+.lead { font-size:1.0625rem; color:var(--text-2); max-width:54ch; margin-top:18px; }
+.mono { font-family:var(--fm); }
+
+/* NAVIGATION */
+nav { position:sticky; top:0; z-index:50; height:64px; display:flex; align-items:center; background:rgba(251,252,251,.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); transition:background .3s ease, border-color .3s ease; border-bottom:1px solid var(--border); }
+nav .wrap { display:flex; align-items:center; justify-content:space-between; width:100%; }
+.logo { display:flex; align-items:center; }
+.logo img { height:38px; width:auto; }
+.logo-light { display:block; }
+.logo-dark  { display:none; }
+.navlinks { display:flex; gap:32px; font-size:14px; font-weight:500; color:var(--text); transition:color .3s ease; }
+.navlinks a:hover { color:var(--green-dk); }
+.navlinks a.active { color:var(--green-dk); font-weight:700; }
+.nav-cta { display:inline-flex; align-items:center; gap:6px; padding:11px 22px; border-radius:var(--r-ctrl); font-size:14px; font-weight:600; background:var(--navy); color:#fff; transition:background .3s ease, border-color .3s ease; cursor:pointer; border:none; font-family:var(--fh); }
+.nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; cursor:pointer; padding:11px 10px; border:none; background:transparent; border-radius:4px; }
+.nav-burger span { display:block; width:22px; height:1.5px; background:var(--text); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
+.nav-burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+.nav-mobile { position:fixed; top:64px; left:0; right:0; background:var(--surface); z-index:99; padding:24px var(--gut) 32px; border-top:1px solid var(--border); box-shadow:0 8px 32px rgba(0,0,0,.1); opacity:0; transform:translateY(-6px); pointer-events:none; transition:opacity .22s ease, transform .22s ease; }
+.nav-mobile.open { opacity:1; transform:none; pointer-events:all; }
+.nav-mobile a { display:block; font-size:1rem; font-weight:600; padding:13px 0; border-bottom:1px solid var(--border); color:var(--text); }
+.nav-mobile a:last-of-type { border-bottom:0; }
+.nav-mobile a.active { color:var(--green-dk); }
+.nav-mobile .mob-cta { display:block; margin-top:20px; text-align:center; background:var(--navy); color:#fff !important; padding:14px; border-radius: 9999px; font-weight:600; border:none; }
+@media(max-width:768px) { .navlinks, .nav-cta { display:none; } .nav-burger { display:flex; } }
+
+/* NAV DROPDOWN */
+.nav-item { position:relative; }
+.nav-item::after { content:''; position:absolute; top:100%; left:-16px; right:-16px; height:20px; }
+.nav-item > a { display:inline-flex; align-items:center; gap:5px; }
+.nav-caret { width:10px; height:6px; flex-shrink:0; transition:transform .2s ease; }
+.nav-item:hover .nav-caret { transform:rotate(180deg); }
+.nav-dropdown {
+  position:absolute; top:calc(100% + 16px); left:50%; transform:translateX(-50%) translateY(-6px);
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r-card); box-shadow:0 16px 48px rgba(0,0,0,.13);
+  padding:28px 24px; display:grid; grid-template-columns:1fr .7fr 1.1fr; gap:24px;
+  width:560px; opacity:0; pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease; z-index:200;
+}
+.nav-item:hover .nav-dropdown { opacity:1; pointer-events:all; transform:translateX(-50%) translateY(0); }
+.dropdown-col { display:flex; flex-direction:column; }
+.dropdown-cat { display:block; font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--green-lt); margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+.nav-dropdown a { display:block; padding:8px 0; border-bottom:1px solid var(--border); text-decoration:none; }
+.nav-dropdown a:last-child { border-bottom:0; padding-bottom:0; }
+.nav-dropdown a strong { display:block; font-size:13px; font-weight:600; color:var(--navy); transition:color .18s; line-height:1.3; }
+.nav-dropdown a span { display:block; font-size:11px; color:#8a9088; margin-top:2px; line-height:1.4; }
+.nav-dropdown a:hover strong { color:var(--green-lt); }
+.nav-dropdown a.soon { opacity:.38; pointer-events:none; }
+
+/* MOBILE SERVICES EXPANDABLE */
+.mob-hiz-toggle { display:flex; justify-content:space-between; align-items:center; font-size:1rem; font-weight:600; padding:13px 0; border-bottom:1px solid var(--border); cursor:pointer; color:var(--text); user-select:none; }
+.mob-hiz-arrow { font-size:11px; display:inline-block; transition:transform .2s; opacity:.6; }
+.mob-hiz-toggle.open .mob-hiz-arrow { transform:rotate(180deg); }
+.mob-hiz-sub { display:none; padding-left:16px; }
+.mob-hiz-sub.open { display:block; }
+.mob-hiz-sub a { display:block; font-size:.9rem; font-weight:500; padding:9px 0; border-bottom:1px solid var(--border); color:#555c54; text-decoration:none; }
+.mob-hiz-sub a:first-child { font-weight:600; color:var(--navy); }
+.mob-hiz-sub a:last-child { border-bottom:0; }
+.mob-hiz-sub a.soon { opacity:.38; pointer-events:none; }
+
+/* LANG SWITCHER */
+.lang-sw { display:flex; align-items:center; gap:4px; font-family:var(--fm); font-size:10px; font-weight:600; letter-spacing:.1em; flex-shrink:0; }
+.lang-sw .lang-cur { color:var(--navy); cursor:default; }
+.lang-sw .lang-sep { color:var(--border); font-weight:400; }
+.lang-sw .lang-alt { color:var(--muted); transition:color .18s; }
+.lang-sw .lang-alt:hover { color:var(--green-dk); }
+.mob-lang-sw { display:flex; align-items:center; justify-content:flex-end; gap:8px; padding:12px 0; border-bottom:1px solid var(--border); font-family:var(--fm); font-size:11px; font-weight:700; letter-spacing:.08em; }
+.mob-lang-sw .lang-cur { color:var(--navy); }
+.mob-lang-sw .lang-sep { color:var(--border); }
+.mob-lang-sw .lang-alt { color:var(--muted); }
+.mob-lang-sw .lang-alt:hover { color:var(--green-dk); }
+
+/* REVEAL */
+[data-reveal] { opacity:0; transform:translateY(20px); transition:opacity .65s ease, transform .65s ease; }
+[data-reveal].in { opacity:1; transform:none; }
+@media(prefers-reduced-motion:reduce) { [data-reveal] { opacity:1; transform:none; transition:none; } }
+
+/* FOOTER */
+footer { background:#050B18; color:var(--on-dark); padding:72px 0 32px; border-top:1px solid rgba(255,255,255,.08); }
+footer .grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:32px; border-top:1px solid rgba(255,255,255,.10); padding-top:48px; }
+@media(max-width:768px) { footer .grid { grid-template-columns:1fr 1fr; } }
+@media(max-width:480px) { footer .grid { grid-template-columns:1fr; } }
+footer h4 { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--green-lt); margin-bottom:14px; }
+footer .desc { color:var(--on-dark-muted); font-size:14px; margin-top:16px; max-width:36ch; }
+footer .addr { font-family:var(--fm); font-size:13px; color:var(--on-dark-muted); line-height:1.8; }
+footer a { display:block; color:var(--on-dark-muted); font-size:14px; padding:6px 0; transition:color .2s ease; }
+footer a:hover { color:#fff; }
+.footer-bottom { display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,.08); margin-top:48px; padding-top:20px; gap:20px; }
+@media(max-width:768px) { .footer-bottom { flex-direction:column; align-items:flex-start; } }
+.footer-bottom-left { font-family:var(--fm); font-size:12px; color:var(--on-dark-muted); }
+.footer-bottom-right { display:flex; gap:20px; font-size:13px; }
+.footer-bottom-right a { padding:0; }
+
+/* ===== PAGE-SPECIFIC CSS (from hizmetler.html, adapted) ===== */
+
+/* PAGE HERO */
+.page-hero { position:relative; height:56vh; min-height:400px; display:flex; align-items:center; overflow:hidden; }
+.page-hero-bg { position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2000&fit=crop') center center/cover; will-change:transform; }
+.page-hero-bg::after { content:''; position:absolute; inset:0; background:rgba(11,20,48,0.88); }
+.page-hero .wrap { position:relative; z-index:2; width:100%; }
+.breadcrumb { display:flex; gap:8px; font-size:13px; color:var(--on-dark-muted); margin-bottom:12px; }
+.breadcrumb a { color:var(--on-dark-muted); }
+.breadcrumb a:hover { color:var(--green-lt); }
+.page-hero h1 { font-size:clamp(2rem,5vw,3.5rem); font-weight:700; color:var(--on-dark); line-height:1.12; letter-spacing:-0.02em; margin-bottom:20px; }
+.page-hero .lead { font-size:1rem; color:var(--on-dark-muted); max-width:720px; line-height:1.7; margin-top:0; }
+
+/* SCROLLSPY NAV */
+.spy-nav { position:sticky; top:64px; z-index:40; background:var(--surface); border-bottom:1px solid var(--border); box-shadow:0 2px 12px rgba(0,0,0,0.05); }
+.spy-nav-inner { display:flex; overflow-x:auto; max-width:var(--max); margin:0 auto; padding:0 var(--gut); scrollbar-width:none; }
+.spy-nav-inner::-webkit-scrollbar { display:none; }
+.spy-tab { flex-shrink:0; padding:18px 22px; font-size:13px; font-weight:600; color:var(--muted); border-bottom:2.5px solid transparent; cursor:pointer; transition:color 0.2s, border-color 0.2s; white-space:nowrap; text-decoration:none; display:block; }
+.spy-tab:hover { color:var(--navy); }
+.spy-tab.active { color:var(--green-dk); border-bottom-color:var(--green-lt); }
+.spy-tab.soon-tab { opacity:0.45; }
+
+/* SERVICE SECTIONS */
+.svc-section { padding:64px 0; border-bottom:1px solid var(--border); }
+.svc-section:nth-child(even) { background:var(--surface-alt); }
+.svc-inner { display:grid; grid-template-columns:1fr 380px; gap:80px; align-items:center; }
+.svc-section:nth-child(even) .svc-inner { direction:rtl; }
+.svc-section:nth-child(even) .svc-inner > * { direction:ltr; }
+.svc-num { font-family:var(--fm); font-size:clamp(100px,14vw,180px); font-weight:700; color:var(--navy); opacity:0.055; line-height:1; margin-bottom:-48px; letter-spacing:-0.04em; }
+.svc-content .label { margin-top:0; }
+.svc-content h2 { font-size:clamp(1.5rem,3vw,2.25rem); font-weight:700; color:var(--navy); line-height:1.2; margin:12px 0 16px; }
+.svc-content .lead { font-size:0.9375rem; color:var(--text-2); line-height:1.7; margin-top:0; max-width:none; }
+.svc-bullets { list-style:none; margin:24px 0 32px; display:flex; flex-direction:column; gap:12px; }
+.svc-bullets li { display:flex; align-items:flex-start; gap:12px; font-size:0.9375rem; color:var(--text-2); line-height:1.5; }
+.svc-bullets li::before { content:''; flex-shrink:0; width:6px; height:6px; border-radius:9999px; background:var(--green-lt); margin-top:7px; }
+.svc-aside { --svc-clip:polygon(0 0,calc(100% - 24px) 0,100% 24px,100% 100%,24px 100%,0 calc(100% - 24px)); position:relative; aspect-ratio:5/4; overflow:visible; isolation:isolate; }
+.svc-aside::before { content:''; position:absolute; inset:13px -13px -13px 13px; z-index:-1; clip-path:var(--svc-clip); background:linear-gradient(135deg,rgba(93,179,138,.20),rgba(11,20,48,.11)); border:1px solid rgba(93,179,138,.36); }
+.svc-aside::after { content:''; position:absolute; top:-8px; right:28px; width:34px; height:34px; z-index:2; border-top:1px solid var(--green-lt); border-right:1px solid var(--green-lt); pointer-events:none; }
+.svc-section:nth-child(even) .svc-aside::before { inset:13px 13px -13px -13px; }
+.svc-section:nth-child(even) .svc-aside::after { right:auto; left:28px; border-right:0; border-left:1px solid var(--green-lt); }
+.svc-aside-visual { position:absolute; inset:0; overflow:hidden; clip-path:var(--svc-clip); background:var(--surface-alt); border:1px solid rgba(11,20,48,.14); }
+.svc-aside-visual::before { content:''; position:absolute; inset:-1px; background:var(--svc-img) var(--svc-pos,center)/cover no-repeat; filter:saturate(.64) contrast(1.07); transform:scale(1.012); transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .55s ease; }
+.svc-aside-visual::after { content:''; position:absolute; inset:0; background:linear-gradient(rgba(244,246,244,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(244,246,244,.10) 1px,transparent 1px),linear-gradient(135deg,rgba(11,20,48,.76),rgba(31,61,51,.58)); background-size:24px 24px,24px 24px,auto; -webkit-mask-image:var(--svc-panel-mask); mask-image:var(--svc-panel-mask); transition:opacity .45s ease; pointer-events:none; }
+.svc-aside:hover .svc-aside-visual::before { transform:scale(1.035) translateX(2px); filter:saturate(.88) contrast(1.04); }
+.svc-aside:hover .svc-aside-visual::after { opacity:.84; }
+.svc-aside-visual[data-svc="brokerage"] { --svc-img:url('../assets/services/01-brokerage.jpg'); --svc-pos:center; --svc-panel-mask:linear-gradient(to left,#000 0 32%,transparent 32%); }
+.svc-aside-visual[data-svc="proje"] { --svc-img:url('../assets/services/02-project-development.jpg'); --svc-pos:center 48%; --svc-panel-mask:linear-gradient(to right,#000 0 32%,transparent 32%); }
+.svc-aside-visual[data-svc="bess"] { --svc-img:url('../assets/services/03-bess.jpg'); --svc-pos:center; --svc-panel-mask:linear-gradient(to left,#000 0 32%,transparent 32%); }
+.svc-aside-visual[data-svc="epc"] { --svc-img:url('../assets/services/04-epc.jpg'); --svc-pos:center 42%; --svc-panel-mask:linear-gradient(to right,#000 0 32%,transparent 32%); }
+.svc-aside-visual[data-svc="saha"] { --svc-img:url('../assets/services/05-site-inspection.jpg'); --svc-pos:center 44%; --svc-panel-mask:linear-gradient(to left,#000 0 32%,transparent 32%); }
+.svc-aside-visual[data-svc="karbon"] { --svc-img:url('../assets/services/06-carbon.jpg'); --svc-pos:center; --svc-panel-mask:linear-gradient(to right,#000 0 32%,transparent 32%); }
+@media(max-width:900px) {
+  .svc-inner { grid-template-columns:1fr; gap:40px; }
+  .svc-section:nth-child(even) .svc-inner { direction:ltr; }
+  .svc-aside { aspect-ratio:3/2; }
+  .svc-aside::before,.svc-section:nth-child(even) .svc-aside::before { inset:8px -8px -8px 8px; }
+  .svc-aside::after,.svc-section:nth-child(even) .svc-aside::after { right:22px; left:auto; border-right:1px solid var(--green-lt); border-left:0; }
+  .svc-aside-visual::after { -webkit-mask-image:linear-gradient(to left,#000 0 24%,transparent 24%); mask-image:linear-gradient(to left,#000 0 24%,transparent 24%); }
+}
+@media(max-width:560px) { .svc-aside { aspect-ratio:4/3; } }
+@media(hover:none) { .svc-aside:hover .svc-aside-visual::before { transform:scale(1.012); filter:saturate(.68) contrast(1.07); } }
+@media(prefers-reduced-motion:reduce) { .svc-aside-visual::before,.svc-aside-visual::after { transition:none; } .svc-aside:hover .svc-aside-visual::before { transform:scale(1.012); } }
+
+/* BTN PILL (service page fill-in variant) */
+.btn-pill { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:8px; padding:13px 26px; border-radius:9999px; font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid var(--border); background:transparent; color:var(--navy); transition:transform .15s ease, color .15s ease, border-color .15s ease; text-decoration:none; }
+.btn-pill::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--navy); border-radius:9999px; transform:translateX(-101%); transition:transform .28s ease; }
+.btn-pill:hover { border-color:var(--navy); color:#fff; transform:translateY(-1px); }
+.btn-pill:hover::before { transform:translateX(0); }
+.btn-pill.dk { background:var(--navy); color:#fff; border-color:var(--navy); }
+.btn-pill.dk::before { background:var(--green-dk); }
+.btn-pill.dk:hover { border-color:var(--green-dk); box-shadow:0 6px 20px rgba(11,20,48,.22); transform:translateY(-1px); }
+.btn-pill.dk:hover::before { transform:translateX(0); }
+
+/* COMING SOON OVERLAY */
+
+/* WHY AL ENERJİ */
+.neden-sec { background:var(--navy); padding:64px 0; }
+.neden-sec .label { color:var(--green-lt); }
+.neden-sec h2 { color:#fff; margin-top:8px; font-size:clamp(1.7rem,3.5vw,2.1rem); }
+.neden-sec .lead { color:var(--on-dark-muted); max-width:680px; margin-top:8px; }
+.neden-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:rgba(255,255,255,0.06); border-radius:var(--r-card); overflow:hidden; margin-top:48px; }
+.neden-card { background:var(--navy); padding:32px 28px; border-top:3px solid var(--green-lt); position:relative; isolation:isolate; overflow:hidden; display:flex; flex-direction:column; justify-content:center; min-height:210px; }
+.neden-card::after { content:attr(data-n); position:absolute; top:50%; right:0; transform:translateY(-50%); z-index:-1; font-size:180px; font-weight:900; font-family:var(--fm); color:rgba(255,255,255,0.055); line-height:1; letter-spacing:-0.05em; pointer-events:none; }
+.neden-card h3 { font-size:1.0625rem; color:#fff; margin:0 0 12px; position:relative; }
+.neden-card p { font-size:0.9rem; color:rgba(255,255,255,0.5); line-height:1.65; margin:0; position:relative; }
+@media(max-width:768px) { .neden-grid { grid-template-columns:1fr; gap:1px; } }
+
+/* LEAD FORM */
+.form-sec { padding:64px 0; background:var(--bg); }
+.form-inner { display:grid; grid-template-columns:1fr 480px; gap:80px; align-items:start; }
+.form-aside h2 { margin-bottom:16px; }
+.form-aside .lead { margin-top:0; }
+.form-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-card); padding:40px; }
+.form-row { margin-bottom:20px; }
+.form-row label { display:block; font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+.form-row input, .form-row select, .form-row textarea { width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:4px; font-family:var(--fh); font-size:1rem; color:var(--text); background:var(--bg); transition:border-color 0.18s; outline:none; }
+.form-row input:focus, .form-row select:focus, .form-row textarea:focus { border-color:var(--green-lt); }
+.form-row textarea { resize:vertical; min-height:120px; }
+.form-check { display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:var(--text-2); margin-bottom:16px; }
+.form-check input[type=checkbox] { margin-top:3px; accent-color:var(--green-lt); flex-shrink:0; }
+.form-submit { width:100%; padding:14px; background:var(--navy); color:#fff; border:none; border-radius:4px; font-family:var(--fh); font-size:0.9375rem; font-weight:600; cursor:pointer; transition:background 0.2s; }
+.form-submit:hover { background:var(--green-dk); }
+.form-status { display:none; margin-top:14px; padding:12px 14px; border-left:2px solid var(--green-lt); background:var(--surface-alt); color:var(--text-2); font-size:13px; line-height:1.55; }
+.form-status.show { display:block; }
+@media(max-width:900px) { .form-inner { grid-template-columns:1fr; gap:40px; } }
+
+/* RESPONSIVE NAV DROPDOWN */
+@media(max-width:900px) {
+  .navlinks { display:none; }
+  .nav-burger { display:flex; }
+  .nav-dropdown { display:none !important; }
+}
+@media(min-width:901px) {
+  .nav-mobile { display:none !important; }
+}
+</style>
+<style id="nav-std">
+/* Nav standardized from index.html */
+#nav { position:sticky; top:0; z-index:50; height:64px; display:flex; align-items:center; background:rgba(251,252,251,.95) !important; backdrop-filter:blur(10px); border-bottom:1px solid var(--border) !important; box-shadow:none !important; }
+#nav .wrap { display:flex; align-items:center; justify-content:space-between; width:100%; }
+.logo { display:flex; align-items:center; }
+.logo img { height:38px; width:auto; }
+.logo-dark { display:none !important; }
+.navlinks { display:flex; gap:32px; font-size:14px; font-weight:500; color:var(--text); }
+.navlinks a:hover { color:var(--green-dk); }
+.nav-cta { display:inline-flex !important; align-items:center; gap:6px; padding:11px 22px; font-size:14px; font-weight:600; background:var(--navy); color:#fff; border-radius:9999px; border:none; cursor:pointer; position:static; overflow:visible; }
+.nav-cta::before { display:none !important; }
+.nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; cursor:pointer; padding:11px 10px; border:none; background:transparent; border-radius:4px; }
+.nav-burger span { display:block; width:22px; height:1.5px; background:var(--text); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
+.nav-burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+.nav-mobile { display:block !important; position:fixed !important; top:64px; left:0; right:0; background:var(--surface); z-index:99; padding:24px var(--gut,24px) 32px; border-top:1px solid var(--border); box-shadow:0 8px 32px rgba(0,0,0,.1); opacity:0 !important; transform:translateY(-6px) !important; pointer-events:none !important; transition:opacity .22s ease, transform .22s ease; }
+.nav-mobile.open { opacity:1 !important; transform:none !important; pointer-events:all !important; }
+.nav-mobile a { display:block; font-size:1rem; font-weight:600; padding:13px 0; border-bottom:1px solid var(--border); color:var(--text); }
+.nav-mobile a:last-of-type { border-bottom:0; }
+.nav-mobile .mob-cta { display:block; margin-top:20px; text-align:center; background:var(--navy); color:#fff !important; padding:14px; border-radius: 9999px; font-weight:600; }
+@media(max-width:768px) { .navlinks { display:none !important; } .nav-cta { display:none !important; } .nav-burger { display:flex !important; } }
+@media(min-width:769px) { #navMobile { display:none !important; } }
+</style>
+<link rel="stylesheet" href="../footer-std.css">
+<script src="../scroll-top.js" defer></script>
+<link rel="stylesheet" href="../nav-revision.css">  <link rel="stylesheet" href="../brand-assets.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../assets/brand/favicon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/brand/apple-touch-icon.png">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="wrap">
+    <a href="index.html" class="logo">
+      <img class="logo-light" src="../assets/brand/V2.png" alt="AL ENERJİ" height="38" style="width:auto;">
+      <img class="logo-dark"  src="../assets/brand/al_enerji_logo_white.png" alt="AL ENERJİ" height="38" style="width:auto;">
+    </a>
+    <div class="navlinks">
+      <div class="nav-item">
+        <a href="services.html" class="active">Services<svg class="nav-caret" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav-dropdown"><a class="nav-all-services" href="services.html"><strong>All Services</strong><span>Explore our complete range of services</span><b aria-hidden="true">→</b></a>
+          <div class="dropdown-col">
+            <span class="dropdown-cat">Development &amp; EPC</span>
+            <a href="project-development.html"><strong>Project Development</strong><span>From concept to operation in 7 steps</span></a>
+            <a href="epc.html"><strong>EPC &amp; Installation</strong><span>Turnkey solar solutions</span></a>
+          </div>
+          <div class="dropdown-col">
+            <span class="dropdown-cat">Storage</span>
+            <a href="bess.html"><strong>BESS &amp; Hybrid</strong><span>Flexible grid solutions</span></a>
+          </div>
+          <div class="dropdown-col">
+            <span class="dropdown-cat">Brokerage &amp; Advisory</span>
+            <a href="brokerage.html"><strong>M&amp;A Brokerage</strong><span>Solar asset transactions</span></a>
+            <a href="site-inspection.html"><strong>Site Inspection</strong><span>Owner's Engineer services</span></a>
+            <a href="carbon.html" ><strong>Carbon Management</strong><span>South Pole partnership</span></a>
+          </div>
+        </div>
+      </div>
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="lang-sw"><span class="lang-cur">EN</span><span class="lang-sep">|</span><a href="../hizmetler.html" class="lang-alt">TR</a></div>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <button class="nav-cta" onclick="location.href='contact.html'">Contact Us</button>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <div class="mob-lang-sw"><span class="lang-cur">EN</span><span class="lang-sep">|</span><a href="../hizmetler.html" class="lang-alt">TR</a></div>
+  <div class="mob-hiz-toggle" id="mobHizToggle">Services <span class="mob-hiz-arrow">▾</span></div>
+  <div class="mob-hiz-sub" id="mobHizSub">
+    <a href="services.html">All Services</a>
+    <a href="brokerage.html">M&amp;A Brokerage</a>
+    <a href="project-development.html">Project Development</a>
+    <a href="epc.html">EPC &amp; Installation</a>
+    <a href="site-inspection.html">Site Inspection</a>
+    <a href="bess.html">BESS &amp; Hybrid</a>
+    <a href="carbon.html" >Carbon Management</a>
+  </div>
+  <a href="projects.html">Projects</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="mob-cta">Contact Us</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero" id="page-hero">
+  <div class="page-hero-bg" id="page-hero-bg"></div>
+  <div class="wrap">
+    <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> <span>Services</span></div>
+    <h1>Engineering Precision,<br>Field Mastery and Market Solutions</h1>
+    <p class="lead">Since 2004, AL ENERJİ delivers two decades of field, regulatory, tendering and operations experience through three strategic pillars: Development &amp; EPC · Next-Generation Flexible Grid Technologies · Capital &amp; Asset Bridge</p>
+  </div>
+</section>
+
+<!-- SCROLLSPY NAV -->
+<nav class="spy-nav" id="spyNav">
+  <div class="spy-nav-inner">
+    <a href="#brokerage" class="spy-tab active">M&amp;A Brokerage</a>
+    <a href="#project-development" class="spy-tab">Project Development</a>
+    <a href="#bess" class="spy-tab">BESS &amp; Hybrid</a>
+    <a href="#epc" class="spy-tab">EPC &amp; Installation</a>
+    <a href="#site-inspection" class="spy-tab">Site Inspection</a>
+    <a href="#carbon" class="spy-tab">Carbon Management</a>
+  </div>
+</nav>
+
+<!-- ===== SERVICE SECTIONS ===== -->
+
+<!-- 01 M&A Brokerage -->
+<section class="svc-section" id="brokerage" data-reveal>
+  <div class="wrap">
+    <div class="svc-inner">
+      <div class="svc-content">
+        <div class="svc-num">01</div>
+        <div class="label">Brokerage &amp; Advisory</div>
+        <h2>Project Brokerage, M&amp;A and Contract Advisory</h2>
+        <p class="lead">Unlike traditional financial intermediary models, our M&amp;A and Brokerage service is grounded in over 20 years of field development, EPC and directly executed project sales experience. Together with specialist energy lawyers, we manage a comprehensive transfer process that eliminates technical, financial and contractual risks for both buyers and sellers.</p>
+        <ul class="svc-bullets">
+          <li>Technical &amp; Legal Due Diligence: Independent engineering and legal review of zoning, licences, land ownership, EIA and grid connection status</li>
+          <li>Contract Engineering: Conducting technical and commercial negotiations for LOI / Term Sheets, SPAs and SHAs</li>
+          <li>Condition Precedent &amp; Risk Structuring: Complete structuring of security arrangements, Set-off and Escrow mechanisms</li>
+          <li>Realistic Asset Valuation: DCF modelling based on hourly spot-market simulations and actual historical costs</li>
+        </ul>
+        <a href="brokerage.html" class="btn-pill dk">Details →</a>
+      </div>
+      <div class="svc-aside">
+        <div class="svc-aside-visual" data-svc="brokerage">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 Project Development -->
+<section class="svc-section" id="project-development" data-reveal>
+  <div class="wrap">
+    <div class="svc-inner">
+      <div class="svc-content">
+        <div class="svc-num">02</div>
+        <div class="label">Development &amp; EPC</div>
+        <h2>End-to-End Project Development (Concept to Commercial Operation)</h2>
+        <p class="lead">We do not leave projects on paper — we manage every process from concept to Industrial Registry Certificate acquisition with a chronological discipline that maps precisely to the realities of regulations and fieldwork. 7-phase site management fully compliant with Turkey's renewable energy legislation.</p>
+        <ul class="svc-bullets">
+          <li>Capacity Research &amp; Site Selection: Identification of TEİAŞ/TEDAŞ transformer substation capacities; land lease, purchase or expropriation analysis</li>
+          <li>EIA &amp; Urban Planning: Preparation of 1/5,000 and 1/1,000 zoning plans with urban planners, collection of all public authority opinions</li>
+          <li>Engineering Design &amp; Simulations: PVSyst / WAsP production simulations, 3D shading analyses, electrical-mechanical implementation projects</li>
+          <li>Official Acceptance &amp; Commercial Operation: MENR ministerial acceptance, COD, occupancy permit and Industrial Registry Certificate acquisition</li>
+        </ul>
+        <a href="project-development.html" class="btn-pill dk">Details →</a>
+      </div>
+      <div class="svc-aside">
+        <div class="svc-aside-visual" data-svc="proje">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 BESS & Hybrid -->
+<section class="svc-section" id="bess" data-reveal>
+  <div class="wrap">
+    <div class="svc-inner">
+      <div class="svc-content">
+        <div class="svc-num">03</div>
+        <div class="label">Storage</div>
+        <h2>Battery Energy Storage (BESS) &amp; Hybrid Plant Solutions</h2>
+        <p class="lead">We overcome the intermittent nature of renewable energy through Battery Energy Storage Systems (BESS) and hybrid plant conversion engineering, maximising facilities' market revenues. LFP cell chemistry, BMS integration and full compliance with TEİAŞ grid codes.</p>
+        <ul class="svc-bullets">
+          <li>Optimum BESS Capacity &amp; C-Rate Analysis: MWh and C-rate selection matched to historical production profiles, grid constraints and spot market price volatility</li>
+          <li>Advanced Battery Technology Integration: LFP cell chemistry, container architecture, BMS and fire suppression infrastructure</li>
+          <li>Hybrid Plant Conversion Engineering: Addition of secondary resources to existing HPP, WPP or SPP facilities to utilise licensed capacity at full efficiency</li>
+          <li>Grid Codes &amp; Ancillary Services: 100% technical compliance with TEİAŞ Primary/Secondary Frequency Control and Reactive Power Support standards</li>
+        </ul>
+        <a href="bess.html" class="btn-pill dk">Details →</a>
+      </div>
+      <div class="svc-aside">
+        <div class="svc-aside-visual" data-svc="bess">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 EPC & Installation -->
+<section class="svc-section" id="epc" data-reveal>
+  <div class="wrap">
+    <div class="svc-inner">
+      <div class="svc-content">
+        <div class="svc-num">04</div>
+        <div class="label">Development &amp; EPC</div>
+        <h2>EPC &amp; Turnkey Installation (Rooftop &amp; Ground-Mount SPP)</h2>
+        <p class="lead">We deliver engineering, procurement and construction services for rooftop and ground-mount Solar Power Plants (SPPs) in compliance with IEC 62446, IEC 61724 and UL standards. Single point of accountability from design through commissioning tests.</p>
+        <ul class="svc-bullets">
+          <li>Design &amp; Engineering Optimisation: PVSyst simulations, structural and load-bearing calculations, MV/LV single-line diagrams</li>
+          <li>DC/AC Ratio Optimisation (Overplanting): Determination of overplanting ratios to utilise inverter capacity at maximum efficiency</li>
+          <li>Tier-1 Equipment Procurement: High-efficiency module/inverter selection, driven/bored piling, structural assembly and transformer substation installation</li>
+          <li>Commissioning &amp; Acceptance Tests: Acceptance testing and performance reporting in accordance with IEC standards</li>
+        </ul>
+        <a href="epc.html" class="btn-pill dk">Details →</a>
+      </div>
+      <div class="svc-aside">
+        <div class="svc-aside-visual" data-svc="epc">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 Site Inspection / Owner's Engineer -->
+<section class="svc-section" id="site-inspection" data-reveal>
+  <div class="wrap">
+    <div class="svc-inner">
+      <div class="svc-content">
+        <div class="svc-num">05</div>
+        <div class="label">Brokerage &amp; Advisory</div>
+        <h2>Site Inspection, Survey &amp; Testing (Owner's Engineer)</h2>
+        <p class="lead">We provide independent Owner's Engineering (OE) and Independent Technical Review (Independent Engineering – IE) on behalf of investors, international funds and banks during the construction, acceptance and operations phases of power plants.</p>
+        <ul class="svc-bullets">
+          <li>Field Quality Inspection: Real-time on-site monitoring of the EPC contractor's workmanship quality and programme on behalf of the investor</li>
+          <li>FAT &amp; SAT Test Consultancy: Independent witnessing of equipment performance acceptance tests at factory (FAT) and on-site (SAT)</li>
+          <li>Plant Health Check &amp; PR Analysis: Hotspot detection via thermal drone, I-V Curve measurements and EL micro-crack testing</li>
+          <li>Performance Ratio (PR) Verification Reporting: Independent technical reporting in compliance with international standards</li>
+        </ul>
+        <a href="site-inspection.html" class="btn-pill dk">Details →</a>
+      </div>
+      <div class="svc-aside">
+        <div class="svc-aside-visual" data-svc="saha">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 Carbon Management -->
+<section class="svc-section" id="carbon" data-reveal>
+  <div class="wrap">
+    <div class="svc-inner">
+      <div class="svc-content">
+        <div class="svc-num">06</div>
+        <div class="label">Brokerage &amp; Advisory</div>
+        <h2>Carbon Management, Certification &amp; CBAM Advisory</h2>
+        <p class="lead">Drawing on field and verification experience from projects conducted with South Pole since 2007, we manage carbon-credit processes for renewable energy assets and CBAM compliance for exporting industries end to end.</p>
+        <ul class="svc-bullets">
+          <li>VCS &amp; Gold Standard: Registration and verification experience from Çaldere HPP, Dora-1 GPP and Dora-2 GPP</li>
+          <li>End-to-End Certification: Methodology selection, PDD, stakeholder engagement, validation, registration, monitoring and issuance</li>
+          <li>ISO 14064 / ISO 14067 &amp; CBAM: Organisational and product carbon footprints with EU export-compliance reporting</li>
+          <li>I-REC / Green Electricity: Certificate issuance, trading and transfer to corporate buyers</li>
+        </ul>
+        <a href="carbon.html" class="btn-pill dk">Details →</a>
+      </div>
+      <div class="svc-aside">
+        <div class="svc-aside-visual" data-svc="karbon">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY AL ENERJİ -->
+<section class="neden-sec" data-reveal>
+  <div class="wrap">
+    <div class="label" style="color:var(--green-lt);">Why AL ENERJİ</div>
+    <h2>Why AL ENERJİ Services?</h2>
+    <p class="lead">Not desk consultants — genuine field practitioners who have built, operated and sold their own power plants.</p>
+    <div class="neden-grid">
+      <div class="neden-card" data-n="01">
+        <h3>Practitioner &amp; Investor Origin</h3>
+        <p>As an engineering team that has developed, operated and sold its own power plants, we offer field-tested rather than theoretical approaches.</p>
+      </div>
+      <div class="neden-card" data-n="02">
+        <h3>Contract &amp; Legal Mastery</h3>
+        <p>SPA/SHA contract expertise supported by specialist energy lawyers — preventing blockages in M&amp;A processes.</p>
+      </div>
+      <div class="neden-card" data-n="03">
+        <h3>Concept-to-Operation Integrated Approach</h3>
+        <p>Full 7-step chain management from capacity research to Industrial Registry Certificate. Single point of accountability.</p>
+      </div>
+      <div class="neden-card" data-n="04">
+        <h3>International Standards</h3>
+        <p>Full compliance with IEC, UL and carbon certification processes (VCS, Gold Standard). Global market access through South Pole partnership.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEAD FORM -->
+<section class="form-sec" data-reveal>
+  <div class="wrap">
+    <div class="form-inner">
+      <div class="form-aside">
+        <div class="label">Contact</div>
+        <h2>Have a Qualified Project?</h2>
+        <p class="lead">Let's schedule a detailed consultation for projects in development, acquisition &amp; disposal processes, or technical inspection requirements.</p>
+      </div>
+      <form class="form-card" id="service-request-form">
+        <div class="form-row">
+          <label>Full Name / Title</label>
+          <input type="text" placeholder="">
+        </div>
+        <div class="form-row">
+          <label>Company / Organisation</label>
+          <input type="text" placeholder="">
+        </div>
+        <div class="form-row">
+          <label>Email Address</label>
+          <input type="email" placeholder="">
+        </div>
+        <div class="form-row">
+          <label>Phone</label>
+          <input type="tel" placeholder="">
+        </div>
+        <div class="form-row">
+          <label>Subject / Service</label>
+          <select>
+            <option>M&amp;A Brokerage / Project Acquisition &amp; Disposal</option>
+            <option>End-to-End Project Development</option>
+            <option>Battery Storage (BESS) &amp; Hybrid</option>
+            <option>EPC Turnkey Installation</option>
+            <option>Site Inspection &amp; Survey (Owner's Engineer)</option>
+            <option>Carbon Management</option>
+            <option>General Information Request</option>
+          </select>
+        </div>
+        <div class="form-check">
+          <input type="checkbox">
+          <span>I request a Non-Disclosure Agreement (NDA) before sharing project details.</span>
+        </div>
+        <div class="form-row">
+          <label>Message / Project Summary</label>
+          <textarea placeholder="You may share location, MW capacity, licence status and other project details..."></textarea>
+        </div>
+        <div class="form-check">
+          <input type="checkbox">
+          <span>I consent to the processing of my personal data in accordance with applicable data protection regulations.</span>
+        </div>
+        <button type="submit" class="form-submit">Submit Request →</button>
+        <p class="form-status" id="service-form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer-grid">
+      <div>
+        <div class="site-footer-logo"><img src="../assets/brand/al_enerji_logo_white.png" alt="AL ENERJİ" width="166" height="44"></div>
+        <p class="desc">Engineering-led, long-term energy partner. Since 2004.</p>
+        <div class="addr">Nef 09, B Block, No:104<br>Kağıthane / Istanbul, Türkiye<br><br>+90 212 234 38 38<br>info@alenerji.com.tr</div>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="project-development.html">Project Development</a>
+        <a href="epc.html">EPC &amp; Installation</a>
+        <a href="bess.html">BESS &amp; Hybrid</a>
+        <a href="brokerage.html">M&amp;A Brokerage</a>
+        <a href="site-inspection.html">Site Inspection</a>
+        <a href="carbon.html">Carbon Management</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="about.html">About Us</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html#form">Careers</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:info@alenerji.com.tr">info@alenerji.com.tr</a>
+        <a href="tel:+902122343838">+90 212 234 38 38</a>
+        <a href="contact.html">Get in Touch</a>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <div class="site-footer-bottom-left">© 2026 AL ENERJİ. All rights reserved.</div>
+      <div class="site-footer-bottom-right">
+        <a href="privacy-notice.html">Privacy Notice</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Burger / mobile nav toggle
+  (function () {
+    var burger = document.getElementById('navBurger');
+    var drawer = document.getElementById('navMobile');
+    if (!burger || !drawer) return;
+    burger.addEventListener('click', function () {
+      var open = burger.classList.toggle('open');
+      drawer.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    drawer.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        burger.classList.remove('open');
+        drawer.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  })();
+
+  // Mobile services accordion
+  var _mht = document.getElementById('mobHizToggle');
+  var _mhs = document.getElementById('mobHizSub');
+  if (_mht && _mhs) {
+    _mht.addEventListener('click', function () {
+      _mht.classList.toggle('open');
+      _mhs.classList.toggle('open');
+    });
+  }
+
+
+  // Parallax hero background
+  (function () {
+    var heroBg = document.getElementById('page-hero-bg');
+    if (!heroBg || window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    window.addEventListener('scroll', function () {
+      heroBg.style.transform = 'translateY(' + (window.pageYOffset * 0.3).toFixed(1) + 'px)';
+    }, { passive: true });
+  })();
+
+  // Scroll reveal
+  (function () {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('[data-reveal]').forEach(function (el) { obs.observe(el); });
+  })();
+
+  // Label line-in animation
+  document.querySelectorAll('.label').forEach(function (el) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { el.classList.add('in'); io.disconnect(); }
+      });
+    }, { threshold: 0.3 });
+    io.observe(el);
+  });
+
+  // Scrollspy
+  (function () {
+    var spyTabs = document.querySelectorAll('.spy-tab');
+    var spyInner = document.querySelector('.spy-nav-inner');
+    var sections = document.querySelectorAll('.svc-section[id]');
+
+    function centerTab(tab) {
+      if (!spyInner || !tab) return;
+      var target = tab.offsetLeft - (spyInner.offsetWidth / 2) + (tab.offsetWidth / 2);
+      spyInner.scrollTo({ left: target, behavior: 'smooth' });
+    }
+
+    spyTabs.forEach(function (tab) {
+      tab.addEventListener('click', function () { centerTab(tab); });
+    });
+
+    var spyObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.getAttribute('id');
+          spyTabs.forEach(function (tab) {
+            tab.classList.remove('active');
+            if (tab.getAttribute('href') === '#' + id) {
+              tab.classList.add('active');
+              centerTab(tab);
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-64px 0px -50% 0px', threshold: 0 });
+    sections.forEach(function (sec) { spyObserver.observe(sec); });
+  })();
+</script>
+<script id="burger-std">
+(function(){
+  var burger=document.getElementById('navBurger');
+  var drawer=document.getElementById('navMobile');
+  if(!burger||!drawer)return;
+  // Remove old listeners by cloning
+  var b2=burger.cloneNode(true);
+  burger.parentNode.replaceChild(b2,burger);
+  burger=b2;
+  burger.addEventListener('click',function(){
+    var open=burger.classList.toggle('open');
+    drawer.classList.toggle('open',open);
+    burger.setAttribute('aria-expanded',open);
+    document.body.style.overflow=open?'hidden':'';
+  });
+  drawer.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){
+      burger.classList.remove('open');
+      drawer.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+      document.body.style.overflow='';
+    });
+  });
+})();
+</script>
+<script>
+document.getElementById('service-request-form')?.addEventListener('submit', function (event) {
+  event.preventDefault();
+  var status = document.getElementById('service-form-status');
+  status.innerHTML = 'The online request form is currently being prepared. Please email your enquiry to <a href="mailto:info@alenerji.com.tr" style="display:inline;color:var(--green-dk);font-weight:600">info@alenerji.com.tr</a> or continue to the <a href="contact.html#form" style="display:inline;color:var(--green-dk);font-weight:600">contact form</a>.';
+  status.classList.add('show');
+});
+</script>
+</body>
+</html>

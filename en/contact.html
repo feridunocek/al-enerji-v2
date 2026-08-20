@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Contact AL ENERJİ's Istanbul office for M&A brokerage, project development, EPC, site inspection and BESS enquiries.">
+<meta property="og:title" content="AL ENERJİ — Contact">
+<meta property="og:description" content="Contact AL ENERJİ's Istanbul office for M&A brokerage, project development, EPC, site inspection and BESS enquiries.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://al-enerji-v2.vercel.app/en/contact.html">
+<link rel="canonical" href="https://al-enerji-v2.vercel.app/en/contact.html">
+<link rel="alternate" hreflang="tr" href="https://al-enerji-v2.vercel.app/iletisim.html">
+<link rel="alternate" hreflang="en" href="https://al-enerji-v2.vercel.app/en/contact.html">
+<link rel="alternate" hreflang="x-default" href="https://al-enerji-v2.vercel.app/iletisim.html">
+<title>AL ENERJİ — Contact</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─────────────────────────────────────────── */
+:root {
+  --navy:#0B1430; --green-dk:#1F3D33; --green-lt:#5DB38A;
+  --bg:#FBFCFB; --surface:#FFFFFF; --surface-alt:#EFF1EF;
+  --border:#D6D9D5; --border-strong:#B9BFBA;
+  --text:#0B1430; --text-2:#3A4356; --muted:#6B7280;
+  --on-dark:#F4F6F4; --on-dark-muted:rgba(244,246,244,.6);
+  --fh:'Hanken Grotesk',sans-serif; --fm:'JetBrains Mono',monospace;
+  --max:1200px; --gut:64px; --spy:96px; --r-ctrl:4px; --r-card:8px;
+}
+@media(max-width:768px) { :root { --gut:20px; --spy:64px; } }
+
+/* ─── RESET ──────────────────────────────────────────── */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { font-family:var(--fh); background:var(--bg); color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; }
+a { color:inherit; text-decoration:none; }
+img { max-width:100%; display:block; }
+.wrap { max-width:var(--max); margin:0 auto; padding:0 var(--gut); }
+
+/* ─── NAV ────────────────────────────────────────────── */
+nav { position:sticky; top:0; z-index:100; height:64px; display:flex; align-items:center; background:rgba(251,252,251,.95); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+nav .wrap { display:flex; align-items:center; justify-content:space-between; width:100%; }
+.logo { display:flex; align-items:center; }
+.logo-light { display:block; }
+.logo-dark  { display:none; }
+.navlinks { display:flex; gap:28px; font-size:14px; font-weight:500; color:var(--text); }
+.navlinks a { position:relative; }
+.navlinks a::after { content:''; position:absolute; left:0; bottom:-4px; height:1.5px; width:0; background:var(--green-dk); transition:width .22s ease; }
+.navlinks a:hover::after, .navlinks a.active::after { width:100%; }
+.navlinks a.active { color:var(--green-dk); font-weight:600; }
+.nav-cta { position:relative; overflow:hidden; z-index:0; display:inline-flex; align-items:center; gap:6px; padding:10px 20px; border-radius:var(--r-ctrl); font-family:var(--fh); font-size:14px; font-weight:600; cursor:pointer; border:1.5px solid transparent; background:var(--navy); color:#fff; transition:transform .15s ease; white-space:nowrap; }
+.nav-cta::before { content:''; position:absolute; inset:0; z-index:-1; background:var(--green-dk); transform:translateX(-100%); transition:transform .28s ease; border-radius:var(--r-ctrl); }
+.nav-cta:hover { transform:translateY(-1px); }
+.nav-cta:hover::before { transform:translateX(0); }
+/* Hamburger */
+.nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; cursor:pointer; padding:11px 10px; border:none; background:transparent; border-radius:4px; }
+.nav-burger span { display:block; width:22px; height:1.5px; background:var(--text); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
+.nav-burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+.nav-mobile { position:fixed; top:64px; left:0; right:0; background:var(--surface); z-index:99; padding:24px var(--gut) 32px; border-top:1px solid var(--border); box-shadow:0 8px 32px rgba(0,0,0,.1); opacity:0; transform:translateY(-6px); pointer-events:none; transition:opacity .22s ease, transform .22s ease; }
+.nav-mobile.open { opacity:1; transform:none; pointer-events:all; }
+.nav-mobile a { display:block; font-size:1rem; font-weight:600; padding:13px 0; border-bottom:1px solid var(--border); color:var(--text); }
+.nav-mobile a:last-of-type { border-bottom:0; }
+.nav-mobile a.active { color:var(--green-dk); }
+.nav-mobile .mob-cta { display:block; margin-top:20px; text-align:center; background:var(--navy); color:#fff !important; padding:14px; border-radius: 9999px; font-weight:600; border:none; }
+@media(max-width:768px) { .navlinks, .nav-cta { display:none; } .nav-burger { display:flex; } }
+
+/* ─── PAGE HERO ──────────────────────────────────────── */
+.page-hero { position:relative; height:40vh; min-height:300px; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; }
+.page-hero-bg { position:absolute; inset:-18% 0; will-change:transform; background: linear-gradient(135deg,#0B1430 0%,#1F3D33 100%); }
+.page-hero-bg::after { content:''; position:absolute; inset:0; background:rgba(11,20,48,.35); }
+.page-hero-content { position:relative; z-index:1; max-width:var(--max); margin:0 auto; width:100%; padding:0 var(--gut) 56px; animation:heroIn .8s ease .1s both; }
+@keyframes heroIn { from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none} }
+.breadcrumb { display:flex; align-items:center; gap:8px; font-family:var(--fm); font-size:11px; letter-spacing:.08em; color:rgba(255,255,255,.35); margin-bottom:20px; flex-wrap:wrap; }
+.breadcrumb a { color:rgba(255,255,255,.35); transition:color .18s; }
+.breadcrumb a:hover { color:rgba(255,255,255,.7); }
+.breadcrumb .sep { color:rgba(255,255,255,.18); }
+.breadcrumb .current { color:rgba(255,255,255,.65); }
+.page-hero h1 { color:#fff; font-size:clamp(2rem,4.5vw,3rem); font-weight:700; line-height:1.08; letter-spacing:-.02em; }
+.page-hero h1 em { font-style:italic; color:var(--green-lt); }
+
+/* ─── CHANNEL CARDS ──────────────────────────────────── */
+.channel-sec { padding:56px 0 0; }
+.channel-lead { max-width:720px; margin-bottom:40px; }
+.channel-lead p { font-size:.9375rem; color:var(--text-2); line-height:1.75; margin-bottom:10px; }
+.channel-lead .nda-note { font-family:var(--fm); font-size:11px; letter-spacing:.06em; color:var(--muted); border-left:2px solid var(--green-lt); padding-left:12px; margin-top:16px; }
+.channel-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+@media(max-width:768px) { .channel-grid { grid-template-columns:1fr; } }
+.ch-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-card); border-top:3px solid var(--green-lt); padding:28px 24px; }
+.ch-cat { font-family:var(--fm); font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--green-lt); display:block; margin-bottom:10px; }
+.ch-title { font-size:1rem; font-weight:700; color:var(--navy); display:block; margin-bottom:10px; line-height:1.3; }
+.ch-desc { font-size:.875rem; color:var(--text-2); line-height:1.65; }
+
+/* ─── CONTACT CARDS ──────────────────────────────────── */
+.contact-cards { padding:40px 0 0; }
+.cards-row { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+@media(max-width:768px) { .cards-row { grid-template-columns:1fr; gap:12px; } }
+.ccard { display:flex; align-items:flex-start; gap:16px; padding:24px; border:1px solid var(--border); border-radius:var(--r-card); background:var(--surface); transition:border-color .2s, box-shadow .2s; }
+.ccard:hover { border-color:var(--green-dk); box-shadow:0 4px 24px rgba(0,0,0,.06); }
+.ccard-ico { flex-shrink:0; width:40px; height:40px; border-radius:8px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; background:var(--surface-alt); transition:background .2s, border-color .2s; }
+.ccard:hover .ccard-ico { background:rgba(31,61,51,.08); border-color:var(--green-dk); }
+.ccard-ico svg { width:18px; height:18px; stroke:var(--green-dk); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.ccard-label { font-family:var(--fm); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+.ccard-value { font-size:15px; font-weight:600; color:var(--text); line-height:1.4; }
+.ccard-sub { font-size:13px; color:var(--muted); margin-top:2px; }
+
+/* ─── MAIN CONTENT (form + info) ─────────────────────── */
+.contact-main { padding:72px 0 var(--spy); }
+.contact-grid { display:grid; grid-template-columns:1fr 1.55fr; gap:56px; align-items:start; }
+@media(max-width:900px) {
+  .contact-main { padding-top:48px; }
+  .contact-grid { grid-template-columns:1fr; gap:48px; }
+  .contact-grid #form { order:-1; }
+}
+
+/* Left: office info */
+.label { display:inline-flex; align-items:center; gap:12px; font-size:14px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--green-dk); margin-bottom:18px; }
+.label::after { content:''; order:-1; width:7px; height:7px; border-radius:9999px; background:currentColor; animation:pulse 2.4s ease-in-out infinite; }
+.label::before { content:''; width:0; height:1.5px; background:currentColor; transition:width .6s ease .15s; }
+.label.in::before { width:28px; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.6)} }
+
+.info-block h2 { font-size:clamp(1.5rem,2.8vw,2rem); font-weight:700; line-height:1.12; letter-spacing:-.02em; margin-bottom:16px; }
+.info-block p { font-size:15px; color:var(--text-2); line-height:1.75; max-width:44ch; }
+.info-divider { height:1px; background:var(--border); margin:32px 0; }
+.info-detail { display:flex; flex-direction:column; gap:20px; }
+.info-row { display:flex; gap:14px; align-items:flex-start; }
+.info-row-ico { flex-shrink:0; width:36px; height:36px; border-radius:6px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; background:var(--surface-alt); margin-top:1px; }
+.info-row-ico svg { width:16px; height:16px; stroke:var(--green-dk); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.info-row-label { font-family:var(--fm); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+.info-row-value { font-size:14px; color:var(--text); font-weight:500; line-height:1.55; }
+.info-row-value a:hover { color:var(--green-dk); }
+
+/* Location link */
+.map-box { margin-top:32px; border-radius:var(--r-card); overflow:hidden; min-height:148px; background:var(--navy); display:flex; align-items:center; padding:28px; position:relative; }
+.map-box::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,transparent 30%,rgba(93,179,138,.12)); }
+.map-box-inner { position:relative; z-index:1; text-align:left; }
+.map-box svg { width:28px; height:28px; stroke:var(--green-lt); stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; margin-bottom:12px; }
+.map-box p { font-size:14px; color:rgba(255,255,255,.7); }
+.map-link { display:inline-flex; align-items:center; gap:6px; margin-top:10px; font-size:13px; font-weight:600; color:var(--green-lt); transition:gap .18s; }
+.map-link:hover { gap:10px; }
+
+/* Social */
+.social-row { display:flex; gap:10px; margin-top:32px; flex-wrap:wrap; }
+.soc-btn { display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border:1px solid var(--border); border-radius:var(--r-ctrl); font-size:13px; font-weight:600; color:var(--text-2); transition:border-color .2s, color .2s; }
+.soc-btn:hover { border-color:var(--green-dk); color:var(--green-dk); }
+.soc-btn svg { width:15px; height:15px; fill:currentColor; flex-shrink:0; }
+
+/* ─── FORM ───────────────────────────────────────────── */
+.form-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:40px; }
+@media(max-width:480px) { .form-card { padding:28px 20px; border-radius:var(--r-card); } }
+.form-card h3 { font-size:1.25rem; font-weight:700; margin-bottom:6px; }
+.form-card .form-sub { font-size:14px; color:var(--muted); margin-bottom:28px; padding-bottom:28px; border-bottom:1px solid var(--border); }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media(max-width:560px) { .form-row { grid-template-columns:1fr; } }
+.form-group { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
+.form-label { font-size:12px; font-weight:600; color:var(--text-2); letter-spacing:.03em; }
+.form-label .req { color:var(--green-dk); margin-left:2px; }
+.form-input {
+  width:100%; padding:11px 14px;
+  border:1px solid var(--border); border-radius:var(--r-ctrl);
+  background:var(--surface-alt); color:var(--text);
+  font-family:var(--fh); font-size:16px;
+  transition:border-color .18s, background .18s;
+  outline:none;
+}
+.form-input:focus { border-color:var(--green-dk); background:var(--surface); }
+.form-input::placeholder { color:var(--muted); }
+select.form-input { appearance:none; cursor:pointer; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:38px; }
+textarea.form-input { resize:vertical; min-height:120px; }
+
+.kvkk-row { display:flex; align-items:flex-start; gap:10px; margin-top:8px; margin-bottom:24px; }
+.kvkk-box { flex-shrink:0; width:18px; height:18px; border:1.5px solid var(--border-strong); border-radius:3px; cursor:pointer; display:flex; align-items:center; justify-content:center; margin-top:1px; transition:border-color .18s, background .18s; }
+input[type="checkbox"]:checked + .kvkk-box { background:var(--green-dk); border-color:var(--green-dk); }
+input[type="checkbox"]:checked + .kvkk-box::after { content:''; display:block; width:5px; height:9px; border:1.5px solid #fff; border-top:0; border-left:0; transform:rotate(45deg) translate(-1px,0); }
+input[type="checkbox"] { position:absolute; opacity:0; width:18px; height:18px; cursor:pointer; }
+.kvkk-label { font-size:13px; color:var(--muted); line-height:1.55; }
+.kvkk-label a { color:var(--green-dk); font-weight:600; }
+
+.form-submit { width:100%; padding:14px; border:none; border-radius:9999px; background:var(--navy); color:#fff; font-family:var(--fh); font-size:15px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; position:relative; overflow:hidden; transition:transform .15s; }
+.form-submit::before { content:''; position:absolute; inset:0; background:var(--green-dk); transform:translateX(-100%); transition:transform .28s ease; }
+.form-submit:hover { transform:translateY(-1px); }
+.form-submit:hover::before { transform:translateX(0); }
+.form-submit span { position:relative; z-index:1; display:flex; align-items:center; gap:8px; }
+.form-submit .arr { display:inline-block; transition:transform .18s; }
+.form-submit:hover .arr { transform:translateX(4px); }
+.form-submit:disabled { cursor:wait; opacity:.72; transform:none; }
+.form-hp { position:absolute !important; left:-10000px !important; width:1px !important; height:1px !important; overflow:hidden !important; }
+
+.nda-row { margin-top:0; margin-bottom:14px; }
+.form-status { display:none; margin-top:16px; padding:12px 14px; border-left:2px solid var(--green-lt); background:var(--surface-alt); color:var(--text-2); font-size:13px; line-height:1.55; }
+.form-status.show { display:block; }
+.form-status.success { border-left-color:var(--green-lt); background:rgba(93,179,138,.1); color:var(--green-dk); }
+.form-status.error { border-left-color:#b84a4a; background:rgba(184,74,74,.08); color:#7d3030; }
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+footer { background:#050B18; color:var(--on-dark); padding:72px 0 32px; border-top:1px solid rgba(255,255,255,.08); }
+footer .grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:32px; border-top:1px solid rgba(255,255,255,.10); padding-top:48px; }
+@media(max-width:900px) { footer .grid { grid-template-columns:1fr 1fr; gap:40px; } }
+@media(max-width:480px) { footer .grid { grid-template-columns:1fr; } }
+footer h4 { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--green-lt); margin-bottom:14px; }
+footer .desc { color:var(--on-dark-muted); font-size:14px; margin-top:16px; max-width:36ch; }
+footer .addr { font-family:var(--fm); font-size:13px; color:var(--on-dark-muted); line-height:1.85; margin-top:16px; }
+footer a { display:block; color:var(--on-dark-muted); font-size:14px; padding:5px 0; transition:color .2s ease; }
+footer a:hover { color:#fff; }
+.footer-bottom { display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(255,255,255,.08); margin-top:48px; padding-top:20px; gap:20px; flex-wrap:wrap; }
+.footer-bottom-left { font-family:var(--fm); font-size:12px; color:var(--on-dark-muted); }
+.footer-bottom-right { display:flex; gap:20px; font-size:13px; flex-wrap:wrap; }
+.footer-bottom-right a { padding:0; }
+
+/* ─── REVEAL ─────────────────────────────────────────── */
+[data-reveal] { opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+[data-reveal].in { opacity:1; transform:none; }
+@media(prefers-reduced-motion:reduce) { [data-reveal] { opacity:1; transform:none; transition:none; } .label::after { animation:none; } }
+
+/* ---- NAV DROPDOWN ---- */
+.nav-item { position:relative; }
+.nav-item::after { content:''; position:absolute; top:100%; left:-16px; right:-16px; height:20px; }
+.nav-item > a { display:inline-flex; align-items:center; gap:5px; }
+.nav-caret { width:10px; height:6px; flex-shrink:0; transition:transform .2s ease; }
+.nav-item:hover .nav-caret { transform:rotate(180deg); }
+.nav-dropdown {
+  position:absolute; top:calc(100% + 16px); left:50%; transform:translateX(-50%) translateY(-6px);
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r-card); box-shadow:0 16px 48px rgba(0,0,0,.13);
+  padding:28px 24px; display:grid; grid-template-columns:1fr .7fr 1.1fr; gap:24px;
+  width:560px; opacity:0; pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease; z-index:200;
+}
+.nav-item:hover .nav-dropdown { opacity:1; pointer-events:all; transform:translateX(-50%) translateY(0); }
+.dropdown-col { display:flex; flex-direction:column; }
+.dropdown-cat {
+  display:block; font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--green-lt); margin-bottom:12px; padding-bottom:10px; border-bottom:1px solid var(--border);
+}
+.nav-dropdown a { display:block; padding:8px 0; border-bottom:1px solid var(--border); text-decoration:none; }
+.nav-dropdown a:last-child { border-bottom:0; padding-bottom:0; }
+.nav-dropdown a strong { display:block; font-size:13px; font-weight:600; color:var(--navy); transition:color .18s; line-height:1.3; }
+.nav-dropdown a span { display:block; font-size:11px; color:#8a9088; margin-top:2px; line-height:1.4; }
+.nav-dropdown a:hover strong { color:var(--green-lt); }
+.nav-dropdown a.soon { opacity:.38; pointer-events:none; }
+/* ---- MOBILE SERVICES EXPANDABLE ---- */
+.mob-hiz-toggle {
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:1rem; font-weight:600; padding:13px 0; border-bottom:1px solid var(--border);
+  cursor:pointer; color:var(--text); user-select:none;
+}
+.mob-hiz-arrow { font-size:11px; display:inline-block; transition:transform .2s; opacity:.6; }
+.mob-hiz-toggle.open .mob-hiz-arrow { transform:rotate(180deg); }
+.mob-hiz-sub { display:none; padding-left:16px; }
+.mob-hiz-sub.open { display:block; }
+.mob-hiz-sub a { display:block; font-size:.9rem; font-weight:500; padding:9px 0; border-bottom:1px solid var(--border); color:#555c54; text-decoration:none; }
+.mob-hiz-sub a:first-child { font-weight:600; color:var(--navy); }
+.mob-hiz-sub a:last-child { border-bottom:0; }
+.mob-hiz-sub a.soon { opacity:.38; pointer-events:none; }
+
+/* ─── LANG SWITCHER ──────────────────────────────────── */
+.lang-sw { display:flex; align-items:center; gap:4px; font-family:var(--fm); font-size:10px; font-weight:600; letter-spacing:.1em; flex-shrink:0; }
+.lang-sw .lang-cur { color:var(--navy); cursor:default; }
+.lang-sw .lang-sep { color:var(--border); font-weight:400; }
+.lang-sw .lang-alt { color:var(--muted); transition:color .18s; }
+.lang-sw .lang-alt:hover { color:var(--green-dk); }
+.mob-lang-sw { display:flex; align-items:center; justify-content:flex-end; gap:8px; padding:12px 0; border-bottom:1px solid var(--border); font-family:var(--fm); font-size:11px; font-weight:700; letter-spacing:.08em; }
+.mob-lang-sw .lang-cur { color:var(--navy); }
+.mob-lang-sw .lang-sep { color:var(--border); }
+.mob-lang-sw .lang-alt { color:var(--muted); }
+.mob-lang-sw .lang-alt:hover { color:var(--green-dk); }
+</style>
+<style id="nav-std">
+/* Nav standardized from index.html */
+#nav { position:sticky; top:0; z-index:50; height:64px; display:flex; align-items:center; background:rgba(251,252,251,.95) !important; backdrop-filter:blur(10px); border-bottom:1px solid var(--border) !important; box-shadow:none !important; }
+#nav .wrap { display:flex; align-items:center; justify-content:space-between; width:100%; }
+.logo { display:flex; align-items:center; }
+.logo img { height:38px; width:auto; }
+.logo-dark { display:none !important; }
+.navlinks { display:flex; gap:32px; font-size:14px; font-weight:500; color:var(--text); }
+.navlinks a:hover { color:var(--green-dk); }
+.nav-cta { display:inline-flex !important; align-items:center; gap:6px; padding:11px 22px; font-size:14px; font-weight:600; background:var(--navy); color:#fff; border-radius:9999px; border:none; cursor:pointer; position:static; overflow:visible; }
+.nav-cta::before { display:none !important; }
+.nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; cursor:pointer; padding:11px 10px; border:none; background:transparent; border-radius:4px; }
+.nav-burger span { display:block; width:22px; height:1.5px; background:var(--text); border-radius:2px; transition:transform .25s ease, opacity .25s ease; }
+.nav-burger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+.nav-mobile { display:block !important; position:fixed !important; top:64px; left:0; right:0; background:var(--surface); z-index:99; padding:24px var(--gut,24px) 32px; border-top:1px solid var(--border); box-shadow:0 8px 32px rgba(0,0,0,.1); opacity:0 !important; transform:translateY(-6px) !important; pointer-events:none !important; transition:opacity .22s ease, transform .22s ease; }
+.nav-mobile.open { opacity:1 !important; transform:none !important; pointer-events:all !important; }
+.nav-mobile a { display:block; font-size:1rem; font-weight:600; padding:13px 0; border-bottom:1px solid var(--border); color:var(--text); }
+.nav-mobile a:last-of-type { border-bottom:0; }
+.nav-mobile .mob-cta { display:block; margin-top:20px; text-align:center; background:var(--navy); color:#fff !important; padding:14px; border-radius: 9999px; font-weight:600; }
+@media(max-width:768px) { .navlinks { display:none !important; } .nav-cta { display:none !important; } .nav-burger { display:flex !important; } }
+@media(min-width:769px) { #navMobile { display:none !important; } }
+</style>
+<link rel="stylesheet" href="../footer-std.css">
+<script src="../scroll-top.js" defer></script>
+<link rel="stylesheet" href="../nav-revision.css">  <link rel="stylesheet" href="../brand-assets.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="../assets/brand/favicon-512.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/brand/apple-touch-icon.png">
+</head>
+<body>
+
+<!-- ─── NAV ──────────────────────────────────────────── -->
+<nav id="nav">
+  <div class="wrap">
+    <a href="index.html" class="logo">
+      <img class="logo-light" src="../assets/brand/V2.png" alt="AL ENERJİ" height="42" style="width:auto;">
+      <img class="logo-dark"  src="../assets/brand/al_enerji_logo_white.png" alt="AL ENERJİ" height="42" style="width:auto;">
+    </a>
+    <div class="navlinks">
+      <div class="nav-item">
+        <a href="services.html">Services<svg class="nav-caret" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav-dropdown"><a class="nav-all-services" href="services.html"><strong>All Services</strong><span>Explore our complete range of services</span><b aria-hidden="true">→</b></a>
+          <div class="dropdown-col">
+            <span class="dropdown-cat">Development &amp; EPC</span>
+            <a href="project-development.html"><strong>Project Development</strong><span>From concept to operation in 7 steps</span></a>
+            <a href="epc.html"><strong>EPC &amp; Installation</strong><span>Turnkey solar solutions</span></a>
+          </div>
+          <div class="dropdown-col">
+            <span class="dropdown-cat">Storage</span>
+            <a href="bess.html"><strong>BESS &amp; Hybrid</strong><span>Flexible grid solutions</span></a>
+          </div>
+          <div class="dropdown-col">
+            <span class="dropdown-cat">Brokerage &amp; Advisory</span>
+            <a href="brokerage.html"><strong>M&amp;A Brokerage</strong><span>Solar asset transactions</span></a>
+            <a href="site-inspection.html"><strong>Site Inspection</strong><span>Owner's Engineer services</span></a>
+            <a href="carbon.html" ><strong>Carbon Management</strong><span>South Pole partnership</span></a>
+          </div>
+        </div>
+      </div>
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+    <div class="lang-sw"><span class="lang-cur">EN</span><span class="lang-sep">|</span><a href="../iletisim.html" class="lang-alt">TR</a></div>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <button class="nav-cta" onclick="location.href='contact.html'">Contact Us</button>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <div class="mob-lang-sw"><span class="lang-cur">EN</span><span class="lang-sep">|</span><a href="../iletisim.html" class="lang-alt">TR</a></div>
+  <div class="mob-hiz-toggle" id="mobHizToggle">Services <span class="mob-hiz-arrow">▾</span></div>
+  <div class="mob-hiz-sub" id="mobHizSub">
+    <a href="services.html">All Services</a>
+    <a href="brokerage.html">M&amp;A Brokerage</a>
+    <a href="project-development.html">Project Development</a>
+    <a href="epc.html">EPC &amp; Installation</a>
+    <a href="site-inspection.html">Site Inspection</a>
+    <a href="bess.html">BESS &amp; Hybrid</a>
+    <a href="carbon.html" >Carbon Management</a>
+  </div>
+  <a href="projects.html">Projects</a>
+  <a href="about.html">About</a>
+  <a href="contact.html" class="active">Contact</a>
+  <a href="contact.html" class="mob-cta">Contact Us</a>
+</div>
+
+<!-- ─── PAGE HERO ─────────────────────────────────────── -->
+<section class="page-hero" id="page-hero">
+  <div class="page-hero-bg" id="page-hero-bg"></div>
+  <div class="page-hero-content">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <span class="current">Contact</span>
+    </div>
+    <h1>Let's evaluate your<br>project <em>together.</em></h1>
+  </div>
+</section>
+
+<!-- ─── MAIN SECTION ──────────────────────────────────────── -->
+<section class="contact-main">
+  <div class="wrap">
+    <div class="contact-grid">
+
+      <!-- Left: info -->
+      <div data-reveal>
+        <span class="label">Istanbul Office</span>
+        <div class="info-block">
+          <h2>Connect with the right expertise.</h2>
+          <p>Contact our team directly for new projects, investments, technical inspections or partnership enquiries. Corporate submissions are handled under strict confidentiality.</p>
+        </div>
+        <div class="info-divider"></div>
+        <div class="info-detail">
+          <div class="info-row">
+            <div class="info-row-ico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div>
+              <div class="info-row-label">Office Address</div>
+              <div class="info-row-value">Nef 09, B Block, No:104<br>Kağıthane / Istanbul, Türkiye</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-row-ico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.51 11a19.79 19.79 0 01-3.07-8.67A2 2 0 012.44 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.72 6.72l1.28-.8a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+            <div>
+              <div class="info-row-label">Phone</div>
+              <div class="info-row-value"><a href="tel:+902122343838">+90 212 234 38 38</a></div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-row-ico"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div>
+              <div class="info-row-label">Email</div>
+              <div class="info-row-value"><a href="mailto:info@alenerji.com.tr">info@alenerji.com.tr</a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="map-box">
+          <div class="map-box-inner">
+            <svg viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+            <p>Nef 09, Kağıthane / Istanbul</p>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Nef+09+B+Blok+No%3A104+Ka%C4%9F%C4%B1thane+%C4%B0stanbul" target="_blank" rel="noopener" class="map-link">View in Google Maps →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: form -->
+      <div id="form" data-reveal>
+        <div class="form-card">
+          <h3>Write to Us</h3>
+          <p class="form-sub">Share your project details so we can route your enquiry to the right specialist team.</p>
+
+          <form id="contact-form" action="../api/contact.php" method="post">
+            <input type="hidden" name="language" value="en">
+            <input type="hidden" name="csrf_token" value="">
+            <input type="hidden" name="form_started_at" value="">
+            <div class="form-hp" aria-hidden="true"><label for="website">Website</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="fullname">Full Name <span class="req">*</span></label>
+                <input class="form-input" type="text" id="fullname" name="full_name" placeholder="John Smith" maxlength="120" autocomplete="name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="company">Company Name <span class="req">*</span></label>
+                <input class="form-input" type="text" id="company" name="company" placeholder="Company Ltd." maxlength="160" autocomplete="organization" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="email">Email Address <span class="req">*</span></label>
+                <input class="form-input" type="email" id="email" name="email" placeholder="john@company.com" maxlength="190" autocomplete="email" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="phone">Phone (optional)</label>
+                <input class="form-input" type="tel" id="phone" name="phone" placeholder="+90 5XX XXX XX XX" maxlength="40" autocomplete="tel">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="subject">Subject <span class="req">*</span></label>
+              <select class="form-input" id="subject" name="subject" required>
+                <option value="" disabled selected>Select a service</option>
+                <option value="brokerage">M&amp;A Brokerage / Project Transactions</option>
+                <option value="project-development">Project Development</option>
+                <option value="bess">BESS &amp; Hybrid Systems</option>
+                <option value="epc">EPC &amp; Turnkey Installation</option>
+                <option value="site-inspection">Site Inspection / Owner's Engineer</option>
+                <option value="carbon">Carbon Management &amp; Sustainability</option>
+                <option value="general">General Enquiry</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="location">Project Location</label>
+                <input class="form-input" type="text" id="location" name="location" placeholder="City / Country" maxlength="160">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="capacity">Capacity</label>
+                <input class="form-input" type="text" id="capacity" name="capacity" placeholder="e.g. 10 MW / 20 MWh" maxlength="80">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">Message <span class="req">*</span></label>
+              <textarea class="form-input" id="message" name="message" placeholder="Briefly describe your project or enquiry..." minlength="10" maxlength="5000" required></textarea>
+            </div>
+
+            <div class="kvkk-row nda-row">
+              <div style="position:relative; width:18px; height:18px; flex-shrink:0;">
+                <input type="checkbox" id="nda" name="nda">
+                <div class="kvkk-box"></div>
+              </div>
+              <label class="kvkk-label" for="nda">I would like to arrange a Non-Disclosure Agreement (NDA) before sharing project details.</label>
+            </div>
+
+            <div class="kvkk-row">
+              <div style="position:relative; width:18px; height:18px; flex-shrink:0;">
+                <input type="checkbox" id="privacy" name="privacy_consent" value="1" required>
+                <div class="kvkk-box" id="kvkk-box"></div>
+              </div>
+              <label class="kvkk-label" for="privacy">
+                I have read the <a href="privacy-notice.html" target="_blank" rel="noopener">Privacy Notice</a>.
+              </label>
+            </div>
+
+            <button type="submit" class="form-submit">
+              <span><span data-submit-label data-default="Send Message">Send Message</span> <span class="arr">→</span></span>
+            </button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer-grid">
+      <div>
+        <div class="site-footer-logo"><img src="../assets/brand/al_enerji_logo_white.png" alt="AL ENERJİ" width="166" height="44"></div>
+        <p class="desc">Engineering-led, long-term energy partner. Since 2004.</p>
+        <div class="addr">Nef 09, B Block, No:104<br>Kağıthane / Istanbul, Türkiye<br><br>+90 212 234 38 38<br>info@alenerji.com.tr</div>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="project-development.html">Project Development</a>
+        <a href="epc.html">EPC &amp; Installation</a>
+        <a href="bess.html">BESS &amp; Hybrid</a>
+        <a href="brokerage.html">M&amp;A Brokerage</a>
+        <a href="site-inspection.html">Site Inspection</a>
+        <a href="carbon.html">Carbon Management</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="about.html">About Us</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html#form">Careers</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:info@alenerji.com.tr">info@alenerji.com.tr</a>
+        <a href="tel:+902122343838">+90 212 234 38 38</a>
+        <a href="contact.html">Get in Touch</a>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <div class="site-footer-bottom-left">© 2026 AL ENERJİ. All rights reserved.</div>
+      <div class="site-footer-bottom-right">
+        <a href="privacy-notice.html">Privacy Notice</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── NAV ──────────────────────────────────────────────────
+const nav    = document.getElementById('nav');
+const pHero  = document.getElementById('page-hero');
+const burger = document.getElementById('navBurger');
+const drawer = document.getElementById('navMobile');
+
+
+burger.addEventListener('click', () => {
+  const open = burger.classList.toggle('open');
+  drawer.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  burger.classList.remove('open'); drawer.classList.remove('open');
+  burger.setAttribute('aria-expanded', false); document.body.style.overflow = '';
+}));
+
+// ── HERO PARALLAX ────────────────────────────────────────
+const phBg = document.getElementById('page-hero-bg');
+window.addEventListener('scroll', () => {
+  if (pHero.getBoundingClientRect().bottom > 0)
+    phBg.style.transform = `translateY(${window.scrollY * 0.28}px)`;
+}, { passive:true });
+
+// ── SCROLL REVEAL ─────────────────────────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const sibs = [...e.target.parentElement.querySelectorAll('[data-reveal]')];
+    setTimeout(() => e.target.classList.add('in'), sibs.indexOf(e.target) * 80);
+    obs.unobserve(e.target);
+  });
+}, { threshold:0.08 });
+document.querySelectorAll('[data-reveal]').forEach(el => obs.observe(el));
+
+const lblObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); lblObs.unobserve(e.target); } });
+}, { threshold:0.5 });
+document.querySelectorAll('.label').forEach(el => lblObs.observe(el));
+
+// Mobile Services accordion
+const _mht = document.getElementById('mobHizToggle');
+const _mhs = document.getElementById('mobHizSub');
+if (_mht && _mhs) {
+  _mht.addEventListener('click', () => {
+    _mht.classList.toggle('open');
+    _mhs.classList.toggle('open');
+  });
+}
+</script>
+<script src="../contact-form.js" defer></script>
+<script id="burger-std">
+(function(){
+  var burger=document.getElementById('navBurger');
+  var drawer=document.getElementById('navMobile');
+  if(!burger||!drawer)return;
+  // Remove old listeners by cloning
+  var b2=burger.cloneNode(true);
+  burger.parentNode.replaceChild(b2,burger);
+  burger=b2;
+  burger.addEventListener('click',function(){
+    var open=burger.classList.toggle('open');
+    drawer.classList.toggle('open',open);
+    burger.setAttribute('aria-expanded',open);
+    document.body.style.overflow=open?'hidden':'';
+  });
+  drawer.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){
+      burger.classList.remove('open');
+      drawer.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+      document.body.style.overflow='';
+    });
+  });
+})();
+</script>
+</body>
+</html>

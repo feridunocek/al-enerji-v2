@@ -1,0 +1,23 @@
+/* Shared AL ENERJI brand asset sizing */
+.logo img {
+  display: block;
+  width: auto !important;
+  height: 44px !important;
+  max-width: min(230px, 30vw);
+  object-fit: contain;
+}
+
+.site-footer-logo img {
+  display: block;
+  width: auto !important;
+  height: 44px !important;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .logo img {
+    height: 40px !important;
+    max-width: 190px;
+  }
+}

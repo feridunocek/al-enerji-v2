@@ -1,0 +1,58 @@
+{
+  "redirects": [
+    { "source": "/hizmetler",         "destination": "/hizmetler.html",         "permanent": true },
+    { "source": "/hizmetler/",        "destination": "/hizmetler.html",         "permanent": true },
+    { "source": "/hakkimizda",        "destination": "/hakkimizda.html",        "permanent": true },
+    { "source": "/hakkimizda/",       "destination": "/hakkimizda.html",        "permanent": true },
+    { "source": "/iletisim",          "destination": "/iletisim.html",          "permanent": true },
+    { "source": "/iletisim/",         "destination": "/iletisim.html",          "permanent": true },
+    { "source": "/projeler",          "destination": "/projeler.html",          "permanent": true },
+    { "source": "/projeler/",         "destination": "/projeler.html",          "permanent": true },
+    { "source": "/brokerage",         "destination": "/brokerage.html",         "permanent": true },
+    { "source": "/brokerage/",        "destination": "/brokerage.html",         "permanent": true },
+    { "source": "/epc",               "destination": "/epc.html",               "permanent": true },
+    { "source": "/epc/",              "destination": "/epc.html",               "permanent": true },
+    { "source": "/bess",              "destination": "/bess.html",              "permanent": true },
+    { "source": "/bess/",             "destination": "/bess.html",              "permanent": true },
+    { "source": "/karbon",            "destination": "/karbon.html",            "permanent": true },
+    { "source": "/karbon/",           "destination": "/karbon.html",            "permanent": true },
+    { "source": "/saha-denetimi",     "destination": "/saha-denetimi.html",     "permanent": true },
+    { "source": "/saha-denetimi/",    "destination": "/saha-denetimi.html",     "permanent": true },
+    { "source": "/proje-gelistirme",  "destination": "/proje-gelistirme.html",  "permanent": true },
+    { "source": "/proje-gelistirme/", "destination": "/proje-gelistirme.html",  "permanent": true },
+    { "source": "/perspektif",        "destination": "/",                        "permanent": true },
+    { "source": "/perspektif/",       "destination": "/",                        "permanent": true },
+    { "source": "/blog",              "destination": "/",                        "permanent": true },
+    { "source": "/blog/",             "destination": "/",                        "permanent": true },
+    { "source": "/en",               "destination": "/en/index.html",           "permanent": false },
+    { "source": "/en/",              "destination": "/en/index.html",           "permanent": false },
+    { "source": "/en/services",      "destination": "/en/services.html",        "permanent": true },
+    { "source": "/en/services/",     "destination": "/en/services.html",        "permanent": true },
+    { "source": "/en/brokerage",     "destination": "/en/brokerage.html",       "permanent": true },
+    { "source": "/en/brokerage/",    "destination": "/en/brokerage.html",       "permanent": true },
+    { "source": "/en/project-development",  "destination": "/en/project-development.html", "permanent": true },
+    { "source": "/en/project-development/", "destination": "/en/project-development.html", "permanent": true },
+    { "source": "/en/epc",           "destination": "/en/epc.html",             "permanent": true },
+    { "source": "/en/epc/",          "destination": "/en/epc.html",             "permanent": true },
+    { "source": "/en/site-inspection",  "destination": "/en/site-inspection.html", "permanent": true },
+    { "source": "/en/site-inspection/", "destination": "/en/site-inspection.html", "permanent": true },
+    { "source": "/en/bess",          "destination": "/en/bess.html",            "permanent": true },
+    { "source": "/en/bess/",         "destination": "/en/bess.html",            "permanent": true },
+    { "source": "/en/carbon",        "destination": "/en/carbon.html",          "permanent": true },
+    { "source": "/en/carbon/",       "destination": "/en/carbon.html",          "permanent": true },
+    { "source": "/en/about",         "destination": "/en/about.html",           "permanent": true },
+    { "source": "/en/about/",        "destination": "/en/about.html",           "permanent": true },
+    { "source": "/en/contact",       "destination": "/en/contact.html",         "permanent": true },
+    { "source": "/en/contact/",      "destination": "/en/contact.html",         "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options",        "value": "SAMEORIGIN" },
+        { "key": "X-XSS-Protection",       "value": "1; mode=block" }
+      ]
+    }
+  ]
+}
