@@ -1,0 +1,119 @@
+/* AL ENERJİ group companies - shared by home and about pages. */
+.group-companies {
+  padding:96px 0 100px;
+  background:var(--surface-alt);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.group-companies-head {
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);
+  align-items:end;
+  gap:72px;
+  margin-bottom:48px;
+}
+.group-companies-head h2 {
+  margin:0;
+  max-width:17ch;
+  font-size:clamp(34px,4vw,54px);
+  line-height:1.06;
+  letter-spacing:-.04em;
+  color:var(--navy);
+}
+.group-companies-intro {
+  margin:0;
+  max-width:55ch;
+  color:var(--text-2);
+  font-size:16px;
+  line-height:1.75;
+}
+.group-company-list {
+  border-top:1px solid var(--border-strong);
+}
+.group-company {
+  display:grid;
+  grid-template-columns:48px minmax(190px,.65fr) minmax(0,1.35fr) 54px;
+  align-items:center;
+  gap:28px;
+  min-height:154px;
+  padding:28px 4px 28px 0;
+  border-bottom:1px solid var(--border);
+  transition:background .28s ease,padding .28s ease;
+}
+.group-company:hover,
+.group-company:focus-visible {
+  padding-left:16px;
+  background:rgba(93,179,138,.07);
+  outline:none;
+}
+.group-company-index {
+  font-family:var(--fm);
+  font-size:10px;
+  color:var(--green-dk);
+  letter-spacing:.12em;
+}
+.group-company-name {
+  display:block;
+  color:var(--navy);
+  font-size:clamp(25px,3vw,38px);
+  font-weight:700;
+  line-height:1;
+  letter-spacing:-.035em;
+}
+.group-company-field {
+  display:block;
+  margin-top:11px;
+  font-family:var(--fm);
+  color:var(--green-dk);
+  font-size:9px;
+  line-height:1.45;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.group-company-copy {
+  max-width:62ch;
+  color:var(--text-2);
+  font-size:15px;
+  line-height:1.7;
+}
+.group-company-arrow {
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  justify-self:end;
+  border:1px solid var(--border-strong);
+  border-radius:9999px;
+  color:var(--navy);
+  font-size:16px;
+  transition:background .25s ease,color .25s ease,border-color .25s ease,transform .25s ease;
+}
+.group-company:hover .group-company-arrow,
+.group-company:focus-visible .group-company-arrow {
+  background:var(--navy);
+  border-color:var(--navy);
+  color:#fff;
+  transform:translateX(3px);
+}
+
+@media(max-width:900px) {
+  .group-companies { padding:76px 0 80px; }
+  .group-companies-head { grid-template-columns:1fr; gap:24px; margin-bottom:36px; }
+  .group-company { grid-template-columns:38px minmax(150px,.7fr) minmax(0,1.3fr) 46px; gap:18px; }
+}
+@media(max-width:680px) {
+  .group-company {
+    grid-template-columns:30px minmax(0,1fr) 42px;
+    gap:12px;
+    min-height:0;
+    padding:24px 0;
+  }
+  .group-company:hover,
+  .group-company:focus-visible { padding-left:10px; }
+  .group-company-copy { grid-column:2 / -1; padding-right:8px; }
+  .group-company-arrow { grid-column:3; grid-row:1; width:38px; height:38px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .group-company,.group-company-arrow { transition:none; }
+}
+
